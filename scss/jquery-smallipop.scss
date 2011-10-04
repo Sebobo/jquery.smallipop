@@ -12,33 +12,33 @@
   max-width:400px;
   
   .bubbleContent { padding:10px; }
-  .bubbleArrow {
+  
+  .bubbleArrow, .bubbleArrowBorder {
     position:absolute;
-    bottom:-20px; left:20px;
+    left:50%;
     height:0; width:0;
+  }
+  .bubbleArrow {
+    bottom:-20px; 
+    margin-left:-10px;
     border:10px solid transparent;
   }
   .bubbleArrowBorder {
-    position:absolute;
-    bottom:-24px; left:18px;
-    height:0; width:0;
+    bottom:-24px;
+    margin-left:-12px;
     border:12px solid transparent;
   }
   &.alignLeft {
-    .bubbleArrow { 
-      left:auto; right:20px; 
-    }
-    .bubbleArrowBorder { 
-      left:auto; right:18px; 
-    }
+    .bubbleArrow { margin-left:0; left:auto; right:20px; }
+    .bubbleArrowBorder { margin-left:0; left:auto; right:18px; }
+  }
+  &.alignRight {
+    .bubbleArrow { margin-left:0; left:20px; right:auto; }
+    .bubbleArrowBorder { margin-left:0; left:18px; right:auto; }
   }
   &.alignBottom {
-    .bubbleArrow { 
-      bottom:auto; top:-20px; 
-    }
-    .bubbleArrowBorder { 
-      bottom:auto; top:-24px; 
-    }
+    .bubbleArrow { bottom:auto; top:-20px; }
+    .bubbleArrowBorder { bottom:auto; top:-24px; }
   }
   
   a { color:#98cbea; }
@@ -68,6 +68,31 @@
   @include rounded(12px);
   .bubbleContent { @include rounded(12px); } 
 }
+
+/* blue theme */
+#smallipop.blue {
+  background:transparent;
+  border: 10px solid rgba(0, 100, 180, 0.9);
+  color: #111;
+  font-size:11px;
+  
+  a { color:#2276aa; }
+  
+  .bubbleContent {
+    border: 0;
+    background: #fefefe;
+  }
+  
+  .bubbleArrow {
+    bottom:-30px; 
+    border-color:rgba(0, 100, 180, 0.9) transparent transparent transparent; 
+  }
+  &.alignBottom {
+    .bubbleArrow { border-color:transparent transparent rgba(0, 100, 180, 0.9) transparent; }
+  }
+}
+.boxshadow.rgba #smallipop.blue { @include boxshadow(0 2px 8px rgba(0, 0, 0, 0.5));} 
+.borderradius #smallipop.blue { @include rounded(7px); }
 
 /* black theme */
 #smallipop.black {
@@ -109,32 +134,35 @@
   .bubbleContent { text-align:center; }
   .bubbleArrow { 
     border-color:#fafafa transparent transparent transparent; 
-    left:90px;
   }
   .bubbleArrowBorder { 
     border-color:#ccc transparent transparent transparent; 
-    left:88px;
   }
   
-  &.alignLeft {
-    .bubbleArrow { 
-      left:90px; right:auto; 
-    }
-    .bubbleArrowBorder { 
-      left:88px; right:auto; 
-    }
-  }
   &.alignBottom {
     .bubbleArrow { border-color:transparent transparent #fafafa transparent; }
     .bubbleArrowBorder { border-color:transparent transparent #ccc transparent; }
   }
 }
-.cssgradients #smallipop.white { 
-  background-color:transparent;
-  @include linear-gradient(#fff, #fafafa); 
-}
 .boxshadow.rgba #smallipop.white { @include boxshadow(0 2px 8px rgba(0, 0, 0, 0.5));} 
 .borderradius #smallipop.white { 
   @include rounded(12px);
   .bubbleContent { @include rounded(12px); } 
+}
+
+/* white theme extended */
+#smallipop.transparent {
+  background-color:rgba(255, 255, 255, 0.8);
+  .bubbleArrow { 
+    bottom:-21px; 
+    border-color:rgba(255, 255, 255, 0.8) transparent transparent transparent; 
+  }
+  .bubbleArrowBorder { 
+    border-color:transparent; 
+  }
+  
+  &.alignBottom {
+    .bubbleArrow { border-color:transparent transparent rgba(255, 255, 255, 0.8) transparent; }
+    .bubbleArrowBorder { border-color:transparent; }
+  }
 }

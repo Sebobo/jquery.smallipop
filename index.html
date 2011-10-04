@@ -35,24 +35,54 @@
         <div style="position:absolute; left:250px; top:100px; width:600px; height:450px;">
             <img src="pic1.jpg" class="hasShadow" width="600" height="450" style="margin:auto auto" />
             
-            <span class="bubbletipHide" style="position:absolute; left:450px; top:50px; width:14px; height:14px;">
-                <span class="pulser"></span>
+            <span class="bubbletipHide" style="position:absolute; left:452px; top:45px; width:14px; height:14px;">
+                <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
                 <span class="info">
                     The <b>sun</b>
                 </span>
             </span>
             
-            <span class="bubbletipHide" style="position:absolute; left:320px; top:200px; width:14px; height:14px;">
-                <span class="pulser"></span>
+            <span class="bubbletipHideTrans" style="position:absolute; left:320px; top:190px; width:14px; height:14px;">
+                <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
                 <span class="info">
-                    The <b>bird is the word</b> and has a white theme with a slightly different bubble
+                    The <b>bird is the word</b> and has a white theme extended by another sub theme 'transparent'
                 </span>
             </span>
         </div>
         
+        <div class="hasShadow" style="position:absolute; width:400px; margin-left:-300px; left:50%; top:600px; background:#fcfcfc; padding:20px; color:#222;">
+            <h4>Something completely different</h4>
+            <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+                sed diam nonumy eirmod tempor 
+                <span class="bubbletipBlue">
+                    invidunt
+                    <span class="info">
+                        Some info about <em>invidunt</em>
+                    </span>
+                </span> 
+                ut labore et dolore magna aliquyam erat, 
+                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+            <p> 
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
+                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+                At vero eos et 
+                <span class="bubbletipBlue">
+                    accusam
+                    <span class="info">
+                        Some <b>markup info</b> about <em>accusam</em>.
+                    </span>
+                </span> 
+                et justo duo dolores et ea rebum. 
+                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+        </div>
+        
         <br/><br/>
-        <a href="#" class="bubbletip" title="I'm a title with a long text">
-            link with tooltip
+        <a href="#" class="bubbletipBlue" title="I'm a title with a long text">
+            link with blue theme
         </a>
         
         <br/><br/>
@@ -80,12 +110,18 @@
                 $('.bubbletipBlack').smallipop({
                     theme: 'black'
                 });
+                $('.bubbletipBlue').smallipop({
+                    theme: 'blue'
+                });
                 $('.bubbletipHide').smallipop({
                     hideTrigger: true,
                     theme: 'white',
                     popupYOffset: 5,
-                    centered: true,
-                    popupOffset: 0
+                });
+                $('.bubbletipHideTrans').smallipop({
+                    hideTrigger: true,
+                    theme: 'white transparent',
+                    popupYOffset: 5,
                 });
                 $('#tipcustomhint').smallipop({}, "I'm the real hint!");
                 

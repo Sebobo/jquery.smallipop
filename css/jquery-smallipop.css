@@ -11,29 +11,41 @@
 #smallipop .bubbleContent {
   padding: 10px;
 }
-#smallipop .bubbleArrow {
+#smallipop .bubbleArrow, #smallipop .bubbleArrowBorder {
   position: absolute;
-  bottom: -20px;
-  left: 20px;
+  left: 50%;
   height: 0;
   width: 0;
+}
+#smallipop .bubbleArrow {
+  bottom: -20px;
+  margin-left: -10px;
   border: 10px solid transparent;
 }
 #smallipop .bubbleArrowBorder {
-  position: absolute;
   bottom: -24px;
-  left: 18px;
-  height: 0;
-  width: 0;
+  margin-left: -12px;
   border: 12px solid transparent;
 }
 #smallipop.alignLeft .bubbleArrow {
+  margin-left: 0;
   left: auto;
   right: 20px;
 }
 #smallipop.alignLeft .bubbleArrowBorder {
+  margin-left: 0;
   left: auto;
   right: 18px;
+}
+#smallipop.alignRight .bubbleArrow {
+  margin-left: 0;
+  left: 20px;
+  right: auto;
+}
+#smallipop.alignRight .bubbleArrowBorder {
+  margin-left: 0;
+  left: 18px;
+  right: auto;
 }
 #smallipop.alignBottom .bubbleArrow {
   bottom: auto;
@@ -100,6 +112,44 @@
   -ms-border-radius: 12px;
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
+}
+
+/* blue theme */
+#smallipop.blue {
+  background: transparent;
+  border: 10px solid rgba(0, 100, 180, 0.9);
+  color: #111;
+  font-size: 11px;
+}
+#smallipop.blue a {
+  color: #2276aa;
+}
+#smallipop.blue .bubbleContent {
+  border: 0;
+  background: #fefefe;
+}
+#smallipop.blue .bubbleArrow {
+  bottom: -30px;
+  border-color: rgba(0, 100, 180, 0.9) transparent transparent transparent;
+}
+#smallipop.blue.alignBottom .bubbleArrow {
+  border-color: transparent transparent rgba(0, 100, 180, 0.9) transparent;
+}
+
+.boxshadow.rgba #smallipop.blue {
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  -ms-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.borderradius #smallipop.blue {
+  border-radius: 7px;
+  -o-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
 }
 
 /* black theme */
@@ -174,34 +224,15 @@
 }
 #smallipop.white .bubbleArrow {
   border-color: #fafafa transparent transparent transparent;
-  left: 90px;
 }
 #smallipop.white .bubbleArrowBorder {
   border-color: #ccc transparent transparent transparent;
-  left: 88px;
-}
-#smallipop.white.alignLeft .bubbleArrow {
-  left: 90px;
-  right: auto;
-}
-#smallipop.white.alignLeft .bubbleArrowBorder {
-  left: 88px;
-  right: auto;
 }
 #smallipop.white.alignBottom .bubbleArrow {
   border-color: transparent transparent #fafafa transparent;
 }
 #smallipop.white.alignBottom .bubbleArrowBorder {
   border-color: transparent transparent #ccc transparent;
-}
-
-.cssgradients #smallipop.white {
-  background-color: transparent;
-  background-image: -webkit-linear-gradient(top, white, #fafafa);
-  background-image: -moz-linear-gradient(top, white, #fafafa);
-  background-image: -ms-linear-gradient(top, white, #fafafa);
-  background-image: -o-linear-gradient(top, white, #fafafa);
-  background-image: linear-gradient(top, white, #fafafa);
 }
 
 .boxshadow.rgba #smallipop.white {
@@ -225,4 +256,22 @@
   -ms-border-radius: 12px;
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
+}
+
+/* white theme extended */
+#smallipop.transparent {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+#smallipop.transparent .bubbleArrow {
+  bottom: -21px;
+  border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
+}
+#smallipop.transparent .bubbleArrowBorder {
+  border-color: transparent;
+}
+#smallipop.transparent.alignBottom .bubbleArrow {
+  border-color: transparent transparent rgba(255, 255, 255, 0.8) transparent;
+}
+#smallipop.transparent.alignBottom .bubbleArrowBorder {
+  border-color: transparent;
 }
