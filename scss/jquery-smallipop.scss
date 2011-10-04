@@ -1,0 +1,140 @@
+@import "mixins";
+
+/* Bubbletip css */
+
+#smallipop {
+  position:absolute;
+  display:none;
+  background-color:#314b64;
+  border:1px solid #0f161e;
+  color:#d2dfe7;
+  z-index:9999;
+  max-width:400px;
+  
+  .bubbleContent { padding:10px; }
+  .bubbleArrow {
+    position:absolute;
+    bottom:-20px; left:20px;
+    height:0; width:0;
+    border:10px solid transparent;
+  }
+  .bubbleArrowBorder {
+    position:absolute;
+    bottom:-24px; left:18px;
+    height:0; width:0;
+    border:12px solid transparent;
+  }
+  &.alignLeft {
+    .bubbleArrow { 
+      left:auto; right:20px; 
+    }
+    .bubbleArrowBorder { 
+      left:auto; right:18px; 
+    }
+  }
+  &.alignBottom {
+    .bubbleArrow { 
+      bottom:auto; top:-20px; 
+    }
+    .bubbleArrowBorder { 
+      bottom:auto; top:-24px; 
+    }
+  }
+  
+  a { color:#98cbea; }
+}
+
+/* default theme */
+#smallipop.default {
+  text-shadow:0 -1px 1px #0f161e;
+  .bubbleContent { border-top:1px solid #586d82; }
+  
+  a { text-shadow:0 -1px 1px #0f161e; }
+  
+  .bubbleArrow { border-color:#1a2634 transparent transparent transparent; }
+  .bubbleArrowBorder { border-color:#0f161e transparent transparent transparent; }
+  
+  &.alignBottom {
+    .bubbleArrow { border-color:transparent transparent #1a2634 transparent; }
+    .bubbleArrowBorder { border-color:transparent transparent #0f161e transparent; }
+  }
+}
+.cssgradients #smallipop.default {
+  background-color:transparent;
+  @include radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px);
+}
+.boxshadow.rgba #smallipop.default { @include boxshadow(0 2px 8px rgba(0, 0, 0, 0.5));} 
+.borderradius #smallipop.default { 
+  @include rounded(12px);
+  .bubbleContent { @include rounded(12px); } 
+}
+
+/* black theme */
+#smallipop.black {
+  background-color:#222;
+  border-color:#111;
+  text-shadow:0 -1px 1px #111;
+  color:#f5f5f5;
+  
+  a { text-shadow:0 -1px 1px #111; }
+  
+  .bubbleContent { border-top:1px solid #666; }
+  .bubbleArrow { border-color:#222 transparent transparent transparent; }
+  .bubbleArrowBorder { border-color:#111 transparent transparent transparent; }
+  
+  &.alignBottom {
+    .bubbleArrow { border-color:transparent transparent #222 transparent; }
+    .bubbleArrowBorder { border-color:transparent transparent #111 transparent; }
+  }
+}
+.cssgradients #smallipop.black { 
+  background-color:transparent;
+  @include linear-gradient(#333, #222); 
+}
+.boxshadow.rgba #smallipop.black { @include boxshadow(0 2px 8px rgba(0, 0, 0, 0.5));} 
+.borderradius #smallipop.black { 
+  @include rounded(5px);
+  .bubbleContent { @include rounded(5px); } 
+}
+  
+/* white theme */
+#smallipop.white {
+  background-color:#fafafa;
+  border-color:#ccc;
+  text-shadow:0 1px 1px #eee;
+  color:#444;
+  width:200px;
+  max-width:200px;
+  
+  .bubbleContent { text-align:center; }
+  .bubbleArrow { 
+    border-color:#fafafa transparent transparent transparent; 
+    left:90px;
+  }
+  .bubbleArrowBorder { 
+    border-color:#ccc transparent transparent transparent; 
+    left:88px;
+  }
+  
+  &.alignLeft {
+    .bubbleArrow { 
+      left:90px; right:auto; 
+    }
+    .bubbleArrowBorder { 
+      left:88px; right:auto; 
+    }
+  }
+  &.alignBottom {
+    .bubbleArrow { border-color:transparent transparent #fafafa transparent; }
+    .bubbleArrowBorder { border-color:transparent transparent #ccc transparent; }
+  }
+}
+.cssgradients #smallipop.white { 
+  background-color:transparent;
+  @include linear-gradient(#fff, #fafafa); 
+}
+.boxshadow.rgba #smallipop.white { @include boxshadow(0 2px 8px rgba(0, 0, 0, 0.5));} 
+.borderradius #smallipop.white { 
+  @include rounded(12px);
+  .bubbleContent { @include rounded(12px); } 
+}

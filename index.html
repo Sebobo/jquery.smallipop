@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Small-I-Pop - demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" href="css/screen.css" type="text/css" media="all" title="Screen" charset="utf-8" />
+        <link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen" charset="utf-8" />   
+        <script type="text/javascript" src="lib/jquery-1.6.4.min.js"></script>   
+        <script type="text/javascript" src="lib/modernizr-2.0.6.min.js"></script>   
+        <script type="text/javascript" src="lib/jquery-smallipop.js"></script>
+    </head>
+    <body style="padding:200px 30px;">
+        <span class="bubbletip">
+            test with markup tooltip
+            <span class="info">
+                <b>Markuptip</b>
+                <br/>
+                <p>Second <i>italic</i> line!</p>
+                <a href="#">and a link</a>
+            </span>
+        </span>
+        <br/>
+        <div id="ajaxContainer" style="float:right;">
+            <span class="bubbletip">
+                floating right
+                <span class="info">
+                    <b>Markuptip with very long text and should align left</b>
+                    <br/>
+                    <p>Second <i>italic</i> line!</p>
+                    <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
+                </span>
+            </span>
+        </div>
+        
+        <div style="position:absolute; left:250px; top:100px; width:600px; height:450px;">
+            <img src="pic1.jpg" class="hasShadow" width="600" height="450" style="margin:auto auto" />
+            
+            <span class="bubbletipHide" style="position:absolute; left:450px; top:50px; width:14px; height:14px;">
+                <span class="pulser"></span>
+                <span class="info">
+                    The <b>sun</b>
+                </span>
+            </span>
+            
+            <span class="bubbletipHide" style="position:absolute; left:320px; top:200px; width:14px; height:14px;">
+                <span class="pulser"></span>
+                <span class="info">
+                    The <b>bird is the word</b> and has a white theme with a slightly different bubble
+                </span>
+            </span>
+        </div>
+        
+        <br/><br/>
+        <a href="#" class="bubbletip" title="I'm a title with a long text">
+            link with tooltip
+        </a>
+        
+        <br/><br/>
+        <a href="#" class="bubbletipBlack" title="I'm a title with a long text">
+            link with black theme
+        </a>
+        
+        <br/><br/>
+        <div id="ajaxContainer2">
+            <a href="#" id="tipkiller2" class="bubbletip" title="I'm a title with a long text">
+                ajaxlink which replaces itself
+            </a>
+        </div>
+        
+        <br/><br/>
+        <div id="ajaxContainer2">
+            <a href="#" id="tipcustomhint" class="" title="I'm the old title">
+                link with a hint defined in js
+            </a>
+        </div>
+        
+        <script type="text/javascript">
+            $(function() {
+                $('.bubbletip').smallipop();
+                $('.bubbletipBlack').smallipop({
+                    theme: 'black'
+                });
+                $('.bubbletipHide').smallipop({
+                    hideTrigger: true,
+                    theme: 'white',
+                    popupYOffset: 5,
+                    centered: true,
+                    popupOffset: 0
+                });
+                $('#tipcustomhint').smallipop({}, "I'm the real hint!");
+                
+                $('#tipkiller').live('click', function(e) {
+                    e.preventDefault();
+                    $('#ajaxContainer').load('other.html #otherContent');
+                });
+                
+                $('#tipkiller2').live('click', function(e) {
+                    e.preventDefault();
+                    $('#ajaxContainer2').load('other.html #otherContent');
+                });
+            });
+        </script>
+    </body>
+</html>
