@@ -16,7 +16,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       popupDelay: 100
       hideTrigger: false
       theme: "default"
-      infoClass: "info"
+      infoClass: "smallipopHint"
       hideSpeed: 150
       moveSpeed: 200
     popup: null
@@ -97,6 +97,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           offset = self.offset()
           popupW = popup.outerWidth()
           popupH = popup.outerHeight()
+          selfWidth = self.outerWidth()
           windowPadding = 50 # Safe zone to window border
           
           popupOffsetLeft = 0
@@ -106,11 +107,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             popup.addClass("alignLeft")
           else if offset.left - popupW / 2 < windowPadding
             # Positioned right
-            popupOffsetLeft = self.outerWidth() / 2 - opt.popupOffset 
+            popupOffsetLeft = selfWidth / 2 - opt.popupOffset 
             popup.addClass("alignRight")
           else
             # Centered
-            popupOffsetLeft = self.outerWidth() / 2 - popupW / 2
+            popupOffsetLeft = selfWidth / 2 - popupW / 2
           
           # Add class if positioned below  
           popupOffsetTop = 0
@@ -121,7 +122,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             popup.addClass("alignBottom")
           else
             popupOffsetTop = popupH
-          window.console.log(popupOffsetTop + "is doch n scheiss")
+            
           # Hide trigger if defined
           $(".smallipop#{id}").stop(true).fadeTo(opt.hideSpeed, 0) if opt.hideTrigger
     
@@ -190,4 +191,5 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           click: sip.hideSmallipop
         # Hide popup when children of trigger are clicked
         $("a", @).live("click", sip.hideSmallipop)
-)(jQuery)              
+)(jQuery)        
+      

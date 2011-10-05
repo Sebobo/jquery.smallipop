@@ -11,10 +11,9 @@ We wanted:
  * **Custom themes** for different use cases. 
  * The popup trigger **can be positioned anywhere**. The popup will be displayed at the body root, so the position won't be affected by your layout.
  * **Automatic orientation** whereever the popup appears. The popup will try to stay in the visible area of the screen, even when scrolling or at the edges.
- * **The popup disappears when a link is clicked**. Important for applications using a lot of ajax.
  * **Only a single popup** element in the document. Some plugins create a hidden popup for each trigger.
  * **Custom options** for each trigger. You can have 20 different popups with 20 different themes on one page if you like.
- * **Small**. Only ~ 3KB minified and ~ 1.6KB gziped.
+ * **Small**. Only ~ 3.5KB minified and ~ 2KB gziped.
  
 We are starting to use this plugin for a lot of things, so watch for new releases at [github](https://github.com/Sebobo/jquery.smallipop).
 
@@ -24,13 +23,12 @@ Installation
 
 ### Prequisites
 
- * [jQuery](http://www.jquery.com) 1.4.3 or better
- * [Modernizr](http://www.modernizr.com) If you want to use our own themes without modifications, see below.
+ * [jQuery](http://www.jquery.com) - 1.4.3 or better
+ * [Modernizr](http://www.modernizr.com) - This library tests the browser for feature support and adds classes to the body tag. We use this for css fallbacks in our themes.
  
 Both are also provided in the `lib` folder. 
 
 If you don't want to use the `Modernizr` library you can remove the `.cssgradients`, `.borderradius`, `.rgba` and `.boxshadow` classes in `css/jquery-smallipop.css`.
-I use these to provide easy css fallbacks for browsers with reduced capabilities. 
 
 ### Required files
 
@@ -45,54 +43,75 @@ If you like demos more than a boring documentation see the `index.html` file and
 
 The plugin can be called with jQuery in different ways.
     
-Standard call with default theme and settings:
+### Standard call with default theme and settings:
 
     $('.myElement').smallipop();
+
+#### Popup content and markup
+
+If `myElement` is a `<a>` tag, the elements `title` attribute is used as popup text:
+
+    <a class="myElement" href="#" title="Some hint text">
+        Sample link
+    </a>
+        
+You can also provide the text in javascript for all selected elements:
+
+    $('.myElement').smallipop({}, 'This is my special hint');
+
+If `myElement` contains an element with the `smallipopHint` class, it's content is copied into the popup when displayed.
+This can be any markup content you like. Be careful when using floating elements as content, 
+they need a clearfix afterwards or jQuery is unable to get the correct size for the popup.
+
+    <div class="myElement">
+        Sample link
+        <span class="smallipopHint">
+           <h6>My bubble title</h6>
+           <p>Some text for the bubble</p>
+        </span>
+    </div>
     
-Different theme:
+The plugin first checks if the text has been provided in the javascript call. 
+If not then the `title` attribute will be used, if the trigger is a link.
+If not the element will be checked if it contains another element with the `smallipopHint` class, and it's html content will be used.
+    
+#### Using a different theme:
 
     $('.myElement').smallipop({ 
         theme: 'white' 
     });
     
-Hide the popup trigger while displaying the popup:
+#### Hide the popup trigger while displaying the popup:
 
     $('.myElement').smallipop({ 
         hideTrigger: true 
     });
     
-Custom hint:
+#### Provide the hint in javascript:
 
     $('.myElement').smallipop({}, 'This is my special hint');
     
-Changing the default options for all new popups:
+#### Changing the default theme for all subsequently created popups:
 
     $.smallipop.defaults.theme = 'black'
-
-
-### Popup content and markup    
-
-You can provide a custom text like in the example before.
-
-If `myElement` is a `<a>` tag, the elements title is used as popup text.
-
-If `myElement` contains an element with the `info` class, it's content is copied into the popup when displayed.
-This can be any markup content you like. Be careful when using floating elements, they need a clear afterwards or jQuery is unable to get the correct size for the popup.
-You can set this class to something different. See the `Options` chapter.
+    
+You can change the default value for all other options as well in this way.
 
 
 ### Options
 
- * popupOffset: horizontal offset, default is `31` for the default theme.
- * popupYOffset: vertical offset, default is `0`.
+ * popupOffset: horizontal offset for the popup, default is `31`.
+ * popupYOffset: vertical offset for the popup, default is `0`.
  * popupDistance: vertical distance when the popup appears and disappears, default is `20`.
  * hideTrigger: hide the trigger when the popup is shown, default is `false`.
- * theme: `black` and `white` are included in the css file, leave blank for the default theme.
- * infoClass: class in an element which contains markup content for the popup, default is `info` 
+ * theme: `black` and `white` are included in the css file, default is `default`.
+ * infoClass: class in an element which contains markup content for the popup, default is `smallipopHint` 
 
 
 Editing
 -------
+
+Read this chapter if you want to modify or extend SmallIPop.
 
 The plugin is written in [coffeescript](http://jashkenas.github.com/coffee-script/) and the css with [sass](http://sass-lang.com/).
 The sources are provided in the `src` and `scss` folders.  

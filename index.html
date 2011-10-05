@@ -9,99 +9,199 @@
         <script type="text/javascript" src="lib/modernizr-2.0.6.min.js"></script>   
         <script type="text/javascript" src="lib/jquery-smallipop.js"></script>
     </head>
-    <body style="padding:200px 30px;">
-        <span class="bubbletip">
-            test with markup tooltip
-            <span class="info">
-                <b>Markuptip</b>
-                <br/>
-                <p>Second <i>italic</i> line!</p>
-                <a href="#">and a link</a>
-            </span>
-        </span>
-        <br/>
-        <div id="ajaxContainer" style="float:right;">
-            <span class="bubbletip">
-                floating right
-                <span class="info">
-                    <b>Markuptip with very long text and should align left</b>
-                    <br/>
-                    <p>Second <i>italic</i> line!</p>
-                    <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
-                </span>
-            </span>
-        </div>
-        
-        <div style="position:absolute; left:250px; top:100px; width:600px; height:450px;">
-            <img src="pic1.jpg" class="hasShadow" width="600" height="450" style="margin:auto auto" />
+    <body>
+        <div class="page hasShadow">
+            <h1>SmallIPop documentation &amp; demo page</h1>
             
-            <span class="bubbletipHide" style="position:absolute; left:452px; top:45px; width:14px; height:14px;">
-                <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
-                <span class="info">
-                    The <b>sun</b>
-                </span>
-            </span>
+            <br/>
             
-            <span class="bubbletipHideTrans" style="position:absolute; left:320px; top:190px; width:14px; height:14px;">
-                <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
-                <span class="info">
-                    The <b>bird is the word</b> and has a white theme extended by another sub theme 'transparent'
-                </span>
-            </span>
-        </div>
-        
-        <div class="hasShadow" style="position:absolute; width:400px; margin-left:-300px; left:50%; top:600px; background:#fcfcfc; padding:20px; color:#222;">
-            <h4>Something completely different</h4>
             <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                sed diam nonumy eirmod tempor 
-                <span class="bubbletipBlue">
-                    invidunt
-                    <span class="info">
-                        Some info about <em>invidunt</em>
-                    </span>
-                </span> 
-                ut labore et dolore magna aliquyam erat, 
-                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a> info popup
             </p>
-            <p> 
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-                At vero eos et 
-                <span class="bubbletipBlue">
-                    accusam
-                    <span class="info">
-                        Some <b>markup info</b> about <em>accusam</em>.
-                    </span>
-                </span> 
-                et justo duo dolores et ea rebum. 
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            
+            <br/>
+
+            <p>This jQuery plugin has been created because all the tooltips we tested didn't meet our requirements.</p>
+            
+            <br/>
+
+            <p>
+                We wanted: 
+                
+                <ul>
+                    <li> <b>Pure css</b> for the design. Fallbacks for older browsers and no images.</li>
+                    <li> <b>Custom themes</b> for different use cases. </li>
+                    <li> The popup trigger <b>can be positioned anywhere</b>. The popup will be displayed at the body root, so the position won't be affected by your layout.</li>
+                    <li> <b>Automatic orientation</b> whereever the popup appears. The popup will try to stay in the visible area of the screen, even when scrolling or at the edges.</li>
+                    <li> <b>Only a single popup</b> element in the document. Some plugins create a hidden popup for each trigger.</li>
+                    <li> <b>Custom options</b> for each trigger. You can have 20 different popups with 20 different themes on one page if you like.</li>
+                    <li> <b>Small</b>. Only ~ 3.5KB minified and ~ 2KB gziped.</li>
+                </ul>
             </p>
-        </div>
-        
-        <br/><br/>
-        <a href="#" class="bubbletipBlue" title="I'm a title with a long text">
-            link with blue theme
-        </a>
-        
-        <br/><br/>
-        <a href="#" class="bubbletipBlack" title="I'm a title with a long text">
-            link with black theme
-        </a>
-        
-        <br/><br/>
-        <div id="ajaxContainer2">
-            <a href="#" id="tipkiller2" class="bubbletip" title="I'm a title with a long text">
-                ajaxlink which replaces itself
+            <br/>
+            <p>
+                We are using this plugin for a lot of things, so watch for new releases at [github](https://github.com/Sebobo/jquery.smallipop).
+            </p>
+            
+            <br/>
+            <br/>
+            
+            <h3>Standard elements with hints containing html markup:</h3>
+            
+            <p>
+                There are three ways to provide the content for the smallipop bubble.
+            </p>
+            
+            <div>
+                <a class="bubbletip" href="#" title="Text from the title attribute">
+                    A simple link with a title attribute.
+                </a>
+            </div>
+            <br/>
+            <div>
+                <span class="bubbletip">
+                    A span tag with a child containing html content for the bubble.
+                    <span class="smallipopHint">
+                        <b>Markuptip</b>
+                        <br/>
+                        <p>Second <i>italic</i> line!</p>
+                        <a href="#">and a link</a>
+                    </span>
+                </span>
+            </div>
+            <br/>
+            <div>
+                <div id="ajaxContainer2">
+                    <a href="#" id="tipkiller2" class="bubbletip" title="I'm a title with a long text">
+                        ajaxlink which replaces itself
+                    </a>
+                </div>
+            </div>
+            <br/>
+            <div>
+                <div id="ajaxContainer2">
+                    <a href="#" id="tipcustomhint" class="" title="I'm the old title">
+                        A link with a tooltip defined in javascript.
+                    </a>
+                </div>
+            </div>
+            <br/>
+            <div>
+                <div id="ajaxContainer" style="float:right;">
+                    <span class="bubbletip">
+                        A floating element. SmallIPop will align itself.
+                        <span class="smallipopHint">
+                            <b>Markuptip with very long text and should align left</b>
+                            <br/>
+                            <p>Second <i>italic</i> line!</p>
+                            <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
+                        </span>
+                    </span>
+                </div>
+                <br class="clear"/>
+            </div>
+            
+            <br/>
+            
+            <h3>Multiple themes:</h3>
+            
+            <p>Hover the links to see the different themes</p>
+            
+            <a href="#" class="bubbletip" title="I'm a title with a long text">
+                Default theme
             </a>
-        </div>
-        
-        <br/><br/>
-        <div id="ajaxContainer2">
-            <a href="#" id="tipcustomhint" class="" title="I'm the old title">
-                link with a hint defined in js
+            -
+            <a href="#" class="bubbletipBlue" title="I'm a title with a long text">
+                Blue theme
             </a>
+            -
+            <a href="#" class="bubbletipBlack" title="I'm a title with a long text">
+                Black theme
+            </a>
+            -
+            <a href="#" class="bubbletipWhite" title="I'm a title with a long text">
+                White theme
+            </a>
+            <br/>
+            <br/>
+            
+            <p>
+                You can also extend a theme with another theme:
+            </p>
+            <code>
+                $('.bubbletipWhite').smallipop({
+                    theme: 'white transparent'
+                });
+            </code>
+            
+            <br/>
+            <br/>
+            
+            <h3>Image with absolute positioned hints:</h3>
+            
+            <p>
+                Hints can be positioned anywhere, even on absolute positioned or floating elements.
+            </p>
+            <br/>
+            <div class="relative centered" style="width:600px;">
+                <img src="pic1.jpg" class="hasShadow hasBorder" width="600" height="450" style="margin:auto auto" />
+                
+                <span class="bubbletipHide" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
+                    <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
+                    <span class="smallipopHint">
+                        The <b>sun</b>
+                    </span>
+                </span>
+                
+                <span class="bubbletipHideTrans" style="position:absolute; left:320px; top:190px; width:14px; height:14px;">
+                    <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
+                    <span class="smallipopHint">
+                        The <b>bird is the word</b> and has a white theme extended by another sub theme 'transparent'
+                    </span>
+                </span>
+            </div>
+            
+            <br/>
+            <br/>
+            
+            <h3>Text with inline hints:</h3>
+            
+            <div class="textbox">
+                <h4>Something completely different</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+                    sed diam nonumy eirmod tempor 
+                    <span class="bubbletipBlue">
+                        invidunt
+                        <span class="smallipopHint">
+                            Some info about <em>invidunt</em>
+                        </span>
+                    </span> 
+                    ut labore et dolore magna aliquyam erat, 
+                    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+                    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </p>
+                <p> 
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
+                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+                    At vero eos et 
+                    <span class="bubbletipBlue">
+                        accusam
+                        <span class="smallipopHint">
+                            Some <b>markup info</b> about <em>accusam</em>.
+                        </span>
+                    </span> 
+                    et justo duo dolores et ea rebum. 
+                    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </p>
+            </div>
+            
+            <br/>
+            <br/>
+            
+            <p>
+                &copy; 2011 by <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a>
+            </p>
         </div>
         
         <script type="text/javascript">
@@ -112,6 +212,9 @@
                 });
                 $('.bubbletipBlue').smallipop({
                     theme: 'blue'
+                });
+                $('.bubbletipWhite').smallipop({
+                    theme: 'white'
                 });
                 $('.bubbletipHide').smallipop({
                     hideTrigger: true,

@@ -1,4 +1,8 @@
 /* Bubbletip css */
+.smallipopHint {
+  display: none;
+}
+
 #smallipop {
   position: absolute;
   display: none;
