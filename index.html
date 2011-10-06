@@ -19,6 +19,8 @@
                 <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a> Info Popup
             </p>
             
+            <img src="images/si-logo.png" alt="SI Logo" class="floatRight" />
+            
             <br/>
 
             <p>
@@ -26,6 +28,14 @@
                 There are a lot of other plugins for this task, but they didn't meet our requirements.<br/>
                 <br/> 
                 So we created our own plugin and wanted to share it with you :)
+            </p>
+            
+            <p>
+                Licensed under the <a href="http://www.opensource.org/licenses/mit-license.php" title="MIT licence">MIT</a> license.
+            </p>
+            
+            <p>
+                <a href="https://github.com/Sebobo/jquery.smallipop" title="SmallIPop download">Download at github</a>
             </p>
             
             <br/>
@@ -70,64 +80,144 @@
             
             <hr/>
             
-            <h3>Standard elements with hints containing html markup:</h3>
-            
-            <p>
-                There are several ways to provide the content for the smallipop bubble.
-            </p>
-            
-            <br/>
-            
             <div>
-                <div id="ajaxContainer" class="floatRight">
-                    <div class="smallipop sampleElement">
-                        A floating element.<br/> 
-                        The popup bubble will align itself<br/> 
-                        when the bubble wouldn't fit into<br/> 
-                        the viewport.
-                        <span class="smallipopHint">
-                            <b>Markuptip with very long text and should align left</b>
-                            <br/>
-                            <p>Second <i>italic</i> line!</p>
-                            <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
-                        </span>
-                    </div>
-                </div>
-                <div>
-                    <a class="smallipop sampleElement" href="#" title="Text from the title attribute">
-                        A simple link with a title attribute as popup content source.
-                    </a>
-                </div>
+                <h3>Installation</h3>
+
+                <h6>Prequisites</h6>
+
+                <ul>
+                    <li>
+                        <b><a href="http://www.jquery.com" title="jQuery">jQuery</a></b><br/>
+                        1.4.3 or better                        
+                    </li>
+                    <li>
+                        <b><a href="http://www.modernizr.com" title="jQuery">Modernizr</a></b><br/>
+                        This library tests the browser for feature support and adds classes to the body tag.<br/> 
+                        We use this for css fallbacks in our themes.                         
+                    </li>
+                </ul>
+                <p>
+                    Both are also provided in the <i>lib</i> folder. 
+                    
+                    If you don't want to use the <i>Modernizr</i> library you should remove the<br/> 
+                    <i>.cssgradients</i>, <i>.borderradius</i>, <i>.rgba</i> and <i>.boxshadow</i> classes in <i>css/jquery-smallipop.css</i>.
+                </p>
+                
                 <br/>
-                <div>
-                    <span class="smallipop sampleElement">
-                        An element with a child containing html content for the bubble.
-                        <span class="smallipopHint">
-                            <b>Markuptip</b>
-                            <br/>
-                            <p>Second <i>italic</i> line!</p>
-                            <a href="#">and a link</a>
-                        </span>
-                    </span>
-                </div>
+                
+                <h6>Required files</h6>
+
+                <p>1. Copy <i>lib/jquery-smallipop.js</i> to your javascript folder.</p>
+                <p>2. Copy <i>lib/jquery-x.x.x.min.js</i> to your javascript folder if you don't use jQuery already.</p>
+                <p>3. Copy <i>lib/modernizr-x.x.x.js</i> to your javascript folder if you don't use modernizr already.</p>
+                <p>4. Copy <i>css/jquery-smallipop.css</i> to your css folder.</p>
+                
+                <p>There is a minified version of the SmallIPop javascript for production in the lib folder too.</p>
+                
                 <br/>
-                <div id="ajaxContainer2">
-                    <a href="#" id="tipkiller2" class="smallipop sampleElement" title="I'm a title with a long text">
-                        Link which replaces itself
-                    </a>
-                </div>
-                <br/>
-                <div id="ajaxContainer2">
-                    <a href="#" id="tipcustomhint" class="sampleElement" title="I'm the old title">
-                        A link with a tooltip defined in javascript.
-                    </a>
-                </div>
-                <br class="clear"/>
+                
+                <h6>Modify your html header</h6>
+                
+                <p>Add these lines to the header of your html file and replace x.x.x with the correct versions</p>
+                <code>
+                    <pre>
+&lt;link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen" charset="utf-8" /&gt;   
+&lt;script type="text/javascript" src="lib/jquery-x.x.x.min.js"&gt;&lt;/script&gt;   
+&lt;script type="text/javascript" src="lib/modernizr-x.x.x.min.js"&gt;&lt;/script&gt;   
+&lt;script type="text/javascript" src="lib/jquery-smallipop.js"&gt;&lt;/script&gt;
+                    </pre>
+                </code>
             </div>
             
             <hr/>
             
-            <h3>Multiple themes:</h3>
+            <div>
+                <h3>Create a SmallIPop</h3>
+                
+                <p>
+                    Here is the easiest way to create a SmallIPop:
+                </p>
+                
+                <code>
+                    <pre>
+&lt;a class="myElement" href="#" title="Text for smallipop"&gt;Sample link&lt;/a&gt;
+                    </pre>
+                </code>
+                
+                <p>
+                    Then add some javascript:
+                </p>
+                
+                <code>
+                    <pre>
+&lt;script type="text/javascript"&gt;
+    $(function() {
+        $('.myElement').smallipop();
+    });
+&lt;/script&gt;
+                    </pre>
+                </code>
+                
+                <br/>
+                
+                <p>
+                    There are several ways to provide the content for the smallipop bubble.<br/>
+                    See the source of this page to see how it works.
+                </p>
+                
+                <br/>
+                
+                <div>
+                    <div id="ajaxContainer" class="floatRight">
+                        <div class="smallipop sampleElement">
+                            A floating element.<br/> 
+                            The popup bubble will align itself<br/> 
+                            when the bubble wouldn't fit into<br/> 
+                            the viewport.
+                            <span class="smallipopHint">
+                                <b>Markuptip with very long text and should align left</b>
+                                <br/>
+                                <p>Second <i>italic</i> line!</p>
+                                <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="smallipop sampleElement" href="#" title="Text from the title attribute">
+                            A simple link with a title attribute as popup content source.
+                        </a>
+                    </div>
+                    <br/>
+                    <div>
+                        <span class="smallipop sampleElement">
+                            An element with a child containing html content for the bubble.
+                            <span class="smallipopHint">
+                                <b>Markuptip</b>
+                                <br/>
+                                <p>Second <i>italic</i> line!</p>
+                                <a href="#">and a link</a>
+                            </span>
+                        </span>
+                    </div>
+                    <br/>
+                    <div id="ajaxContainer2">
+                        <a href="#" id="tipkiller2" class="smallipop sampleElement" title="I'm a title with a long text">
+                            Link which replaces itself
+                        </a>
+                    </div>
+                    <br/>
+                    <div id="ajaxContainer2">
+                        <a href="#" id="tipcustomhint" class="sampleElement" title="I'm the old title">
+                            A link with a title but with a tooltip text defined in javascript.
+                        </a>
+                    </div>
+                    <br class="clear"/>
+                </div>
+            </div>
+            
+            <hr/>
+            
+            <h3>Themes:</h3>
             
             <p>Hover the links to see the different themes</p>
             
@@ -168,6 +258,37 @@
             
             <hr/>
             
+            <h3>Available options</h3>
+
+            <ul>
+                <li>
+                    <b>popupOffset</b><br/> 
+                    Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right, default is <i>31</i>
+                </li>
+                <li>
+                    <b>popupYOffset</b><br/>
+                    Vertical offset for the popup, default is <i>0</i>
+                </li>
+                <li>
+                    <b>popupDistance</b><br/>
+                    Vertical distance when the popup appears and disappears, default is <i>20</i>
+                </li>
+                <li>
+                    <b>hideTrigger</b><br/>
+                    Hide the trigger when the popup is shown, default is <i>false</i>
+                </li>
+                <li>
+                    <b>Theme</b><br/>
+                    <i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file, default is <i>default</i>
+                </li>
+                <li>
+                    <b>infoClass</b><br/>
+                    Class in an element which contains markup content for the popup, default is <i>smallipopHint</i>
+                </li>
+            </ul> 
+            
+            <hr/>
+            
             <h3>Image with absolute positioned hints:</h3>
             
             <p>
@@ -192,7 +313,7 @@
                 </span>
                 
                 <span class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
-                    <span class="smallipopArrow wobbler"><img src="images/arrow_button-blue.png" /></span>
+                    <img class="smallipopArrow wobbler" src="images/arrow_button-blue.png" />
                     <span class="smallipopHint">
                         <i>It's a house!</i>
                     </span>
@@ -251,7 +372,12 @@
             <br/>
             <br/>
             <br/>
-            
+
+            <h6>Feedback is welcome!</h6>            
+            <p>
+                Please send me suggestions, ideas for improvement or anything else to <a href="mailto:sebastian@small-improvements.com" title="Send me a mail">sebastian@small-improvements.com</a>
+            </p>
+            <br/>
             <p>Have fun!</p>
             
             <br/>
@@ -315,6 +441,18 @@
                     }).trigger('scroll');
                 }
             });
+        </script>
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-26146980-1']);
+          _gaq.push(['_trackPageview']);
+          _gaq.push(['_gat._anonymizeIp']);
+        
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
         </script>
     </body>
 </html>

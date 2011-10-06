@@ -17,6 +17,8 @@ We wanted:
  
 We are starting to use this plugin for a lot of things, so watch for new releases at [github](https://github.com/Sebobo/jquery.smallipop).
 
+See the [documentation page](http://sebobo.github.com/jquery.smallipop/) for a live demo.
+
 
 Installation
 ------------

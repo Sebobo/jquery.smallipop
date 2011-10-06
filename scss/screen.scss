@@ -18,14 +18,16 @@ a { color:#1f88ea; }
 
 hr { width: 50%; height:1px; background:#eee; border:0; margin:40px 25%; }
 
-p { line-height: 1.2em; }
-p, h1, h2, h3, h4, h5, h6 { margin:0.6em 0; }
-h1 { font-size:2em; }
-h2 { font-size:1.8em; }
-h3 { font-size:1.6em; }
-h4 { font-size:1.4em; }
+p { margin:0.6em 0; line-height: 1.2em; }
 
-code { color: #555; padding-left:30px; }
+h1, h2, h3, h4, h5, h6 { margin:0.6em 0; font-weight: bold; }
+h1 { font-size: 2em; }
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.4em; }
+h5 { font-size: 1.2em; }
+
+code { color: #555; }
 ul { 
   padding-left:20px;
   
@@ -49,7 +51,6 @@ img.inline { margin: 10px; }
   width: 800px;
   background: #fafafa; 
   padding: 40px; 
-  color: #222;
 }
 
 .textbox {
@@ -98,6 +99,8 @@ img.inline { margin: 10px; }
   }
 }
 .borderradius .indicator { @include rounded(2px); }
+
+.smallipopArrow { width: 25px; height: 42px; }
 
 /* wobbler */
 .wobble {

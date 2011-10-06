@@ -96,11 +96,13 @@ hr {
 }
 
 p {
+  margin: 0.6em 0;
   line-height: 1.2em;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   margin: 0.6em 0;
+  font-weight: bold;
 }
 
 h1 {
@@ -119,9 +121,12 @@ h4 {
   font-size: 1.4em;
 }
 
+h5 {
+  font-size: 1.2em;
+}
+
 code {
   color: #555;
-  padding-left: 30px;
 }
 
 ul {
@@ -181,7 +186,6 @@ img.inline {
   width: 800px;
   background: #fafafa;
   padding: 40px;
-  color: #222;
 }
 
 .textbox {
@@ -243,6 +247,11 @@ img.inline {
   -ms-border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
+}
+
+.smallipopArrow {
+  width: 25px;
+  height: 42px;
 }
 
 /* wobbler */
