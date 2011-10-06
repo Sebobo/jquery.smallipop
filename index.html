@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!doctype html>
+<html>
     <head>
         <title>Small-I-Pop - demo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -16,110 +16,136 @@
             <br/>
             
             <p>
-                <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a> info popup
+                <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a> Info Popup
             </p>
             
             <br/>
 
-            <p>This jQuery plugin has been created because all the tooltips we tested didn't meet our requirements.</p>
+            <p>
+                This is a <a href="http://www.jquery.com" title="jQuery">jQuery</a> plugin for displaying tooltips.<br/>
+                There are a lot of other plugins for this task, but they didn't meet our requirements.<br/>
+                <br/> 
+                So we created our own plugin and wanted to share it with you :)
+            </p>
             
             <br/>
 
-            <p>
-                We wanted: 
+            <p>We wanted:</p> 
                 
-                <ul>
-                    <li> <b>Pure css</b> for the design. Fallbacks for older browsers and no images.</li>
-                    <li> <b>Custom themes</b> for different use cases. </li>
-                    <li> The popup trigger <b>can be positioned anywhere</b>. The popup will be displayed at the body root, so the position won't be affected by your layout.</li>
-                    <li> <b>Automatic orientation</b> whereever the popup appears. The popup will try to stay in the visible area of the screen, even when scrolling or at the edges.</li>
-                    <li> <b>Only a single popup</b> element in the document. Some plugins create a hidden popup for each trigger.</li>
-                    <li> <b>Custom options</b> for each trigger. You can have 20 different popups with 20 different themes on one page if you like.</li>
-                    <li> <b>Small</b>. Only ~ 3.5KB minified and ~ 2KB gziped.</li>
-                </ul>
-            </p>
-            <br/>
-            <p>
-                We are using this plugin for a lot of things, so watch for new releases at [github](https://github.com/Sebobo/jquery.smallipop).
-            </p>
+            <ul>
+                <li> 
+                    <b>Small</b><br/> 
+                    Only ~ 3.5KB minified and ~ 2KB gziped.
+                </li>
+                <li> 
+                    <b>Pure css</b><br/>
+                    No images but fallbacks for older browsers.
+                </li>
+                <li> 
+                    <b>Custom themes</b><br/>
+                    For different use cases. 
+                </li>
+                <li> 
+                    <b>Free positioning</b><br/> 
+                    The popup code will be added to the document root so the position won't be affected by your layout.
+                </li>
+                <li> 
+                    <b>Automatic orientation</b><br/> 
+                    The popup will try to stay in the visible area of the screen, even when scrolling or at the edges.
+                </li>
+                <li> 
+                    <b>Only a single popup element</b><br/> 
+                    Some plugins create a hidden popup for each trigger.
+                </li>
+                <li> 
+                    <b>Custom options for each trigger</b><br/>
+                    You can have 20 different popups with 20 different themes on one page if you like.
+                </li>
+            </ul>
             
             <br/>
-            <br/>
+            <p>
+                We are using this plugin for a lot of things, so watch for new releases at <a class="smallipop" href="https://github.com/Sebobo/jquery.smallipop" title="smallipop at github">github</a>.
+            </p>
+            
+            <hr/>
             
             <h3>Standard elements with hints containing html markup:</h3>
             
             <p>
-                There are three ways to provide the content for the smallipop bubble.
+                There are several ways to provide the content for the smallipop bubble.
             </p>
             
-            <div>
-                <a class="bubbletip" href="#" title="Text from the title attribute">
-                    A simple link with a title attribute.
-                </a>
-            </div>
             <br/>
+            
             <div>
-                <span class="bubbletip">
-                    A span tag with a child containing html content for the bubble.
-                    <span class="smallipopHint">
-                        <b>Markuptip</b>
-                        <br/>
-                        <p>Second <i>italic</i> line!</p>
-                        <a href="#">and a link</a>
-                    </span>
-                </span>
-            </div>
-            <br/>
-            <div>
-                <div id="ajaxContainer2">
-                    <a href="#" id="tipkiller2" class="bubbletip" title="I'm a title with a long text">
-                        ajaxlink which replaces itself
-                    </a>
-                </div>
-            </div>
-            <br/>
-            <div>
-                <div id="ajaxContainer2">
-                    <a href="#" id="tipcustomhint" class="" title="I'm the old title">
-                        A link with a tooltip defined in javascript.
-                    </a>
-                </div>
-            </div>
-            <br/>
-            <div>
-                <div id="ajaxContainer" style="float:right;">
-                    <span class="bubbletip">
-                        A floating element. SmallIPop will align itself.
+                <div id="ajaxContainer" class="floatRight">
+                    <div class="smallipop sampleElement">
+                        A floating element.<br/> 
+                        The popup bubble will align itself<br/> 
+                        when the bubble wouldn't fit into<br/> 
+                        the viewport.
                         <span class="smallipopHint">
                             <b>Markuptip with very long text and should align left</b>
                             <br/>
                             <p>Second <i>italic</i> line!</p>
                             <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
                         </span>
+                    </div>
+                </div>
+                <div>
+                    <a class="smallipop sampleElement" href="#" title="Text from the title attribute">
+                        A simple link with a title attribute as popup content source.
+                    </a>
+                </div>
+                <br/>
+                <div>
+                    <span class="smallipop sampleElement">
+                        An element with a child containing html content for the bubble.
+                        <span class="smallipopHint">
+                            <b>Markuptip</b>
+                            <br/>
+                            <p>Second <i>italic</i> line!</p>
+                            <a href="#">and a link</a>
+                        </span>
                     </span>
+                </div>
+                <br/>
+                <div id="ajaxContainer2">
+                    <a href="#" id="tipkiller2" class="smallipop sampleElement" title="I'm a title with a long text">
+                        Link which replaces itself
+                    </a>
+                </div>
+                <br/>
+                <div id="ajaxContainer2">
+                    <a href="#" id="tipcustomhint" class="sampleElement" title="I'm the old title">
+                        A link with a tooltip defined in javascript.
+                    </a>
                 </div>
                 <br class="clear"/>
             </div>
             
-            <br/>
+            <hr/>
             
             <h3>Multiple themes:</h3>
             
             <p>Hover the links to see the different themes</p>
             
-            <a href="#" class="bubbletip" title="I'm a title with a long text">
+            <br/>
+            
+            <a href="#" class="smallipop sampleElement" title="I'm a title with a long text">
                 Default theme
             </a>
-            -
-            <a href="#" class="bubbletipBlue" title="I'm a title with a long text">
+            &nbsp;-&nbsp;
+            <a href="#" class="smallipopBlue sampleElement" title="I'm a title with a long text">
                 Blue theme
             </a>
-            -
-            <a href="#" class="bubbletipBlack" title="I'm a title with a long text">
+            &nbsp;-&nbsp;
+            <a href="#" class="smallipopBlack sampleElement" title="I'm a title with a long text">
                 Black theme
             </a>
-            -
-            <a href="#" class="bubbletipWhite" title="I'm a title with a long text">
+            &nbsp;-&nbsp;
+            <a href="#" class="smallipopWhite sampleElement" title="I'm a title with a long text">
                 White theme
             </a>
             <br/>
@@ -128,14 +154,19 @@
             <p>
                 You can also extend a theme with another theme:
             </p>
+            <br/>
             <code>
-                $('.bubbletipWhite').smallipop({
+                $('.smallipopWhite').smallipop({
                     theme: 'white transparent'
                 });
             </code>
+            <br/>
+            <br/>
+            <p>
+                This allows you to have one basic theme and several subthemes with different border styles for example.
+            </p>
             
-            <br/>
-            <br/>
+            <hr/>
             
             <h3>Image with absolute positioned hints:</h3>
             
@@ -144,34 +175,41 @@
             </p>
             <br/>
             <div class="relative centered" style="width:600px;">
-                <img src="pic1.jpg" class="hasShadow hasBorder" width="600" height="450" style="margin:auto auto" />
+                <img src="images/pic1.jpg" class="hasShadow hasBorder centered" width="600" height="450" />
                 
-                <span class="bubbletipHide" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
+                <span class="smallipopHide" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
                     <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
                     <span class="smallipopHint">
                         The <b>sun</b>
                     </span>
                 </span>
                 
-                <span class="bubbletipHideTrans" style="position:absolute; left:320px; top:190px; width:14px; height:14px;">
-                    <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
+                <span class="smallipopHideTrans" style="position:absolute; left:320px; top:170px;">
+                    <span class="indicator wobbler">+<span class="indicatorArrow">&nbsp;</span></span>
                     <span class="smallipopHint">
                         The <b>bird is the word</b> and has a white theme extended by another sub theme 'transparent'
                     </span>
                 </span>
+                
+                <span class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
+                    <span class="smallipopArrow wobbler"><img src="images/arrow_button-blue.png" /></span>
+                    <span class="smallipopHint">
+                        <i>It's a house!</i>
+                    </span>
+                </span>
             </div>
             
-            <br/>
-            <br/>
+            <hr/>
             
             <h3>Text with inline hints:</h3>
+            <br/>
             
-            <div class="textbox">
+            <div class="textbox centered hasShadow">
                 <h4>Something completely different</h4>
-                <p>
+                <div>
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
                     sed diam nonumy eirmod tempor 
-                    <span class="bubbletipBlue">
+                    <span class="smallipopBlue">
                         invidunt
                         <span class="smallipopHint">
                             Some info about <em>invidunt</em>
@@ -180,21 +218,41 @@
                     ut labore et dolore magna aliquyam erat, 
                     sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
                     Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-                <p> 
+                </div>
+                <br/>
+                <div> 
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                     tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
                     At vero eos et 
-                    <span class="bubbletipBlue">
+                    <span class="smallipopBlue">
                         accusam
-                        <span class="smallipopHint">
-                            Some <b>markup info</b> about <em>accusam</em>.
-                        </span>
+                        <div class="smallipopHint">
+                            <h4>accusam</h4>
+                            <img class="floatRight inline" src="images/pic1.jpg" alt="Bird in china" width="100" height="75" />
+                            <p>
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
+                                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
+                                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. 
+                            </p>
+                            <p>
+                                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, 
+                                sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
+                                Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, 
+                                nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate 
+                                velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                            </p>
+                        </div>
                     </span> 
                     et justo duo dolores et ea rebum. 
                     Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
+                </div>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            
+            <p>Have fun!</p>
             
             <br/>
             <br/>
@@ -206,37 +264,56 @@
         
         <script type="text/javascript">
             $(function() {
-                $('.bubbletip').smallipop();
-                $('.bubbletipBlack').smallipop({
+                $('.smallipop').smallipop();
+                $('.smallipopBlack').smallipop({
                     theme: 'black'
                 });
-                $('.bubbletipBlue').smallipop({
+                $('.smallipopBlue').smallipop({
                     theme: 'blue'
                 });
-                $('.bubbletipWhite').smallipop({
+                $('.smallipopHideBlue').smallipop({
+                    theme: 'blue',
+                    hideTrigger: true,
+                    popupYOffset: 30
+                });
+                $('.smallipopWhite').smallipop({
                     theme: 'white'
                 });
-                $('.bubbletipHide').smallipop({
+                $('.smallipopHide').smallipop({
                     hideTrigger: true,
                     theme: 'white',
                     popupYOffset: 5,
                 });
-                $('.bubbletipHideTrans').smallipop({
+                $('.smallipopHideTrans').smallipop({
                     hideTrigger: true,
                     theme: 'white transparent',
-                    popupYOffset: 5,
+                    popupYOffset: 20,
                 });
                 $('#tipcustomhint').smallipop({}, "I'm the real hint!");
                 
                 $('#tipkiller').live('click', function(e) {
                     e.preventDefault();
-                    $('#ajaxContainer').load('other.html #otherContent');
+                    $('#ajaxContainer').html('<div>Some new content</div>');
                 });
                 
                 $('#tipkiller2').live('click', function(e) {
                     e.preventDefault();
-                    $('#ajaxContainer2').load('other.html #otherContent');
+                    $('#ajaxContainer2').html('<div>Some new content</div>');
                 });
+                
+                // Animate smallipops when scrolling
+                if ($('.wobbler').length) {
+                    $(document).scroll(function() {
+                        var wobblers = $('.wobbler:not(.wobble)'),
+                            win = $(window);
+                        wobblers.each(function() {                  
+                            var self = $(this);
+                            offset = self.offset();
+                            if (offset.top > win.scrollTop() + 50 && offset.top < win.scrollTop() - 50 + win.height())
+                                self.addClass('wobble');
+                        })
+                    }).trigger('scroll');
+                }
             });
         </script>
     </body>

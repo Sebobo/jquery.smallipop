@@ -95,23 +95,24 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           
           # Get new dimensions
           offset = self.offset()
-          popupW = popup.outerWidth()
           popupH = popup.outerHeight()
+          popupCenter = popup.outerWidth() / 2
           selfWidth = self.outerWidth()
-          windowPadding = 50 # Safe zone to window border
+          windowPadding = 50 # Imaginary padding in viewport
+          window.console.log(popupCenter)
+          popupOffsetLeft = offset.left + selfWidth / 2
           
-          popupOffsetLeft = 0
-          if offset.left + popupW > win.width() - windowPadding
+          if popupOffsetLeft + popupCenter > win.width() - windowPadding
             # Positioned left
-            popupOffsetLeft = 2 * opt.popupOffset - popupW 
+            popupOffsetLeft -= popupCenter * 2 - opt.popupOffset 
             popup.addClass("alignLeft")
-          else if offset.left - popupW / 2 < windowPadding
+          else if popupOffsetLeft - popupCenter < windowPadding
             # Positioned right
-            popupOffsetLeft = selfWidth / 2 - opt.popupOffset 
+            popupOffsetLeft -= opt.popupOffset 
             popup.addClass("alignRight")
           else
             # Centered
-            popupOffsetLeft = selfWidth / 2 - popupW / 2
+            popupOffsetLeft -= popupCenter
           
           # Add class if positioned below  
           popupOffsetTop = 0
@@ -129,7 +130,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           # Start fade in animation
           popup.data("distance", distance).stop(true).css(
             top: offset.top - popupOffsetTop + yOffset
-            left: offset.left + popupOffsetLeft
+            left: popupOffsetLeft
             display: "block"
             opacity: 0
           ).animate(
