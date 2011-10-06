@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Small-I-Pop - demo</title>
+        <title>smallipop - demo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" href="css/screen.css" type="text/css" media="all" title="Screen" charset="utf-8" />
         <link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen" charset="utf-8" />   
@@ -11,7 +11,8 @@
     </head>
     <body>
         <div class="page hasShadow">
-            <h1>SmallIPop documentation &amp; demo page</h1>
+            <h1>smallipop documentation &amp; demo page</h1>
+            <a name="start"></a>
             
             <br/>
             
@@ -19,7 +20,7 @@
                 <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a> Info Popup
             </p>
             
-            <img src="images/si-logo.png" alt="SI Logo" class="floatRight" />
+            <img src="images/smallipop-logo.png" alt="SI Logo" class="floatRight" />
             
             <br/>
 
@@ -35,7 +36,7 @@
             </p>
             
             <p>
-                <a href="https://github.com/Sebobo/jquery.smallipop" title="SmallIPop download">Download at github</a>
+                <a href="https://github.com/Sebobo/jquery.smallipop" title="smallipop download">Download at github</a>
             </p>
             
             <br/>
@@ -80,216 +81,8 @@
             
             <hr/>
             
-            <div>
-                <h3>Installation</h3>
-
-                <h6>Prequisites</h6>
-
-                <ul>
-                    <li>
-                        <b><a href="http://www.jquery.com" title="jQuery">jQuery</a></b><br/>
-                        1.4.3 or better                        
-                    </li>
-                    <li>
-                        <b><a href="http://www.modernizr.com" title="jQuery">Modernizr</a></b><br/>
-                        This library tests the browser for feature support and adds classes to the body tag.<br/> 
-                        We use this for css fallbacks in our themes.                         
-                    </li>
-                </ul>
-                <p>
-                    Both are also provided in the <i>lib</i> folder. 
-                    
-                    If you don't want to use the <i>Modernizr</i> library you should remove the<br/> 
-                    <i>.cssgradients</i>, <i>.borderradius</i>, <i>.rgba</i> and <i>.boxshadow</i> classes in <i>css/jquery-smallipop.css</i>.
-                </p>
-                
-                <br/>
-                
-                <h6>Required files</h6>
-
-                <p>1. Copy <i>lib/jquery-smallipop.js</i> to your javascript folder.</p>
-                <p>2. Copy <i>lib/jquery-x.x.x.min.js</i> to your javascript folder if you don't use jQuery already.</p>
-                <p>3. Copy <i>lib/modernizr-x.x.x.js</i> to your javascript folder if you don't use modernizr already.</p>
-                <p>4. Copy <i>css/jquery-smallipop.css</i> to your css folder.</p>
-                
-                <p>There is a minified version of the SmallIPop javascript for production in the lib folder too.</p>
-                
-                <br/>
-                
-                <h6>Modify your html header</h6>
-                
-                <p>Add these lines to the header of your html file and replace x.x.x with the correct versions</p>
-                <code>
-                    <pre>
-&lt;link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen" charset="utf-8" /&gt;   
-&lt;script type="text/javascript" src="lib/jquery-x.x.x.min.js"&gt;&lt;/script&gt;   
-&lt;script type="text/javascript" src="lib/modernizr-x.x.x.min.js"&gt;&lt;/script&gt;   
-&lt;script type="text/javascript" src="lib/jquery-smallipop.js"&gt;&lt;/script&gt;
-                    </pre>
-                </code>
-            </div>
-            
-            <hr/>
-            
-            <div>
-                <h3>Create a SmallIPop</h3>
-                
-                <p>
-                    Here is the easiest way to create a SmallIPop:
-                </p>
-                
-                <code>
-                    <pre>
-&lt;a class="myElement" href="#" title="Text for smallipop"&gt;Sample link&lt;/a&gt;
-                    </pre>
-                </code>
-                
-                <p>
-                    Then add some javascript:
-                </p>
-                
-                <code>
-                    <pre>
-&lt;script type="text/javascript"&gt;
-    $(function() {
-        $('.myElement').smallipop();
-    });
-&lt;/script&gt;
-                    </pre>
-                </code>
-                
-                <br/>
-                
-                <p>
-                    There are several ways to provide the content for the smallipop bubble.<br/>
-                    See the source of this page to see how it works.
-                </p>
-                
-                <br/>
-                
-                <div>
-                    <div id="ajaxContainer" class="floatRight">
-                        <div class="smallipop sampleElement">
-                            A floating element.<br/> 
-                            The popup bubble will align itself<br/> 
-                            when the bubble wouldn't fit into<br/> 
-                            the viewport.
-                            <span class="smallipopHint">
-                                <b>Markuptip with very long text and should align left</b>
-                                <br/>
-                                <p>Second <i>italic</i> line!</p>
-                                <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
-                            </span>
-                        </div>
-                    </div>
-                    <div>
-                        <a class="smallipop sampleElement" href="#" title="Text from the title attribute">
-                            A simple link with a title attribute as popup content source.
-                        </a>
-                    </div>
-                    <br/>
-                    <div>
-                        <span class="smallipop sampleElement">
-                            An element with a child containing html content for the bubble.
-                            <span class="smallipopHint">
-                                <b>Markuptip</b>
-                                <br/>
-                                <p>Second <i>italic</i> line!</p>
-                                <a href="#">and a link</a>
-                            </span>
-                        </span>
-                    </div>
-                    <br/>
-                    <div id="ajaxContainer2">
-                        <a href="#" id="tipkiller2" class="smallipop sampleElement" title="I'm a title with a long text">
-                            Link which replaces itself
-                        </a>
-                    </div>
-                    <br/>
-                    <div id="ajaxContainer2">
-                        <a href="#" id="tipcustomhint" class="sampleElement" title="I'm the old title">
-                            A link with a title but with a tooltip text defined in javascript.
-                        </a>
-                    </div>
-                    <br class="clear"/>
-                </div>
-            </div>
-            
-            <hr/>
-            
-            <h3>Themes:</h3>
-            
-            <p>Hover the links to see the different themes</p>
-            
-            <br/>
-            
-            <a href="#" class="smallipop sampleElement" title="I'm a title with a long text">
-                Default theme
-            </a>
-            &nbsp;-&nbsp;
-            <a href="#" class="smallipopBlue sampleElement" title="I'm a title with a long text">
-                Blue theme
-            </a>
-            &nbsp;-&nbsp;
-            <a href="#" class="smallipopBlack sampleElement" title="I'm a title with a long text">
-                Black theme
-            </a>
-            &nbsp;-&nbsp;
-            <a href="#" class="smallipopWhite sampleElement" title="I'm a title with a long text">
-                White theme
-            </a>
-            <br/>
-            <br/>
-            
-            <p>
-                You can also extend a theme with another theme:
-            </p>
-            <br/>
-            <code>
-                $('.smallipopWhite').smallipop({
-                    theme: 'white transparent'
-                });
-            </code>
-            <br/>
-            <br/>
-            <p>
-                This allows you to have one basic theme and several subthemes with different border styles for example.
-            </p>
-            
-            <hr/>
-            
-            <h3>Available options</h3>
-
-            <ul>
-                <li>
-                    <b>popupOffset</b><br/> 
-                    Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right, default is <i>31</i>
-                </li>
-                <li>
-                    <b>popupYOffset</b><br/>
-                    Vertical offset for the popup, default is <i>0</i>
-                </li>
-                <li>
-                    <b>popupDistance</b><br/>
-                    Vertical distance when the popup appears and disappears, default is <i>20</i>
-                </li>
-                <li>
-                    <b>hideTrigger</b><br/>
-                    Hide the trigger when the popup is shown, default is <i>false</i>
-                </li>
-                <li>
-                    <b>Theme</b><br/>
-                    <i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file, default is <i>default</i>
-                </li>
-                <li>
-                    <b>infoClass</b><br/>
-                    Class in an element which contains markup content for the popup, default is <i>smallipopHint</i>
-                </li>
-            </ul> 
-            
-            <hr/>
-            
             <h3>Image with absolute positioned hints:</h3>
+            <a name="imagedemo"></a>
             
             <p>
                 Hints can be positioned anywhere, even on absolute positioned or floating elements.
@@ -298,31 +91,39 @@
             <div class="relative centered" style="width:600px;">
                 <img src="images/pic1.jpg" class="hasShadow hasBorder centered" width="600" height="450" />
                 
-                <span class="smallipopHide" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
+                <div class="smallipopHideBlack" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
                     <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
                     <span class="smallipopHint">
-                        The <b>sun</b>
+                        <b>Black hole sun</b>
                     </span>
-                </span>
+                </div>
                 
-                <span class="smallipopHideTrans" style="position:absolute; left:320px; top:170px;">
+                <div class="smallipopHideTrans" style="position:absolute; left:320px; top:170px;">
                     <span class="indicator wobbler">+<span class="indicatorArrow">&nbsp;</span></span>
                     <span class="smallipopHint">
-                        The <b>bird is the word</b> and has a white theme extended by another sub theme 'transparent'
+                        <b>The bird is the word</b><br/> 
+                        <br/> 
+                        This bubble has a white theme extended by another sub theme 'transparent'.<br/>
+                        <br/> 
+                        Also the trigger is made out of pure css.
                     </span>
-                </span>
+                </div>
                 
-                <span class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
+                <div class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
                     <img class="smallipopArrow wobbler" src="images/arrow_button-blue.png" />
                     <span class="smallipopHint">
-                        <i>It's a house!</i>
+                        <i>It's a house!</i><br/>
+                        <br/>
+                        It has an image as trigger.<br/>
+                        We have provided some you can use in the <i>images</i> folder.
                     </span>
-                </span>
+                </div>
             </div>
             
             <hr/>
             
             <h3>Text with inline hints:</h3>
+            <a name="textdemo"></a>
             <br/>
             
             <div class="textbox centered hasShadow">
@@ -369,13 +170,317 @@
                     Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                 </div>
             </div>
+            
+            <hr/>
+            
+            <div>
+                <h3>Create a smallipop</h3>
+                <a name="createsmallipop"></a>
+                
+                <p>
+                    Here is the easiest way to create a smallipop:
+                </p>
+                
+                <pre>
+&lt;a class="myElement" href="#" title="Some title text"&gt;Sample link&lt;/a&gt;</pre>
+                
+                <p>
+                    Then add some javascript:
+                </p>
+                
+                <pre>
+&lt;script type="text/javascript"&gt;
+    $(function() {
+        $('.myElement').smallipop();
+    });
+&lt;/script&gt;</pre>
+                
+                <br/>
+                
+                <div>
+                    <a class="smallipop sampleElement" href="#" title="That was easy!">
+                        And now hover me!
+                    </a>
+                </div>
+                <br/>
+                <p>
+                    If you like some markup as tooltip, you can do that as well:
+                </p>
+                
+                <pre>
+&lt;span class="smallipop"&gt;
+    An element with a child containing html content for the bubble.
+    &lt;div class="smallipopHint"&gt;
+        &lt;b&gt;Give me some markup!&lt;/b&gt;
+    &lt;/div&gt;
+&lt;/span&gt;</pre>
+
+                <br/>
+                
+                <span class="smallipop sampleElement">
+                    Hover me!
+                    <div class="smallipopHint">
+                        <b>That's what I call bold</b>
+                    </div>
+                </span>
+                
+                <br/>
+                <br/>
+                
+                <p>
+                    You can provide the content for the bubble via javascript too:
+                </p>
+                
+                <pre>
+&lt;a href="#" id="tipcustomhint" title="I'm the old title"&gt;
+    Hover me!
+&lt;/a&gt;</pre>
+                
+                <p>
+                    Add some javascript to the mix:
+                </p>
+                
+                <pre>
+$('#tipcustomhint').smallipop({}, "I'm the real hint!");</pre>
+                
+                <br/>
+                
+                <a href="#" id="tipcustomhint" class="sampleElement" title="I'm the old title">
+                    Hover me!
+                </a>
+                
+                <br/>
+                <br/>
+                
+                <p>
+                    There are cases when the trigger is replaced or changed when clicked and the tooltip needs to be hidden:
+                </p>
+                
+                <pre>
+&lt;div id="sampleContainer"&gt;
+    &lt;a href="#" id="tipkiller" class="smallipop" title="I'm a title with a long text"&gt;
+        Link which replaces itself
+    &lt;/a&gt;
+&lt;/div&gt;
+                </pre>
+                
+                <p>With this javascript:</p>
+                
+                <pre>
+$('#tipkiller').click(function(e) {
+    e.preventDefault();
+    $('#sampleContainer').html('&lt;div&gt;Some new content&lt;/div&gt;');
+});</pre>
+                
+                <br/>
+                
+                <div id="ajaxContainer2">
+                    <a href="#" id="tipkiller2" class="smallipop sampleElement" title="Click and I will be gone">
+                        Click me!
+                    </a>
+                </div>
+                
+                <br/>
+                
+                <p>
+                    Elements can be positioned everywhere, smallipop will be at the right position:
+                </p>
+                
+                <pre>
+&lt;div class="smallipop" style="float:right;"&gt;
+    A floating element. 
+    &lt;span class="smallipopHint"&gt;
+        &lt;b>Left aligned markuptip with very long text&lt;/b&gt;&lt;br/&gt;
+    &lt;/span&gt;
+&lt;/div&gt;</pre>
+                
+                <br/>
+                
+                <p class="floatLeft">
+                    Look to the right!
+                </p>
+                
+                <div id="ajaxContainer" class="floatRight">
+                    <div class="smallipop sampleElement">
+                        A floating element.<br/> 
+                        <span class="smallipopHint">
+                            <b>Markuptip with very long text</b><br/>
+                            <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
+                        </span>
+                    </div>
+                </div>
+                <br class="clear"/>
+            </div>
+            
+            <hr/>
+            
+            <h3>Themes:</h3>
+            <a name="themes"></a>
+            
+            <p>Hover the links to see the different themes</p>
+            
+            <br/>
+            
+            <a href="#themes" class="smallipop sampleElement default" title="I'm a title with a long text">
+                Default theme
+            </a>
+            &nbsp;-&nbsp;
+            <a href="#themes" class="smallipopBlue sampleElement blue" title="I'm a title with a long text">
+                Blue theme
+            </a>
+            &nbsp;-&nbsp;
+            <a href="#themes" class="smallipopBlack sampleElement black" title="I'm a title with a long text">
+                Black theme
+            </a>
+            &nbsp;-&nbsp;
+            <a href="#themes" class="smallipopWhite sampleElement white" title="I'm a title with a long text">
+                White theme
+            </a>
             <br/>
             <br/>
+            
+            <p>
+                You can extend a theme with an extension theme:
+            </p>
+            <br/>
+            <code>
+                $('.myElement').smallipop({
+                    theme: 'blue fatShadow'
+                });
+            </code>
+            <br/>
+            <br/>
+            <p>
+                <span class="smallipopBlueFatShadow sampleElement">
+                    Hover me!
+                    <span class="smallipopHint">
+                        Look at this fat shadow!
+                    </span>
+                </span>
+            </p>
+            <br/>
+            <p>
+                The css for the extension theme looks like this:
+            </p>
+            <pre>
+/* fat shadow extension theme */
+.boxshadow.rgba #smallipop.fatShadow {
+  -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+     -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+          box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+}</pre>
+            <p>
+                This allows you to have one basic theme and several subthemes with different border styles or colors for example.
+            </p>
+            
+            <hr/>
+            
+            <h3>Available options</h3>
+            <a name="options"></a>
+
+            <ul>
+                <li>
+                    <b>popupOffset</b><br/> 
+                    Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right, default is <i>31</i>
+                </li>
+                <li>
+                    <b>popupYOffset</b><br/>
+                    Vertical offset for the popup, default is <i>0</i>
+                </li>
+                <li>
+                    <b>popupDistance</b><br/>
+                    Vertical distance when the popup appears and disappears, default is <i>20</i>
+                </li>
+                <li>
+                    <b>hideTrigger</b><br/>
+                    Hide the trigger when the popup is shown, default is <i>false</i>
+                </li>
+                <li>
+                    <b>Theme</b><br/>
+                    <i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file, default is <i>default</i>
+                </li>
+                <li>
+                    <b>infoClass</b><br/>
+                    Class in an element which contains markup content for the popup, default is <i>smallipopHint</i>
+                </li>
+            </ul> 
+            
+            <br/>
+            
+            <p>
+                Here's the configuration used for the white smallipop in the <a href="#imagedemo" title="Jump to the image example">image demo</a> 
+            </p>
+            
+            <pre>
+$('.myElement').smallipop({
+    hideTrigger: true, // Trigger is hidden when the bubble is shown
+    theme: 'white whiteTransparent', // White theme is used with it's transparent extension
+    popupYOffset: 20, // Bubble has a 20px vertical offset
+    popupDistance: 30, // Bubble travels vertically by 30px when fading in
+    popupOffset: 0, // No horizontal offset
+    infoClass: 'smallipopHint' // Default
+});</pre>
+
+            <br/>
+            
+            <hr/>
+            
+            <div>
+                <h3>Installation</h3>
+                <a name="installation"></a>
+
+                <h6>Prequisites</h6>
+
+                <ul>
+                    <li>
+                        <b><a href="http://www.jquery.com" title="jQuery">jQuery</a></b><br/>
+                        1.5.2 or better                        
+                    </li>
+                    <li>
+                        <b><a href="http://www.modernizr.com" title="jQuery">Modernizr</a></b><br/>
+                        This library tests the browser for feature support and adds classes to the body tag.<br/> 
+                        We use this for css fallbacks in our themes.                         
+                    </li>
+                </ul>
+                <p>
+                    Both are also provided in the <i>lib</i> folder. 
+                    
+                    If you don't want to use the <i>Modernizr</i> library you should remove the<br/> 
+                    <i>.cssgradients</i>, <i>.borderradius</i>, <i>.rgba</i> and <i>.boxshadow</i> classes in <i>css/jquery-smallipop.css</i>.
+                </p>
+                
+                <br/>
+                
+                <h6>Required files</h6>
+
+                <p>1. Copy <i>lib/jquery-smallipop.js</i> to your javascript folder.</p>
+                <p>2. Copy <i>lib/jquery-x.x.x.min.js</i> to your javascript folder if you don't use jQuery already.</p>
+                <p>3. Copy <i>lib/modernizr-x.x.x.js</i> to your javascript folder if you don't use modernizr already.</p>
+                <p>4. Copy <i>css/jquery-smallipop.css</i> to your css folder.</p>
+                
+                <p>There is a minified version of the smallipop javascript for production in the lib folder too.</p>
+                
+                <br/>
+                
+                <h6>Modify your html header</h6>
+                
+                <p>Add these lines to the header of your html file and replace x.x.x with the correct versions</p>
+                <pre>
+&lt;link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen" charset="utf-8"/&gt;   
+&lt;script type="text/javascript" src="lib/jquery-x.x.x.min.js"&gt;&lt;/script&gt;   
+&lt;script type="text/javascript" src="lib/modernizr-x.x.x.min.js"&gt;&lt;/script&gt;   
+&lt;script type="text/javascript" src="lib/jquery-smallipop.js"&gt;&lt;/script&gt;</pre>
+            </div>
+            
+            <hr/>
+            
             <br/>
 
             <h6>Feedback is welcome!</h6>            
             <p>
-                Please send me suggestions, ideas for improvement or anything else to <a href="mailto:sebastian@small-improvements.com" title="Send me a mail">sebastian@small-improvements.com</a>
+                Please send me suggestions, ideas for improvement or anything else to 
+                <a href="mailto:sebastian@small-improvements.com" title="Send me a mail">sebastian@small-improvements.com</a>
+                or <a href="http://twitter.com/#!/sebobo" target="_blank" title="Sebobo at twitter">@sebobo</a>
             </p>
             <br/>
             <p>Have fun!</p>
@@ -391,30 +496,45 @@
         <script type="text/javascript">
             $(function() {
                 $('.smallipop').smallipop();
+                
                 $('.smallipopBlack').smallipop({
                     theme: 'black'
                 });
+                $('.smallipopHideBlack').smallipop({
+                    theme: 'black',
+                    hideTrigger: true
+                });
+                
                 $('.smallipopBlue').smallipop({
                     theme: 'blue'
                 });
+                
+                $('.smallipopBlueFatShadow').smallipop({
+                    theme: 'blue fatShadow'
+                });
+                
                 $('.smallipopHideBlue').smallipop({
                     theme: 'blue',
                     hideTrigger: true,
                     popupYOffset: 30
                 });
+                
                 $('.smallipopWhite').smallipop({
                     theme: 'white'
                 });
+                
                 $('.smallipopHide').smallipop({
                     hideTrigger: true,
                     theme: 'white',
                     popupYOffset: 5,
                 });
+                
                 $('.smallipopHideTrans').smallipop({
                     hideTrigger: true,
-                    theme: 'white transparent',
+                    theme: 'white whiteTransparent',
                     popupYOffset: 20,
                 });
+                
                 $('#tipcustomhint').smallipop({}, "I'm the real hint!");
                 
                 $('#tipkiller').live('click', function(e) {

@@ -98,8 +98,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           popupH = popup.outerHeight()
           popupCenter = popup.outerWidth() / 2
           selfWidth = self.outerWidth()
-          windowPadding = 50 # Imaginary padding in viewport
-          window.console.log(popupCenter)
+          selfHeight = self.outerHeight()
+          windowPadding = 30 # Imaginary padding in viewport
           popupOffsetLeft = offset.left + selfWidth / 2
           
           if popupOffsetLeft + popupCenter > win.width() - windowPadding
@@ -115,21 +115,19 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             popupOffsetLeft -= popupCenter
           
           # Add class if positioned below  
-          popupOffsetTop = 0
-          if offset.top - win.scrollTop() < popupH + opt.popupDistance + windowPadding
-            popupOffsetTop = -self.outerHeight()
+          popupOffsetTop = offset.top - popupH + yOffset
+          if offset.top - win.scrollTop() < popupH + opt.popupDistance + windowPadding - yOffset
+            popupOffsetTop += popupH + selfHeight
             distance = -distance
             yOffset = 0
             popup.addClass("alignBottom")
-          else
-            popupOffsetTop = popupH
             
           # Hide trigger if defined
           $(".smallipop#{id}").stop(true).fadeTo(opt.hideSpeed, 0) if opt.hideTrigger
     
           # Start fade in animation
           popup.data("distance", distance).stop(true).css(
-            top: offset.top - popupOffsetTop + yOffset
+            top: popupOffsetTop
             left: popupOffsetLeft
             display: "block"
             opacity: 0

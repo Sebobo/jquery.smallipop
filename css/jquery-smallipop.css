@@ -96,25 +96,21 @@
 }
 
 .boxshadow.rgba #smallipop.default {
-  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -ms-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -o-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .borderradius #smallipop.default {
   border-radius: 12px;
-  -o-border-radius: 12px;
-  -ms-border-radius: 12px;
   -moz-border-radius: 12px;
+  -o-border-radius: 12px;
   -webkit-border-radius: 12px;
 }
 .borderradius #smallipop.default .bubbleContent {
   border-radius: 12px;
-  -o-border-radius: 12px;
-  -ms-border-radius: 12px;
   -moz-border-radius: 12px;
+  -o-border-radius: 12px;
   -webkit-border-radius: 12px;
 }
 
@@ -137,22 +133,20 @@
   border-color: rgba(0, 100, 180, 0.9) transparent transparent transparent;
 }
 #smallipop.blue.alignBottom .bubbleArrow {
+  top: -30px;
   border-color: transparent transparent rgba(0, 100, 180, 0.9) transparent;
 }
 
 .boxshadow.rgba #smallipop.blue {
-  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -ms-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -o-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .borderradius #smallipop.blue {
   border-radius: 7px;
-  -o-border-radius: 7px;
-  -ms-border-radius: 7px;
   -moz-border-radius: 7px;
+  -o-border-radius: 7px;
   -webkit-border-radius: 7px;
 }
 
@@ -192,25 +186,21 @@
 }
 
 .boxshadow.rgba #smallipop.black {
-  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -ms-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -o-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .borderradius #smallipop.black {
   border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
   -moz-border-radius: 5px;
+  -o-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
 .borderradius #smallipop.black .bubbleContent {
   border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
   -moz-border-radius: 5px;
+  -o-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
 
@@ -240,42 +230,46 @@
 }
 
 .boxshadow.rgba #smallipop.white {
-  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -ms-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  -o-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .borderradius #smallipop.white {
   border-radius: 12px;
-  -o-border-radius: 12px;
-  -ms-border-radius: 12px;
   -moz-border-radius: 12px;
+  -o-border-radius: 12px;
   -webkit-border-radius: 12px;
 }
 .borderradius #smallipop.white .bubbleContent {
   border-radius: 12px;
-  -o-border-radius: 12px;
-  -ms-border-radius: 12px;
   -moz-border-radius: 12px;
+  -o-border-radius: 12px;
   -webkit-border-radius: 12px;
 }
 
+/* extension themes. keep at the bottom */
 /* white theme extended */
-#smallipop.transparent {
+#smallipop.whiteTransparent {
   background-color: rgba(255, 255, 255, 0.8);
 }
-#smallipop.transparent .bubbleArrow {
+#smallipop.whiteTransparent .bubbleArrow {
   bottom: -21px;
   border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
 }
-#smallipop.transparent .bubbleArrowBorder {
+#smallipop.whiteTransparent .bubbleArrowBorder {
   border-color: transparent;
 }
-#smallipop.transparent.alignBottom .bubbleArrow {
+#smallipop.whiteTransparent.alignBottom .bubbleArrow {
   border-color: transparent transparent rgba(255, 255, 255, 0.8) transparent;
 }
-#smallipop.transparent.alignBottom .bubbleArrowBorder {
+#smallipop.whiteTransparent.alignBottom .bubbleArrowBorder {
   border-color: transparent;
+}
+
+/* fat shadow extension theme */
+.boxshadow.rgba #smallipop.fatShadow {
+  -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
 }

@@ -27,7 +27,7 @@ h3 { font-size: 1.6em; }
 h4 { font-size: 1.4em; }
 h5 { font-size: 1.2em; }
 
-code { color: #555; }
+code, pre { color: #555; border: 1px solid #f0f0f0; background-color: #fafafa; padding:5px; font-size:0.9em; }
 ul { 
   padding-left:20px;
   
@@ -48,7 +48,7 @@ img.inline { margin: 10px; }
 
 .page {
   margin: 0 auto;
-  width: 800px;
+  width: 840px;
   background: #fafafa; 
   padding: 40px; 
 }
@@ -67,16 +67,21 @@ img.inline { margin: 10px; }
 }
 
 .sampleElement {
-  border: 1px solid #eee;
+  border: 1px solid #f0c152;
   padding: 3px 5px;
-  background-color: #f5f5f5;
+  background-color: #ffe199;
   
   &:hover {
-    background-color: #eee;
-    border-color: #bbb;
+    background-color: #fff4d9;
+    border-color: #ffd777;
   }
+  
+  &.white { background-color: #fff; }
+  &.black { background-color: #333; color: #eee; }
+  &.blue { background-color: #0064b4; color: #eee; }
+  &.default { background-color: #586d82; color: #eee; }
 }
-.borderradius .sampleElement { @include rounded(3px); }
+.borderradius .sampleElement { @include rounded(5px); }
 
 /* indicator */
 .indicator {
