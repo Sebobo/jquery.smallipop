@@ -19,6 +19,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       infoClass: "smallipopHint"
       hideSpeed: 150
       moveSpeed: 200
+      invertAnimation: false
+      horizontal: false
     popup: null
     lastId: 1 # Counter for new smallipop id's
     
@@ -31,12 +33,15 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       triggerOpt = trigger.data("options") or sip.defaults
       trigger.stop(true).fadeTo(triggerOpt.hideSpeed, 1) if shownId and triggerOpt.hideTrigger
       
+      travelDistance = sip.popup.data("distance")
+      travelDistance *= -1 if triggerOpt.invertAnimation 
+      
       sip.popup
       .data
         hideDelayTimer: null
         beingShown: false
       .stop(true).animate(
-          top: "-=" + sip.popup.data("distance") + "px"
+          top: "-=" + travelDistance + "px"
           opacity: 0
         , 
           duration: triggerOpt.speed

@@ -201,7 +201,7 @@ img.inline {
 }
 
 .sampleElement {
-  border: 1px solid #f0c152;
+  border: 1px solid #fed980;
   padding: 3px 5px;
   background-color: #ffe199;
 }
@@ -220,6 +220,10 @@ img.inline {
   background-color: #0064b4;
   color: #eee;
 }
+.sampleElement.orange {
+  background-color: #fbb913;
+  color: #714900;
+}
 .sampleElement.default {
   background-color: #586d82;
   color: #eee;
@@ -236,23 +240,36 @@ img.inline {
 .indicator {
   position: relative;
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
   font-size: 26px;
   font-weight: bold;
-  line-height: 20px;
+  line-height: 21px;
   text-align: center;
   color: #6fc048;
   background-color: #fff;
+  opacity: 0.95;
+  /*
+  .indicatorArrow {
+    position: absolute;
+    height: 0; width: 0;
+    left: 2px; bottom: -15px;
+    border: 8px solid transparent;
+    border-color:#fafafa transparent transparent transparent; 
+  }*/
 }
-.indicator .indicatorArrow {
-  position: absolute;
-  height: 0;
-  width: 0;
-  left: 3px;
-  bottom: -13px;
-  border: 7px solid transparent;
-  border-color: #fff transparent transparent transparent;
+.indicator .indicatorPlus {
+  width: 14px;
+  margin: 0 3px;
+  overflow: hidden;
+}
+
+.cssgradients .indicator {
+  background-image: -webkit-linear-gradient(top, white, #fafafa);
+  background-image: -moz-linear-gradient(top, white, #fafafa);
+  background-image: -ms-linear-gradient(top, white, #fafafa);
+  background-image: -o-linear-gradient(top, white, #fafafa);
+  background-image: linear-gradient(top, white, #fafafa);
 }
 
 .borderradius .indicator {
@@ -269,10 +286,10 @@ img.inline {
 
 /* wobbler */
 .wobble {
-  -webkit-animation: wobble 1s ease-in;
+  -webkit-animation: wobble 1s linear;
   -webkit-animation-iteration-count: 1;
   -webkit-transform-origin: bottom center;
-  -moz-animation: wobble 1s ease-in;
+  -moz-animation: wobble 1s linear;
   -moz-animation-iteration-count: 1;
   -moz-transform-origin: bottom center;
 }
@@ -282,24 +299,80 @@ img.inline {
     -webkit-transform: rotate(0deg);
   }
 
+  5% {
+    -webkit-transform: rotate(10deg);
+  }
+
+  10% {
+    -webkit-transform: rotate(7.4deg);
+  }
+
+  15% {
+    -webkit-transform: rotate(-1.1deg);
+  }
+
+  20% {
+    -webkit-transform: rotate(-5.2deg);
+  }
+
+  25% {
+    -webkit-transform: rotate(-3deg);
+  }
+
   30% {
-    -webkit-transform: rotate(-10deg);
+    -webkit-transform: rotate(1deg);
+  }
+
+  35% {
+    -webkit-transform: rotate(2.6deg);
+  }
+
+  40% {
+    -webkit-transform: rotate(1.2deg);
+  }
+
+  45% {
+    -webkit-transform: rotate(-0.72deg);
+  }
+
+  50% {
+    -webkit-transform: rotate(-1.2deg);
   }
 
   55% {
-    -webkit-transform: rotate(8deg);
+    -webkit-transform: rotate(-0.44deg);
+  }
+
+  60% {
+    -webkit-transform: rotate(0.44deg);
+  }
+
+  65% {
+    -webkit-transform: rotate(0.57deg);
+  }
+
+  70% {
+    -webkit-transform: rotate(0.14deg);
   }
 
   75% {
-    -webkit-transform: rotate(-6deg);
+    -webkit-transform: rotate(-0.25deg);
+  }
+
+  80% {
+    -webkit-transform: rotate(-0.26deg);
+  }
+
+  85% {
+    -webkit-transform: rotate(-0.033deg);
   }
 
   90% {
-    -webkit-transform: rotate(4deg);
+    -webkit-transform: rotate(0.13deg);
   }
 
   95% {
-    -webkit-transform: rotate(-2deg);
+    -webkit-transform: rotate(0.12deg);
   }
 
   100% {
@@ -312,24 +385,80 @@ img.inline {
     -moz-transform: rotate(0deg);
   }
 
+  5% {
+    -moz-transform: rotate(10deg);
+  }
+
+  10% {
+    -moz-transform: rotate(7.4deg);
+  }
+
+  15% {
+    -moz-transform: rotate(-1.1deg);
+  }
+
+  20% {
+    -moz-transform: rotate(-5.2deg);
+  }
+
+  25% {
+    -moz-transform: rotate(-3deg);
+  }
+
   30% {
-    -moz-transform: rotate(-10deg);
+    -moz-transform: rotate(1deg);
+  }
+
+  35% {
+    -moz-transform: rotate(2.6deg);
+  }
+
+  40% {
+    -moz-transform: rotate(1.2deg);
+  }
+
+  45% {
+    -moz-transform: rotate(-0.72deg);
+  }
+
+  50% {
+    -moz-transform: rotate(-1.2deg);
   }
 
   55% {
-    -moz-transform: rotate(8deg);
+    -moz-transform: rotate(-0.44deg);
+  }
+
+  60% {
+    -moz-transform: rotate(0.44deg);
+  }
+
+  65% {
+    -moz-transform: rotate(0.57deg);
+  }
+
+  70% {
+    -moz-transform: rotate(0.14deg);
   }
 
   75% {
-    -moz-transform: rotate(-6deg);
+    -moz-transform: rotate(-0.25deg);
+  }
+
+  80% {
+    -moz-transform: rotate(-0.26deg);
+  }
+
+  85% {
+    -moz-transform: rotate(-0.033deg);
   }
 
   90% {
-    -moz-transform: rotate(4deg);
+    -moz-transform: rotate(0.13deg);
   }
 
   95% {
-    -moz-transform: rotate(-2deg);
+    -moz-transform: rotate(0.12deg);
   }
 
   100% {
@@ -386,9 +515,9 @@ img.inline {
 }
 
 .cssanimations .pulser .outer {
-  -webkit-animation: pulsate 1s ease-out;
+  -webkit-animation: pulsate 1.2s ease-out;
   -webkit-animation-iteration-count: infinite;
-  -moz-animation: pulsate 1s ease-out;
+  -moz-animation: pulsate 1.2s ease-out;
   -moz-animation-iteration-count: infinite;
   opacity: 0.0;
 }

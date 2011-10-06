@@ -106,7 +106,7 @@
   text-shadow:0 -1px 1px #111;
   color:#f5f5f5;
   
-  a { text-shadow:0 -1px 1px #111; }
+  a { color: #eef8ff; text-shadow:0 -1px 1px #111; }
   
   .bubbleContent { border-top:1px solid #666; }
   .bubbleArrow { border-color:#222 transparent transparent transparent; }
@@ -125,6 +125,34 @@
 .borderradius #smallipop.black { 
   @include rounded(5px);
   .bubbleContent { @include rounded(5px); } 
+}
+
+/* orange theme */
+#smallipop.orange {
+  background-color:#fbb913;
+  border-color:#e17500;
+  text-shadow:0 1px 1px #fff24d;
+  color:#714900;
+  
+  a { color: #145d95; text-shadow:0 1px 1px #fff24d; }
+  
+  .bubbleContent { border-top:1px solid #fffabc; }
+  .bubbleArrow { border-color:#f9aa18 transparent transparent transparent; }
+  .bubbleArrowBorder { border-color:#e17500 transparent transparent transparent; }
+  
+  &.alignBottom {
+    .bubbleArrow { border-color:transparent transparent #f9aa18 transparent; }
+    .bubbleArrowBorder { border-color:transparent transparent #e17500 transparent; }
+  }
+}
+.cssgradients #smallipop.orange { 
+  background-color:transparent;
+  @include linear-gradient(#fff24d, #f9aa18); 
+}
+.boxshadow.rgba #smallipop.orange { @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));} 
+.borderradius #smallipop.orange { 
+  @include rounded(10px);
+  .bubbleContent { @include rounded(10px); } 
 }
   
 /* white theme */

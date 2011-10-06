@@ -1,4 +1,4 @@
-Small-I-Pop
+smallipop
 =============
 
 [Small Improvements](http://www.small-improvements.com) info popup
@@ -102,12 +102,16 @@ You can change the default value for all other options as well in this way.
 
 ### Options
 
- * popupOffset: horizontal offset for the popup, default is `31`.
- * popupYOffset: vertical offset for the popup, default is `0`.
- * popupDistance: vertical distance when the popup appears and disappears, default is `20`.
- * hideTrigger: hide the trigger when the popup is shown, default is `false`.
- * theme: `black` and `white` are included in the css file, default is `default`.
- * infoClass: class in an element which contains markup content for the popup, default is `smallipopHint` 
+ * popupOffset: horizontal offset for the popup. Default is `31`.
+ * popupYOffset: vertical offset for the popup. Default is `0`.
+ * popupDistance: vertical distance when the popup appears and disappears. Default is `20`.
+ * hideTrigger: hide the trigger when the popup is shown. Default is `false`.
+ * theme: `black`, `orange`, `blue`, `white` and `default` are included in the css file. Default is `default`.
+ * infoClass: Class in an element which contains markup content for the popup. Default is `smallipopHint`.
+ * popupDelay: How much time in milliseconds you have to hover on an element before the popups shows up. Default is `100`.
+ * hideSpeed: How fast the popup fades in and out, default is `150`.
+ * moveSpeed: How much time the popup needs to reach it's final animation position in milliseconds. Default is `200`.
+ * invertAnimation: The popup will move up when an element is hovered and further up when fading out. If you set this to true, the popup will move down when fading out. Default is `false`.
 
 
 Editing

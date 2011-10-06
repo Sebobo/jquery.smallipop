@@ -17,10 +17,17 @@
             <br/>
             
             <p>
-                <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a> Info Popup
+                <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements">Small Improvements</a> Info Popup
             </p>
             
-            <img src="images/smallipop-logo.png" alt="SI Logo" class="floatRight" />
+            <div class="smallipopOrange floatRight">
+                <img src="images/smallipop-logo.png" alt="smallipop logo" />
+                <div class="smallipopHint">
+                    <b>smallipop</b><br/>
+                    <br/>
+                    Created by <a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle">Sebastian Helzle</a>
+                </div>
+            </div>
             
             <br/>
 
@@ -92,31 +99,34 @@
                 <img src="images/pic1.jpg" class="hasShadow hasBorder centered" width="600" height="450" />
                 
                 <div class="smallipopHideBlack" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
-                    <span class="pulser"><span class="inner">+</span><span class="outer"></span></span>
-                    <span class="smallipopHint">
+                    <div class="pulser"><div class="inner">+</div><div class="outer"></div></div>
+                    <div class="smallipopHint">
                         <b>Black hole sun</b>
-                    </span>
+                    </div>
                 </div>
                 
                 <div class="smallipopHideTrans" style="position:absolute; left:320px; top:170px;">
-                    <span class="indicator wobbler">+<span class="indicatorArrow">&nbsp;</span></span>
-                    <span class="smallipopHint">
+                    <div class="indicator wobbler">
+                        <div class="indicatorPlus">+</div>
+                        <div class="indicatorArrow">&nbsp;</div>
+                    </div>
+                    <div class="smallipopHint">
                         <b>The bird is the word</b><br/> 
                         <br/> 
                         This bubble has a white theme extended by another sub theme 'transparent'.<br/>
                         <br/> 
                         Also the trigger is made out of pure css.
-                    </span>
+                    </div>
                 </div>
                 
                 <div class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
                     <img class="smallipopArrow wobbler" src="images/arrow_button-blue.png" />
-                    <span class="smallipopHint">
+                    <div class="smallipopHint">
                         <i>It's a house!</i><br/>
                         <br/>
                         It has an image as trigger.<br/>
                         We have provided some you can use in the <i>images</i> folder.
-                    </span>
+                    </div>
                 </div>
             </div>
             
@@ -182,7 +192,7 @@
                 </p>
                 
                 <pre>
-&lt;a class="myElement" href="#" title="Some title text"&gt;Sample link&lt;/a&gt;</pre>
+&lt;a class="myElement" href="#" title="Some title text"&gt;And now hover me!&lt;/a&gt;</pre>
                 
                 <p>
                     Then add some javascript:
@@ -209,7 +219,7 @@
                 
                 <pre>
 &lt;span class="smallipop"&gt;
-    An element with a child containing html content for the bubble.
+    Hover me!
     &lt;div class="smallipopHint"&gt;
         &lt;b&gt;Give me some markup!&lt;/b&gt;
     &lt;/div&gt;
@@ -220,7 +230,7 @@
                 <span class="smallipop sampleElement">
                     Hover me!
                     <div class="smallipopHint">
-                        <b>That's what I call bold</b>
+                        <b>Give me some markup</b>
                     </div>
                 </span>
                 
@@ -258,8 +268,8 @@ $('#tipcustomhint').smallipop({}, "I'm the real hint!");</pre>
                 
                 <pre>
 &lt;div id="sampleContainer"&gt;
-    &lt;a href="#" id="tipkiller" class="smallipop" title="I'm a title with a long text"&gt;
-        Link which replaces itself
+    &lt;a href="#" id="tipkiller" class="smallipop" title="Click the link and I will be gone"&gt;
+        Hover me!
     &lt;/a&gt;
 &lt;/div&gt;
                 </pre>
@@ -275,8 +285,8 @@ $('#tipkiller').click(function(e) {
                 <br/>
                 
                 <div id="ajaxContainer2">
-                    <a href="#" id="tipkiller2" class="smallipop sampleElement" title="Click and I will be gone">
-                        Click me!
+                    <a href="#" id="tipkiller2" class="smallipop sampleElement" title="Click the link and I will be gone">
+                        Hover me!
                     </a>
                 </div>
                 
@@ -290,7 +300,7 @@ $('#tipkiller').click(function(e) {
 &lt;div class="smallipop" style="float:right;"&gt;
     A floating element. 
     &lt;span class="smallipopHint"&gt;
-        &lt;b>Left aligned markuptip with very long text&lt;/b&gt;&lt;br/&gt;
+        &lt;b>Markuptip with very long text&lt;/b&gt;&lt;br/&gt;
     &lt;/span&gt;
 &lt;/div&gt;</pre>
                 
@@ -336,6 +346,10 @@ $('#tipkiller').click(function(e) {
             <a href="#themes" class="smallipopWhite sampleElement white" title="I'm a title with a long text">
                 White theme
             </a>
+            &nbsp;-&nbsp;
+            <a href="#themes" class="smallipopOrange sampleElement orange" title="I'm a title with a long text">
+                Orange theme
+            </a>
             <br/>
             <br/>
             
@@ -377,31 +391,52 @@ $('#tipkiller').click(function(e) {
             
             <h3>Available options</h3>
             <a name="options"></a>
+            
+            <p>
+                You can customize smallipop as you like:
+            </p>
 
             <ul>
                 <li>
                     <b>popupOffset</b><br/> 
-                    Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right, default is <i>31</i>
+                    Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right. Default is <i>31</i>.
                 </li>
                 <li>
                     <b>popupYOffset</b><br/>
-                    Vertical offset for the popup, default is <i>0</i>
+                    Vertical offset for the popup. Default is <i>0</i>.
                 </li>
                 <li>
                     <b>popupDistance</b><br/>
-                    Vertical distance when the popup appears and disappears, default is <i>20</i>
+                    Vertical distance when the popup appears and disappears. Default is <i>20</i>.
                 </li>
                 <li>
                     <b>hideTrigger</b><br/>
-                    Hide the trigger when the popup is shown, default is <i>false</i>
+                    Hide the trigger when the popup is shown. Default is <i>false</i>.
                 </li>
                 <li>
                     <b>Theme</b><br/>
-                    <i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file, default is <i>default</i>
+                    <i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file. Default is <i>default</i>.
                 </li>
                 <li>
                     <b>infoClass</b><br/>
-                    Class in an element which contains markup content for the popup, default is <i>smallipopHint</i>
+                    Class in an element which contains markup content for the popup. Default is <i>smallipopHint</i>.
+                </li>
+                <li>
+                    <b>popupDelay</b><br/>
+                    How much time in milliseconds you have to hover on an element before the popups shows up. Default is <i>100</i>.
+                </li>
+                <li>
+                    <b>hideSpeed</b><br/>
+                    How fast the popup fades in and out, default is <i>150</i>
+                </li>
+                <li>
+                    <b>moveSpeed</b><br/>
+                    How much time the popup needs to reach it's final animation position in milliseconds. Default is <i>200</i>.
+                </li>
+                <li>
+                    <b>invertAnimation</b><br/>
+                    The popup will move up when an element is hovered and further up when fading out. If you set this 
+                    to true, the popup will move down when fading out. Default is <i>false</i>.
                 </li>
             </ul> 
             
@@ -418,7 +453,6 @@ $('.myElement').smallipop({
     popupYOffset: 20, // Bubble has a 20px vertical offset
     popupDistance: 30, // Bubble travels vertically by 30px when fading in
     popupOffset: 0, // No horizontal offset
-    infoClass: 'smallipopHint' // Default
 });</pre>
 
             <br/>
@@ -474,6 +508,15 @@ $('.myElement').smallipop({
             
             <hr/>
             
+            <h3>Coming up</h3>
+            
+            <p>
+                In the next version I will add the option to show the bubble left or right of an element.<br/>
+                Some more theme extensions are also in the works.
+            </p>
+            
+            <hr/>
+            
             <br/>
 
             <h6>Feedback is welcome!</h6>            
@@ -497,6 +540,9 @@ $('.myElement').smallipop({
             $(function() {
                 $('.smallipop').smallipop();
                 
+                $('.smallipopOrange').smallipop({
+                    theme: 'orange'
+                });
                 $('.smallipopBlack').smallipop({
                     theme: 'black'
                 });
@@ -506,17 +552,20 @@ $('.myElement').smallipop({
                 });
                 
                 $('.smallipopBlue').smallipop({
-                    theme: 'blue'
+                    theme: 'blue',
+                    invertAnimation: true
                 });
                 
                 $('.smallipopBlueFatShadow').smallipop({
-                    theme: 'blue fatShadow'
+                    theme: 'blue fatShadow',
+                    invertAnimation: true
                 });
                 
                 $('.smallipopHideBlue').smallipop({
                     theme: 'blue',
                     hideTrigger: true,
-                    popupYOffset: 30
+                    popupYOffset: 40,
+                    invertAnimation: true
                 });
                 
                 $('.smallipopWhite').smallipop({

@@ -67,7 +67,7 @@ img.inline { margin: 10px; }
 }
 
 .sampleElement {
-  border: 1px solid #f0c152;
+  border: 1px solid #fed980;
   padding: 3px 5px;
   background-color: #ffe199;
   
@@ -79,6 +79,7 @@ img.inline { margin: 10px; }
   &.white { background-color: #fff; }
   &.black { background-color: #333; color: #eee; }
   &.blue { background-color: #0064b4; color: #eee; }
+  &.orange { background-color: #fbb913; color: #714900; }
   &.default { background-color: #586d82; color: #eee; }
 }
 .borderradius .sampleElement { @include rounded(5px); }
@@ -87,21 +88,31 @@ img.inline { margin: 10px; }
 .indicator {
   position: relative;
   display: block;
-  width: 20px; height: 20px;
+  width: 21px; height: 21px;
   font-size: 26px;
   font-weight: bold;
-  line-height: 20px;
+  line-height: 21px;
   text-align: center;
   color: #6fc048;
   background-color: #fff;
+  opacity: 0.95;
   
+  .indicatorPlus {
+    width: 14px;
+    margin: 0 3px;
+    overflow:hidden;
+  }
+  /*
   .indicatorArrow {
     position: absolute;
     height: 0; width: 0;
-    left: 3px; bottom: -13px;
-    border: 7px solid transparent;
-    border-color:#fff transparent transparent transparent; 
-  }
+    left: 2px; bottom: -15px;
+    border: 8px solid transparent;
+    border-color:#fafafa transparent transparent transparent; 
+  }*/
+}
+.cssgradients .indicator {
+  @include linear-gradient(#fff, #fafafa);
 }
 .borderradius .indicator { @include rounded(2px); }
 
@@ -109,31 +120,59 @@ img.inline { margin: 10px; }
 
 /* wobbler */
 .wobble {
-  -webkit-animation: wobble 1s ease-in;
+  -webkit-animation: wobble 1s linear;
   -webkit-animation-iteration-count: 1;
   -webkit-transform-origin: bottom center; 
-  -moz-animation: wobble 1s ease-in;
+  -moz-animation: wobble 1s linear;
   -moz-animation-iteration-count: 1; 
   -moz-transform-origin: bottom center; 
 }
 
 @-webkit-keyframes wobble {
-    0%   { -webkit-transform: rotate(0deg); }
-    30%  { -webkit-transform: rotate(-10deg); }
-    55%  { -webkit-transform: rotate(8deg); }
-    75%  { -webkit-transform: rotate(-6deg); }
-    90%  { -webkit-transform: rotate(4deg); }
-    95%  { -webkit-transform: rotate(-2deg); }
-    100% { -webkit-transform: rotate(0deg); }
+  0%   { -webkit-transform: rotate(0deg); }
+  5%   { -webkit-transform: rotate(10deg); }
+  10%   { -webkit-transform: rotate(7.4deg); }
+  15%   { -webkit-transform: rotate(-1.1deg); }
+  20%   { -webkit-transform: rotate(-5.2deg); }
+  25%   { -webkit-transform: rotate(-3deg); }
+  30%   { -webkit-transform: rotate(1deg); }
+  35%   { -webkit-transform: rotate(2.6deg); }
+  40%   { -webkit-transform: rotate(1.2deg); }
+  45%   { -webkit-transform: rotate(-0.72deg); }
+  50%   { -webkit-transform: rotate(-1.2deg); }
+  55%   { -webkit-transform: rotate(-0.44deg); }
+  60%   { -webkit-transform: rotate(0.44deg); }
+  65%   { -webkit-transform: rotate(0.57deg); }
+  70%   { -webkit-transform: rotate(0.14deg); }
+  75%   { -webkit-transform: rotate(-0.25deg); }
+  80%   { -webkit-transform: rotate(-0.26deg); }
+  85%   { -webkit-transform: rotate(-0.033deg); }
+  90%   { -webkit-transform: rotate(0.13deg); }
+  95%   { -webkit-transform: rotate(0.12deg); }
+  100%   { -webkit-transform: rotate(0deg); }
 }
 @-moz-keyframes wobble {
-    0%   { -moz-transform: rotate(0deg); }
-    30%  { -moz-transform: rotate(-10deg); }
-    55%  { -moz-transform: rotate(8deg); }
-    75%  { -moz-transform: rotate(-6deg); }
-    90%  { -moz-transform: rotate(4deg); }
-    95%  { -moz-transform: rotate(-2deg); }
-    100% { -moz-transform: rotate(0deg); }
+  0%   { -moz-transform: rotate(0deg); }
+  5%   { -moz-transform: rotate(10deg); }
+  10%   { -moz-transform: rotate(7.4deg); }
+  15%   { -moz-transform: rotate(-1.1deg); }
+  20%   { -moz-transform: rotate(-5.2deg); }
+  25%   { -moz-transform: rotate(-3deg); }
+  30%   { -moz-transform: rotate(1deg); }
+  35%   { -moz-transform: rotate(2.6deg); }
+  40%   { -moz-transform: rotate(1.2deg); }
+  45%   { -moz-transform: rotate(-0.72deg); }
+  50%   { -moz-transform: rotate(-1.2deg); }
+  55%   { -moz-transform: rotate(-0.44deg); }
+  60%   { -moz-transform: rotate(0.44deg); }
+  65%   { -moz-transform: rotate(0.57deg); }
+  70%   { -moz-transform: rotate(0.14deg); }
+  75%   { -moz-transform: rotate(-0.25deg); }
+  80%   { -moz-transform: rotate(-0.26deg); }
+  85%   { -moz-transform: rotate(-0.033deg); }
+  90%   { -moz-transform: rotate(0.13deg); }
+  95%   { -moz-transform: rotate(0.12deg); }
+  100%   { -moz-transform: rotate(0deg); }
 }
 
 /* pulser */
@@ -154,11 +193,9 @@ img.inline { margin: 10px; }
   text-align:center;
 }
 .pulser .outer {
-  height: 12px;
-  width: 12px;
+  height: 12px; width: 12px;
   position: absolute;
-  left:0;
-  top:0;
+  left:0; top:0;
   border: 2px solid #50b6f4;
 }
 .cssgradients .pulser .inner {
@@ -170,11 +207,11 @@ img.inline { margin: 10px; }
   .inner { @include rounded(30px); } 
 }
 .cssanimations .pulser .outer {
-  -webkit-animation: pulsate 1s ease-out;
+  -webkit-animation: pulsate 1.2s ease-out;
   -webkit-animation-iteration-count: infinite; 
-  -moz-animation: pulsate 1s ease-out;
+  -moz-animation: pulsate 1.2s ease-out;
   -moz-animation-iteration-count: infinite; 
-  opacity: 0.0
+  opacity: 0.0;
 }
 @-webkit-keyframes pulsate {
   0% {-webkit-transform: scale(1, 1); opacity: 0.0;}
