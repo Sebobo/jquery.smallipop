@@ -9,6 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop =
+    version: '0.1.1'
     defaults: 
       popupOffset: 31
       popupYOffset: 0
@@ -33,15 +34,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       triggerOpt = trigger.data("options") or sip.defaults
       trigger.stop(true).fadeTo(triggerOpt.hideSpeed, 1) if shownId and triggerOpt.hideTrigger
       
-      travelDistance = sip.popup.data("distance")
-      travelDistance *= -1 if triggerOpt.invertAnimation 
+      xDistance = sip.popup.data("xDistance") * if triggerOpt.invertAnimation then -1 else 1
+      yDistance = sip.popup.data("yDistance") * if triggerOpt.invertAnimation then -1 else 1
       
       sip.popup
       .data
         hideDelayTimer: null
         beingShown: false
       .stop(true).animate(
-          top: "-=" + travelDistance + "px"
+          top: "-=" + xDistance + "px"
+          left: "+=" + yDistance + "px"
           opacity: 0
         , 
           duration: triggerOpt.speed
@@ -86,7 +88,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           
           # Prepare some properties
           win = $(window)
-          distance = opt.popupDistance
+          xDistance = yDistance = opt.popupDistance
           yOffset = opt.popupYOffset
         
           # Update tip content and remove all classes
@@ -101,43 +103,63 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           # Get new dimensions
           offset = self.offset()
           popupH = popup.outerHeight()
-          popupCenter = popup.outerWidth() / 2
+          popupW = popup.outerWidth()
+          popupCenter = popupW / 2
+          winWidth = win.width()
           selfWidth = self.outerWidth()
           selfHeight = self.outerHeight()
           windowPadding = 30 # Imaginary padding in viewport
           popupOffsetLeft = offset.left + selfWidth / 2
-          
-          if popupOffsetLeft + popupCenter > win.width() - windowPadding
-            # Positioned left
-            popupOffsetLeft -= popupCenter * 2 - opt.popupOffset 
-            popup.addClass("alignLeft")
-          else if popupOffsetLeft - popupCenter < windowPadding
-            # Positioned right
-            popupOffsetLeft -= opt.popupOffset 
-            popup.addClass("alignRight")
-          else
-            # Centered
-            popupOffsetLeft -= popupCenter
-          
-          # Add class if positioned below  
           popupOffsetTop = offset.top - popupH + yOffset
-          if offset.top - win.scrollTop() < popupH + opt.popupDistance + windowPadding - yOffset
-            popupOffsetTop += popupH + selfHeight
-            distance = -distance
-            yOffset = 0
-            popup.addClass("alignBottom")
+          
+          if opt.horizontal
+            xDistance = 0
+            popupOffsetTop += selfHeight / 2 + popupH / 2
+            if offset.left + selfWidth + popupW > winWidth - windowPadding
+              # Positioned left
+              popup.addClass("positionedLeft")
+              popupOffsetLeft = offset.left - popupW - opt.popupOffset 
+              yDistance = -yDistance
+            else
+              # Positioned right
+              popup.addClass("positionedRight")
+              popupOffsetLeft = offset.left + selfWidth + opt.popupOffset 
+          else
+            yDistance = 0
+            if popupOffsetLeft + popupCenter > winWidth - windowPadding
+              # Aligned left
+              popupOffsetLeft -= popupCenter * 2 - opt.popupOffset 
+              popup.addClass("alignLeft")
+            else if popupOffsetLeft - popupCenter < windowPadding
+              # Aligned right
+              popupOffsetLeft -= opt.popupOffset 
+              popup.addClass("alignRight")
+            else
+              # Centered
+              popupOffsetLeft -= popupCenter
+            
+            # Add class if positioned below  
+            if offset.top - win.scrollTop() < popupH + opt.popupDistance + windowPadding - yOffset
+              popupOffsetTop += popupH + selfHeight
+              xDistance = -xDistance
+              yOffset = 0
+              popup.addClass("alignBottom")
             
           # Hide trigger if defined
           $(".smallipop#{id}").stop(true).fadeTo(opt.hideSpeed, 0) if opt.hideTrigger
     
           # Start fade in animation
-          popup.data("distance", distance).stop(true).css(
+          popup.data(
+            xDistance: xDistance
+            yDistance: yDistance
+          ).stop(true).css(
             top: popupOffsetTop
             left: popupOffsetLeft
             display: "block"
             opacity: 0
           ).animate(
-              top: "-=" + distance + "px"
+              top: "-=" + xDistance + "px"
+              left: "+=" + yDistance + "px"
               opacity: 1
             , 
               duration: opt.moveSpeed 

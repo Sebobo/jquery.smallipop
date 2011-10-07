@@ -112,7 +112,7 @@ You can change the default value for all other options as well in this way.
  * hideSpeed: How fast the popup fades in and out, default is `150`.
  * moveSpeed: How much time the popup needs to reach it's final animation position in milliseconds. Default is `200`.
  * invertAnimation: The popup will move up when an element is hovered and further up when fading out. If you set this to true, the popup will move down when fading out. Default is `false`.
-
+ * horizontal: The popup will be positioned left or right of the trigger. Default is `false`.
 
 Editing
 -------

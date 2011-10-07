@@ -3,21 +3,20 @@
     <head>
         <title>smallipop - demo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="stylesheet" href="css/screen.css" type="text/css" media="all" title="Screen" charset="utf-8" />
-        <link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen" charset="utf-8" />   
+        <link rel="stylesheet" href="css/screen.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen" />   
         <script type="text/javascript" src="lib/jquery-1.6.4.min.js"></script>   
         <script type="text/javascript" src="lib/modernizr-2.0.6.min.js"></script>   
         <script type="text/javascript" src="lib/jquery-smallipop.js"></script>
     </head>
     <body>
         <div class="page hasShadow">
-            <h1>smallipop documentation &amp; demo page</h1>
-            <a name="start"></a>
+            <h1 id="docustart">smallipop documentation &amp; demo page</h1>
             
             <br/>
             
             <p>
-                <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements">Small Improvements</a> Info Popup
+                <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements">Small Improvements</a> Info Popup - Version 0.1.1
             </p>
             
             <div class="smallipopOrange floatRight">
@@ -59,6 +58,10 @@
                     <b>Pure css</b><br/>
                     No images but fallbacks for older browsers.
                 </li>
+                <li>
+                    <b>Compatibility</b><br/>
+                    smallipop has been tested with IE7-9, Chrome, Safari 4+, Opera and Firefox 4+
+                </li>
                 <li> 
                     <b>Custom themes</b><br/>
                     For different use cases. 
@@ -86,17 +89,27 @@
                 We are using this plugin for a lot of things, so watch for new releases at <a class="smallipop" href="https://github.com/Sebobo/jquery.smallipop" title="smallipop at github">github</a>.
             </p>
             
-            <hr/>
+            <br/>
+            
+            <p>
+                <a href="#imagedemo">Image demo with markers</a> | 
+                <a href="#textdemo">Text demo with online hints</a> |
+                <a href="#createsmallipop">How to create a smallipop</a> |
+                <a href="#themes">Themes</a> |
+                <a href="#options">Options</a> |
+                <a href="#installation">Installation</a>
+            </p>
+            
+            <hr id="imagedemo"/>
             
             <h3>Image with absolute positioned hints:</h3>
-            <a name="imagedemo"></a>
             
             <p>
                 Hints can be positioned anywhere, even on absolute positioned or floating elements.
             </p>
             <br/>
             <div class="relative centered" style="width:600px;">
-                <img src="images/pic1.jpg" class="hasShadow hasBorder centered" width="600" height="450" />
+                <img src="images/pic1.jpg" class="hasShadow hasBorder centered" width="600" height="450" alt="Bird in china" />
                 
                 <div class="smallipopHideBlack" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
                     <div class="pulser"><div class="inner">+</div><div class="outer"></div></div>
@@ -120,7 +133,7 @@
                 </div>
                 
                 <div class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
-                    <img class="smallipopArrow wobbler" src="images/arrow_button-blue.png" />
+                    <img class="smallipopArrow wobbler" src="images/arrow_button-blue.png" alt="arrow" />
                     <div class="smallipopHint">
                         <i>It's a house!</i><br/>
                         <br/>
@@ -130,10 +143,9 @@
                 </div>
             </div>
             
-            <hr/>
+            <hr id="textdemo"/>
             
             <h3>Text with inline hints:</h3>
-            <a name="textdemo"></a>
             <br/>
             
             <div class="textbox centered hasShadow">
@@ -181,18 +193,17 @@
                 </div>
             </div>
             
-            <hr/>
+            <hr id="createsmallipop"/>
             
             <div>
                 <h3>Create a smallipop</h3>
-                <a name="createsmallipop"></a>
                 
                 <p>
                     Here is the easiest way to create a smallipop:
                 </p>
                 
                 <pre>
-&lt;a class="myElement" href="#" title="Some title text"&gt;And now hover me!&lt;/a&gt;</pre>
+&lt;a class="myElement" href="#" title="That was easy!"&gt;And now hover me!&lt;/a&gt;</pre>
                 
                 <p>
                     Then add some javascript:
@@ -212,7 +223,11 @@
                         And now hover me!
                     </a>
                 </div>
+                
                 <br/>
+                <br/>
+                <br/>
+                
                 <p>
                     If you like some markup as tooltip, you can do that as well:
                 </p>
@@ -227,13 +242,14 @@
 
                 <br/>
                 
-                <span class="smallipop sampleElement">
+                <span class="smallipop sampleElement" style="display:inline-block;">
                     Hover me!
                     <div class="smallipopHint">
                         <b>Give me some markup</b>
                     </div>
                 </span>
                 
+                <br/>
                 <br/>
                 <br/>
                 
@@ -259,6 +275,7 @@ $('#tipcustomhint').smallipop({}, "I'm the real hint!");</pre>
                     Hover me!
                 </a>
                 
+                <br/>
                 <br/>
                 <br/>
                 
@@ -291,6 +308,8 @@ $('#tipkiller').click(function(e) {
                 </div>
                 
                 <br/>
+                <br/>
+                <br/>
                 
                 <p>
                     Elements can be positioned everywhere, smallipop will be at the right position:
@@ -298,9 +317,10 @@ $('#tipkiller').click(function(e) {
                 
                 <pre>
 &lt;div class="smallipop" style="float:right;"&gt;
-    A floating element. 
+    Hover me! 
     &lt;span class="smallipopHint"&gt;
         &lt;b>Markuptip with very long text&lt;/b&gt;&lt;br/&gt;
+        ...
     &lt;/span&gt;
 &lt;/div&gt;</pre>
                 
@@ -312,20 +332,50 @@ $('#tipkiller').click(function(e) {
                 
                 <div id="ajaxContainer" class="floatRight">
                     <div class="smallipop sampleElement">
-                        A floating element.<br/> 
+                        Hover me! 
                         <span class="smallipopHint">
                             <b>Markuptip with very long text</b><br/>
                             <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
                         </span>
                     </div>
                 </div>
+                
+                <br class="clear"/>
+                <br/>
+                <br/>
+                
+                <p>
+                    How about showing the bubble on the left or right of an element?
+                </p>
+                
+                <pre>
+&lt;span class="smallipopHorizontal sampleElement"&gt;
+    Hover me!
+    &lt;span class="smallipopHint"&gt;
+        Good for dropdowns!
+    &lt;/span&gt;
+&lt;/span&gt;</pre>
+                
+                <br/>
+                
+                <span class="smallipopHorizontal sampleElement floatLeft">
+                    Hover me!
+                    <span class="smallipopHint">
+                        Good for dropdowns!
+                    </span>
+                </span>
+                <span class="smallipopHorizontal sampleElement floatRight">
+                    Or me!
+                    <span class="smallipopHint">
+                        Auto align when there's no room on the right.
+                    </span>
+                </span>
                 <br class="clear"/>
             </div>
             
-            <hr/>
+            <hr id="themes"/>
             
             <h3>Themes:</h3>
-            <a name="themes"></a>
             
             <p>Hover the links to see the different themes</p>
             
@@ -377,8 +427,7 @@ $('#tipkiller').click(function(e) {
                 The css for the extension theme looks like this:
             </p>
             <pre>
-/* fat shadow extension theme */
-.boxshadow.rgba #smallipop.fatShadow {
+#smallipop.fatShadow {
   -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
      -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
           box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
@@ -387,10 +436,9 @@ $('#tipkiller').click(function(e) {
                 This allows you to have one basic theme and several subthemes with different border styles or colors for example.
             </p>
             
-            <hr/>
+            <hr id="options"/>
             
             <h3>Available options</h3>
-            <a name="options"></a>
             
             <p>
                 You can customize smallipop as you like:
@@ -438,6 +486,10 @@ $('#tipkiller').click(function(e) {
                     The popup will move up when an element is hovered and further up when fading out. If you set this 
                     to true, the popup will move down when fading out. Default is <i>false</i>.
                 </li>
+                <li>
+                    <b>horizontal</b><br/>
+                    The popup will be positioned left or right of the trigger. Default is <i>false</i>.
+                </li>
             </ul> 
             
             <br/>
@@ -457,11 +509,10 @@ $('.myElement').smallipop({
 
             <br/>
             
-            <hr/>
+            <hr id="installation"/>
             
             <div>
                 <h3>Installation</h3>
-                <a name="installation"></a>
 
                 <h6>Prequisites</h6>
 
@@ -500,7 +551,7 @@ $('.myElement').smallipop({
                 
                 <p>Add these lines to the header of your html file and replace x.x.x with the correct versions</p>
                 <pre>
-&lt;link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen" charset="utf-8"/&gt;   
+&lt;link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen"/&gt;   
 &lt;script type="text/javascript" src="lib/jquery-x.x.x.min.js"&gt;&lt;/script&gt;   
 &lt;script type="text/javascript" src="lib/modernizr-x.x.x.min.js"&gt;&lt;/script&gt;   
 &lt;script type="text/javascript" src="lib/jquery-smallipop.js"&gt;&lt;/script&gt;</pre>
@@ -510,10 +561,11 @@ $('.myElement').smallipop({
             
             <h3>Coming up</h3>
             
-            <p>
-                In the next version I will add the option to show the bubble left or right of an element.<br/>
-                Some more theme extensions are also in the works.
-            </p>
+            <ul>
+                <li>Improved alignment for horizontal layout.</li>
+                <li>Some more theme extensions are in the works.</li>
+                <li>Themes with graphics instead of css.</li>
+            </ul>
             
             <hr/>
             
@@ -529,10 +581,16 @@ $('.myElement').smallipop({
             <p>Have fun!</p>
             
             <br/>
-            <br/>
             
             <p>
                 &copy; 2011 by <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a>
+            </p>
+            
+            <br/>
+            
+            <p>
+                smallipop is powered by <a href="http://jashkenas.github.com/coffee-script/" target="_blank" title="Coffeescript">coffeescript</a> 
+                and <a href="http://sass-lang.com/" target="_blank" title="Sass">sass</a>.
             </p>
         </div>
         
@@ -575,13 +633,20 @@ $('.myElement').smallipop({
                 $('.smallipopHide').smallipop({
                     hideTrigger: true,
                     theme: 'white',
-                    popupYOffset: 5,
+                    popupYOffset: 5
                 });
                 
                 $('.smallipopHideTrans').smallipop({
                     hideTrigger: true,
                     theme: 'white whiteTransparent',
-                    popupYOffset: 20,
+                    popupYOffset: 20
+                });
+                
+                $('.smallipopHorizontal').smallipop({
+                    horizontal: true,
+                    theme: 'black',
+                    popupOffset: 10,
+                    invertAnimation: true
                 });
                 
                 $('#tipcustomhint').smallipop({}, "I'm the real hint!");

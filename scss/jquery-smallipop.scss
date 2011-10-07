@@ -43,6 +43,34 @@
     .bubbleArrowBorder { bottom:auto; top:-24px; }
   }
   
+  &.positionedLeft {
+    .bubbleArrow,
+    .bubbleArrowBorder {
+      right: -16px; left: auto; top:50%; bottom:auto;
+      border-width: 8px;
+      margin: -8px 0 0;
+    }
+    .bubbleArrowBorder {
+      right: -20px;
+      border-width: 10px;
+      margin: -10px 0 0;
+    }
+  }
+  
+  &.positionedRight {
+    .bubbleArrow,
+    .bubbleArrowBorder {
+      left: -16px; right:auto; top:50%; bottom:auto;
+      border-width: 8px;
+      margin: -8px 0 0;
+    }
+    .bubbleArrowBorder {
+      left: -20px;
+      border-width: 10px;
+      margin: -10px 0 0;
+    }
+  }
+  
   a { color:#98cbea; }
 }
 
@@ -60,9 +88,19 @@
     .bubbleArrow { border-color:transparent transparent #1a2634 transparent; }
     .bubbleArrowBorder { border-color:transparent transparent #0f161e transparent; }
   }
+  
+  &.positionedLeft {
+    .bubbleArrow { border-color:transparent transparent transparent #1a2634; }
+    .bubbleArrowBorder { border-color:transparent transparent transparent #0f161e; }
+  }
+  &.positionedRight {
+    .bubbleArrow { border-color:transparent #1a2634 transparent transparent; }
+    .bubbleArrowBorder { border-color:transparent #0f161e transparent transparent; }
+  }
 }
-.cssgradients #smallipop.default {
+.cssgradients.rgba #smallipop.default {
   background-color:transparent;
+  @include linear-gradient(rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); /* Fallback for opera */
   @include radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px);
 }
 .boxshadow.rgba #smallipop.default { @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));} 
@@ -74,7 +112,7 @@
 /* blue theme */
 #smallipop.blue {
   background:transparent;
-  border: 10px solid rgba(0, 100, 180, 0.9);
+  border: 10px solid #0064b4;
   color: #111;
   font-size:11px;
   
@@ -87,14 +125,29 @@
   
   .bubbleArrow {
     bottom: -30px; 
-    border-color:rgba(0, 100, 180, 0.9) transparent transparent transparent; 
+    border-color: #0064b4 transparent transparent transparent; 
   }
-  &.alignBottom {
-    .bubbleArrow {
-      top: -30px; 
-      border-color:transparent transparent rgba(0, 100, 180, 0.9) transparent; 
-    }
+  &.alignBottom .bubbleArrow {
+    top: -30px; 
+    border-color:transparent transparent #0064b4 transparent; 
   }
+  
+  &.positionedLeft .bubbleArrow {
+    right: -26px; 
+    border-color:transparent transparent transparent #0064b4; 
+  }
+  &.positionedRight .bubbleArrow {
+    left: -26px; 
+    border-color:transparent #0064b4 transparent transparent; 
+  }
+}
+.rgba #smallipop.blue { 
+  border-color: rgba(0, 100, 180, 0.9);
+  
+  .bubbleArrow { border-color:rgba(0, 100, 180, 0.9) transparent transparent transparent; }
+  &.alignBottom .bubbleArrow { border-color:transparent transparent rgba(0, 100, 180, 0.9) transparent; }
+  &.positionedLeft .bubbleArrow { border-color:transparent transparent transparent rgba(0, 100, 180, 0.9); }
+  &.positionedRight .bubbleArrow { border-color:transparent rgba(0, 100, 180, 0.9) transparent transparent; } 
 }
 .boxshadow.rgba #smallipop.blue { @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));} 
 .borderradius #smallipop.blue { @include rounded(7px); }
@@ -116,10 +169,19 @@
     .bubbleArrow { border-color:transparent transparent #222 transparent; }
     .bubbleArrowBorder { border-color:transparent transparent #111 transparent; }
   }
+  
+  &.positionedLeft {
+    .bubbleArrow { border-color:transparent transparent transparent #222; }
+    .bubbleArrowBorder { border-color:transparent transparent transparent #111; }
+  }
+  &.positionedRight {
+    .bubbleArrow { border-color:transparent #222 transparent transparent; }
+    .bubbleArrowBorder { border-color:transparent #111 transparent transparent; }
+  }
 }
 .cssgradients #smallipop.black { 
   background-color:transparent;
-  @include linear-gradient(#333, #222); 
+  @include linear-gradient(#333333, #222222); 
 }
 .boxshadow.rgba #smallipop.black { @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));} 
 .borderradius #smallipop.black { 
@@ -129,7 +191,7 @@
 
 /* orange theme */
 #smallipop.orange {
-  background-color:#fbb913;
+  background-color:#f9aa18;
   border-color:#e17500;
   text-shadow:0 1px 1px #fff24d;
   color:#714900;
@@ -144,9 +206,17 @@
     .bubbleArrow { border-color:transparent transparent #f9aa18 transparent; }
     .bubbleArrowBorder { border-color:transparent transparent #e17500 transparent; }
   }
+  
+  &.positionedLeft {
+    .bubbleArrow { border-color:transparent transparent transparent #f9c718; }
+    .bubbleArrowBorder { border-color:transparent transparent transparent #e17500; }
+  }
+  &.positionedRight {
+    .bubbleArrow { border-color:transparent #f9c718 transparent transparent; }
+    .bubbleArrowBorder { border-color:transparent #e17500 transparent transparent; }
+  }
 }
 .cssgradients #smallipop.orange { 
-  background-color:transparent;
   @include linear-gradient(#fff24d, #f9aa18); 
 }
 .boxshadow.rgba #smallipop.orange { @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));} 
@@ -176,6 +246,15 @@
     .bubbleArrow { border-color:transparent transparent #fafafa transparent; }
     .bubbleArrowBorder { border-color:transparent transparent #ccc transparent; }
   }
+  
+  &.positionedLeft {
+    .bubbleArrow { border-color:transparent transparent transparent #fafafa; }
+    .bubbleArrowBorder { border-color:transparent transparent transparent #ccc; }
+  }
+  &.positionedRight {
+    .bubbleArrow { border-color:transparent #fafafa transparent transparent; }
+    .bubbleArrowBorder { border-color:transparent #ccc transparent transparent; }
+  }
 }
 .boxshadow.rgba #smallipop.white { @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));} 
 .borderradius #smallipop.white { 
@@ -185,8 +264,8 @@
 
 /* extension themes. keep at the bottom */
 
-/* white theme extended */
-#smallipop.whiteTransparent {
+/* white theme extended, requires rgba support */
+.rgba #smallipop.whiteTransparent {
   background-color:rgba(255, 255, 255, 0.8);
   .bubbleArrow { 
     bottom:-21px; 
@@ -198,6 +277,15 @@
   
   &.alignBottom {
     .bubbleArrow { border-color:transparent transparent rgba(255, 255, 255, 0.8) transparent; }
+    .bubbleArrowBorder { border-color:transparent; }
+  }
+  
+  &.positionedLeft {
+    .bubbleArrow { border-color:transparent transparent transparent rgba(255, 255, 255, 0.8); }
+    .bubbleArrowBorder { border-color:transparent; }
+  }
+  &.positionedRight {
+    .bubbleArrow { border-color:transparent rgba(255, 255, 255, 0.8) transparent transparent; }
     .bubbleArrowBorder { border-color:transparent; }
   }
 }

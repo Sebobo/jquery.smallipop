@@ -5,7 +5,6 @@
 html {height:100%;font-size:12px;color:#000;background:#222;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
 
 body {
-  @include linear-gradient(#999, #222);
   color: #333;
   height: 100%;
   font-family: arial;
@@ -13,8 +12,14 @@ body {
   line-height: 1.2em;
   padding: 30px 0;
 }
+.cssgradients {
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  @include linear-gradient(#999999, #222222); 
+}
 
-a { color:#1f88ea; }
+a { color:#0d3a8b; }
 
 hr { width: 50%; height:1px; background:#eee; border:0; margin:40px 25%; }
 
@@ -70,19 +75,71 @@ img.inline { margin: 10px; }
   border: 1px solid #fed980;
   padding: 3px 5px;
   background-color: #ffe199;
+  font-size: 1.1em;
+  text-shadow:0 1px 1px #fff24d;
+  
+  &, a { text-decoration: none; }
   
   &:hover {
     background-color: #fff4d9;
     border-color: #ffd777;
   }
   
-  &.white { background-color: #fff; }
-  &.black { background-color: #333; color: #eee; }
-  &.blue { background-color: #0064b4; color: #eee; }
-  &.orange { background-color: #fbb913; color: #714900; }
-  &.default { background-color: #586d82; color: #eee; }
+  &.white { 
+    background-color: #fff; 
+    border-color: #ddd; 
+    text-shadow:none; 
+  }
+  &.black { 
+    background-color: #333; 
+    color: #eee; 
+    border-color: #000; 
+    text-shadow:none; 
+  }
+  &.blue { 
+    background-color: #0064b4; 
+    color: #eee; 
+    border-color: #0064b4; 
+    text-shadow:none;
+  }
+  &.orange { 
+    background-color: #fbb913; 
+    color: #714900; 
+  }
+  &.default { 
+    background-color: #586d82; 
+    color: #eee; 
+    border-color: #314b64; 
+    text-shadow:none;
+  }
 }
-.borderradius .sampleElement { @include rounded(5px); }
+.borderradius .sampleElement { @include rounded(6px); }
+.cssgradients .sampleElement { 
+  @include linear-gradient(#fff24d, #f9aa18); 
+  
+  &:hover { @include linear-gradient(#fff24d, #fdc661); } 
+  
+  &.white { 
+    @include linear-gradient(#ffffff, #fafafa); 
+  }
+  &.black { 
+    @include linear-gradient(#444444, #111111); 
+  }
+  &.blue { 
+    @include linear-gradient(#1279cb, #0064b4); color: #eee; 
+  }
+  &.default { 
+    @include linear-gradient(#4f6c88, #314b64); 
+  }
+}
+.boxshadow.rgba .sampleElement { 
+  @include boxshadow(0 1px 4px rgba(255, 162, 0, 0.3));
+  
+  &.white,
+  &.black,
+  &.blue,
+  &.default { @include boxshadow(0 1px 4px rgba(0, 0, 0, 0.3)); } 
+}
 
 /* indicator */
 .indicator {
@@ -102,18 +159,8 @@ img.inline { margin: 10px; }
     margin: 0 3px;
     overflow:hidden;
   }
-  /*
-  .indicatorArrow {
-    position: absolute;
-    height: 0; width: 0;
-    left: 2px; bottom: -15px;
-    border: 8px solid transparent;
-    border-color:#fafafa transparent transparent transparent; 
-  }*/
 }
-.cssgradients .indicator {
-  @include linear-gradient(#fff, #fafafa);
-}
+.cssgradients .indicator { @include linear-gradient(#ffffff, #fafafa); }
 .borderradius .indicator { @include rounded(2px); }
 
 .smallipopArrow { width: 25px; height: 42px; }
@@ -192,14 +239,8 @@ img.inline { margin: 10px; }
   font-weight:bold;
   text-align:center;
 }
-.pulser .outer {
-  height: 12px; width: 12px;
-  position: absolute;
-  left:0; top:0;
-  border: 2px solid #50b6f4;
-}
 .cssgradients .pulser .inner {
-  @include linear-gradient(#fafafa, #ddd);
+  @include linear-gradient(#fafafa, #dddddd);
 }
 .borderradius .pulser { 
   &, 
@@ -207,6 +248,10 @@ img.inline { margin: 10px; }
   .inner { @include rounded(30px); } 
 }
 .cssanimations .pulser .outer {
+  height: 12px; width: 12px;
+  position: absolute;
+  left:0; top:0;
+  border: 2px solid #50b6f4;
   -webkit-animation: pulsate 1.2s ease-out;
   -webkit-animation-iteration-count: infinite; 
   -moz-animation: pulsate 1.2s ease-out;

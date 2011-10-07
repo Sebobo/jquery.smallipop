@@ -19,7 +19,7 @@ def sass_daemon():
     logging.info('Starting: %s' % multiprocessing.current_process().name)
     
     # Start css watcher
-    os.spawnlp(os.P_WAIT, 'sass', 'sass', '--style', 'expanded', '--watch', 'scss:css')
+    os.spawnlp(os.P_WAIT, 'sass', 'sass', '--style', 'compact', '--watch', 'scss:css')
     
     logging.info('Exiting : %s' % multiprocessing.current_process().name)
 
