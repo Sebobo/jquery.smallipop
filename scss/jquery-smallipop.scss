@@ -235,12 +235,8 @@
   max-width:200px;
   
   .sipContent { text-align:center; }
-  .sipArrow { 
-    border-color:#fafafa transparent transparent transparent; 
-  }
-  .sipArrowBorder { 
-    border-color:#ccc transparent transparent transparent; 
-  }
+  .sipArrow { border-color:#fafafa transparent transparent transparent; }
+  .sipArrowBorder { border-color:#ccc transparent transparent transparent; }
   
   &.sipAlignBottom {
     .sipArrow { border-color:transparent transparent #fafafa transparent; }
