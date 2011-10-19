@@ -1,5 +1,5 @@
 ###!
-SmallIPop 0.1 (09/28/2011)
+SmallIPop 0.1.1 (10/19/2011)
 Copyright (c) 2011 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -98,7 +98,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           .data
             beingShown: true
             shown: id
-          .find(".bubbleContent").html(self.data("hint") or self.find(".#{opt.infoClass}").html())
+          .find(".sipContent").html(self.data("hint") or self.find(".#{opt.infoClass}").html())
           
           # Get new dimensions
           offset = self.offset()
@@ -117,23 +117,23 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             popupOffsetTop += selfHeight / 2 + popupH / 2
             if offset.left + selfWidth + popupW > winWidth - windowPadding
               # Positioned left
-              popup.addClass("positionedLeft")
+              popup.addClass("sipPositionedLeft")
               popupOffsetLeft = offset.left - popupW - opt.popupOffset 
               yDistance = -yDistance
             else
               # Positioned right
-              popup.addClass("positionedRight")
+              popup.addClass("sipPositionedRight")
               popupOffsetLeft = offset.left + selfWidth + opt.popupOffset 
           else
             yDistance = 0
             if popupOffsetLeft + popupCenter > winWidth - windowPadding
               # Aligned left
               popupOffsetLeft -= popupCenter * 2 - opt.popupOffset 
-              popup.addClass("alignLeft")
+              popup.addClass("sipAlignLeft")
             else if popupOffsetLeft - popupCenter < windowPadding
               # Aligned right
               popupOffsetLeft -= opt.popupOffset 
-              popup.addClass("alignRight")
+              popup.addClass("sipAlignRight")
             else
               # Centered
               popupOffsetLeft -= popupCenter
@@ -143,7 +143,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               popupOffsetTop += popupH + selfHeight
               xDistance = -xDistance
               yOffset = 0
-              popup.addClass("alignBottom")
+              popup.addClass("sipAlignBottom")
             
           # Hide trigger if defined
           $(".smallipop#{id}").stop(true).fadeTo(opt.hideSpeed, 0) if opt.hideTrigger
@@ -187,7 +187,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     # Initialize puff tooltip if necessary
     popup = $("#smallipop")
     unless popup.length
-      popup = sip.popup = $("<div id=\"smallipop\"><div class=\"bubbleContent\"/><div class=\"bubbleArrowBorder\"/><div class=\"bubbleArrow\"/></div>")
+      popup = sip.popup = $("<div id=\"smallipop\"><div class=\"sipContent\"/><div class=\"sipArrowBorder\"/><div class=\"sipArrow\"/></div>")
       .css("opacity", 0)
       .bind
         mouseover: sip.triggerMouseover
@@ -201,11 +201,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     return @.each ->
       # Initialize each trigger, create id and bind events
       self = $(@)
-      unless self.hasClass("initialized")
+      unless self.hasClass("sipInitialized")
         sip = $.smallipop
         newId = sip.lastId++
         self
-        .addClass("initialized smallipop#{newId}")
+        .addClass("sipInitialized smallipop#{newId}")
         .data
           id: newId
           options: $.extend({}, sip.defaults, options)
