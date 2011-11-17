@@ -1,5 +1,5 @@
 ###!
-SmallIPop 0.1.1 (10/19/2011)
+SmallIPop 0.1.2 (11/17/2011)
 Copyright (c) 2011 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop =
-    version: '0.1.1'
+    version: '0.1.2'
     defaults: 
       popupOffset: 31
       popupYOffset: 0
@@ -18,10 +18,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       hideTrigger: false
       theme: "default"
       infoClass: "smallipopHint"
-      hideSpeed: 150
-      moveSpeed: 200
+      triggerAnimationSpeed: 150
+      popupAnimationSpeed: 200
       invertAnimation: false
       horizontal: false
+      preferredPosition: "top"
     popup: null
     lastId: 1 # Counter for new smallipop id's
     
@@ -32,10 +33,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       # Show trigger if hidden before
       trigger = $(".smallipop#{shownId}")
       triggerOpt = trigger.data("options") or sip.defaults
-      trigger.stop(true).fadeTo(triggerOpt.hideSpeed, 1) if shownId and triggerOpt.hideTrigger
+      trigger.stop(true).fadeTo(triggerOpt.triggerAnimationSpeed, 1) if shownId and triggerOpt.hideTrigger
       
-      xDistance = sip.popup.data("xDistance") * if triggerOpt.invertAnimation then -1 else 1
-      yDistance = sip.popup.data("yDistance") * if triggerOpt.invertAnimation then -1 else 1
+      direction = if triggerOpt.invertAnimation then -1 else 1
+      xDistance = sip.popup.data("xDistance") * direction
+      yDistance = sip.popup.data("yDistance") * direction
       
       sip.popup
       .data
@@ -46,7 +48,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           left: "+=" + yDistance + "px"
           opacity: 0
         , 
-          duration: triggerOpt.speed
+          duration: triggerOpt.popupAnimationSpeed
           step: sip.func_ease 
           complete: ->
             # Hide tip if not being shown in the meantime
@@ -85,11 +87,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           trigger = $(".smallipop#{shownId}")
           triggerOpt = trigger.data("options") or sip.defaults
           trigger.stop(true).fadeTo(triggerOpt.fadeSpeed, 1) if shownId and triggerOpt.hideTrigger
-          
-          # Prepare some properties
-          win = $(window)
-          xDistance = yDistance = opt.popupDistance
-          yOffset = opt.popupYOffset
         
           # Update tip content and remove all classes
           popup
@@ -98,7 +95,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           .data
             beingShown: true
             shown: id
-          .find(".sipContent").html(self.data("hint") or self.find(".#{opt.infoClass}").html())
+          .find(".sipContent").html(self.data("hint"))
+          
+          # Prepare some properties
+          win = $(window)
+          xDistance = yDistance = opt.popupDistance
+          yOffset = opt.popupYOffset
           
           # Get new dimensions
           offset = self.offset()
@@ -106,6 +108,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           popupW = popup.outerWidth()
           popupCenter = popupW / 2
           winWidth = win.width()
+          winHeight = win.height()
           selfWidth = self.outerWidth()
           selfHeight = self.outerHeight()
           windowPadding = 30 # Imaginary padding in viewport
@@ -139,14 +142,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               popupOffsetLeft -= popupCenter
             
             # Add class if positioned below  
-            if offset.top - win.scrollTop() < popupH + opt.popupDistance + windowPadding - yOffset
+            selfY = offset.top - win.scrollTop()
+            popupY = popupH + opt.popupDistance - yOffset
+            if (opt.preferredPosition is "bottom" and selfY + selfHeight + popupY < winHeight - windowPadding) or selfY - popupY < windowPadding
               popupOffsetTop += popupH + selfHeight
               xDistance = -xDistance
               yOffset = 0
               popup.addClass("sipAlignBottom")
             
           # Hide trigger if defined
-          $(".smallipop#{id}").stop(true).fadeTo(opt.hideSpeed, 0) if opt.hideTrigger
+          $(".smallipop#{id}").stop(true).fadeTo(opt.triggerAnimationSpeed, 0) if opt.hideTrigger
     
           # Start fade in animation
           popup.data(
@@ -162,7 +167,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               left: "+=" + yDistance + "px"
               opacity: 1
             , 
-              duration: opt.moveSpeed 
+              duration: opt.popupAnimationSpeed 
               step: sip.func_ease 
               complete: -> popup.data("beingShown", false)
           )
@@ -183,6 +188,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
    
   $.fn.smallipop = (options={}, hint="") ->
     sip = $.smallipop
+    options = $.extend({}, sip.defaults, options)
+    
+    # Fix for some option deprecation issues
+    options.popupAnimationSpeed = options.moveSpeed if options.moveSpeed?
+    options.triggerAnimationSpeed = options.hideSpeed if options.hideSpeed?
     
     # Initialize puff tooltip if necessary
     popup = $("#smallipop")
@@ -201,15 +211,15 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     return @.each ->
       # Initialize each trigger, create id and bind events
       self = $(@)
-      unless self.hasClass("sipInitialized")
-        sip = $.smallipop
+      objHint = hint or self.attr("title") or self.find(".#{options.infoClass}").html()
+      if objHint and not self.hasClass("sipInitialized")
         newId = sip.lastId++
         self
         .addClass("sipInitialized smallipop#{newId}")
         .data
           id: newId
-          options: $.extend({}, sip.defaults, options)
-          hint: hint or self.attr("title") or ""
+          options: options
+          hint: objHint
         .attr("title", "") # Remove title to disable browser hint
         .bind 
           mouseover: sip.triggerMouseover

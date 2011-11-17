@@ -1,7 +1,7 @@
 /* smallipop css */
 .smallipopHint { display: none; }
 
-#smallipop { position: absolute; display: none; background-color: #314b64; border: 1px solid #0f161e; color: #d2dfe7; z-index: 9999; max-width: 400px; }
+#smallipop { position: absolute; display: none; top: 0; left: 0; background-color: #314b64; border: 1px solid #0f161e; color: #d2dfe7; z-index: 9999; max-width: 400px; }
 #smallipop .sipContent { padding: 10px; }
 #smallipop .sipArrow, #smallipop .sipArrowBorder { position: absolute; left: 50%; height: 0; width: 0; }
 #smallipop .sipArrow { bottom: -20px; margin-left: -10px; border: 10px solid transparent; }
