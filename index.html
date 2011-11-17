@@ -345,7 +345,7 @@ $('#tipkiller').click(function(e) {
                         Hover me! 
                         <span class="smallipopHint">
                             <b>Markuptip with very long text</b><br/>
-                            <a id="tipkiller" href="other.html">and an ajax link which replaces the trigger</a>
+                            <a id="tipkiller" href="other.html">and a link with some javascript which replaces the trigger</a>
                         </span>
                     </div>
                 </div>
@@ -359,12 +359,22 @@ $('#tipkiller').click(function(e) {
                 </p>
                 
                 <pre>
-&lt;span class="smallipopHorizontal sampleElement"&gt;
+&lt;span class="smallipopHorizontal"&gt;
     Hover me!
     &lt;span class="smallipopHint"&gt;
         Good for dropdowns!
     &lt;/span&gt;
 &lt;/span&gt;</pre>
+                
+                <p>With this javascript:</p>
+                
+                <pre>
+$('.smallipopHorizontal').smallipop({
+    horizontal: true,
+    theme: 'black',
+    popupOffset: 10,
+    invertAnimation: true
+});</pre>
                 
                 <br/>
                 
@@ -381,6 +391,47 @@ $('#tipkiller').click(function(e) {
                     </span>
                 </span>
                 <br class="clear"/>
+                <br/>
+                
+                <p>
+                    Don't like animations? No Problem:
+                </p>
+                <pre>
+&lt;a class="smallipopStatic" title="Doesn't move an inch"&gt;
+    Hover me!
+&lt;/a&gt;</pre>
+                
+                <p>With this javascript:</p>
+                
+                <pre>
+$('.smallipopStatic').smallipop({
+    theme: 'black',
+    popupDistance: 0,
+    popupYOffset: -14,
+    popupAnimationSpeed: 100
+});</pre>
+                <br/>
+                <a class="smallipopStatic sampleElement" title="Doesn't move an inch!">Hover me!</a>
+                <br/>
+                <br/>
+                <p>
+                    Change default positioning
+                </p>
+                <pre>
+&lt;a class="smallipopStatic" title="Below when possible"&gt;
+    Hover me!
+&lt;/a&gt;</pre>
+                
+                <p>With this javascript:</p>
+                
+                <pre>
+$('.smallipopBottom').smallipop({
+    theme: 'black',
+    preferredPosition: 'bottom'
+});</pre>
+                <br/>
+                <a class="smallipopBottom sampleElement" title="Below when possible">Hover me!</a>
+                
             </div>
             
             <hr id="themes"/>
@@ -484,12 +535,12 @@ $('#tipkiller').click(function(e) {
                     How much time in milliseconds you have to hover on an element before the popups shows up. Default is <i>100</i>.
                 </li>
                 <li>
-                    <b>hideSpeed</b><br/>
-                    How fast the popup fades in and out, default is <i>150</i>
+                    <b>triggerAnimationSpeed</b><br/>
+                    How fast the trigger fades in and out when hideTrigger is set, default is <i>150</i>
                 </li>
                 <li>
-                    <b>moveSpeed</b><br/>
-                    How much time the popup needs to reach it's final animation position in milliseconds. Default is <i>200</i>.
+                    <b>popupAnimationSpeed</b><br/>
+                    How much time the popup needs to reach it's final animation position and opacity in milliseconds. Default is <i>200</i>.
                 </li>
                 <li>
                     <b>invertAnimation</b><br/>
@@ -579,6 +630,12 @@ $('.myElement').smallipop({
             
             <hr/>
             
+            <h4>Have fun and check out my other plugins</h3>
+            
+            <p>
+                <a href="/jquery.rondell" title="jQuery rondell plugin">jQuery Rondell</a>
+            </p>
+            
             <br/>
 
             <h6>Feedback is welcome!</h6>            
@@ -587,9 +644,6 @@ $('.myElement').smallipop({
                 <a href="mailto:sebastian@small-improvements.com" title="Send me a mail">sebastian@small-improvements.com</a>
                 or <a href="http://twitter.com/#!/sebobo" target="_blank" title="Sebobo at twitter">@sebobo</a>
             </p>
-            <br/>
-            <p>Have fun!</p>
-            
             <br/>
             
             <p>
@@ -652,6 +706,18 @@ $('.myElement').smallipop({
                     popupYOffset: 20
                 });
                 
+                $('.smallipopStatic').smallipop({
+                    theme: 'black',
+                    popupDistance: 0,
+                    popupYOffset: -14,
+                    popupAnimationSpeed: 100
+                });
+                
+                $('.smallipopBottom').smallipop({
+                    theme: 'black',
+                    preferredPosition: 'bottom'
+                });
+                
                 $('.smallipopHorizontal').smallipop({
                     horizontal: true,
                     theme: 'black',
@@ -687,16 +753,18 @@ $('.myElement').smallipop({
             });
         </script>
         <script type="text/javascript">
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-26146980-1']);
-          _gaq.push(['_trackPageview']);
-          _gaq.push(['_gat._anonymizeIp']);
-        
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
+          if (document.location.hostname == 'sebobo.github.com') {
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-26146980-1']);
+              _gaq.push(['_trackPageview']);
+              _gaq.push(['_gat._anonymizeIp']);
+            
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+          }
         </script>
     </body>
 </html>
