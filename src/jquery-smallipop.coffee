@@ -145,7 +145,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             selfY = offset.top - win.scrollTop()
             popupY = popupH + opt.popupDistance - yOffset
             if (opt.preferredPosition is "bottom" and selfY + selfHeight + popupY < winHeight - windowPadding) or selfY - popupY < windowPadding
-              popupOffsetTop += popupH + selfHeight
+              popupOffsetTop += popupH + selfHeight - 2 * yOffset
               xDistance = -xDistance
               yOffset = 0
               popup.addClass("sipAlignBottom")
