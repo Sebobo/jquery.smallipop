@@ -1,5 +1,5 @@
 ###!
-SmallIPop 0.1.2 (11/17/2011)
+SmallIPop 0.1.3 (11/23/2011)
 Copyright (c) 2011 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop =
-    version: '0.1.2'
+    version: '0.1.3'
     defaults: 
       popupOffset: 31
       popupYOffset: 0
