@@ -25,7 +25,7 @@ Installation
 
 ### Prequisites
 
- * [jQuery](http://www.jquery.com) - 1.4.3 or better
+ * [jQuery](http://www.jquery.com) - 1.5.2 or better
  * [Modernizr](http://www.modernizr.com) - This library tests the browser for feature support and adds classes to the body tag. We use this for css fallbacks in our themes.
  
 Both are also provided in the `lib` folder. 
@@ -109,15 +109,15 @@ You can change the default value for all other options as well in this way.
  * theme: `black`, `orange`, `blue`, `white` and `default` are included in the css file. Default is `default`.
  * infoClass: Class in an element which contains markup content for the popup. Default is `smallipopHint`.
  * popupDelay: How much time in milliseconds you have to hover on an element before the popups shows up. Default is `100`.
- * hideSpeed: How fast the popup fades in and out, default is `150`.
- * moveSpeed: How much time the popup needs to reach it's final animation position in milliseconds. Default is `200`.
+ * triggerAnimationSpeed: How fast the trigger fades in and out when `hideTrigger` is enabled, default is `150`.
+ * popupAnimationSpeed: How much time the popup needs to reach it's final animation position and opacity in milliseconds. Default is `200`.
  * invertAnimation: The popup will move up when an element is hovered and further up when fading out. If you set this to true, the popup will move down when fading out. Default is `false`.
  * horizontal: The popup will be positioned left or right of the trigger. Default is `false`.
 
 Editing
 -------
 
-Read this chapter if you want to modify or extend SmallIPop.
+Read this chapter if you want to modify or extend smallipop.
 
 The plugin is written in [coffeescript](http://jashkenas.github.com/coffee-script/) and the css with [sass](http://sass-lang.com/).
 The sources are provided in the `src` and `scss` folders.  
@@ -135,7 +135,7 @@ The css used for the popup arrow is a bit tricky. If you want to change it, you 
 Feedback
 --------
 
-Please send me an [email](sebastian@small-improvements.com) with any feedback you have.
+Please send me an [email](sebastian@small-improvements.com) or a tweet @sebobo with any feedback you have.
 
 This plugin was my first attempt at a custom tooltip, coffeescript and scss, so any ideas for improvement are welcome.
 
