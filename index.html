@@ -770,8 +770,11 @@ $('.myElement').smallipop({
         </script>
         <!-- Piwik --> 
         <script type="text/javascript">
-            var pkBaseURL = (("https:" == document.location.protocol) ? "https://tracking.sebastianhelzle.net/" : "http://tracking.sebastianhelzle.net/");
-            document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+            var hostname = document.location.hostname;
+            if (hostname && hostname.indexOf('localhost') < 0) {
+                var pkBaseURL = (("https:" == document.location.protocol) ? "https://tracking.sebastianhelzle.net/" : "http://tracking.sebastianhelzle.net/");
+                document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+            }
         </script>
         <script type="text/javascript">
             try {
