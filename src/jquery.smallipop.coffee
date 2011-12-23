@@ -1,5 +1,5 @@
 ###!
-SmallIPop 0.1.3 (11/23/2011)
+SmallIPop 0.1.4 (12/23/2011)
 Copyright (c) 2011 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop =
-    version: '0.1.3'
+    version: '0.1.4'
     defaults: 
       popupOffset: 31
       popupYOffset: 0
@@ -22,7 +22,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       popupAnimationSpeed: 200
       invertAnimation: false
       horizontal: false
-      preferredPosition: "top"
+      preferredPosition: "top" # bottom, top, left or right
     popup: null
     lastId: 1 # Counter for new smallipop id's
     
@@ -118,7 +118,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           if opt.horizontal
             xDistance = 0
             popupOffsetTop += selfHeight / 2 + popupH / 2
-            if offset.left + selfWidth + popupW > winWidth - windowPadding
+            if (opt.preferredPosition is "left" and offset.left - popupW - opt.popupOffset > windowPadding) or offset.left + selfWidth + popupW > winWidth - windowPadding
               # Positioned left
               popup.addClass("sipPositionedLeft")
               popupOffsetLeft = offset.left - popupW - opt.popupOffset 
