@@ -39,6 +39,9 @@ ul {
   li { margin: 0.6em 0; list-style-type: disc; } 
 }
 
+.collapsor { }
+.collapsible { display:none; }
+
 img.inline { margin: 10px; }
 .boxshadow.rgba img.inline { @include boxshadow(0 1px 2px rgba(0, 0, 0, 0.5)); }
 
@@ -51,11 +54,52 @@ img.inline { margin: 10px; }
 
 .boxshadow.rgba .hasShadow { @include boxshadow(0 2px 4px rgba(0, 0, 0, 0.5)); }
 
-.page {
+.page,
+.pageHeader {
   margin: 0 auto;
   width: 840px;
   background: #fafafa; 
   padding: 40px; 
+}
+
+.pageHeader {
+  background: #267be4;
+  color: #fafafa;
+  
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+.cssgradients .pageHeader {
+  @include linear-gradient(#337edc, #0a5abf);
+}
+.borderradius .pageHeader {
+  @include rounded(8px 8px 0 0);
+}
+
+.options {
+  th {
+    background: #222;
+    border: 1px solid #111; 
+    padding: 6px 10px;
+    color: #eee;
+    vertical-align: middle;
+  }
+  
+  tr:nth-child(even) { background: #eee; }
+  tr:nth-child(odd) { background: #fff; }
+  
+  td { 
+    border: 1px solid #ddd; 
+    padding: 6px 10px;
+    vertical-align: middle;
+    
+    pre {
+      background: transparent;
+      border: 0;
+    } 
+  }
 }
 
 .textbox {

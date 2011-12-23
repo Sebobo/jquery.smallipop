@@ -7,20 +7,21 @@
         <meta name="description" content="Smallipop is a versatile jQuery plugin for displaying tooltips. It has automatic layout, pure css, free positioning, small size and much more!" />
         <link rel="stylesheet" href="css/screen.css" type="text/css" media="all" title="Screen" />
         <link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen" />   
-        <script type="text/javascript" src="lib/jquery-1.6.4.min.js"></script>   
-        <script type="text/javascript" src="lib/modernizr-2.0.6.min.js"></script>   
-        <script type="text/javascript" src="lib/jquery-smallipop.js"></script>
     </head>
     <body>
-        <div class="page hasShadow">
+        <div class="pageHeader hasShadow">
+            
             <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips</h1>
-            <h3>Documentation &amp; examples</h3>
             
             <br/>
             
+            <h3>Version 0.1.4</h3>
             <p>
-                <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements">Small Improvements</a> Info Popup - Version 0.1.3
+                Created by <a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle">Sebastian Helzle</a>
             </p>
+        
+        </div>
+        <div class="page hasShadow">
             
             <div class="smallipopOrange floatRight">
                 <img src="images/smallipop-logo.png" alt="smallipop logo" />
@@ -32,6 +33,11 @@
             </div>
             
             <br/>
+            
+            <h3>About</h3>
+            <p>
+                <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements">Small Improvements</a> Info Popup
+            </p>
 
             <p>
                 This is a <a href="http://www.jquery.com" title="jQuery">jQuery</a> plugin for displaying tooltips.<br/>
@@ -47,19 +53,18 @@
             <br/>
             
             <p>
-                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.1.3" title="Smallipop download" class="sampleElement">Download smallipop now</a>
+                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.1.4" title="Smallipop download" class="sampleElement">Download smallipop now</a>
+                &nbsp;
+                <a href="https://github.com/Sebobo/jquery.smallipop" target="_blank" title="smallipop source at github" class="sampleElement">Visit smallipop at github</a>
             </p>
             
             <br/>
             
-            <p>
-                <a href="https://github.com/Sebobo/jquery.smallipop" target="_blank" title="smallipop source at github">Visit smallipop at github</a>
-            </p>
-            
+            <!--
             <p>
                 <a href="http://plugins.jquery.com/project/smallipop" target="_blank" title="smallipop at jquery.com">Visit smallipop in the jQuery plugin repository</a>
             </p>
-            
+            -->
             <br/>
 
             <p>We wanted:</p> 
@@ -111,18 +116,30 @@
                 <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
                 <a class="addthis_counter addthis_pill_style"></a>
             </div>
-            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=sebobo"></script>
             <!-- AddThis Button END -->
             
             <br/>
             
+            <h3>Dependencies</h3>
+            <br/>
+            <ul>
+                <li><a href="http://www.jQuery.com" title="jQuery">jQuery</a> version 1.5.2 or better</li>
+                <li>
+                    <a href="http://www.modernizr.com/" title="Modernizr library">Modernizr</a> for browser capability fallbacks.<br/>
+                    The library is included in the plugins <i>lib</i> folder.<br/> 
+                </li>
+            </ul>
+            
+            <br/>
+            
+            <h3>Examples</h3>
             <p>
-                <a href="#imagedemo">Image demo with markers</a> | 
-                <a href="#textdemo">Text demo with online hints</a> |
-                <a href="#createsmallipop">How to create a smallipop</a> |
-                <a href="#themes">Themes</a> |
-                <a href="#options">Options</a> |
-                <a href="#installation">Installation</a>
+                <a class="scrollToId" href="#imagedemo">Image demo with markers</a> | 
+                <a class="scrollToId" href="#textdemo">Text demo with online hints</a> |
+                <a class="scrollToId" href="#createsmallipop">How to create a smallipop</a> |
+                <a class="scrollToId" href="#themes">Themes</a> |
+                <a class="scrollToId" href="#options">Options</a> |
+                <a class="scrollToId" href="#installation">Installation</a>
             </p>
             
             <hr id="imagedemo"/>
@@ -137,7 +154,7 @@
                 <img src="images/pic1.jpg" class="hasShadow hasBorder centered" width="600" height="450" alt="Bird in china" />
                 
                 <div class="smallipopHideBlack" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
-                    <div class="pulser"><div class="inner">+</div><div class="outer"></div></div>
+                    <div class="pulser"><div class="inner">+</div><div class="outer">&nbsp;</div></div>
                     <div class="smallipopHint">
                         <b>Black hole sun</b>
                     </div>
@@ -167,6 +184,22 @@
                     </div>
                 </div>
             </div>
+            
+            <br/>
+            
+            <p>
+                <a href="#imagedemoCode" class="collapsor" title="Collapse code">+ Click here to see how it's done</a>
+            </p>
+            <pre id="imagedemoCode" class="collapsible">
+$('.myElement').smallipop({
+    hideTrigger: true, // Trigger is hidden when the bubble is shown
+    theme: 'white whiteTransparent', // White theme is used with it's transparent extension
+    popupYOffset: 20, // Bubble has a 20px vertical offset
+    popupDistance: 30, // Bubble travels vertically by 30px when fading in
+    popupOffset: 0, // No horizontal offset
+});</pre>
+
+            <br/>
             
             <hr id="textdemo"/>
             
@@ -253,9 +286,7 @@
                 <br/>
                 <br/>
                 
-                <p>
-                    If you like some markup as tooltip, you can do that as well:
-                </p>
+                <h6>If you like some markup as tooltip, you can do that as well</h6>
                 
                 <pre>
 &lt;span class="smallipop"&gt;
@@ -278,9 +309,7 @@
                 <br/>
                 <br/>
                 
-                <p>
-                    You can provide the content for the bubble via javascript too:
-                </p>
+                <h6>You can provide the content for the bubble via javascript too</h6>
                 
                 <pre>
 &lt;a href="#" id="tipcustomhint" title="I'm the old title"&gt;
@@ -304,9 +333,7 @@ $('#tipcustomhint').smallipop({}, "I'm the real hint!");</pre>
                 <br/>
                 <br/>
                 
-                <p>
-                    There are cases when the trigger is replaced or changed when clicked and the tooltip needs to be hidden:
-                </p>
+                <h6>There are cases when the trigger is replaced or changed when clicked and the tooltip needs to be hidden</h6>
                 
                 <pre>
 &lt;div id="sampleContainer"&gt;
@@ -336,9 +363,7 @@ $('#tipkiller').click(function(e) {
                 <br/>
                 <br/>
                 
-                <p>
-                    Elements can be positioned everywhere, smallipop will be at the right position:
-                </p>
+                <h6>Elements can be positioned everywhere, smallipop will be at the right position</h6>
                 
                 <pre>
 &lt;div class="smallipop" style="float:right;"&gt;
@@ -369,9 +394,7 @@ $('#tipkiller').click(function(e) {
                 <br/>
                 <br/>
                 
-                <p>
-                    How about showing the bubble on the left or right of an element?
-                </p>
+                <h6>How about showing the bubble on the left or right of an element?</h6>
                 
                 <pre>
 &lt;span class="smallipopHorizontal"&gt;
@@ -408,9 +431,7 @@ $('.smallipopHorizontal').smallipop({
                 <br class="clear"/>
                 <br/>
                 
-                <p>
-                    Don't like animations? No Problem:
-                </p>
+                <h6>Don't like animations? No Problem</h6>
                 <pre>
 &lt;a class="smallipopStatic" title="Doesn't move an inch"&gt;
     Hover me!
@@ -429,9 +450,7 @@ $('.smallipopStatic').smallipop({
                 <a class="smallipopStatic sampleElement" title="Doesn't move an inch!">Hover me!</a>
                 <br/>
                 <br/>
-                <p>
-                    Change default positioning
-                </p>
+                <h6>Change default positioning</h6>
                 <pre>
 &lt;a class="smallipopStatic" title="Below when possible"&gt;
     Hover me!
@@ -512,78 +531,82 @@ $('.smallipopBottom').smallipop({
                 This allows you to have one basic theme and several subthemes with different border styles or colors for example.
             </p>
             
+            
             <hr id="options"/>
             
-            <h3>Available options</h3>
+            <h3>Options</h3>
             
-            <p>
-                You can customize smallipop as you like:
-            </p>
-
-            <ul>
-                <li>
-                    <b>popupOffset</b><br/> 
-                    Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right. Default is <i>31</i>.
-                </li>
-                <li>
-                    <b>popupYOffset</b><br/>
-                    Vertical offset for the popup. Default is <i>0</i>.
-                </li>
-                <li>
-                    <b>popupDistance</b><br/>
-                    Vertical distance when the popup appears and disappears. Default is <i>20</i>.
-                </li>
-                <li>
-                    <b>hideTrigger</b><br/>
-                    Hide the trigger when the popup is shown. Default is <i>false</i>.
-                </li>
-                <li>
-                    <b>Theme</b><br/>
-                    <i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file. Default is <i>default</i>.
-                </li>
-                <li>
-                    <b>infoClass</b><br/>
-                    Class in an element which contains markup content for the popup. Default is <i>smallipopHint</i>.
-                </li>
-                <li>
-                    <b>popupDelay</b><br/>
-                    How much time in milliseconds you have to hover on an element before the popups shows up. Default is <i>100</i>.
-                </li>
-                <li>
-                    <b>triggerAnimationSpeed</b><br/>
-                    How fast the trigger fades in and out when hideTrigger is set, default is <i>150</i>
-                </li>
-                <li>
-                    <b>popupAnimationSpeed</b><br/>
-                    How much time the popup needs to reach it's final animation position and opacity in milliseconds. Default is <i>200</i>.
-                </li>
-                <li>
-                    <b>invertAnimation</b><br/>
-                    The popup will move up when an element is hovered and further up when fading out. If you set this 
-                    to true, the popup will move down when fading out. Default is <i>false</i>.
-                </li>
-                <li>
-                    <b>horizontal</b><br/>
-                    The popup will be positioned left or right of the trigger. Default is <i>false</i>.
-                </li>
-            </ul> 
+            <table class="options" summary="Options for the jQuery smallipop plugin">
+                <tr>
+                    <th>Key</th>
+                    <th>Default value</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>popupOffset</td> 
+                    <td>31</td>
+                    <td>Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right.</td>
+                </tr>
+                <tr>
+                    <td>popupYOffset</td>
+                    <td>0</td>
+                    <td>Vertical offset for the popup.</td>
+                </tr>
+                <tr>
+                    <td>popupDistance</td>
+                    <td>20</td>
+                    <td>Vertical distance when the popup appears and disappears.</td>
+                </tr>
+                <tr>
+                    <td>hideTrigger</td>
+                    <td>false</td>
+                    <td>Hide the trigger when the popup is shown.</td>
+                </tr>
+                <tr>
+                    <td>Theme</td>
+                    <td>default</td>
+                    <td><i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file.</td>
+                </tr>
+                <tr>
+                    <td>infoClass</td>
+                    <td>smallipopHint</td>
+                    <td>Class in an element which contains markup content for the popup.</td>
+                </tr>
+                <tr>
+                    <td>popupDelay</td>
+                    <td>100</td>
+                    <td>How much time in milliseconds you have to hover on an element before the popups shows up.</td>
+                </tr>
+                <tr>
+                    <td>triggerAnimationSpeed</td>
+                    <td>150</td>
+                    <td>How fast the trigger fades in and out when hideTrigger is set.</td>
+                </tr>
+                <tr>
+                    <td>popupAnimationSpeed</td>
+                    <td>200</td>
+                    <td>How much time the popup needs to reach it's final animation position and opacity in milliseconds.</td>
+                </tr>
+                <tr>
+                    <td>invertAnimation</td>
+                    <td>false</td>
+                    <td>
+                        The popup will move up when an element is hovered and further up when fading out. If you set this 
+                        to true, the popup will move down when fading out.
+                    </td>
+                </tr>
+                <tr>
+                    <td>horizontal</td>
+                    <td>false</td>
+                    <td>The popup will be positioned left or right of the trigger.</td>
+                </tr>
+                <tr>
+                    <td>preferredPosition</td>
+                    <td>top</td>
+                    <td>Use "top" or "bottom" for the default layout and "left" or "right" when horizontal mode is active.</td>
+                </tr>
+            </table> 
             
-            <br/>
-            
-            <p>
-                Here's the configuration used for the white smallipop in the <a href="#imagedemo" title="Jump to the image example">image demo</a> 
-            </p>
-            
-            <pre>
-$('.myElement').smallipop({
-    hideTrigger: true, // Trigger is hidden when the bubble is shown
-    theme: 'white whiteTransparent', // White theme is used with it's transparent extension
-    popupYOffset: 20, // Bubble has a 20px vertical offset
-    popupDistance: 30, // Bubble travels vertically by 30px when fading in
-    popupOffset: 0, // No horizontal offset
-});</pre>
-
-            <br/>
             
             <hr id="installation"/>
             
@@ -646,10 +669,10 @@ $('.myElement').smallipop({
             
             <hr/>
             
-            <h4>Have fun and check out my other plugins</h3>
-            
+            <h4>Have fun and check out my other plugins</h4>
+            <br/>
             <p>
-                <a href="/jquery.rondell" title="jQuery rondell plugin">jQuery Rondell</a>
+                <a href="/jquery.rondell" class="sampleElement smallipop" title="Display images and other content in a nice way">jQuery Rondell</a>
             </p>
             
             <br/>
@@ -674,6 +697,9 @@ $('.myElement').smallipop({
             </p>
         </div>
         
+        <script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>   
+        <script type="text/javascript" src="lib/modernizr-2.0.6.min.js"></script>   
+        <script type="text/javascript" src="lib/jquery.smallipop.js"></script>
         <script type="text/javascript">
             $(function() {
                 $('.smallipop').smallipop();
@@ -750,7 +776,7 @@ $('.myElement').smallipop({
                 
                 $('#tipkiller2').live('click', function(e) {
                     e.preventDefault();
-                    $('#ajaxContainer2').html('<div>Some new content</div>');
+                    $('#ajaxContainer2').html("<div>Some new content</div>");
                 });
                 
                 // Animate smallipops when scrolling
@@ -766,16 +792,30 @@ $('.myElement').smallipop({
                         })
                     }).trigger('scroll');
                 }
+                
+                $('.collapsor').click(function(e) {
+                    e.preventDefault();
+                    $($(this).attr('href')).slideToggle(300);
+                });
+                
+                $('.scrollToId').click(function(e) {
+                    e.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: $($(this).attr('href')).offset().top
+                    }, 800, 'swing');   
+                });
             });
         </script>
-        <!-- Piwik --> 
         <script type="text/javascript">
             var hostname = document.location.hostname;
             if (hostname && hostname.indexOf('localhost') < 0) {
                 var pkBaseURL = (("https:" == document.location.protocol) ? "https://tracking.sebastianhelzle.net/" : "http://tracking.sebastianhelzle.net/");
                 document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+                
+                document.write(unescape("%3Cscript src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=sebobo' type='text/javascript'%3E%3C/script%3E"));
             }
         </script>
+        <!-- Piwik --> 
         <script type="text/javascript">
             try {
                 var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 5);
