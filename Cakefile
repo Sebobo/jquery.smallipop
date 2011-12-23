@@ -18,7 +18,7 @@ task 'watch', 'Watch sass and src folders for changes and recompile from src and
   
   console.log "Watching src folder for changes in coffee scripts"
   
-  coffeeProcess = spawn 'coffee', ['-b', '-o', 'lib/', '--watch', '-c', 'src/']
+  coffeeProcess = spawn 'coffee', ['--bare', '--join', "lib/jquery.#{pluginName}.js", '--watch', '--compile', 'src/']
   coffeeProcess.stdout.on 'data', (data) -> 
     console.log data.toString().trim()
     
@@ -31,6 +31,7 @@ task 'watch', 'Watch sass and src folders for changes and recompile from src and
 
 option '-v', '--version [VERSION_STRING]', 'set the output files version for `minify`'
 task 'minify', 'Minify the plugins *.js and *.css before release', (options) ->
+  
   return console.log 'Please provide a version string' unless options.version?
   
   exec "java -jar \"/Applications/yuicompressor.jar\" -o lib/jquery.#{pluginName}-#{options.version}.min.js lib/jquery.#{pluginName}.js", (err, stdout, stderr) ->
