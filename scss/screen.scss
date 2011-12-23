@@ -122,6 +122,10 @@ img.inline { margin: 10px; }
   font-size: 1.1em;
   text-shadow:0 1px 1px #fff24d;
   
+  &.big {  
+    font-size: 1.4em;  
+  }
+  
   &, a { text-decoration: none; }
   
   &:hover {
@@ -133,6 +137,12 @@ img.inline { margin: 10px; }
     background-color: #fff; 
     border-color: #ddd; 
     text-shadow:none; 
+  }
+  &.green { 
+    background-color: #2ea41e; 
+    border-color: #239714; 
+    color: #fafafa;
+    text-shadow: 0 1px 1px #196d0e;
   }
   &.black { 
     background-color: #333; 
@@ -166,6 +176,12 @@ img.inline { margin: 10px; }
   &.white { 
     @include linear-gradient(#ffffff, #fafafa); 
   }
+  &.green { 
+    @include linear-gradient(#35b125, #29a219); 
+    &:hover {
+      @include linear-gradient(#40bb30, #31aa21);
+    }
+  }
   &.black { 
     @include linear-gradient(#444444, #111111); 
   }
@@ -182,6 +198,7 @@ img.inline { margin: 10px; }
   &.white,
   &.black,
   &.blue,
+  &.green,
   &.default { @include boxshadow(0 1px 4px rgba(0, 0, 0, 0.3)); } 
 }
 
