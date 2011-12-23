@@ -1,0 +1,38 @@
+{
+    "name": "smallipop",
+    "version": "0.1.4",
+    "title": "jQuery.smallipop()",
+    "author": {
+        "name": "Sebastian Helzle",
+        "url": "https://github.com/sebobo"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "MIT-LICENSE.txt"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">=1.5.2",
+        "modernizr": ">=2.0.0"
+    },
+    "description": "A versatile jQuery plugin for displaying beautiful tooltips",
+    "keywords": [
+        "tooltip",
+        "bubble",
+        "hint",
+        "popup"
+    ],
+    "homepage": "http://sebobo.github.com/jquery.smallipop",
+    "contributors": [
+    ],
+    "files": [
+        "lib",
+        "css",
+        "images",
+        "scss",
+        "index.html",
+        "README.md",
+        "Cakefile"
+    ]
+}
