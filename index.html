@@ -117,6 +117,12 @@
                 <a class="addthis_counter addthis_pill_style"></a>
             </div>
             <!-- AddThis Button END -->
+            <br/>
+            <!-- Flattr button BEGIN -->
+            <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://projects.sebastianhelzle.net/jquery.smallipop/"></a>
+            <noscript><a href="http://flattr.com/thing/461593/jQuery-Smallipop" target="_blank">
+            <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
+            <!-- Flattr button END -->
             
             <br/>
             
@@ -806,13 +812,21 @@ $('.smallipopBottom').smallipop({
             });
         </script>
         <script type="text/javascript">
-            var hostname = document.location.hostname;
-            if (hostname && hostname.indexOf('localhost') < 0) {
-                var pkBaseURL = (("https:" == document.location.protocol) ? "https://tracking.sebastianhelzle.net/" : "http://tracking.sebastianhelzle.net/");
-                document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-                
-                document.write(unescape("%3Cscript src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=sebobo' type='text/javascript'%3E%3C/script%3E"));
-            }
+            (function() {
+                var hostname = document.location.hostname;
+                if (hostname && (hostname.indexOf('github') >= 0 || hostname.indexOf('sebastianhelzle') >= 0)) {
+                    var pkBaseURL = (("https:" == document.location.protocol) ? "https://tracking.sebastianhelzle.net/" : "http://tracking.sebastianhelzle.net/");
+                    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+                    
+                    document.write(unescape("%3Cscript src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=sebobo' type='text/javascript'%3E%3C/script%3E"));
+                    
+                        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+                        s.type = 'text/javascript';
+                        s.async = true;
+                        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+                        t.parentNode.insertBefore(s, t);
+                }
+            });
         </script>
         <!-- Piwik --> 
         <script type="text/javascript">
