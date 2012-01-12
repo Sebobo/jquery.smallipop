@@ -15,7 +15,7 @@
             
             <br/>
             
-            <h3>Version 0.1.4</h3>
+            <h3>Version 0.1.5</h3>
             <p>
                 Created by <a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle Portfolio">Sebastian Helzle</a>
                 for <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a>
@@ -24,7 +24,7 @@
         <div class="page hasShadow">
             
             <div class="smallipopOrange floatRight">
-                <img src="images/smallipop-logo.png" alt="smallipop logo" />
+                <img src="images/smallipop-logo.png" alt="smallipop logo" title="The smallipop logo" />
                 <div class="smallipopHint">
                     <b>smallipop</b><br/>
                     <br/>
@@ -39,14 +39,14 @@
             <p>
                 This is a <a href="http://www.jquery.com" title="jQuery">jQuery</a> plugin for displaying tooltips.<br/>
                 There are a lot of other plugins for this task, but they didn't meet our <br/>
-                requirements at <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a>.<br/>
+                various requirements at <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a>.<br/>
                 <br/> 
                 So finally we decided to create our own plugin and wanted to share it with you!
             </p>
             <br/>
             
             <p>
-                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.1.4" title="Download the most versatile tooltip plugin for jQuery" class="sampleElement green big smallipopWhite">
+                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.1.5" title="Download the most versatile tooltip plugin for jQuery" class="sampleElement green big smallipopWhite">
                     Download smallipop now
                 </a>
                 &nbsp;
@@ -60,14 +60,9 @@
                 Licensed under the <a href="http://www.opensource.org/licenses/mit-license.php" title="MIT licence">MIT</a> license.
             </p>
             
-            <!--
-            <p>
-                <a href="http://plugins.jquery.com/project/smallipop" target="_blank" title="smallipop at jquery.com">Visit smallipop in the jQuery plugin repository</a>
-            </p>
-            -->
             <br/>
 
-            <h3>Smallipop's greatest features</h3> 
+            <h3>Features</h3> 
                 
             <ul>
                 <li> 
@@ -123,6 +118,44 @@
             <noscript><a href="http://flattr.com/thing/461593/jQuery-Smallipop" target="_blank">
             <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
             <!-- Flattr button END -->
+            
+            <br/>
+            <br/>
+            <h3>New and improved in this version</h3>
+            
+            <ul>
+                <li>
+                    Added <i>funcEase</i> option to set your own easing function for the animations. 
+                    (See the <a href="#options" class="scrollToId" title="List of options">options</a>)
+                </li>
+                <li>
+                    Added touch support which disables the hover events and uses the <i>click</i> event on touch capable devices.<br/>
+                    Can be disabled with the <i>touchSupport</i> option.
+                </li>
+                <li>
+                    Added <i>triggerOnClick</i> option to force disable the hover events and just listen for the <i>click</i> event on your triggers.
+                </li>
+                <li>
+                    Window padding can now be changed with the <i>windowPadding</i> option.<br/>
+                    Smallipop tries to keep this distance from the window borders.
+                </li>
+            </ul>
+            
+            <br/>
+            
+            <p>
+                <a href="#changelog" class="collapsor" title="Collapse code">+ Click here to see changes in the last versions</a>
+            </p>
+            <ul id="changelog" class="collapsible">
+                <li>
+                    <h6>0.1.4</h6>
+                    <ul>
+                        <li>Added option to define the animation easing function.</li>
+                        <li>Added options for triggers to show the smallipop on click instead of hover.</li>
+                        <li>Automatic touch device support which uses touch events instead of hover. Can be disabled.</li>
+                    </ul>
+                </li>
+            </ul>
             
             <br/>
             
@@ -593,6 +626,11 @@ $('.smallipopBottom').smallipop({
                     <td>How much time the popup needs to reach it's final animation position and opacity in milliseconds.</td>
                 </tr>
                 <tr>
+                    <td>windowPadding</td>
+                    <td>30</td>
+                    <td>Distance to the window borders the smallipop should keep when computing it's orientation.</td>
+                </tr>
+                <tr>
                     <td>invertAnimation</td>
                     <td>false</td>
                     <td>
@@ -609,6 +647,33 @@ $('.smallipopBottom').smallipop({
                     <td>preferredPosition</td>
                     <td>top</td>
                     <td>Use "top" or "bottom" for the default layout and "left" or "right" when horizontal mode is active.</td>
+                </tr>
+                <tr>
+                    <td>windowPadding</td>
+                    <td>30</td>
+                    <td>Minimal distance smallipop should keep try to keep to the window borders.</td>
+                </tr>
+                <tr>
+                    <td>triggerOnClick</td>
+                    <td>false</td>
+                    <td>
+                        Disables the hover event for triggers and smallipop will be activated by clicking the trigger.<br/>
+                        A second click will trigger the default action on the trigger. I.e. open a link.
+                    </td>
+                </tr>
+                <tr>
+                    <td>touchSupport</td>
+                    <td>true</td>
+                    <td>
+                        When touch events are supported hover events are disabled and smallipop will activated by touching a trigger.<br/>
+                        A second touch will trigger the default action on the trigger. I.e. open a link. 
+                        The touch feature detection currently requires the modernizr library.
+                    </td>
+                </tr>
+                <tr>
+                    <td>funcEase</td>
+                    <td>easeInOutQuad</td>
+                    <td>Easing function for the animations.</td>
                 </tr>
             </table> 
             
@@ -812,21 +877,19 @@ $('.smallipopBottom').smallipop({
             });
         </script>
         <script type="text/javascript">
-            (function() {
-                var hostname = document.location.hostname;
-                if (hostname && (hostname.indexOf('github') >= 0 || hostname.indexOf('sebastianhelzle') >= 0)) {
-                    var pkBaseURL = (("https:" == document.location.protocol) ? "https://tracking.sebastianhelzle.net/" : "http://tracking.sebastianhelzle.net/");
-                    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-                    
-                    document.write(unescape("%3Cscript src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=sebobo' type='text/javascript'%3E%3C/script%3E"));
-                    
-                        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-                        s.type = 'text/javascript';
-                        s.async = true;
-                        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-                        t.parentNode.insertBefore(s, t);
-                }
-            });
+            var hostname = document.location.hostname;
+            if (hostname && (hostname.indexOf('github') >= 0 || hostname.indexOf('sebastianhelzle') >= 0)) {
+                var pkBaseURL = (("https:" == document.location.protocol) ? "https://tracking.sebastianhelzle.net/" : "http://tracking.sebastianhelzle.net/");
+                document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+                
+                document.write(unescape("%3Cscript src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=sebobo' type='text/javascript'%3E%3C/script%3E"));
+                
+                var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+                t.parentNode.insertBefore(s, t);
+            }
         </script>
         <!-- Piwik --> 
         <script type="text/javascript">
