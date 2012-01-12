@@ -1,6 +1,6 @@
 ###!
-SmallIPop 0.1.4 (12/23/2011)
-Copyright (c) 2011 Small Improvements (http://www.small-improvements.com)
+Smallipop 0.1.5 (01/08/2012)
+Copyright (c) 2011-2012 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
 
@@ -9,12 +9,13 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop =
-    version: '0.1.4'
+    version: '0.1.5'
     defaults: 
       popupOffset: 31
       popupYOffset: 0
       popupDistance: 20
       popupDelay: 100
+      windowPadding: 30 # Imaginary padding in viewport
       hideTrigger: false
       theme: "default"
       infoClass: "smallipopHint"
@@ -23,6 +24,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       invertAnimation: false
       horizontal: false
       preferredPosition: "top" # bottom, top, left or right
+      triggerOnClick: false
+      touchSupport: true
+      funcEase: "easeInOutQuad"
     popup: null
     lastId: 1 # Counter for new smallipop id's
     
@@ -47,13 +51,27 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           top: "-=" + xDistance + "px"
           left: "+=" + yDistance + "px"
           opacity: 0
-        , 
-          duration: triggerOpt.popupAnimationSpeed
-          step: sip.func_ease 
-          complete: ->
-            # Hide tip if not being shown in the meantime
-            $(@).css("display", "none").data("shown", "") if not $(@).data("beingShown")
+        , triggerOpt.popupAnimationSpeed, triggerOpt.funcEase, ->
+          # Hide tip if not being shown in the meantime
+          tip = $(@)
+          tip.css("display", "none").data("shown", "") unless tip.data("beingShown")
       )
+      
+    showSmallipop: (e) ->
+      sip = $.smallipop
+      e.preventDefault() if sip.popup.data("shown") isnt $(@).data("id") 
+      
+      sip.triggerMouseover.call(@)
+      
+    onWindowClick: (e) ->
+      sip = $.smallipop
+      popup = sip.popup
+      # Hide smallipop unless tooltip bubble or a trigger is clicked
+      unless e.target is popup[0] or $(e.target).closest(".sipInitialized").length
+        sip.hideSmallipop.call(@)
+      
+    onTouchDevice: ->
+      return Modernizr?.touch
       
     killTimers: ->
       popup = $.smallipop.popup
@@ -61,12 +79,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       showTimer = popup.data("showDelayTimer")
       clearTimeout(hideTimer) if hideTimer
       clearTimeout(showTimer) if showTimer  
-      
-    func_ease: (x, t, b, c, d) ->
-      if (t/=d/2) < 1 
-        c/2*t*t + b 
-      else 
-        -c/2 * ((--t)*(t-2) - 1) + b
       
     triggerMouseover: ->
       self = $(@)
@@ -111,7 +123,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           winHeight = win.height()
           selfWidth = self.outerWidth()
           selfHeight = self.outerHeight()
-          windowPadding = 30 # Imaginary padding in viewport
+          windowPadding = opt.windowPadding
           popupOffsetLeft = offset.left + selfWidth / 2
           popupOffsetTop = offset.top - popupH + yOffset
           
@@ -166,10 +178,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               top: "-=" + xDistance + "px"
               left: "+=" + yDistance + "px"
               opacity: 1
-            , 
-              duration: opt.popupAnimationSpeed 
-              step: sip.func_ease 
-              complete: -> popup.data("beingShown", false)
+            , opt.popupAnimationSpeed, opt.funcEase, -> 
+              popup.data("beingShown", false)
           )
         , opt.popupDelay)
         
@@ -178,13 +188,17 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       sip = $.smallipop
       popup = sip.popup
       id = self.data("id")
-      
       sip.killTimers()
       popup.data((if id then "triggerHovered" else "hovered"), false)
       
       # Hide tip after a while
       unless popup.data("hovered") or popup.data("triggerHovered")
         popup.data("hideDelayTimer", setTimeout(sip.hideSmallipop, 500))
+        
+  ### Add default easing function for smallipop to jQuery if missing ###
+  unless $.easing.easeInOutQuad        
+    $.easing.easeInOutQuad = (x, t, b, c, d) ->
+      if ((t/=d/2) < 1) then c/2*t*t + b else -c/2 * ((--t)*(t-2) - 1) + b
    
   $.fn.smallipop = (options={}, hint="") ->
     sip = $.smallipop
@@ -194,7 +208,18 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     options.popupAnimationSpeed = options.moveSpeed if options.moveSpeed?
     options.triggerAnimationSpeed = options.hideSpeed if options.hideSpeed?
     
-    # Initialize puff tooltip if necessary
+    # Check whether the trigger should activate smallipop by click or hover
+    triggerEvents = {}
+    if options.triggerOnClick or (options.touchSupport and sip.onTouchDevice())
+      triggerEvents =
+        click: sip.showSmallipop
+    else
+      triggerEvents =
+        mouseover: sip.triggerMouseover
+        mouseout: sip.triggerMouseout
+        click: sip.hideSmallipop
+        
+    # Initialize smallipop on first call
     popup = $("#smallipop")
     unless popup.length
       popup = sip.popup = $("<div id=\"smallipop\"><div class=\"sipContent\"/><div class=\"sipArrowBorder\"/><div class=\"sipArrow\"/></div>")
@@ -205,8 +230,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         
       $("body").append(popup)
       
-      # Hide popup when clicking a link inside  
+      # Hide popup when clicking a contained link  
       $("a", popup.get(0)).live("click", sip.hideSmallipop)
+      
+      $(document).bind "click touchend", sip.onWindowClick
         
     return @.each ->
       # Initialize each trigger, create id and bind events
@@ -221,11 +248,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           options: options
           hint: objHint
         .attr("title", "") # Remove title to disable browser hint
-        .bind 
-          mouseover: sip.triggerMouseover
-          mouseout: sip.triggerMouseout
-          click: sip.hideSmallipop
-        # Hide popup when children of trigger are clicked
+        .bind(triggerEvents)
+          
+        # Hide popup when links contained in the trigger are clicked
         $("a", @).live("click", sip.hideSmallipop)
 )(jQuery)        
       
