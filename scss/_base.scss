@@ -1,0 +1,310 @@
+/*
+ * SASS Base for Sebobo github projects.
+ */
+
+// Base
+$basefont:          13px;
+
+// Links
+$linkColor:         #0069d6;
+$linkColorHover:    darken($linkColor, 15);
+
+// Gray tones
+$black:             #000;
+$grayDark:          lighten($black, 25%);
+$gray:              lighten($black, 50%);
+$grayLight:         lighten($black, 75%);
+$grayLighter:       lighten($black, 90%);
+$white:             #fff;
+
+// Colors
+$blue:              #049CDB;
+$blueDark:          #0064CD;
+$green:             #46a546;
+$red:               #9d261d;
+$yellow:            #ffc40d;
+$orange:            #f89406;
+$pink:              #c3325f;
+$purple:            #7a43b6;
+
+// Reset 
+html {height:100%;font-size:$basefont;color:$grayDark;background:$grayLighter;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+
+// Labels
+.label {
+  padding: 1px 3px 2px;
+  font-size: 0.75em;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background-color: #ccc;
+  &.important { background-color: #c43c35; }
+  &.warning   { background-color: $orange; }
+  &.success   { background-color: $green; }
+  &.notice    { background-color: lighten($blue, 25%); }
+}
+.borderradius .label { @include rounded(3px); }
+
+
+// Tabs 
+.tabs {
+  text-align: center;
+  list-style: none;
+  padding: 0 10px;
+  line-height: 24px;
+  height: 26px;
+  overflow: hidden;
+  font-size: 12px;
+  font-family: verdana;
+  position: absolute;
+  bottom: 0;
+  
+  li {
+    border: 1px solid #aaa;
+    background: #d1d1d1;
+    display: block;
+    float: left;
+    position: relative;
+    z-index: 0;
+    text-shadow: 0 1px #fff;
+    margin: 0 -3px;
+    padding: 0;
+    cursor: pointer;
+    
+    &:hover { 
+      background: #dadada;
+      background-position: 0 -15px; 
+    }
+    &.selected {
+      background: #fff;
+      color: #333;
+      z-index: 2;
+      border-bottom-color: #fff;
+    }
+    
+    &:before,
+    &:after {
+      border: 1px solid #aaa;
+      position: absolute;
+      bottom: -1px;
+      width: 5px;
+      height: 5px;
+      content: " ";
+      border-width: 0 0 1px 1px;
+    }
+    &:before {
+      left: -6px;
+      border-width: 0 1px 1px 0;
+    }
+    &:after { right: -6px; }
+  }
+  a {
+    color: #555;
+    text-decoration: none;
+    display: block;
+    margin: 0 20px;
+    
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  &:before {
+    position: absolute;
+    content: " ";
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #aaa;
+    z-index: 1;
+  }
+}
+.csstransitions .tabs li {
+  @include transition(.05s linear all);
+}
+.cssgradients .tabs li { 
+  @include linear-gradient(#ececec 50%, #d1d1d1 100%); 
+  
+  &:hover { @include linear-gradient(#efefef 50%, #dadada 100%); }
+  &.selected { 
+    &, &:hover { background: #fff; } 
+  } 
+}
+.borderradius .tabs li { 
+  @include rounded(6px 6px 0 0); 
+  &:before { @include rounded(0 0 6px 0); }
+  &:after { @include rounded(0 0 0 6px); }
+}
+.boxshadow .tabs li {
+  @include boxshadow("0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff");
+  &:before { @include boxshadow(2px 2px 0 #d1d1d1); }
+  &:after { @include boxshadow(-2px 2px 0 #d1d1d1); }
+  &:hover {
+    &:before { @include boxshadow(2px 2px 0 #dadada); }
+    &:after { @include boxshadow(-2px 2px 0 #dadada); }  
+  }
+  &.selected {
+    &:before { @include boxshadow(2px 2px 0 #ffffff); }
+    &:after { @include boxshadow(-2px 2px 0 #ffffff); }
+  }
+}
+
+// Buttons
+// Shared colors for buttons and alerts
+.btn,
+.alert-message {
+  // Set text color
+  &.danger,
+  &.danger:hover,
+  &.error,
+  &.error:hover,
+  &.success,
+  &.success:hover,
+  &.info,
+  &.info:hover {
+    color: $white
+  }
+  
+    // Danger and error appear as red
+    &.danger,
+    &.error {
+      background-color: #c43c35;
+    }
+    // Success appears as green
+    &.success {
+      background-color: #57a957;
+    }
+    // Info appears as a neutral blue
+    &.info {
+      background-color: #339bb9;
+    }
+    
+  // Sets the close button to the middle of message
+  .close{
+    font-family: Arial, sans-serif;
+    line-height: 18px;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 14px 6px;
+  text-shadow: 0 1px 1px rgba(255,255,255,.75);
+  color: #333;
+  font-size: $basefont;
+  line-height: normal;
+  border: 1px solid #ccc;
+  border-bottom-color: #bbb;
+  text-decoration: none;
+  background-color: darken(#ffffff, 10%);
+
+  &:hover {
+    background-position: 0 -15px;
+    color: #333;
+    text-decoration: none;
+  }
+
+  // Focus state for keyboard and accessibility
+  &:focus {
+    outline: 1px dotted #666;
+  }
+
+  // Primary Button Type
+  &.primary {
+    color: $white;
+    background-color: $blueDark;
+  }
+
+  // Active and Disabled states
+  &.disabled {
+    cursor: default;
+    background-image: none;
+    opacity: 0.65;
+  }
+  &[disabled] {
+    // disabled pseudo can't be included with .disabled
+    // def because IE8 and below will drop it ;_;
+    cursor: default;
+    background-image: none;
+    opacity: 0.65;
+  }
+
+  // Button Sizes
+  &.large {
+    font-size: $basefont + 2px;
+    line-height: normal;
+    padding: 9px 14px 9px;
+  }
+  &.small {
+    padding: 7px 9px 7px;
+    font-size: $basefont - 2px;
+  }
+}
+.cssgradients {
+  .btn {
+    @include linear-gradient-with-stop(#ffffff, #ffffff 25%, darken(#ffffff, 10%));
+    
+    &.primary {
+      @include gradient-bar($blue, $blueDark);
+    }
+  }
+  
+  .btn,
+  .alert-message {
+    // Danger and error appear as red
+    &.danger,
+    &.error {
+      @include gradient-bar(#ee5f5b, #c43c35);
+    }
+    // Success appears as green
+    &.success {
+      @include gradient-bar(#62c462, #57a957);
+    }
+    // Info appears as a neutral blue
+    &.info {
+      @include gradient-bar(#5bc0de, #339bb9);
+    }
+  }
+}
+
+.borderradius .btn {
+  @include rounded(4px);
+  
+  &.large {
+    @include rounded(6px);
+  }
+}
+.csstransitions .btn {
+  @include transition(.1s linear all);
+}
+.boxshadow.rgba .btn {
+  @include boxshadow("inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+  
+  &.active,
+  &:active {
+    @include boxshadow("inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05)");
+  }
+  
+  &.disabled,
+  &[disabled] {
+    @include boxshadow(none);
+  }
+}
+
+// Super jank hack for removing border-radius from IE9 so we can keep filter gradients on alerts and buttons
+:root .alert-message,
+:root .btn {
+  border-radius: 0 \0;
+}
+
+// Help Firefox not be a jerk about adding extra padding to buttons
+button.btn,
+input[type=submit].btn {
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+}
+
