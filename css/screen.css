@@ -1,5 +1,5 @@
-/* SASS Base for Sebobo github projects. */
-html { height: 100%; font-size: 13px; color: #404040; background: #e6e6e6; }
+/* SASS Base for Sebobo github projects. 01/26/2012 17:23 */
+html { height: 100%; font-size: 13px; font-family: arial; color: #404040; background: #e6e6e6; }
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin: 0; padding: 0; }
 
@@ -36,6 +36,20 @@ legend { color: #000; }
 .label.notice { background-color: #62cffc; }
 
 .borderradius .label { border-radius: 3px; -o-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+
+.clear { clear: both; }
+
+.relative { position: relative; }
+
+.centered { margin: 0 auto; }
+
+.floatLeft { float: left; }
+
+.floatRight { float: right; }
+
+.clearfix { zoom: 1; }
+.clearfix:before, .clearfix:after { display: table; content: ""; zoom: 1; }
+.clearfix:after { clear: both; }
 
 .tabs { text-align: center; list-style: none; padding: 0 10px; line-height: 24px; height: 26px; overflow: hidden; font-size: 12px; font-family: verdana; position: absolute; bottom: 0; }
 .tabs li { border: 1px solid #aaa; background: #d1d1d1; display: block; float: left; position: relative; z-index: 0; text-shadow: 0 1px #fff; margin: 0 -3px; padding: 0; cursor: pointer; }
@@ -99,6 +113,30 @@ legend { color: #000; }
 :root .alert-message, :root .btn { border-radius: 0 \0; }
 
 button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner { padding: 0; border: 0; }
+
+.column { float: left; overflow: hidden; }
+
+.column.last { float: none; }
+
+.size1of2 { width: 50%; }
+
+.size1of4 { width: 25%; }
+
+.size3of4 { width: 75%; }
+
+.size1of3 { width: 33.33%; }
+
+.size2of3 { width: 66.76%; }
+
+code, pre { padding: 0 3px 2px; font-family: Monaco, Andale Mono, Courier New, monospace; font-size: 12px; }
+
+.borderradius code, .borderradius pre { border-radius: 3px; -o-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+
+code { background-color: #fee9cc; color: rgba(0, 0, 0, 0.75); padding: 1px 3px; }
+
+pre { background-color: #f5f5f5; display: block; padding: 8.5px; margin: 0 0 18px; line-height: 18px; font-size: 12px; border: 1px solid #ccc; white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+
+.rgba pre { border-color: rgba(0, 0, 0, 0.15); }
 
 /* Demo css */
 body { height: 100%; font-family: arial; font-size: 1em; line-height: 1.3em; padding: 30px 0; }
@@ -189,6 +227,14 @@ img.inline { margin: 10px; }
 
 .boxshadow.rgba .sampleElement { -webkit-box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3); -moz-box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3); box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3); }
 .boxshadow.rgba .sampleElement.white, .boxshadow.rgba .sampleElement.black, .boxshadow.rgba .sampleElement.blue, .boxshadow.rgba .sampleElement.green, .boxshadow.rgba .sampleElement.default { -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+
+/* Sidemenu */
+.side-menu { position: fixed; top: 168px; left: 50%; margin-left: -650px; padding-top: 30px; text-align: right; width: 140px; font-size: 14px; z-index: 9999; }
+.side-menu h2 { color: #267BE4; font-size: 16px; }
+.side-menu li { list-style-type: none; }
+.side-menu li a { color: #999; }
+.side-menu li a:hover { color: #333; text-decoration: underline; }
+.side-menu li a.current { color: #333; }
 
 /* indicator */
 .indicator { position: relative; display: block; width: 21px; height: 21px; font-size: 26px; font-weight: bold; line-height: 21px; text-align: center; color: #6fc048; background-color: #fff; opacity: 0.95; }
