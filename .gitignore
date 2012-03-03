@@ -3,3 +3,4 @@
 .pydevproject
 .sass-cache
 .settings
+*.sublime-*

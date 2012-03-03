@@ -1,5 +1,5 @@
 ###!
-Smallipop 0.1.5 (01/08/2012)
+Smallipop 0.1.6 (03/03/2012)
 Copyright (c) 2011-2012 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop =
-    version: '0.1.5'
+    version: '0.1.6'
     defaults: 
       popupOffset: 31
       popupYOffset: 0
@@ -224,6 +224,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     unless popup.length
       popup = sip.popup = $("<div id=\"smallipop\"><div class=\"sipContent\"/><div class=\"sipArrowBorder\"/><div class=\"sipArrow\"/></div>")
       .css("opacity", 0)
+      .data
+        xDistance: 0
+        yDistance: 0
       .bind
         mouseover: sip.triggerMouseover
         mouseout: sip.triggerMouseout
