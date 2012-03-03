@@ -14,18 +14,34 @@
             
             <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips</h1>
             
-            <h3>Version 0.1.5</h3>
             <p>
+                <b>Version 0.1.6</b> - 
                 Created by <a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle Portfolio">Sebastian Helzle</a>
                 for <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a>
             </p>
+            <br/>
+
             <ul class="tabs">
                 <li><a href="/" title="Projects overview">Home</a></li>
                 <li class="selected"><a href="/jquery.smallipop" title="jQuery smallipop - A tooltip plugin">Smallipop</a></li>
                 <li><a href="/jquery.rondell" title="jQuery rondell - A graphical plugin for carousels and more">Rondell</a></li>
             </ul>
         </div>
-        <div class="page hasShadow">
+        
+        <div class="side-menu">
+            <h2>Table of contents</h2>
+            <ul>
+                <li><a class="scrollToId current" href="#introduction">Introduction</a></li>  
+                <li><a class="scrollToId" href="#imagedemo">Image demo with markers</a></li> 
+                <li><a class="scrollToId" href="#textdemo">Text demo with online hints</a></li> 
+                <li><a class="scrollToId" href="#createsmallipop">How to create a smallipop</a></li>
+                <li><a class="scrollToId" href="#themes">Themes</a></li>
+                <li><a class="scrollToId" href="#options">Options</a></li> 
+                <li><a class="scrollToId" href="#installation">Installation</a></li>
+            </ul>
+        </div>
+
+        <div class="page hasShadow" id="introduction">
             
             <div class="smallipopOrange floatRight">
                 <img src="images/smallipop-logo.png" alt="smallipop logo" title="The smallipop logo" />
@@ -36,9 +52,7 @@
                 </div>
             </div>
             
-            <br/>
-            
-            <h3>About</h3>
+            <h3 class="hidden">About</h3>
 
             <p>
                 This is a <a href="http://www.jquery.com" title="jQuery">jQuery</a> plugin for displaying tooltips.<br/>
@@ -66,47 +80,108 @@
             
             <br/>
 
-            <h4>Features</h4> 
+            <div class="column size2of3">
+                <h4>Features</h4> 
+                    
+                <ul>
+                    <li> 
+                        <b>Small</b><br/> 
+                        Only ~ 3.5KB minified and ~ 2KB gziped.
+                    </li>
+                    <li> 
+                        <b>Pure css</b><br/>
+                        No images but fallbacks for older browsers.
+                    </li>
+                    <li>
+                        <b>Compatibility</b><br/>
+                        smallipop has been tested with IE7-9, Chrome, Safari 4+,<br/>
+                        Opera and Firefox 4+
+                    </li>
+                    <li> 
+                        <b>Custom themes</b><br/>
+                        For different use cases. 
+                    </li>
+                    <li> 
+                        <b>Free positioning</b><br/> 
+                        The popup code will be added to the document root so the<br/> 
+                        position won't be affected by your layout.
+                    </li>
+                    <li> 
+                        <b>Automatic orientation</b><br/> 
+                        The popup will try to stay in the visible area of the screen,<br/> 
+                        even when scrolling or at the edges.
+                    </li>
+                    <li> 
+                        <b>Only a single popup element</b><br/> 
+                        Some plugins create a hidden popup for each trigger.
+                    </li>
+                    <li> 
+                        <b>Custom options for each trigger</b><br/>
+                        You can have 20 different popups with 20 different themes<br/>
+                        on one page if you like.
+                    </li>
+                </ul>
                 
-            <ul>
-                <li> 
-                    <b>Small</b><br/> 
-                    Only ~ 3.5KB minified and ~ 2KB gziped.
-                </li>
-                <li> 
-                    <b>Pure css</b><br/>
-                    No images but fallbacks for older browsers.
-                </li>
-                <li>
-                    <b>Compatibility</b><br/>
-                    smallipop has been tested with IE7-9, Chrome, Safari 4+, Opera and Firefox 4+
-                </li>
-                <li> 
-                    <b>Custom themes</b><br/>
-                    For different use cases. 
-                </li>
-                <li> 
-                    <b>Free positioning</b><br/> 
-                    The popup code will be added to the document root so the position won't be affected by your layout.
-                </li>
-                <li> 
-                    <b>Automatic orientation</b><br/> 
-                    The popup will try to stay in the visible area of the screen, even when scrolling or at the edges.
-                </li>
-                <li> 
-                    <b>Only a single popup element</b><br/> 
-                    Some plugins create a hidden popup for each trigger.
-                </li>
-                <li> 
-                    <b>Custom options for each trigger</b><br/>
-                    You can have 20 different popups with 20 different themes on one page if you like.
-                </li>
-            </ul>
-            
+                <br/>
+                <p>
+                    We are using this plugin for a lot of things, so watch for new releases at <a class="smallipop" href="https://github.com/Sebobo/jquery.smallipop" title="smallipop at github">github</a>.
+                </p>
+            </div>
+            <div class="column size1of3 last">
+                <h5>New and improved in this version</h5>
+
+                <ul>
+                    <li><span class="label important">FIX</span> "invalid argument" error in IE8 sometimes happening</li>
+                </ul>
+                
+                <br/>
+                
+                <p>
+                    <a href="#changelog" class="collapsor" title="Collapse code">+ Click here to see changes in the last versions</a>
+                </p>
+                <ul id="changelog" class="collapsible">
+                    <li>
+                        <h6>0.1.5</h6>
+                        <ul>
+                            <li>
+                                Added <i>funcEase</i> option to set your own easing function for the animations. 
+                                (See the <a href="#options" class="scrollToId" title="List of options">options</a>)
+                            </li>
+                            <li>
+                                Added touch support which disables the hover events and uses the <i>click</i> event on touch capable devices.<br/>
+                                Can be disabled with the <i>touchSupport</i> option.
+                            </li>
+                            <li>
+                                Added <i>triggerOnClick</i> option to force disable the hover events and just listen for the <i>click</i> event on your triggers.
+                            </li>
+                            <li>
+                                Window padding can now be changed with the <i>windowPadding</i> option.<br/>
+                                Smallipop tries to keep this distance from the window borders.
+                            </li>
+                        </ul>
+                    <li>
+                        <h6>0.1.4</h6>
+                        <ul>
+                            <li>Added option to define the animation easing function.</li>
+                            <li>Added options for triggers to show the smallipop on click instead of hover.</li>
+                            <li>Automatic touch device support which uses touch events instead of hover. Can be disabled.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <br/>
+                
+                <h5>Dependencies</h5>
+                <ul>
+                    <li><a href="http://www.jQuery.com" title="jQuery">jQuery</a> version 1.5.2 or better</li>
+                    <li>
+                        <a href="http://www.modernizr.com/" title="Modernizr library">Modernizr</a> for browser capability fallbacks.<br/>
+                        The library is included in the plugins <i>lib</i> folder.<br/> 
+                    </li>
+                </ul>
+            </div>
+            <br class="clear"/>
             <br/>
-            <p>
-                We are using this plugin for a lot of things, so watch for new releases at <a class="smallipop" href="https://github.com/Sebobo/jquery.smallipop" title="smallipop at github">github</a>.
-            </p>
             
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style ">
@@ -123,66 +198,8 @@
             <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
             <!-- Flattr button END -->
             
-            <br/>
-            <br/>
-            <h5>New and improved in this version</h5>
-            
-            <ul>
-                <li>
-                    Added <i>funcEase</i> option to set your own easing function for the animations. 
-                    (See the <a href="#options" class="scrollToId" title="List of options">options</a>)
-                </li>
-                <li>
-                    Added touch support which disables the hover events and uses the <i>click</i> event on touch capable devices.<br/>
-                    Can be disabled with the <i>touchSupport</i> option.
-                </li>
-                <li>
-                    Added <i>triggerOnClick</i> option to force disable the hover events and just listen for the <i>click</i> event on your triggers.
-                </li>
-                <li>
-                    Window padding can now be changed with the <i>windowPadding</i> option.<br/>
-                    Smallipop tries to keep this distance from the window borders.
-                </li>
-            </ul>
             
             <br/>
-            
-            <p>
-                <a href="#changelog" class="collapsor" title="Collapse code">+ Click here to see changes in the last versions</a>
-            </p>
-            <ul id="changelog" class="collapsible">
-                <li>
-                    <h6>0.1.4</h6>
-                    <ul>
-                        <li>Added option to define the animation easing function.</li>
-                        <li>Added options for triggers to show the smallipop on click instead of hover.</li>
-                        <li>Automatic touch device support which uses touch events instead of hover. Can be disabled.</li>
-                    </ul>
-                </li>
-            </ul>
-            
-            <br/>
-            
-            <h5>Dependencies</h5>
-            <ul>
-                <li><a href="http://www.jQuery.com" title="jQuery">jQuery</a> version 1.5.2 or better</li>
-                <li>
-                    <a href="http://www.modernizr.com/" title="Modernizr library">Modernizr</a> for browser capability fallbacks.<br/>
-                    The library is included in the plugins <i>lib</i> folder.<br/> 
-                </li>
-            </ul>
-            
-            <br/>
-            
-            <h4>Examples &amp; Documentation</h4>
-            <p>
-                <a class="scrollToId" href="#imagedemo">Image demo with markers</a> &ndash;  
-                <a class="scrollToId" href="#textdemo">Text demo with online hints</a> &ndash; 
-                <a class="scrollToId" href="#createsmallipop">How to create a smallipop</a> &ndash; 
-                <a class="scrollToId" href="#themes">Themes</a> &ndash; 
-                <a class="scrollToId" href="#options">Options</a> &ndash; 
-                <a class="scrollToId" href="#installation">Installation</a>
-            </p>
             
             <hr id="imagedemo"/>
             
@@ -866,20 +883,9 @@ $('.smallipopBottom').smallipop({
                         })
                     }).trigger('scroll');
                 }
-                
-                $('.collapsor').click(function(e) {
-                    e.preventDefault();
-                    $($(this).attr('href')).slideToggle(300);
-                });
-                
-                $('.scrollToId').click(function(e) {
-                    e.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: $($(this).attr('href')).offset().top
-                    }, 800, 'swing');   
-                });
             });
         </script>
+        <script type="text/javascript" src="lib/demohelpers.js"></script>
         <script type="text/javascript">
             var hostname = document.location.hostname;
             if (hostname && (hostname.indexOf('github') >= 0 || hostname.indexOf('sebastianhelzle') >= 0)) {
