@@ -562,6 +562,9 @@ $('#tipChangeContent').smallipop({
                     Example powered by
                     <a class="smallipop" href="http://daneden.me/animate" title="Just-add-water CSS animation">Animate.css</a>
                 </p>
+                <p>
+                    These effects will only work if your browser support css animations.
+                </p>
                 <pre>
 &lt;a id="tipCSSAnimated" title="Fancy"&gt;
     Hover me!
@@ -578,7 +581,21 @@ $('#tipCSSAnimated').smallipop({
     }
 });</pre>
                 <br/>
-                <a id="tipCSSAnimated" class="sampleElement" title="Smallipop can handle fancy animations too!">Hover me!</a>
+                <a id="tipCSSAnimated" class="sampleElement" title="Smallipop can handle fancy animations too!">
+                    Bounce and hinge
+                </a>
+                &nbsp;-&nbsp;
+                <a id="tipCSSAnimated2" class="sampleElement" title="Fancy animations part 2">
+                    Fade
+                </a>
+                &nbsp;-&nbsp;
+                <a id="tipCSSAnimated3" class="sampleElement" title="Fancy animations part 3">
+                    Flip
+                </a>
+                &nbsp;-&nbsp;
+                <a id="tipCSSAnimated4" class="sampleElement" title="Fancy animations part 4">
+                    Rotate
+                </a>
 
             </div>
 
@@ -961,6 +978,30 @@ $('#tipCSSAnimated').smallipop({
                         enabled: true,
                         show: 'animated bounceInDown',
                         hide: 'animated hinge'
+                    }
+                });
+
+                $('#tipCSSAnimated2').smallipop({
+                    cssAnimations: {
+                        enabled: true,
+                        show: 'animated flipInX',
+                        hide: 'animated flipOutX'
+                    }
+                });
+
+                $('#tipCSSAnimated3').smallipop({
+                    cssAnimations: {
+                        enabled: true,
+                        show: 'animated fadeInLeft',
+                        hide: 'animated fadeOutRight'
+                    }
+                });
+
+                $('#tipCSSAnimated4').smallipop({
+                    cssAnimations: {
+                        enabled: true,
+                        show: 'animated rotateInDownLeft',
+                        hide: 'animated rotateOutUpRight'
                     }
                 });
 
