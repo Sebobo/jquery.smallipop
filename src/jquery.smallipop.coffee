@@ -21,6 +21,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       infoClass: 'smallipopHint'
       triggerAnimationSpeed: 150
       popupAnimationSpeed: 200
+      contentAnimationSpeed: 150
       invertAnimation: false
       horizontal: false
       preferredPosition: 'top' # bottom, top, left or right
@@ -214,12 +215,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           .fadeTo(lastTriggerOpt.fadeSpeed, 1)
 
       # Update tip content and remove all classes
-      popup
-        .data
-          beingShown: true
-          shown: id
-        .find('.sipContent')
-        .html(hint)
+      popup.data
+        beingShown: true
+        shown: id
+      sip.popupContent.html hint
 
       sip.refreshPosition()
 
@@ -276,12 +275,17 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     setContent: (content) ->
       sip = $.smallipop
+      shownId = sip.popup.data 'shown'
+      trigger = sip._getTrigger shownId
+      options = trigger.data 'options'
 
-      sip.popup
-        .find('.sipContent')
-        .html(content)
-
-      sip.refreshPosition()
+      sip.popupContent
+        .stop(true)
+        .fadeTo options.contentAnimationSpeed, 0, ->
+          sip.popupContent
+            .html(content)
+            .fadeTo options.contentAnimationSpeed, 1
+          sip.refreshPosition()
 
   ### Add default easing function for smallipop to jQuery if missing ###
   unless $.easing.easeInOutQuad
@@ -318,6 +322,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       .bind
         mouseover: sip._triggerMouseover
         mouseout: sip._triggerMouseout
+
+      sip.popupContent = popup.find '.sipContent'
 
       $('body').append popup
 
