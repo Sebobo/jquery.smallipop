@@ -124,9 +124,9 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner { padding
 
 .size3of4 { width: 75%; }
 
-.size1of3 { width: 33.33%; }
+.size1of3 { width: 33.30%; }
 
-.size2of3 { width: 66.76%; }
+.size2of3 { width: 66.70%; }
 
 code, pre { padding: 0 3px 2px; font-family: Monaco, Andale Mono, Courier New, monospace; font-size: 12px; }
 

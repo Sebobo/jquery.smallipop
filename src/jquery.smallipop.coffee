@@ -28,6 +28,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       triggerOnClick: false
       touchSupport: true
       funcEase: 'easeInOutQuad'
+      cssAnimations:
+        enabled: false
+        show: 'animated fadeIn'
+        hide: 'animated fadeOut'
       onBeforeShow: null
       onAfterShow: null
       onBeforeHide: null
@@ -37,32 +41,44 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     hideSmallipop: ->
       sip = $.smallipop
-      shownId = sip.popup.data 'shown'
+      popup = sip.popup
+      shownId = popup.data 'shown'
 
       # Show trigger if hidden before
       trigger = $ ".smallipop#{shownId}"
-      triggerOpt = trigger.data('options') or sip.defaults
-      trigger.stop(true).fadeTo(triggerOpt.triggerAnimationSpeed, 1) if shownId and triggerOpt.hideTrigger
+      triggerOptions = trigger.data('options') or sip.defaults
+      trigger.stop(true).fadeTo(triggerOptions.triggerAnimationSpeed, 1) if shownId and triggerOptions.hideTrigger
 
-      direction = if triggerOpt.invertAnimation then -1 else 1
+      direction = if triggerOptions.invertAnimation then -1 else 1
       xDistance = sip.popup.data('xDistance') * direction
       yDistance = sip.popup.data('yDistance') * direction
 
-      sip.popup
-      .data
-        hideDelayTimer: null
-        beingShown: false
-      .stop(true)
-      .animate
-          top: "-=#{xDistance}px"
-          left: "+=#{yDistance}px"
-          opacity: 0
-        , triggerOpt.popupAnimationSpeed, triggerOpt.funcEase, ->
-          # Hide tip if not being shown in the meantime
-          tip = $ @
-          tip.css('display', 'none').data('shown', '') unless tip.data 'beingShown'
+      popup
+        .data
+          hideDelayTimer: null
+          beingShown: false
 
-          triggerOpt.onAfterHide?()
+      if triggerOptions.cssAnimations.enabled
+        popup
+          .removeClass(triggerOptions.cssAnimations.show)
+          .addClass(triggerOptions.cssAnimations.hide)
+          .data('shown', '')
+
+        triggerOptions.onAfterHide?()
+      else
+        popup
+          .stop(true)
+          .animate
+              top: "-=#{xDistance}px"
+              left: "+=#{yDistance}px"
+              opacity: 0
+            , triggerOptions.popupAnimationSpeed, triggerOptions.funcEase, ->
+              # Hide tip if not being shown in the meantime
+              tip = $ @
+              unless tip.data 'beingShown'
+                tip.css('display', 'none').data('shown', '')
+
+              triggerOptions.onAfterHide?()
 
 
     _showSmallipop: (e) ->
@@ -71,7 +87,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       sip._triggerMouseover.call @
 
     onTouchDevice: ->
-      return Modernizr?.touch
+      Modernizr?.touch
 
     killTimers: ->
       popup = $.smallipop.popup
@@ -162,17 +178,22 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       # Animate to new position if refresh does no
       beingShown = popup.data 'beingShown'
-      unless beingShown
+      if not beingShown or options.cssAnimations.enabled
         popupOffsetTop -= xDistance
         popupOffsetLeft += yDistance
         xDistance = 0
         yDistance = 0
 
+      popup
+        .data
+          xDistance: xDistance
+          yDistance: yDistance
+
       cssTarget =
         top: popupOffsetTop
         left: popupOffsetLeft
         display: 'block'
-        opacity: if beingShown then 0 else 1
+        opacity: if beingShown and not options.cssAnimations.enabled then 0 else 1
 
       animationTarget =
         top: "-=#{xDistance}px"
@@ -180,16 +201,22 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         opacity: 1
 
       # Start fade in animation
-      popup
-        .data
-          xDistance: xDistance
-          yDistance: yDistance
-        .stop(true)
-        .css(cssTarget)
-        .animate animationTarget, options.popupAnimationSpeed, options.funcEase, ->
-          if beingShown
-            popup.data 'beingShown', false
-            options.onAfterShow? trigger
+      if options.cssAnimations.enabled
+        popup
+          .addClass(options.cssAnimations.show)
+          .css(cssTarget)
+
+        if beingShown
+          popup.data 'beingShown', false
+          options.onAfterShow? trigger
+      else
+        popup
+          .stop(true)
+          .css(cssTarget)
+          .animate animationTarget, options.popupAnimationSpeed, options.funcEase, ->
+            if beingShown
+              popup.data 'beingShown', false
+              options.onAfterShow? trigger
 
     _getTrigger: (id) ->
       $ ".smallipop#{id}"
@@ -299,6 +326,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     # Fix for some option deprecation issues
     options.popupAnimationSpeed = options.moveSpeed if options.moveSpeed?
     options.triggerAnimationSpeed = options.hideSpeed if options.hideSpeed?
+
+    # Check for enabled css animations and disable if modernizr is active says no
+    if Modernizr?.cssanimations is false
+      options.cssAnimations.enabled = false
 
     # Check whether the trigger should activate smallipop by click or hover
     triggerEvents = {}
