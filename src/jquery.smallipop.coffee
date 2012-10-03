@@ -101,6 +101,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       popup = sip.popup
       shownId = popup.data 'shown'
 
+      return unless shownId
+
       trigger = $ ".smallipop#{shownId}"
       options = trigger.data 'options'
 
@@ -265,7 +267,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       options = self.data 'options'
       options.onBeforeShow? self
 
-      if not popup.data('beingShown') and shownId isnt id
+      # if not popup.data('beingShown') and shownId isnt id
+      unless shownId is id
         popup.data 'showDelayTimer', setTimeout ->
             sip._showPopup self
           , options.popupDelay
