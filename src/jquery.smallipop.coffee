@@ -27,6 +27,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       preferredPosition: 'top' # bottom, top, left or right
       triggerOnClick: false
       touchSupport: true
+      handleInputs: true
       funcEase: 'easeInOutQuad'
       cssAnimations:
         enabled: false
@@ -371,6 +372,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     return @.each ->
       # Initialize each trigger, create id and bind events
       self = $ @
+      type = self[0].tagName.toLowerCase()
+
+      # Get content for the popup
       objHint = hint or self.attr('title') or self.find(".#{options.infoClass}").html()
       if objHint and not self.hasClass('sipInitialized')
         newId = sip.lastId++
@@ -382,6 +386,14 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             hint: objHint
           .attr('title', '') # Remove title to disable browser hint
           .bind(triggerEvents)
+
+        # Activate on blur events if used on inputs and disable hide on click
+        if options.handleInputs and type in ['input', 'select', 'textarea']
+          self
+            .bind
+              focus: sip._triggerMouseover
+              blur: sip._triggerMouseout
+            .unbind 'click'
 
         # Hide popup when links contained in the trigger are clicked
         $('a', @).live 'click', sip.hideSmallipop
