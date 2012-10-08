@@ -206,7 +206,7 @@ img.inline { margin: 10px; }
 .sampleElement { border: 1px solid #fed980; padding: 3px 5px; background-color: #ffe199; font-size: 1.1em; text-shadow: 0 1px 1px #fff24d; }
 .sampleElement.big { font-size: 1.4em; }
 .sampleElement, .sampleElement a { text-decoration: none; }
-.sampleElement:hover { background-color: #fff4d9; border-color: #ffd777; }
+.sampleElement:hover { background-color: #fff4d9; border-color: #ffd777; text-decoration: none; }
 .sampleElement.white { background-color: #fff; border-color: #ddd; text-shadow: none; }
 .sampleElement.green { background-color: #2ea41e; border-color: #239714; color: #fafafa; text-shadow: 0 1px 1px #196d0e; }
 .sampleElement.black { background-color: #333; color: #eee; border-color: #000; text-shadow: none; }

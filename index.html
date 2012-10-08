@@ -528,6 +528,21 @@ $('.smallipopBottom').smallipop({
 });</pre>
                 <br/>
                 <a class="smallipopBottom sampleElement" title="Below when possible">Hover me!</a>
+                <br/>
+                <br/>
+                <h6>Special handling on form elements</h6>
+
+                <label>Text</label><br/>
+                <input class="smallipop" type="text" size="30" title="Enter some text"/><br/>
+                <label>Password</label><br/>
+                <input class="smallipop" type="password" size="30" title="Enter something like a password"/><br/>
+                <label>Select</label><br/>
+                <select class="smallipop" title="Select something">
+                    <option>Foo</option>
+                    <option>Bar</option>
+                </select><br/>
+                <label>Textarea</label><br/>
+                <textarea class="smallipop" title="Write what you want" cols="30" rows="4"></textarea><br/>
             </div>
 
             <hr id="advanced"/>
@@ -761,6 +776,13 @@ $('#tipCSSAnimated').smallipop({
                         When touch events are supported hover events are disabled and smallipop will activated by touching a trigger.<br/>
                         A second touch will trigger the default action on the trigger. I.e. open a link.
                         The touch feature detection currently requires the modernizr library.
+                    </td>
+                </tr>
+                <tr>
+                    <td>handleInputs</td>
+                    <td>true</td>
+                    <td>
+                        Enables the focus and blur events on tags like <i>input, textarea, select</i> and disables the hide on click.
                     </td>
                 </tr>
                 <tr>

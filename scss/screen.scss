@@ -11,10 +11,10 @@ body {
   padding: 30px 0;
 }
 
-a { 
-  color:#0d3a8b; 
+a {
+  color:#0d3a8b;
   text-decoration:none;
-  
+
   &:hover {
     text-decoration: underline;
   }
@@ -32,10 +32,10 @@ h4 { font-size: 1.4em; }
 h5 { font-size: 1.2em; }
 
 code, pre { color: #555; border: 1px solid #f0f0f0; background-color: #fafafa; padding:5px; font-size:0.9em; }
-ul { 
+ul {
   padding-left:20px;
-  
-  li { margin: 0.6em 0; list-style-type: disc; } 
+
+  li { margin: 0.6em 0; list-style-type: disc; }
 }
 
 .collapsor { }
@@ -51,7 +51,7 @@ img.inline { margin: 10px; }
 .floatLeft { float: left; }
 .floatRight { float: right; }
 
-.boxshadow.rgba .hasShadow { 
+.boxshadow.rgba .hasShadow {
   @include boxshadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
@@ -59,15 +59,15 @@ img.inline { margin: 10px; }
 .pageHeader {
   margin: 0 auto;
   width: 920px;
-  background: #fafafa; 
-  padding: 30px; 
+  background: #fafafa;
+  padding: 30px;
   position: relative;
 }
 
 .pageHeader {
   background: #267be4;
   color: #fafafa;
-  
+
   p a {
     color: #fff;
   }
@@ -82,24 +82,24 @@ img.inline { margin: 10px; }
 .options {
   th {
     background: #222;
-    border: 1px solid #111; 
+    border: 1px solid #111;
     padding: 6px 10px;
     color: #eee;
     vertical-align: middle;
   }
-  
+
   tr:nth-child(even) { background: #eee; }
   tr:nth-child(odd) { background: #fff; }
-  
-  td { 
-    border: 1px solid #ddd; 
+
+  td {
+    border: 1px solid #ddd;
     padding: 6px 10px;
     vertical-align: middle;
-    
+
     pre {
       background: transparent;
       border: 0;
-    } 
+    }
   }
 }
 
@@ -109,7 +109,7 @@ img.inline { margin: 10px; }
   background-color: #f5f5f5;
   padding: 20px;
   border: 1px solid #eee;
-  
+
   .smallipopBlue {
     font-weight: bold;
     color: #44f;
@@ -122,85 +122,86 @@ img.inline { margin: 10px; }
   background-color: #ffe199;
   font-size: 1.1em;
   text-shadow:0 1px 1px #fff24d;
-  
-  &.big {  
-    font-size: 1.4em;  
+
+  &.big {
+    font-size: 1.4em;
   }
-  
+
   &, a { text-decoration: none; }
-  
+
   &:hover {
     background-color: #fff4d9;
     border-color: #ffd777;
+    text-decoration: none;
   }
-  
-  &.white { 
-    background-color: #fff; 
-    border-color: #ddd; 
-    text-shadow:none; 
+
+  &.white {
+    background-color: #fff;
+    border-color: #ddd;
+    text-shadow:none;
   }
-  &.green { 
-    background-color: #2ea41e; 
-    border-color: #239714; 
+  &.green {
+    background-color: #2ea41e;
+    border-color: #239714;
     color: #fafafa;
     text-shadow: 0 1px 1px #196d0e;
   }
-  &.black { 
-    background-color: #333; 
-    color: #eee; 
-    border-color: #000; 
-    text-shadow:none; 
-  }
-  &.blue { 
-    background-color: #0064b4; 
-    color: #eee; 
-    border-color: #0064b4; 
+  &.black {
+    background-color: #333;
+    color: #eee;
+    border-color: #000;
     text-shadow:none;
   }
-  &.orange { 
-    background-color: #fbb913; 
-    color: #714900; 
+  &.blue {
+    background-color: #0064b4;
+    color: #eee;
+    border-color: #0064b4;
+    text-shadow:none;
   }
-  &.default { 
-    background-color: #586d82; 
-    color: #eee; 
-    border-color: #314b64; 
+  &.orange {
+    background-color: #fbb913;
+    color: #714900;
+  }
+  &.default {
+    background-color: #586d82;
+    color: #eee;
+    border-color: #314b64;
     text-shadow:none;
   }
 }
 .borderradius .sampleElement { @include rounded(6px); }
-.cssgradients .sampleElement { 
-  @include linear-gradient(#fff24d, #f9aa18); 
-  
-  &:hover { @include linear-gradient(#fff24d, #fdc661); } 
-  
-  &.white { 
-    @include linear-gradient(#ffffff, #fafafa); 
+.cssgradients .sampleElement {
+  @include linear-gradient(#fff24d, #f9aa18);
+
+  &:hover { @include linear-gradient(#fff24d, #fdc661); }
+
+  &.white {
+    @include linear-gradient(#ffffff, #fafafa);
   }
-  &.green { 
-    @include linear-gradient(#35b125, #29a219); 
+  &.green {
+    @include linear-gradient(#35b125, #29a219);
     &:hover {
       @include linear-gradient(#40bb30, #31aa21);
     }
   }
-  &.black { 
-    @include linear-gradient(#444444, #111111); 
+  &.black {
+    @include linear-gradient(#444444, #111111);
   }
-  &.blue { 
-    @include linear-gradient(#1279cb, #0064b4); color: #eee; 
+  &.blue {
+    @include linear-gradient(#1279cb, #0064b4); color: #eee;
   }
-  &.default { 
-    @include linear-gradient(#4f6c88, #314b64); 
+  &.default {
+    @include linear-gradient(#4f6c88, #314b64);
   }
 }
-.boxshadow.rgba .sampleElement { 
+.boxshadow.rgba .sampleElement {
   @include boxshadow(0 1px 4px rgba(255, 162, 0, 0.3));
-  
+
   &.white,
   &.black,
   &.blue,
   &.green,
-  &.default { @include boxshadow(0 1px 4px rgba(0, 0, 0, 0.3)); } 
+  &.default { @include boxshadow(0 1px 4px rgba(0, 0, 0, 0.3)); }
 }
 
 /*
@@ -216,29 +217,29 @@ img.inline { margin: 10px; }
   width: 140px;
   font-size: 14px;
   z-index: 9999;
-  
+
   h2 {
     color: #267BE4;
     font-size: 16px;
   }
-  
+
   ul {
-    
+
   }
-  
+
   li {
     list-style-type: none;
     a {
       color: #999;
-      
+
       &:hover {
         color: #333;
         text-decoration: underline;
       }
-      
+
       &.current {
         color: #333;
-      } 
+      }
     }
   }
 }
@@ -255,7 +256,7 @@ img.inline { margin: 10px; }
   color: #6fc048;
   background-color: #fff;
   opacity: 0.95;
-  
+
   .indicatorPlus {
     width: 14px;
     margin: 0 3px;
@@ -271,10 +272,10 @@ img.inline { margin: 10px; }
 .wobble {
   -webkit-animation: wobble 1s linear;
   -webkit-animation-iteration-count: 1;
-  -webkit-transform-origin: bottom center; 
+  -webkit-transform-origin: bottom center;
   -moz-animation: wobble 1s linear;
-  -moz-animation-iteration-count: 1; 
-  -moz-transform-origin: bottom center; 
+  -moz-animation-iteration-count: 1;
+  -moz-transform-origin: bottom center;
 }
 
 @-webkit-keyframes wobble {
@@ -344,10 +345,10 @@ img.inline { margin: 10px; }
 .cssgradients .pulser .inner {
   @include linear-gradient(#fafafa, #dddddd);
 }
-.borderradius .pulser { 
-  &, 
+.borderradius .pulser {
+  &,
   .outer,
-  .inner { @include rounded(30px); } 
+  .inner { @include rounded(30px); }
 }
 .cssanimations .pulser .outer {
   height: 12px; width: 12px;
@@ -355,9 +356,9 @@ img.inline { margin: 10px; }
   left:0; top:0;
   border: 2px solid #50b6f4;
   -webkit-animation: pulsate 1.2s ease-out;
-  -webkit-animation-iteration-count: infinite; 
+  -webkit-animation-iteration-count: infinite;
   -moz-animation: pulsate 1.2s ease-out;
-  -moz-animation-iteration-count: infinite; 
+  -moz-animation-iteration-count: infinite;
   opacity: 0.0;
 }
 @-webkit-keyframes pulsate {
