@@ -38,18 +38,12 @@ ul {
   li { margin: 0.6em 0; list-style-type: disc; }
 }
 
-.collapsor { }
 .collapsible { display:none; }
 
 img.inline { margin: 10px; }
 .boxshadow.rgba img.inline { @include boxshadow(0 1px 2px rgba(0, 0, 0, 0.5)); }
 
-.clear { clear: both; }
-.relative { position: relative; }
 .hasBorder { border: 4px solid #fff; }
-.centered { margin: 0 auto; }
-.floatLeft { float: left; }
-.floatRight { float: right; }
 
 .boxshadow.rgba .hasShadow {
   @include boxshadow(0 2px 4px rgba(0, 0, 0, 0.5));

@@ -19,6 +19,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       funcEase: 'easeInOutQuad'
       handleInputs: true
       hideTrigger: false
+      hideOnPopupClick: true
+      hideOnTriggerClick: true
       horizontal: false
       infoClass: 'smallipopHint'
       invertAnimation: false
@@ -40,15 +42,24 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     popup: null
     lastId: 1 # Counter for new smallipop id's
 
-    hideSmallipop: ->
+    hideSmallipop: (e) ->
       sip = $.smallipop
       popup = sip.popup
       shownId = popup.data 'shown'
+      target = if e?.target then $(e.target) else null
 
       # Show trigger if hidden before
       trigger = $ ".smallipop#{shownId}"
       triggerOptions = trigger.data('options') or sip.defaults
-      trigger.stop(true).fadeTo(triggerOptions.triggerAnimationSpeed, 1) if shownId and triggerOptions.hideTrigger
+
+      # Do nothing if clicked and hide on click is disabled for this case
+      return if target and trigger.length and e?.type is 'click' and \
+        ((not triggerOptions.hideOnTriggerClick and target.is(trigger)) or \
+        (not triggerOptions.hideOnPopupClick and popup.find(target).length))
+
+      # Show trigger if it was hidden
+      if shownId and triggerOptions.hideTrigger
+        trigger.stop(true).fadeTo triggerOptions.triggerAnimationSpeed, 1
 
       direction = if triggerOptions.invertAnimation then -1 else 1
       xDistance = sip.popup.data('xDistance') * direction
@@ -300,9 +311,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     _onWindowClick: (e) ->
       sip = $.smallipop
       popup = sip.popup
+      target = $ e.target
+
       # Hide smallipop unless popup or a trigger is clicked
-      unless e.target is popup[0] or $(e.target).closest('.sipInitialized').length
-        sip.hideSmallipop.call @
+      unless target.is(popup) or target.closest('.sipInitialized').length
+        sip.hideSmallipop e
 
     setContent: (content) ->
       sip = $.smallipop
@@ -363,7 +376,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       $('body').append popup
 
       # Hide popup when clicking a contained link
-      $('a', popup.get(0)).live 'click', sip.hideSmallipop
+      popup.delegate 'a', 'click', sip.hideSmallipop
 
       $(document).bind 'click touchend', sip._onWindowClick
 
@@ -393,9 +406,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .bind
               focus: sip._triggerMouseover
               blur: sip._triggerMouseout
-            .unbind 'click'
+            .data('options').hideOnTriggerClick = false
 
         # Hide popup when links contained in the trigger are clicked
-        $('a', @).live 'click', sip.hideSmallipop
+        unless self.data('options').hideOnTriggerClick
+          self.delegate 'a', 'click', sip.hideSmallipop
 )(jQuery)
 

@@ -578,7 +578,8 @@ $('#tipChangeContent').smallipop({
                     <a class="smallipop" href="http://daneden.me/animate" title="Just-add-water CSS animation">Animate.css</a>
                 </p>
                 <p>
-                    These effects will only work if your browser support css animations.
+                    These effects will only work if your browser support css animations.<br/>
+                    When the Modernizr library is used and the browser doesn't support css animations the jQuery animations will be used as fallback.
                 </p>
                 <pre>
 &lt;a id="tipCSSAnimated" title="Fancy"&gt;
@@ -611,6 +612,26 @@ $('#tipCSSAnimated').smallipop({
                 <a id="tipCSSAnimated4" class="sampleElement" title="Fancy animations part 4">
                     Rotate
                 </a>
+
+                <br/>
+                <br/>
+                <br/>
+                <h6>Hide on click specials</h6>
+
+                <span>Tip won't hide when clicking the trigger</span>
+                <a id="tipDontHideOnTriggerClick" class="sampleElement" title="Change">Hover me!</a>
+                <br/>
+                <br/>
+                <span>Tip wont't hide when clicking into the popup</span>
+                <span id="tipDontHideOnContentClick" class="sampleElement">
+                    Hover me!
+                    <span class="smallipopHint">
+                        <b>Markuptip with very long text</b><br/>
+                        <a href="#" onclick="return false;">
+                            and a link which doesn't hide the popup
+                        </a>
+                    </span>
+                </span>
 
             </div>
 
@@ -1025,6 +1046,13 @@ $('#tipCSSAnimated').smallipop({
                         show: 'animated rotateInDownLeft',
                         hide: 'animated rotateOutUpRight'
                     }
+                });
+
+                $('#tipDontHideOnTriggerClick').smallipop({
+                    hideOnTriggerClick: false
+                });
+                $('#tipDontHideOnContentClick').smallipop({
+                    hideOnPopupClick: false
                 });
 
                 // Animate smallipops when scrolling
