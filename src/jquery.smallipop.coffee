@@ -95,7 +95,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     _showSmallipop: (e) ->
       sip = $.smallipop
-      e.preventDefault() if sip.popup.data('shown') isnt $(@).data('id')
+      e?.preventDefault() if sip.popup.data('shown') isnt $(@).data('id')
       sip._triggerMouseover.call @
 
     onTouchDevice: ->
@@ -338,6 +338,18 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
   $.fn.smallipop = (options={}, hint='') ->
     sip = $.smallipop
+
+    # Handle direct method calls
+    if typeof(options) is 'string'
+      switch options.toLowerCase()
+        when 'show'
+          @.each ->
+            sip._showSmallipop.call @
+        when 'hide'
+          sip.hideSmallipop()
+
+      return @
+
     options = $.extend {}, sip.defaults, options
 
     # Fix for some option deprecation issues
