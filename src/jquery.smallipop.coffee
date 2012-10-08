@@ -11,32 +11,32 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
   $.smallipop =
     version: '0.2.0-alpha'
     defaults:
-      popupOffset: 31
-      popupYOffset: 0
-      popupDistance: 20
-      popupDelay: 100
-      windowPadding: 30 # Imaginary padding in viewport
-      hideTrigger: false
-      theme: 'default'
-      infoClass: 'smallipopHint'
-      triggerAnimationSpeed: 150
-      popupAnimationSpeed: 200
       contentAnimationSpeed: 150
-      invertAnimation: false
-      horizontal: false
-      preferredPosition: 'top' # bottom, top, left or right
-      triggerOnClick: false
-      touchSupport: true
-      handleInputs: true
-      funcEase: 'easeInOutQuad'
       cssAnimations:
         enabled: false
         show: 'animated fadeIn'
         hide: 'animated fadeOut'
-      onBeforeShow: null
+      funcEase: 'easeInOutQuad'
+      handleInputs: true
+      hideTrigger: false
+      horizontal: false
+      infoClass: 'smallipopHint'
+      invertAnimation: false
+      popupOffset: 31
+      popupYOffset: 0
+      popupDistance: 20
+      popupDelay: 100
+      popupAnimationSpeed: 200
+      preferredPosition: 'top' # bottom, top, left or right
+      theme: 'default'
+      touchSupport: true
+      triggerAnimationSpeed: 150
+      triggerOnClick: false
+      onAfterHide: null
       onAfterShow: null
       onBeforeHide: null
-      onAfterHide: null
+      onBeforeShow: null
+      windowPadding: 30 # Imaginary padding in viewport
     popup: null
     lastId: 1 # Counter for new smallipop id's
 
