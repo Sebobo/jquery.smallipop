@@ -272,15 +272,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       shownId = popup.data 'shown'
 
       sip.killTimers()
-      popup.data((if id then 'triggerHovered' else 'hovered'), true)
+      popup.data (if id then 'triggerHovered' else 'hovered'), true
 
       unless id
         self = sip._getTrigger shownId
+        id = shownId
+
       options = self.data 'options'
       options.onBeforeShow? self
 
-      # if not popup.data('beingShown') and shownId isnt id
-      unless shownId is id
+      if shownId isnt id
         popup.data 'showDelayTimer', setTimeout ->
             sip._showPopup self
           , options.popupDelay
@@ -291,19 +292,21 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       sip = $.smallipop
       popup = sip.popup
-      shownId = popup.data 'shown'
+      popupData = popup.data()
+      shownId = popupData.shown
 
       sip.killTimers()
-      popup.data((if id then 'triggerHovered' else 'hovered'), false)
+      popup.data (if id then 'triggerHovered' else 'hovered'), false
 
       unless id
         self = sip._getTrigger shownId
+
       options = self.data 'options'
       options.onBeforeHide? self
 
       # Hide tip after a while
-      unless popup.data('hovered') or popup.data('triggerHovered')
-        popup.data('hideDelayTimer', setTimeout(sip.hideSmallipop, 500))
+      unless popupData.hovered or popupData.triggerHovered
+        popup.data 'hideDelayTimer', setTimeout(sip.hideSmallipop, 500)
 
     _onWindowResize: ->
       $.smallipop.refreshPosition()
@@ -342,12 +345,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     # Handle direct method calls
     if typeof(options) is 'string'
       switch options.toLowerCase()
-        when 'show'
-          @.each ->
-            sip._showSmallipop.call @
-        when 'hide'
-          sip.hideSmallipop()
-
+        when 'show' then sip._showSmallipop.call @first().get(0)
+        when 'hide' then sip.hideSmallipop()
       return @
 
     options = $.extend {}, sip.defaults, options
@@ -365,6 +364,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     if options.triggerOnClick or (options.touchSupport and sip.onTouchDevice())
       triggerEvents =
         click: sip._showSmallipop
+        mouseout: sip._triggerMouseout
     else
       triggerEvents =
         mouseover: sip._triggerMouseover
@@ -374,14 +374,20 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     # Initialize smallipop on first call
     popup = $ '#smallipop'
     unless popup.length
-      popup = sip.popup = $("<div id=\"smallipop\"><div class=\"sipContent\"/><div class=\"sipArrowBorder\"/><div class=\"sipArrow\"/></div>")
-      .css("opacity", 0)
-      .data
-        xDistance: 0
-        yDistance: 0
-      .bind
-        mouseover: sip._triggerMouseover
-        mouseout: sip._triggerMouseout
+      popup = sip.popup = $('
+          <div id="smallipop">
+            <div class="sipContent"/>
+            <div class="sipArrowBorder"/>
+            <div class="sipArrow"/>
+          </div>
+        ')
+        .css('opacity', 0)
+        .data
+          xDistance: 0
+          yDistance: 0
+        .bind
+          mouseover: sip._triggerMouseover
+          mouseout: sip._triggerMouseout
 
       sip.popupContent = popup.find '.sipContent'
 
