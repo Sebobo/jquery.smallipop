@@ -39,6 +39,7 @@
                 <li><a class="scrollToId" href="#advanced" title="Advanced techniques for smallipop">Advanced configuration</a></li>
                 <li><a class="scrollToId" href="#themes" title="Make it look your way">Themes</a></li>
                 <li><a class="scrollToId" href="#options" title="Customize smallipop the way you like">Options</a></li>
+                <li><a class="scrollToId" href="#methods" title="Control smallipop via javascript">Methods</a></li>
                 <li><a class="scrollToId" href="#installation" title="How to get it up and running">Installation</a></li>
             </ul>
         </div>
@@ -872,6 +873,21 @@ $('#tipCSSAnimated').smallipop({
                 </tr>
             </table>
 
+            <hr id="methods"/>
+
+            <div>
+                <h3>Callable methods</h3>
+
+                <p>
+                    You can show and hide smallipop via manual calls. Only the first element found in the selectors result will be triggered.
+                </p>
+
+                <pre>$('#myTrigger').smallipop('show');</pre>
+
+                <pre>$('#myTrigger').smallipop('hide');</pre>
+
+            </div>
+
             <hr id="installation"/>
 
             <div>
@@ -920,17 +936,6 @@ $('#tipCSSAnimated').smallipop({
 &lt;script type="text/javascript" src="lib/modernizr-x.x.x.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="lib/jquery-smallipop.js"&gt;&lt;/script&gt;</pre>
             </div>
-
-            <hr/>
-
-            <h3>Coming up</h3>
-
-            <ul>
-                <li>Improved alignment for horizontal layout.</li>
-                <li>Automatic layout in all 4 directions. Currently you have to decide which axis is used.</li>
-                <li>Some more theme extensions are in the works.</li>
-                <li>Themes with graphics instead of css.</li>
-            </ul>
 
             <hr/>
 
