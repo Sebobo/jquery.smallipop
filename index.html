@@ -145,7 +145,7 @@
                         </li>
                         <li>
                             <span class="label success">NEW</span>
-                            Show and hide methods can be called directly
+                            Show, hide and destroy methods can be called directly on triggers
                         </li>
                         <li>
                             <span class="label success">NEW</span>
@@ -379,9 +379,9 @@ $('.myElement').smallipop({
 
                 <span class="smallipop sampleElement" style="display:inline-block;">
                     Hover me!
-                    <div class="smallipopHint">
+                    <span class="smallipopHint">
                         <b>Give me some markup</b>
-                    </div>
+                    </span>
                 </span>
                 <br/>
                 <br/>
@@ -389,9 +389,9 @@ $('.myElement').smallipop({
                 <pre>
 &lt;span class="smallipop"&gt;
     Hover me!
-    &lt;div class="smallipopHint"&gt;
+    &lt;span class="smallipopHint"&gt;
         &lt;b&gt;Give me some markup!&lt;/b&gt;
-    &lt;/div&gt;
+    &lt;/span&gt;
 &lt;/span&gt;</pre>
 
                 <hr/>
@@ -750,19 +750,26 @@ $('#tipCSSAnimated').smallipop({
                     <th>Description</th>
                 </tr>
                 <tr>
-                    <td>popupOffset</td>
-                    <td>31</td>
-                    <td>Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right.</td>
+                    <td>funcEase</td>
+                    <td>easeInOutQuad</td>
+                    <td>Easing function for the animations.</td>
                 </tr>
                 <tr>
-                    <td>popupYOffset</td>
-                    <td>0</td>
-                    <td>Vertical offset for the popup.</td>
+                    <td>handleInputs</td>
+                    <td>true</td>
+                    <td>
+                        Enables the focus and blur events on tags like <i>input, textarea, select</i> and disables the hide on click.
+                    </td>
                 </tr>
                 <tr>
-                    <td>popupDistance</td>
-                    <td>20</td>
-                    <td>Vertical distance when the popup appears and disappears.</td>
+                    <td>hideOnPopupClick</td>
+                    <td>true</td>
+                    <td>Hide smallipop when it is clicked.</td>
+                </tr>
+                <tr>
+                    <td>hideOnTriggerClick</td>
+                    <td>true</td>
+                    <td>Hide smallipop when the trigger is clicked.</td>
                 </tr>
                 <tr>
                     <td>hideTrigger</td>
@@ -770,34 +777,14 @@ $('#tipCSSAnimated').smallipop({
                     <td>Hide the trigger when the popup is shown.</td>
                 </tr>
                 <tr>
-                    <td>Theme</td>
-                    <td>default</td>
-                    <td><i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file.</td>
+                    <td>horizontal</td>
+                    <td>false</td>
+                    <td>The popup will be positioned left or right of the trigger.</td>
                 </tr>
                 <tr>
                     <td>infoClass</td>
                     <td>smallipopHint</td>
                     <td>Class in an element which contains markup content for the popup.</td>
-                </tr>
-                <tr>
-                    <td>popupDelay</td>
-                    <td>100</td>
-                    <td>How much time in milliseconds you have to hover on an element before the popups shows up.</td>
-                </tr>
-                <tr>
-                    <td>triggerAnimationSpeed</td>
-                    <td>150</td>
-                    <td>How fast the trigger fades in and out when hideTrigger is set.</td>
-                </tr>
-                <tr>
-                    <td>popupAnimationSpeed</td>
-                    <td>200</td>
-                    <td>How much time the popup needs to reach it's final animation position and opacity in milliseconds.</td>
-                </tr>
-                <tr>
-                    <td>windowPadding</td>
-                    <td>30</td>
-                    <td>Distance to the window borders the smallipop should keep when computing it's orientation.</td>
                 </tr>
                 <tr>
                     <td>invertAnimation</td>
@@ -808,53 +795,9 @@ $('#tipCSSAnimated').smallipop({
                     </td>
                 </tr>
                 <tr>
-                    <td>horizontal</td>
-                    <td>false</td>
-                    <td>The popup will be positioned left or right of the trigger.</td>
-                </tr>
-                <tr>
-                    <td>preferredPosition</td>
-                    <td>top</td>
-                    <td>Use "top" or "bottom" for the default layout and "left" or "right" when horizontal mode is active.</td>
-                </tr>
-                <tr>
-                    <td>windowPadding</td>
-                    <td>30</td>
-                    <td>Minimal distance smallipop should keep try to keep to the window borders.</td>
-                </tr>
-                <tr>
-                    <td>triggerOnClick</td>
-                    <td>false</td>
-                    <td>
-                        Disables the hover event for triggers and smallipop will be activated by clicking the trigger.<br/>
-                        A second click will trigger the default action on the trigger. I.e. open a link.
-                    </td>
-                </tr>
-                <tr>
-                    <td>touchSupport</td>
-                    <td>true</td>
-                    <td>
-                        When touch events are supported hover events are disabled and smallipop will activated by touching a trigger.<br/>
-                        A second touch will trigger the default action on the trigger. I.e. open a link.
-                        The touch feature detection currently requires the modernizr library.
-                    </td>
-                </tr>
-                <tr>
-                    <td>handleInputs</td>
-                    <td>true</td>
-                    <td>
-                        Enables the focus and blur events on tags like <i>input, textarea, select</i> and disables the hide on click.
-                    </td>
-                </tr>
-                <tr>
-                    <td>funcEase</td>
-                    <td>easeInOutQuad</td>
-                    <td>Easing function for the animations.</td>
-                </tr>
-                <tr>
-                    <td>onBeforeShow</td>
+                    <td>onAfterHide</td>
                     <td>null</td>
-                    <td>Callback before smallipop is shown</td>
+                    <td>Callback after smallipop is hidden</td>
                 </tr>
                 <tr>
                     <td>onAfterShow</td>
@@ -867,9 +810,71 @@ $('#tipCSSAnimated').smallipop({
                     <td>Callback before smallipop is hidden</td>
                 </tr>
                 <tr>
-                    <td>onAfterHide</td>
+                    <td>onBeforeShow</td>
                     <td>null</td>
-                    <td>Callback after smallipop is hidden</td>
+                    <td>Callback before smallipop is shown</td>
+                </tr>
+                <tr>
+                    <td>popupAnimationSpeed</td>
+                    <td>200</td>
+                    <td>How much time the popup needs to reach it's final animation position and opacity in milliseconds.</td>
+                </tr>
+                <tr>
+                    <td>popupDelay</td>
+                    <td>100</td>
+                    <td>How much time in milliseconds you have to hover on an element before the popups shows up.</td>
+                </tr>
+                <tr>
+                    <td>popupDistance</td>
+                    <td>20</td>
+                    <td>Vertical distance when the popup appears and disappears.</td>
+                </tr>
+                <tr>
+                    <td>popupOffset</td>
+                    <td>31</td>
+                    <td>Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right.</td>
+                </tr>
+                <tr>
+                    <td>popupYOffset</td>
+                    <td>0</td>
+                    <td>Vertical offset for the popup.</td>
+                </tr>
+                <tr>
+                    <td>preferredPosition</td>
+                    <td>top</td>
+                    <td>Use "top" or "bottom" for the default layout and "left" or "right" when horizontal mode is active.</td>
+                </tr>
+                <tr>
+                    <td>theme</td>
+                    <td>default</td>
+                    <td><i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file.</td>
+                </tr>
+                <tr>
+                    <td>touchSupport</td>
+                    <td>true</td>
+                    <td>
+                        When touch events are supported hover events are disabled and smallipop will activated by touching a trigger.<br/>
+                        A second touch will trigger the default action on the trigger. I.e. open a link.
+                        The touch feature detection currently requires the modernizr library.
+                    </td>
+                </tr>
+                <tr>
+                    <td>triggerAnimationSpeed</td>
+                    <td>150</td>
+                    <td>How fast the trigger fades in and out when hideTrigger is set.</td>
+                </tr>
+                <tr>
+                    <td>triggerOnClick</td>
+                    <td>false</td>
+                    <td>
+                        Disables the hover event for triggers and smallipop will be activated by clicking the trigger.<br/>
+                        A second click will trigger the default action on the trigger. I.e. open a link.
+                    </td>
+                </tr>
+                <tr>
+                    <td>windowPadding</td>
+                    <td>30</td>
+                    <td>Minimal distance to the window borders the smallipop should keep when computing it's orientation.</td>
                 </tr>
             </table>
 
@@ -883,8 +888,12 @@ $('#tipCSSAnimated').smallipop({
                 </p>
 
                 <pre>$('#myTrigger').smallipop('show');</pre>
-
                 <pre>$('#myTrigger').smallipop('hide');</pre>
+
+                <p>
+                    Removing smallipop from elements is also possible.
+                </p>
+                <pre>$('.myTriggers').smallipop('destroy');</pre>
 
             </div>
 
@@ -972,9 +981,7 @@ $('#tipCSSAnimated').smallipop({
         <script type="text/javascript" src="lib/jquery.smallipop.js"></script>
         <script type="text/javascript">
             $(function() {
-                $('.smallipop').smallipop({
-                    theme: 'black'
-                });
+                $('.smallipop').smallipop();
 
                 $('.smallipopOrange').smallipop({
                     theme: 'orange'
