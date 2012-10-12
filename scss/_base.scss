@@ -7,6 +7,7 @@
 $baseFontSize:      13px;
 $baseLineHeight:    18px;
 $baseFontFamily:    arial;
+$inputBorderRadius: 3px;
 
 // Links
 $linkColor:         #0069d6;
@@ -30,7 +31,7 @@ $orange:            #f89406;
 $pink:              #c3325f;
 $purple:            #7a43b6;
 
-// Reset 
+// Reset
 html {
   height: 100%;
   font-size: $baseFontSize;
@@ -54,27 +55,27 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   &.success   { background-color: $green; }
   &.notice    { background-color: lighten($blue, 25%); }
 }
-.borderradius .label { @include rounded(3px); }
+.borderradius .label { @include border-radius(3px); }
 
 // Basic stuff
-.clear { 
-  clear: both; 
+.clear {
+  clear: both;
 }
 
-.relative { 
-  position: relative; 
+.relative {
+  position: relative;
 }
 
-.centered { 
-  margin: 0 auto; 
+.centered {
+  margin: 0 auto;
 }
 
-.floatLeft { 
-  float: left; 
+.floatLeft {
+  float: left;
 }
 
-.floatRight { 
-  float: right; 
+.floatRight {
+  float: right;
 }
 
 .clearfix {
@@ -90,7 +91,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   }
 }
 
-// Tabs 
+// Tabs
 .tabs {
   text-align: center;
   list-style: none;
@@ -102,7 +103,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   font-family: verdana;
   position: absolute;
   bottom: 0;
-  
+
   li {
     border: 1px solid #aaa;
     background: #d1d1d1;
@@ -114,10 +115,10 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
     margin: 0 -3px;
     padding: 0;
     cursor: pointer;
-    
-    &:hover { 
+
+    &:hover {
       background: #dadada;
-      background-position: 0 -15px; 
+      background-position: 0 -15px;
     }
     &.selected {
       background: #fff;
@@ -125,7 +126,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
       z-index: 2;
       border-bottom-color: #fff;
     }
-    
+
     &:before,
     &:after {
       border: 1px solid #aaa;
@@ -147,12 +148,12 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
     text-decoration: none;
     display: block;
     margin: 0 20px;
-    
+
     &:hover {
       text-decoration: none;
     }
   }
-  
+
   &:before {
     position: absolute;
     content: " ";
@@ -166,18 +167,18 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 .csstransitions .tabs li {
   @include transition(.05s linear all);
 }
-.cssgradients .tabs li { 
-  @include linear-gradient(#ececec 50%, #d1d1d1 100%); 
-  
+.cssgradients .tabs li {
+  @include linear-gradient(#ececec 50%, #d1d1d1 100%);
+
   &:hover { @include linear-gradient(#efefef 50%, #dadada 100%); }
-  &.selected { 
-    &, &:hover { background: #fff; } 
-  } 
+  &.selected {
+    &, &:hover { background: #fff; }
+  }
 }
-.borderradius .tabs li { 
-  @include rounded(6px 6px 0 0); 
-  &:before { @include rounded(0 0 6px 0); }
-  &:after { @include rounded(0 0 0 6px); }
+.borderradius .tabs li {
+  @include border-radius(6px 6px 0 0);
+  &:before { @include border-radius(0 0 6px 0); }
+  &:after { @include border-radius(0 0 0 6px); }
 }
 .boxshadow .tabs li {
   @include boxshadow("0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff");
@@ -185,7 +186,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   &:after { @include boxshadow(-2px 2px 0 #d1d1d1); }
   &:hover {
     &:before { @include boxshadow(2px 2px 0 #dadada); }
-    &:after { @include boxshadow(-2px 2px 0 #dadada); }  
+    &:after { @include boxshadow(-2px 2px 0 #dadada); }
   }
   &.selected {
     &:before { @include boxshadow(2px 2px 0 #ffffff); }
@@ -208,7 +209,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   &.info:hover {
     color: $white
   }
-  
+
     // Danger and error appear as red
     &.danger,
     &.error {
@@ -222,7 +223,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
     &.info {
       background-color: #339bb9;
     }
-    
+
   // Sets the close button to the middle of message
   .close{
     font-family: Arial, sans-serif;
@@ -288,12 +289,12 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 .cssgradients {
   .btn {
     @include linear-gradient-with-stop(#ffffff, #ffffff 25%, darken(#ffffff, 10%));
-    
+
     &.primary {
       @include gradient-bar($blue, $blueDark);
     }
   }
-  
+
   .btn,
   .alert-message {
     // Danger and error appear as red
@@ -313,10 +314,10 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 }
 
 .borderradius .btn {
-  @include rounded(4px);
-  
+  @include border-radius(4px);
+
   &.large {
-    @include rounded(6px);
+    @include border-radius(6px);
   }
 }
 .csstransitions .btn {
@@ -324,12 +325,12 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 }
 .boxshadow.rgba .btn {
   @include boxshadow("inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
-  
+
   &.active,
   &:active {
     @include boxshadow("inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05)");
   }
-  
+
   &.disabled,
   &[disabled] {
     @include boxshadow(none);
@@ -369,10 +370,10 @@ input[type=submit].btn {
   width: 75%;
 }
 .size1of3 {
-  width: 33.33%;
+  width: 33.30%;
 }
 .size2of3 {
-  width: 66.76%;
+  width: 66.70%;
 }
 
 // Inline and block code styles
@@ -383,7 +384,7 @@ code, pre {
 }
 .borderradius {
   code, pre {
-    @include rounded(3px);
+    @include border-radius(3px);
   }
 }
 code {
@@ -407,3 +408,55 @@ pre {
   border-color: rgba(0, 0, 0, .15);
 }
 
+
+
+// Set font for forms
+label,
+input,
+button,
+select,
+textarea {
+  font: $baseFontSize normal $baseLineHeight; // Set size, weight, line-height here
+}
+input,
+button,
+select,
+textarea {
+  font-family: $baseFontFamily; // And only set font-family here for those that need it (note the missing label element)
+}
+
+// Identify controls by their labels
+label {
+  display: block;
+}
+// Form controls
+// -------------------------
+
+// Shared size and type resets
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  display: inline-block;
+  padding: 4px 6px;
+  margin-bottom: 9px;
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  color: $gray;
+  border: 1px solid #eee;
+  @include boxshadow(0 0 3px rgba(0, 0, 0, 0.4) inset);
+  @include border-radius($inputBorderRadius);
+}
