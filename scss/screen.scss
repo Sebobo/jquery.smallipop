@@ -70,7 +70,7 @@ img.inline { margin: 10px; }
   @include linear-gradient(#337edc, #0a5abf);
 }
 .borderradius .pageHeader {
-  @include rounded(8px 8px 0 0);
+  @include border-radius(8px 8px 0 0);
 }
 
 .options {
@@ -163,7 +163,7 @@ img.inline { margin: 10px; }
     text-shadow:none;
   }
 }
-.borderradius .sampleElement { @include rounded(6px); }
+.borderradius .sampleElement { @include border-radius(6px); }
 .cssgradients .sampleElement {
   @include linear-gradient(#fff24d, #f9aa18);
 
@@ -258,7 +258,7 @@ img.inline { margin: 10px; }
   }
 }
 .cssgradients .indicator { @include linear-gradient(#ffffff, #fafafa); }
-.borderradius .indicator { @include rounded(2px); }
+.borderradius .indicator { @include border-radius(2px); }
 
 .smallipopArrow { width: 25px; height: 42px; }
 
@@ -342,7 +342,7 @@ img.inline { margin: 10px; }
 .borderradius .pulser {
   &,
   .outer,
-  .inner { @include rounded(30px); }
+  .inner { @include border-radius(30px); }
 }
 .cssanimations .pulser .outer {
   height: 12px; width: 12px;

@@ -373,11 +373,17 @@ $('.myElement').smallipop({
                     </a>
                 </div>
 
-                <br/>
-                <br/>
-                <br/>
+                <hr/>
+                <h5>If you like some markup as tooltip, you can do that as well</h5>
 
-                <h6>If you like some markup as tooltip, you can do that as well</h6>
+                <span class="smallipop sampleElement" style="display:inline-block;">
+                    Hover me!
+                    <div class="smallipopHint">
+                        <b>Give me some markup</b>
+                    </div>
+                </span>
+                <br/>
+                <br/>
 
                 <pre>
 &lt;span class="smallipop"&gt;
@@ -387,20 +393,15 @@ $('.myElement').smallipop({
     &lt;/div&gt;
 &lt;/span&gt;</pre>
 
-                <br/>
+                <hr/>
 
-                <span class="smallipop sampleElement" style="display:inline-block;">
+                <h5>You can provide the content for the bubble via javascript too</h5>
+
+                <a href="#" id="tipcustomhint" class="sampleElement" title="I'm the old title">
                     Hover me!
-                    <div class="smallipopHint">
-                        <b>Give me some markup</b>
-                    </div>
-                </span>
-
+                </a>
                 <br/>
                 <br/>
-                <br/>
-
-                <h6>You can provide the content for the bubble via javascript too</h6>
 
                 <pre>
 &lt;a href="#" id="tipcustomhint" title="I'm the old title"&gt;
@@ -414,17 +415,20 @@ $('.myElement').smallipop({
                 <pre>
 $('#tipcustomhint').smallipop({}, "I'm the real hint!");</pre>
 
-                <br/>
+                <hr/>
 
-                <a href="#" id="tipcustomhint" class="sampleElement" title="I'm the old title">
-                    Hover me!
-                </a>
+                <h5>
+                    There are cases when the trigger is replaced or changed when
+                    clicked and the tooltip needs to be hidden
+                </h5>
 
+                <div id="ajaxContainer2">
+                    <a href="#" id="tipkiller2" class="smallipop sampleElement" title="Click the link and I will be gone">
+                        Hover me!
+                    </a>
+                </div>
                 <br/>
                 <br/>
-                <br/>
-
-                <h6>There are cases when the trigger is replaced or changed when clicked and the tooltip needs to be hidden</h6>
 
                 <pre>
 &lt;div id="sampleContainer"&gt;
@@ -442,30 +446,9 @@ $('#tipkiller').click(function(e) {
     $('#sampleContainer').html('&lt;div&gt;Some new content&lt;/div&gt;');
 });</pre>
 
-                <br/>
+                <hr/>
 
-                <div id="ajaxContainer2">
-                    <a href="#" id="tipkiller2" class="smallipop sampleElement" title="Click the link and I will be gone">
-                        Hover me!
-                    </a>
-                </div>
-
-                <br/>
-                <br/>
-                <br/>
-
-                <h6>Elements can be positioned everywhere, smallipop will be at the right position</h6>
-
-                <pre>
-&lt;div class="smallipop" style="float:right;"&gt;
-    Hover me!
-    &lt;span class="smallipopHint"&gt;
-        &lt;b>Markuptip with very long text&lt;/b&gt;&lt;br/&gt;
-        ...
-    &lt;/span&gt;
-&lt;/div&gt;</pre>
-
-                <br/>
+                <h5>Elements can be positioned everywhere, smallipop will be at the right position</h5>
 
                 <p class="floatLeft">
                     Look to the right!
@@ -483,9 +466,34 @@ $('#tipkiller').click(function(e) {
 
                 <br class="clear"/>
                 <br/>
-                <br/>
 
-                <h6>How about showing the bubble on the left or right of an element?</h6>
+                <pre>
+&lt;div class="smallipop" style="float:right;"&gt;
+    Hover me!
+    &lt;span class="smallipopHint"&gt;
+        &lt;b>Markuptip with very long text&lt;/b&gt;&lt;br/&gt;
+        ...
+    &lt;/span&gt;
+&lt;/div&gt;</pre>
+
+                <hr/>
+
+                <h5>How about showing the bubble on the left or right of an element?</h5>
+
+                <span class="smallipopHorizontal sampleElement floatLeft">
+                    Hover me!
+                    <span class="smallipopHint">
+                        Good for dropdowns!
+                    </span>
+                </span>
+                <span class="smallipopHorizontal sampleElement floatRight">
+                    Or me!
+                    <span class="smallipopHint">
+                        Auto align when there's no room on the right.
+                    </span>
+                </span>
+                <br class="clear"/>
+                <br/>
 
                 <pre>
 &lt;span class="smallipopHorizontal"&gt;
@@ -505,24 +513,13 @@ $('.smallipopHorizontal').smallipop({
     invertAnimation: true
 });</pre>
 
-                <br/>
+                <hr/>
 
-                <span class="smallipopHorizontal sampleElement floatLeft">
-                    Hover me!
-                    <span class="smallipopHint">
-                        Good for dropdowns!
-                    </span>
-                </span>
-                <span class="smallipopHorizontal sampleElement floatRight">
-                    Or me!
-                    <span class="smallipopHint">
-                        Auto align when there's no room on the right.
-                    </span>
-                </span>
-                <br class="clear"/>
-                <br/>
+                <h5>Don't like animations? No Problem!</h5>
 
-                <h6>Don't like animations? No Problem</h6>
+                <a class="smallipopStatic sampleElement" title="Doesn't move an inch!">Hover me!</a>
+                <br/>
+                <br/>
                 <pre>
 &lt;a class="smallipopStatic" title="Doesn't move an inch"&gt;
     Hover me!
@@ -537,11 +534,14 @@ $('.smallipopStatic').smallipop({
     popupYOffset: -14,
     popupAnimationSpeed: 100
 });</pre>
+
+                <hr/>
+
+                <h5>Change default positioning</h5>
+
+                <a class="smallipopBottom sampleElement" title="Below when possible">Hover me!</a>
                 <br/>
-                <a class="smallipopStatic sampleElement" title="Doesn't move an inch!">Hover me!</a>
                 <br/>
-                <br/>
-                <h6>Change default positioning</h6>
                 <pre>
 &lt;a class="smallipopStatic" title="Below when possible"&gt;
     Hover me!
@@ -554,23 +554,34 @@ $('.smallipopBottom').smallipop({
     theme: 'black',
     preferredPosition: 'bottom'
 });</pre>
-                <br/>
-                <a class="smallipopBottom sampleElement" title="Below when possible">Hover me!</a>
-                <br/>
-                <br/>
-                <h6>Special handling on form elements</h6>
 
-                <label>Text</label><br/>
-                <input class="smallipop" type="text" size="30" title="Enter some text"/><br/>
-                <label>Password</label><br/>
-                <input class="smallipop" type="password" size="30" title="Enter something like a password"/><br/>
-                <label>Select</label><br/>
+                <hr/>
+
+                <h5>Special support for form elements</h5>
+
+                <p>
+                    Smallipop will appear when form elements are focused and
+                    stay even when the mouse leaves the input.
+                </p>
+
+                <label>Text</label>
+                <input class="smallipop" type="text" size="30" title="Enter some text"/>
+                <br/>
+                <label>Password</label>
+                <input class="smallipop" type="password" size="30" title="Enter something like a password"/>
+                <br/>
+                <label>Select</label>
                 <select class="smallipop" title="Select something">
                     <option>Foo</option>
                     <option>Bar</option>
-                </select><br/>
-                <label>Textarea</label><br/>
-                <textarea class="smallipop" title="Write what you want" cols="30" rows="4"></textarea><br/>
+                </select>
+                <br/>
+                <label>Textarea</label>
+                <textarea class="smallipop" title="Write what you want" cols="30" rows="4"></textarea>
+                <br/>
+                <label>Checkboxes</label>
+                <input type="checkbox" class="smallipop" title="Check it!"/>
+                <br/>
             </div>
 
             <hr id="advanced"/>

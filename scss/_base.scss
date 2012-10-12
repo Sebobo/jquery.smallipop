@@ -7,6 +7,7 @@
 $baseFontSize:      13px;
 $baseLineHeight:    18px;
 $baseFontFamily:    arial;
+$inputBorderRadius: 3px;
 
 // Links
 $linkColor:         #0069d6;
@@ -54,7 +55,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   &.success   { background-color: $green; }
   &.notice    { background-color: lighten($blue, 25%); }
 }
-.borderradius .label { @include rounded(3px); }
+.borderradius .label { @include border-radius(3px); }
 
 // Basic stuff
 .clear {
@@ -175,9 +176,9 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   }
 }
 .borderradius .tabs li {
-  @include rounded(6px 6px 0 0);
-  &:before { @include rounded(0 0 6px 0); }
-  &:after { @include rounded(0 0 0 6px); }
+  @include border-radius(6px 6px 0 0);
+  &:before { @include border-radius(0 0 6px 0); }
+  &:after { @include border-radius(0 0 0 6px); }
 }
 .boxshadow .tabs li {
   @include boxshadow("0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff");
@@ -313,10 +314,10 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 }
 
 .borderradius .btn {
-  @include rounded(4px);
+  @include border-radius(4px);
 
   &.large {
-    @include rounded(6px);
+    @include border-radius(6px);
   }
 }
 .csstransitions .btn {
@@ -383,7 +384,7 @@ code, pre {
 }
 .borderradius {
   code, pre {
-    @include rounded(3px);
+    @include border-radius(3px);
   }
 }
 code {
@@ -407,3 +408,54 @@ pre {
   border-color: rgba(0, 0, 0, .15);
 }
 
+
+
+// Set font for forms
+label,
+input,
+button,
+select,
+textarea {
+  font: $baseFontSize normal $baseLineHeight; // Set size, weight, line-height here
+}
+input,
+button,
+select,
+textarea {
+  font-family: $baseFontFamily; // And only set font-family here for those that need it (note the missing label element)
+}
+
+// Identify controls by their labels
+label {
+  display: block;
+}
+// Form controls
+// -------------------------
+
+// Shared size and type resets
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  display: inline-block;
+  height: $baseLineHeight;
+  padding: 4px 6px;
+  margin-bottom: 9px;
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  color: $gray;
+  @include border-radius($inputBorderRadius);
+}

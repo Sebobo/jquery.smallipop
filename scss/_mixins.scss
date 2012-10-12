@@ -1,4 +1,4 @@
-@mixin rounded($radius: 10px) {
+@mixin border-radius($radius: 10px) {
           border-radius: $radius;
        -o-border-radius: $radius;
      -moz-border-radius: $radius;
@@ -6,14 +6,14 @@
 }
 
 @mixin boxshadow($shadow) {
-  -webkit-box-shadow: unquote($shadow); 
-     -moz-box-shadow: unquote($shadow); 
+  -webkit-box-shadow: unquote($shadow);
+     -moz-box-shadow: unquote($shadow);
           box-shadow: unquote($shadow);
 }
 
 @mixin linear-gradient($start_color, $end_color, $start: top) {
   background-repeat: repeat-x;
-  background-image: -webkit-linear-gradient($start, $start_color, $end_color); 
+  background-image: -webkit-linear-gradient($start, $start_color, $end_color);
   background-image:    -moz-linear-gradient($start, $start_color, $end_color);
   background-image:     -ms-linear-gradient($start, $start_color, $end_color);
   background-image:      -o-linear-gradient($start, $start_color, $end_color);
@@ -22,7 +22,7 @@
 
 @mixin linear-gradient-with-stop($start_color, $stop_color, $end_color, $start: top) {
   background-repeat: repeat-x;
-  background-image: -webkit-linear-gradient($start, $start_color, $stop_color, $end_color); 
+  background-image: -webkit-linear-gradient($start, $start_color, $stop_color, $end_color);
   background-image:    -moz-linear-gradient($start, $start_color, $stop_color, $end_color);
   background-image:     -ms-linear-gradient($start, $start_color, $stop_color, $end_color);
   background-image:      -o-linear-gradient($start, $start_color, $stop_color, $end_color);
