@@ -569,22 +569,22 @@ $('.smallipopBottom').smallipop({
                 </p>
 
                 <label>Text</label>
-                <input class="smallipopForm" type="text" size="30" title="Enter some text"/>
+                <input class="smallipopFormElement" type="text" size="30" title="Enter some text"/>
                 <br/>
                 <label>Password</label>
-                <input class="smallipopForm" type="password" size="30" title="Enter something like a password"/>
+                <input class="smallipopFormElement" type="password" size="30" title="Enter something like a password"/>
                 <br/>
                 <label>Select</label>
-                <select class="smallipopForm" title="Select something">
+                <select class="smallipopFormElement" title="Select something">
                     <option>Foo</option>
                     <option>Bar</option>
                 </select>
                 <br/>
                 <label>Textarea</label>
-                <textarea class="smallipopForm" title="Write what you want" cols="30" rows="4"></textarea>
+                <textarea class="smallipopFormElement" title="Write what you want" cols="30" rows="4"></textarea>
                 <br/>
                 <label>Checkboxes</label>
-                <input type="checkbox" class="smallipopForm" title="Check it!"/>
+                <input type="checkbox" class="smallipopFormElement" title="Check it!"/>
                 <br/>
                 <br/>
 
@@ -592,7 +592,7 @@ $('.smallipopBottom').smallipop({
                     Use the following config to achieve this effect.
                 </p>
                 <pre>
-$('.smallipopForm').smallipop({
+$('.smallipopFormElement').smallipop({
     horizontal: true,
     theme: 'black',
     popupOffset: 0
@@ -604,7 +604,11 @@ $('.smallipopForm').smallipop({
             <h3>Advanced configuration</h3>
 
             <div>
-                <h6>Change content on the fly and use callbacks</h6>
+                <h5>Change content on the fly and use callbacks</h5>
+                <br/>
+                <a id="tipChangeContent" class="sampleElement" title="Change">Hover me!</a>
+                <br/>
+                <br/>
                 <pre>
 &lt;a id="tipChangeContent" title="Change"&gt;
     Hover me!
@@ -621,15 +625,29 @@ $('#tipChangeContent').smallipop({
         $.smallipop.setContent("Bye bye");
     }
 });</pre>
+                <hr/>
+                <h5>Use advanced css animations</h5>
                 <br/>
-                <a id="tipChangeContent" class="sampleElement" title="Change">Hover me!</a>
+                <a id="tipCSSAnimated" class="sampleElement" title="Smallipop can handle fancy animations too!">
+                    Bounce and hinge
+                </a>
+                &nbsp;-&nbsp;
+                <a id="tipCSSAnimated2" class="sampleElement" title="Fancy animations part 2">
+                    Flip
+                </a>
+                &nbsp;-&nbsp;
+                <a id="tipCSSAnimated3" class="sampleElement" title="Fancy animations part 3">
+                    Fade
+                </a>
+                &nbsp;-&nbsp;
+                <a id="tipCSSAnimated4" class="sampleElement" title="Fancy animations part 4">
+                    Rotate
+                </a>
                 <br/>
                 <br/>
-                <br/>
-                <h6>Use advanced css animations</h6>
                 <p>
                     Example powered by
-                    <a class="smallipop" href="http://daneden.me/animate" title="Just-add-water CSS animation">Animate.css</a>
+                    <a class="smallipop" target="_blank" href="http://daneden.me/animate" title="Just-add-water CSS animation">Animate.css</a>
                 </p>
                 <p>
                     These effects will only work if your browser support css animations.<br/>
@@ -650,27 +668,8 @@ $('#tipCSSAnimated').smallipop({
         hide: 'animated hinge'
     }
 });</pre>
-                <br/>
-                <a id="tipCSSAnimated" class="sampleElement" title="Smallipop can handle fancy animations too!">
-                    Bounce and hinge
-                </a>
-                &nbsp;-&nbsp;
-                <a id="tipCSSAnimated2" class="sampleElement" title="Fancy animations part 2">
-                    Flip
-                </a>
-                &nbsp;-&nbsp;
-                <a id="tipCSSAnimated3" class="sampleElement" title="Fancy animations part 3">
-                    Fade
-                </a>
-                &nbsp;-&nbsp;
-                <a id="tipCSSAnimated4" class="sampleElement" title="Fancy animations part 4">
-                    Rotate
-                </a>
-
-                <br/>
-                <br/>
-                <br/>
-                <h6>Hide on click specials</h6>
+                <hr/>
+                <h5>Hide on click specials</h5>
 
                 <span>Tip won't hide when clicking the trigger</span>
                 <a id="tipDontHideOnTriggerClick" class="sampleElement" title="Change">Hover me!</a>
@@ -1060,7 +1059,7 @@ $('#tipCSSAnimated').smallipop({
                     invertAnimation: true
                 });
 
-                $('.smallipopForm').smallipop({
+                $('.smallipopFormElement').smallipop({
                     horizontal: true,
                     theme: 'black',
                     popupOffset: 0
