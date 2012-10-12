@@ -334,46 +334,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .fadeTo options.contentAnimationSpeed, 1
           sip.refreshPosition()
 
-  ### Add default easing function for smallipop to jQuery if missing ###
-  unless $.easing.easeInOutQuad
-    $.easing.easeInOutQuad = (x, t, b, c, d) ->
-      if ((t/=d/2) < 1) then c/2*t*t + b else -c/2 * ((--t)*(t-2) - 1) + b
-
-  $.fn.smallipop = (options={}, hint='') ->
-    sip = $.smallipop
-
-    # Handle direct method calls
-    if typeof(options) is 'string'
-      switch options.toLowerCase()
-        when 'show' then sip._showSmallipop.call @first().get(0)
-        when 'hide' then sip.hideSmallipop()
-      return @
-
-    options = $.extend {}, sip.defaults, options
-
-    # Fix for some option deprecation issues
-    options.popupAnimationSpeed = options.moveSpeed if options.moveSpeed?
-    options.triggerAnimationSpeed = options.hideSpeed if options.hideSpeed?
-
-    # Check for enabled css animations and disable if modernizr is active says no
-    if Modernizr?.cssanimations is false
-      options.cssAnimations.enabled = false
-
-    # Check whether the trigger should activate smallipop by click or hover
-    triggerEvents = {}
-    if options.triggerOnClick or (options.touchSupport and sip.onTouchDevice())
-      triggerEvents =
-        click: sip._showSmallipop
-        mouseout: sip._triggerMouseout
-    else
-      triggerEvents =
-        mouseover: sip._triggerMouseover
-        mouseout: sip._triggerMouseout
-        click: sip.hideSmallipop
-
-    # Initialize smallipop on first call
-    popup = $ '#smallipop'
-    unless popup.length
+    _init: ->
+      sip = $.smallipop
       popup = sip.popup = $('
           <div id="smallipop">
             <div class="sipContent"/>
@@ -400,6 +362,46 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       $(window).bind 'resize', sip._onWindowResize
 
+  ### Add default easing function for smallipop to jQuery if missing ###
+  unless $.easing.easeInOutQuad
+    $.easing.easeInOutQuad = (x, t, b, c, d) ->
+      if ((t/=d/2) < 1) then c/2*t*t + b else -c/2 * ((--t)*(t-2) - 1) + b
+
+  $.fn.smallipop = (options={}, hint='') ->
+    sip = $.smallipop
+
+    # Handle direct method calls
+    if typeof(options) is 'string'
+      switch options.toLowerCase()
+        when 'show' then sip._showSmallipop.call @first().get(0)
+        when 'hide' then sip.hideSmallipop()
+      return @
+
+    options = $.extend {}, sip.defaults, options
+
+    # Fix for some option deprecation issues
+    options.popupAnimationSpeed = options.moveSpeed if options.moveSpeed?
+    options.triggerAnimationSpeed = options.hideSpeed if options.hideSpeed?
+
+    # Check for enabled css animations and disable if modernizr is active says no
+    if Modernizr?.cssanimations is false
+      options.cssAnimations.enabled = false
+
+    # Initialize smallipop on first call
+    sip._init() unless sip.popup
+
+    # Check whether the trigger should activate smallipop by click or hover
+    triggerEvents = {}
+    if options.triggerOnClick or (options.touchSupport and sip.onTouchDevice())
+      triggerEvents =
+        click: sip._showSmallipop
+        mouseout: sip._triggerMouseout
+    else
+      triggerEvents =
+        mouseover: sip._triggerMouseover
+        mouseout: sip._triggerMouseout
+        click: sip.hideSmallipop
+
     return @.each ->
       # Initialize each trigger, create id and bind events
       self = $ @
@@ -407,14 +409,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       # Get content for the popup
       objHint = hint or self.attr('title') or self.find(".#{options.infoClass}").html()
-      if objHint and not self.hasClass('sipInitialized')
+      if objHint and not self.hasClass 'sipInitialized'
         newId = sip.lastId++
+        triggerOptions = $.extend true, {}, options
+
         self
           .addClass("sipInitialized smallipop#{newId}")
-          .data
-            id: newId
-            options: options
-            hint: objHint
           .attr('title', '') # Remove title to disable browser hint
           .bind(triggerEvents)
 
@@ -424,10 +424,20 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .bind
               focus: sip._triggerMouseover
               blur: sip._triggerMouseout
-            .data('options').hideOnTriggerClick = false
+            .unbind 'mouseout'
+
+          # Don't hide when trigger is clicked and
+          triggerOptions.hideOnTriggerClick = false
+          triggerOptions.triggerOnClick = true
+
+        # Store parameters for this trigger
+        self.data
+          id: newId
+          hint: objHint
+          options: triggerOptions
 
         # Hide popup when links contained in the trigger are clicked
-        unless self.data('options').hideOnTriggerClick
+        unless triggerOptions.hideOnTriggerClick
           self.delegate 'a', 'click', sip.hideSmallipop
 )(jQuery)
 
