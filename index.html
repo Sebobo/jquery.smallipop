@@ -67,7 +67,7 @@
             <br/>
 
             <p>
-                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.1.6" title="Download the most versatile tooltip plugin for jQuery" class="btn success smallipopWhite">
+                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.2.0" title="Download the most versatile tooltip plugin for jQuery" class="btn success smallipopWhite">
                     Download smallipop now
                 </a>
                 &nbsp;
@@ -155,6 +155,10 @@
                             <span class="label success">NEW</span>
                             Update content on the fly via the setContent method
                         </li>
+                        <li>
+                            <span class="label notice">INFO</span>
+                            A lot of code cleanup, refactoring, namespacing and stuff
+                        </li>
                     </ul>
 
                     <br/>
@@ -230,7 +234,6 @@
             <noscript><a href="http://flattr.com/thing/461593/jQuery-Smallipop" target="_blank">
             <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
             <!-- Flattr button END -->
-
 
             <br/>
 
@@ -566,23 +569,34 @@ $('.smallipopBottom').smallipop({
                 </p>
 
                 <label>Text</label>
-                <input class="smallipop" type="text" size="30" title="Enter some text"/>
+                <input class="smallipopForm" type="text" size="30" title="Enter some text"/>
                 <br/>
                 <label>Password</label>
-                <input class="smallipop" type="password" size="30" title="Enter something like a password"/>
+                <input class="smallipopForm" type="password" size="30" title="Enter something like a password"/>
                 <br/>
                 <label>Select</label>
-                <select class="smallipop" title="Select something">
+                <select class="smallipopForm" title="Select something">
                     <option>Foo</option>
                     <option>Bar</option>
                 </select>
                 <br/>
                 <label>Textarea</label>
-                <textarea class="smallipop" title="Write what you want" cols="30" rows="4"></textarea>
+                <textarea class="smallipopForm" title="Write what you want" cols="30" rows="4"></textarea>
                 <br/>
                 <label>Checkboxes</label>
-                <input type="checkbox" class="smallipop" title="Check it!"/>
+                <input type="checkbox" class="smallipopForm" title="Check it!"/>
                 <br/>
+                <br/>
+
+                <p>
+                    Use the following config to achieve this effect.
+                </p>
+                <pre>
+$('.smallipopForm').smallipop({
+    horizontal: true,
+    theme: 'black',
+    popupOffset: 0
+});</pre>
             </div>
 
             <hr id="advanced"/>
@@ -1044,6 +1058,12 @@ $('#tipCSSAnimated').smallipop({
                     theme: 'black',
                     popupOffset: 10,
                     invertAnimation: true
+                });
+
+                $('.smallipopForm').smallipop({
+                    horizontal: true,
+                    theme: 'black',
+                    popupOffset: 0
                 });
 
                 $('#tipcustomhint').smallipop({}, "I'm the real hint!");

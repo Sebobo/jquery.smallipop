@@ -1,5 +1,5 @@
 ###!
-Smallipop (09/28/2012)
+Smallipop (10/12/2012)
 Copyright (c) 2011-2012 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop =
-    version: '0.2.0-alpha'
+    version: '0.2.0'
     defaults:
       contentAnimationSpeed: 150
       cssAnimations:
@@ -42,7 +42,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     popup: null
     lastId: 1 # Counter for new smallipop id's
 
-    hideSmallipop: (e) ->
+    _hideSmallipop: (e) ->
       sip = $.smallipop
       popup = sip.popup
       shownId = popup.data 'shown'
@@ -309,7 +309,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       # Hide tip after a while
       unless popupData.hovered or popupData.triggerHovered
-        popup.data 'hideDelayTimer', setTimeout(sip.hideSmallipop, 500)
+        popup.data 'hideDelayTimer', setTimeout(sip._hideSmallipop, 500)
 
     _onWindowResize: ->
       $.smallipop.refreshPosition()
@@ -321,7 +321,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       # Hide smallipop unless popup or a trigger is clicked
       unless target.is(popup) or target.closest('.sipInitialized').length
-        sip.hideSmallipop e
+        sip._hideSmallipop e
 
     setContent: (content) ->
       sip = $.smallipop
@@ -369,7 +369,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       $('body').append popup
 
       # Hide popup when clicking a contained link
-      popup.delegate 'a', 'click.smallipop', sip.hideSmallipop
+      popup.delegate 'a', 'click.smallipop', sip._hideSmallipop
 
       $(document).bind 'click.smallipop touchend.smallipop', sip._onWindowClick
 
@@ -387,7 +387,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     if typeof(options) is 'string'
       switch options.toLowerCase()
         when 'show' then sip._showSmallipop.call @first().get(0)
-        when 'hide' then sip.hideSmallipop()
+        when 'hide' then sip._hideSmallipop()
         when 'destroy' then sip._destroy @
       return @
 
@@ -404,18 +404,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     # Initialize smallipop on first call
     sip._init() unless sip.popup
 
-    # Check whether the trigger should activate smallipop by click or hover
-    triggerEvents = {}
-    if options.triggerOnClick or (options.touchSupport and sip.onTouchDevice())
-      triggerEvents =
-        'click.smallipop': sip._showSmallipop
-        'mouseout.smallipop': sip._triggerMouseout
-    else
-      triggerEvents =
-        'mouseover.smallipop': sip._triggerMouseover
-        'mouseout.smallipop': sip._triggerMouseout
-        'click.smallipop': sip.hideSmallipop
-
     return @.each ->
       # Initialize each trigger, create id and bind events
       self = $ @
@@ -426,32 +414,38 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       if objHint and not self.hasClass 'sipInitialized'
         newId = sip.lastId++
         triggerOptions = $.extend true, {}, options
+        triggerEvents = {}
+        isFormElement = triggerOptions.handleInputs and type in ['input', 'select', 'textarea']
 
+        # Activate on blur events if used on inputs and disable hide on click
+        if isFormElement
+          # Don't hide when trigger is clicked and show when trigger is clicked
+          triggerOptions.hideOnTriggerClick = false
+          # triggerOptions.triggerOnClick = true
+          triggerEvents['focus.smallipop'] = sip._triggerMouseover
+          triggerEvents['blur.smallipop'] = sip._triggerMouseout
+        else
+          triggerEvents['mouseout.smallipop'] = sip._triggerMouseout
+
+        # Check whether the trigger should activate smallipop by click or hover
+        if triggerOptions.triggerOnClick or (triggerOptions.touchSupport and sip.onTouchDevice())
+          triggerEvents['click.smallipop'] = sip._showSmallipop
+        else
+          triggerEvents['click.smallipop'] = sip._hideSmallipop
+          triggerEvents['mouseover.smallipop'] = sip._triggerMouseover
+
+        # Store parameters for this trigger
         self
           .addClass("sipInitialized smallipop#{newId}")
           .attr('title', '') # Remove title to disable browser hint
-          .bind(triggerEvents)
-
-        # Activate on blur events if used on inputs and disable hide on click
-        if options.handleInputs and type in ['input', 'select', 'textarea']
-          self
-            .bind
-              'focus.smallipop': sip._triggerMouseover
-              'blur.smallipop': sip._triggerMouseout
-            .unbind 'mouseout.smallipop'
-
-          # Don't hide when trigger is clicked and
-          triggerOptions.hideOnTriggerClick = false
-          triggerOptions.triggerOnClick = true
-
-        # Store parameters for this trigger
-        self.data 'smallipop',
-          id: newId
-          hint: objHint
-          options: triggerOptions
+          .data 'smallipop',
+            id: newId
+            hint: objHint
+            options: triggerOptions
+          .bind triggerEvents
 
         # Hide popup when links contained in the trigger are clicked
         unless triggerOptions.hideOnTriggerClick
-          self.delegate 'a', 'click.smallipop', sip.hideSmallipop
+          self.delegate 'a', 'click.smallipop', sip._hideSmallipop
 )(jQuery)
 

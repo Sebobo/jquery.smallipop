@@ -451,11 +451,12 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   display: inline-block;
-  height: $baseLineHeight;
   padding: 4px 6px;
   margin-bottom: 9px;
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
   color: $gray;
+  border: 1px solid #eee;
+  @include boxshadow(0 0 3px rgba(0, 0, 0, 0.4) inset);
   @include border-radius($inputBorderRadius);
 }
