@@ -1,5 +1,5 @@
 ###!
-Smallipop (10/12/2012)
+Smallipop (10/14/2012)
 Copyright (c) 2011-2012 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop =
-    version: '0.2.0'
+    version: '0.2.1'
     defaults:
       contentAnimationSpeed: 150
       cssAnimations:
@@ -96,7 +96,13 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     _showSmallipop: (e) ->
       sip = $.smallipop
-      e?.preventDefault() if sip.popup.data('shown') isnt $(@).data('id')
+      self = $ @
+      triggerData = self.data 'smallipop'
+
+      if sip.popup.data('shown') isnt triggerData.id \
+        and not triggerData.type in ['checkbox', 'radio']
+          e?.preventDefault()
+
       sip._triggerMouseover.call @
 
     onTouchDevice: ->
@@ -405,17 +411,19 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     sip._init() unless sip.popup
 
     return @.each ->
-      # Initialize each trigger, create id and bind events
       self = $ @
-      type = self[0].tagName.toLowerCase()
+      tagName = self[0].tagName.toLowerCase()
+      type = self.attr 'type'
 
       # Get content for the popup
       objHint = hint or self.attr('title') or self.find(".#{options.infoClass}").html()
+
+      # Initialize each trigger, create id and bind events
       if objHint and not self.hasClass 'sipInitialized'
         newId = sip.lastId++
         triggerOptions = $.extend true, {}, options
         triggerEvents = {}
-        isFormElement = triggerOptions.handleInputs and type in ['input', 'select', 'textarea']
+        isFormElement = triggerOptions.handleInputs and tagName in ['input', 'select', 'textarea']
 
         # Activate on blur events if used on inputs and disable hide on click
         if isFormElement
@@ -442,6 +450,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             id: newId
             hint: objHint
             options: triggerOptions
+            tagName: tagName
+            type: type
           .bind triggerEvents
 
         # Hide popup when links contained in the trigger are clicked
