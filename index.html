@@ -611,23 +611,21 @@ $('.smallipopFormElement').smallipop({
 
             <hr id="tours"/>
 
-            <h3>Tours</h3>
+            <h3>
+                <span class="smallipopTour" data-smallipop-tour="Demo tour" data-smallipop-index="1" title="This is the title of the example">Tours</span>
+            </h3>
 
             <div>
-                <a id="runTour">Run the tour</a>
+                <a id="runTour" class="sampleElement">Run the tour</a>
                 <br/>
                 <br/>
-                <div class="smallipopTour floatLeft sampleElement" title="First step of the amazing tour" data-smallipop-tour="Demo tour" data-smallipop-index="1">
-                    Something something dark side...
-                </div>
-                <br/>
-                <br/>
-                <div class="smallipopTour floatLeft sampleElement" title="Third step of the tour" data-smallipop-tour="Demo tour" data-smallipop-index="10">
-                    I want a deathstar!
-                </div>
-                <div class="smallipopTour floatRight sampleElement" title="Second step of the tour" data-smallipop-tour="Demo tour" data-smallipop-index="3">
-                    Ewoks are nice!
-                </div>
+                <img style="margin-left:200px;" src="images/marker-arrow-green.png" class="smallipopTour floatLeft" title="This is a random marker" data-smallipop-tour="Demo tour" data-smallipop-index="10"/>
+
+                <button class="smallipopTour floatRight" title="Second step of the tour" data-smallipop-tour="Demo tour" data-smallipop-index="3">
+                    This is the button of the example
+                </button>
+
+                <br class="clear"/>
             </div>
 
             <hr id="advanced"/>
