@@ -90,7 +90,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           .addClass(triggerOptions.cssAnimations.hide)
           .data('shown', '')
 
-        triggerOptions.onAfterHide?()
+        if triggerOptions.onAfterHide
+          window.setTimeout triggerOptions.onAfterHide, triggerOptions.popupAnimationSpeed
       else
         popup
           .stop(true)
@@ -447,7 +448,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .removeClass "smallipop sipInitialized smallipop#{data.id} #{data.options.theme}"
 
     _init: ->
-      popup = sip.popup = $ sip.templates.popup
+      popup = sip.popup = $(sip.templates.popup)
         .css('opacity', 0)
         .data
           xDistance: 0
