@@ -1,5 +1,5 @@
 ###!
-Smallipop (10/12/2012)
+Smallipop (10/14/2012)
 Copyright (c) 2011-2012 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop =
-    version: '0.2.0'
+    version: '0.2.1'
     defaults:
       contentAnimationSpeed: 150
       cssAnimations:
