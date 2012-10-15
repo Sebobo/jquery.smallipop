@@ -8,7 +8,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 ###
 
 (($) ->
-  sip = $.smallipop =
+  $.smallipop = sip =
     version: '0.3.0-alpha'
     defaults:
       contentAnimationSpeed: 150
@@ -39,16 +39,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       onBeforeHide: null
       onBeforeShow: null
       windowPadding: 30 # Imaginary padding in viewport
-    popup: null
-    lastId: 1 # Counter for new smallipop id's
-    tours: {}
-    lastScrollCheck: 0
     currentTour: null
+    lastId: 1 # Counter for new smallipop id's
+    lastScrollCheck: 0
     labels:
       prev: 'Prev'
       next: 'Next'
       close: 'Close'
       of: 'of'
+    namespace: 'smallipop'
+    popup: null
     templates:
       popup: '
         <div id="smallipop">
@@ -56,6 +56,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           <div class="sipArrowBorder"/>
           <div class="sipArrow"/>
         </div>'
+    tours: {}
 
     _hideSmallipop: (e) ->
       popup = sip.popup
@@ -123,7 +124,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       Modernizr?.touch
 
     killTimers: ->
-      popup = $.smallipop.popup
+      popup = sip.popup
       hideTimer = popup.data 'hideDelayTimer'
       showTimer = popup.data 'showDelayTimer'
       clearTimeout(hideTimer) if hideTimer
@@ -143,7 +144,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         return (classNames.match(/sip\w+/g) or []).join ' '
 
       # Add theme class
-      popup.addClass(options.theme)
+      popup.addClass options.theme
 
       # Prepare some properties
       win = $ window
@@ -225,7 +226,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           xDistance: xDistance
           yDistance: yDistance
 
-      cssTarget =
+
+      popup.css
         top: popupOffsetTop
         left: popupOffsetLeft
         display: 'block'
@@ -238,9 +240,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       # Start fade in animation
       if options.cssAnimations.enabled
-        popup
-          .addClass(options.cssAnimations.show)
-          .css(cssTarget)
+        popup.addClass options.cssAnimations.show
 
         if beingShown
           window.setTimeout ->
@@ -250,7 +250,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       else
         popup
           .stop(true)
-          .css(cssTarget)
           .animate animationTarget, options.popupAnimationSpeed, options.funcEase, ->
             if beingShown
               popup.data 'beingShown', false
@@ -284,8 +283,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       sip.popupContent.html content or triggerData.hint
 
       # Remove some css classes
-      if triggerData.id isnt shownId
-        popup.removeClass()
+      popup.removeClass() if triggerData.id isnt shownId
 
       sip.refreshPosition()
 
@@ -325,11 +323,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       sip.killTimers()
       popup.data (if id then 'triggerHovered' else 'hovered'), false
 
-      unless id
-        self = sip._getTrigger shownId
+      console.log popupData
 
-      options = self.data('smallipop').options
-      options.onBeforeHide? self
+      if id
+        self.data('smallipop').options.onBeforeHide? self
 
       # Hide tip after a while
       unless popupData.hovered or popupData.triggerHovered
@@ -348,7 +345,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     _onWindowScroll: (e) ->
       now = new Date().getTime()
-      return if now - sip.lastScrollCheck < 200
+      return if now - sip.lastScrollCheck < 300
       sip.lastScrollCheck = now
       $.smallipop.refreshPosition()
 
@@ -379,12 +376,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         a.index - b.index
 
       currentTourItems = sip.tours[tourTitle]
-      for i in [0..currentTourItems.length - 1]
-        if currentTourItems[i].id is triggerData.id
-          sip._tourShow tourTitle, i
+      for i in [0..currentTourItems.length - 1] when currentTourItems[i].id is triggerData.id
+        return sip._tourShow tourTitle, i
 
     _tourShow: (title, index) ->
       currentTourItems = sip.tours[title]
+      return unless currentTourItems
 
       trigger = currentTourItems[index].trigger
       triggerData = trigger.data 'smallipop'
@@ -402,7 +399,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           #{prevButton}
           #{nextButton}
           #{closeButton}
-          <br style=\"clear:both\"/>
+          <br style=\"clear:both;\"/>
         </div>"
 
       sip.killTimers()
@@ -417,9 +414,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       # Get currently shown tour item
       shownId = sip.popup.data('shown') or currentTourItems[0].id
 
-      for i in [0..currentTourItems.length - 1]
-        if currentTourItems[i].id is shownId and i isnt currentTourItems.length - 1
-          return sip._tourShow sip.currentTour, i + 1
+      for i in [0..currentTourItems.length - 2] when currentTourItems[i].id is shownId
+        return sip._tourShow sip.currentTour, i + 1
 
     _tourPrev: (e) ->
       e?.preventDefault()
@@ -429,9 +425,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       # Get currently shown tour item
       shownId = sip.popup.data('shown') or currentTourItems[0].id
 
-      for i in [0..currentTourItems.length - 1]
-        if currentTourItems[i].id is shownId and i isnt 0
-          return sip._tourShow sip.currentTour, i - 1
+      for i in [1..currentTourItems.length - 1] when currentTourItems[i].id is shownId
+        return sip._tourShow sip.currentTour, i - 1
 
     _tourClose: (e) ->
       e?.preventDefault()
@@ -440,7 +435,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     _destroy: (instances) ->
       instances.each ->
         self = $ @
-        data = self.data('smallipop')
+        data = self.data 'smallipop'
         if data
           self
             .unbind('.smallipop')
@@ -491,10 +486,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     options = $.extend {}, sip.defaults, options
 
-    # Fix for some option deprecation issues
-    options.popupAnimationSpeed = options.moveSpeed if options.moveSpeed?
-    options.triggerAnimationSpeed = options.hideSpeed if options.hideSpeed?
-
     # Check for enabled css animations and disable if modernizr is active says no
     if Modernizr?.cssanimations is false
       options.cssAnimations.enabled = false
@@ -544,6 +535,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             id: newId
             trigger: self
 
+          # Disable all trigger events
           triggerEvents = {}
           triggerOptions.hideOnTriggerClick = false
           triggerOptions.hideOnPopupClick = false
@@ -565,4 +557,3 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         unless triggerOptions.hideOnTriggerClick
           self.delegate 'a', 'click.smallipop', sip._hideSmallipop
 )(jQuery)
-
