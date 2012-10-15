@@ -25,9 +25,9 @@
 #smallipop .smallipop-tour-next, #smallipop .smallipop-tour-close { float: right; }
 
 /* default theme */
-#smallipop.default { text-shadow: 0 -1px 1px #0f161e; }
-#smallipop.default .sipContent { border-top: 1px solid #586d82; }
+#smallipop.default { text-shadow: 0 -1px 1px #0f161e; -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); border-radius: 12px; -o-border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); background-image: -moz-linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); background-image: -ms-linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); background-image: -o-linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); background-image: linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); /* Fallback for opera */ background-image: -webkit-radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); background-image: -moz-radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); background-image: -ms-radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); background-image: -o-radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); background-image: radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); }
 #smallipop.default a { text-shadow: 0 -1px 1px #0f161e; }
+#smallipop.default .sipContent { border-top: 1px solid #586d82; border-radius: 12px; -o-border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; }
 #smallipop.default .sipArrow { border-color: #1a2634 transparent transparent transparent; }
 #smallipop.default .sipArrowBorder { border-color: #0f161e transparent transparent transparent; }
 #smallipop.default.sipAlignBottom .sipArrow { border-color: transparent transparent #1a2634 transparent; }
@@ -37,36 +37,21 @@
 #smallipop.default.sipPositionedRight .sipArrow { border-color: transparent #1a2634 transparent transparent; }
 #smallipop.default.sipPositionedRight .sipArrowBorder { border-color: transparent #0f161e transparent transparent; }
 
-.cssgradients.rgba #smallipop.default { background-color: transparent; background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); background-image: -moz-linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); background-image: -ms-linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); background-image: -o-linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); background-image: linear-gradient(top, rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); /* Fallback for opera */ background-image: -webkit-radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); background-image: -moz-radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); background-image: -ms-radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); background-image: -o-radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); background-image: radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px); }
-
-.boxshadow.rgba #smallipop.default { -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); }
-
-.borderradius #smallipop.default { border-radius: 12px; -o-border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; }
-.borderradius #smallipop.default .sipContent { border-radius: 12px; -o-border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; }
+.cssgradients.rgba #smallipop.default { background-color: transparent; }
 
 /* blue theme */
-#smallipop.blue { background: transparent; border: 10px solid #0064b4; color: #111; font-size: 11px; }
+#smallipop.blue { background: transparent; color: #111; font-size: 11px; border: 10px solid #0064b4; border-color: rgba(0, 100, 180, 0.9); -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); border-radius: 7px; -o-border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px; }
 #smallipop.blue a { color: #2276aa; }
 #smallipop.blue .sipContent { border: 0; background: #fefefe; }
-#smallipop.blue .sipArrow { bottom: -30px; border-color: #0064b4 transparent transparent transparent; }
-#smallipop.blue.sipAlignBottom .sipArrow { top: -30px; border-color: transparent transparent #0064b4 transparent; }
-#smallipop.blue.sipPositionedLeft .sipArrow { right: -26px; border-color: transparent transparent transparent #0064b4; }
-#smallipop.blue.sipPositionedRight .sipArrow { left: -26px; border-color: transparent #0064b4 transparent transparent; }
-
-.rgba #smallipop.blue { border-color: rgba(0, 100, 180, 0.9); }
-.rgba #smallipop.blue .sipArrow { border-color: rgba(0, 100, 180, 0.9) transparent transparent transparent; }
-.rgba #smallipop.blue.sipAlignBottom .sipArrow { border-color: transparent transparent rgba(0, 100, 180, 0.9) transparent; }
-.rgba #smallipop.blue.sipPositionedLeft .sipArrow { border-color: transparent transparent transparent rgba(0, 100, 180, 0.9); }
-.rgba #smallipop.blue.sipPositionedRight .sipArrow { border-color: transparent rgba(0, 100, 180, 0.9) transparent transparent; }
-
-.boxshadow.rgba #smallipop.blue { -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); }
-
-.borderradius #smallipop.blue { border-radius: 7px; -o-border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px; }
+#smallipop.blue .sipArrow { bottom: -30px; border-color: #0064b4 transparent transparent transparent; border-color: rgba(0, 100, 180, 0.9) transparent transparent transparent; }
+#smallipop.blue.sipAlignBottom .sipArrow { top: -30px; border-color: transparent transparent #0064b4 transparent; border-color: transparent transparent rgba(0, 100, 180, 0.9) transparent; }
+#smallipop.blue.sipPositionedLeft .sipArrow { right: -26px; border-color: transparent transparent transparent #0064b4; border-color: transparent transparent transparent rgba(0, 100, 180, 0.9); }
+#smallipop.blue.sipPositionedRight .sipArrow { left: -26px; border-color: transparent #0064b4 transparent transparent; border-color: transparent rgba(0, 100, 180, 0.9) transparent transparent; }
 
 /* black theme */
-#smallipop.black { background-color: #222; border-color: #111; text-shadow: 0 -1px 1px #111111; color: #f5f5f5; }
+#smallipop.black { background-color: #222; border-color: #111; text-shadow: 0 -1px 1px #111111; color: #f5f5f5; -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, #333333, #222222); background-image: -moz-linear-gradient(top, #333333, #222222); background-image: -ms-linear-gradient(top, #333333, #222222); background-image: -o-linear-gradient(top, #333333, #222222); background-image: linear-gradient(top, #333333, #222222); border-radius: 5px; -o-border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 #smallipop.black a { color: #eef8ff; text-shadow: 0 -1px 1px #111111; }
-#smallipop.black .sipContent { border-top: 1px solid #666; }
+#smallipop.black .sipContent { border-top: 1px solid #666; border-radius: 5px; -o-border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 #smallipop.black .sipArrow { border-color: #222 transparent transparent transparent; }
 #smallipop.black .sipArrowBorder { border-color: #111 transparent transparent transparent; }
 #smallipop.black.sipAlignBottom .sipArrow { border-color: transparent transparent #222 transparent; }
@@ -76,17 +61,12 @@
 #smallipop.black.sipPositionedRight .sipArrow { border-color: transparent #222 transparent transparent; }
 #smallipop.black.sipPositionedRight .sipArrowBorder { border-color: transparent #111 transparent transparent; }
 
-.cssgradients #smallipop.black { background-color: transparent; background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, #333333, #222222); background-image: -moz-linear-gradient(top, #333333, #222222); background-image: -ms-linear-gradient(top, #333333, #222222); background-image: -o-linear-gradient(top, #333333, #222222); background-image: linear-gradient(top, #333333, #222222); }
-
-.boxshadow.rgba #smallipop.black { -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); }
-
-.borderradius #smallipop.black { border-radius: 5px; -o-border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
-.borderradius #smallipop.black .sipContent { border-radius: 5px; -o-border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.cssgradients #smallipop.black { background-color: transparent; }
 
 /* orange theme */
-#smallipop.orange { background-color: #f9aa18; border-color: #e17500; text-shadow: 0 1px 1px #fff24d; color: #714900; }
+#smallipop.orange { background-color: #f9aa18; border-color: #e17500; text-shadow: 0 1px 1px #fff24d; color: #714900; background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, #fff24d, #f9aa18); background-image: -moz-linear-gradient(top, #fff24d, #f9aa18); background-image: -ms-linear-gradient(top, #fff24d, #f9aa18); background-image: -o-linear-gradient(top, #fff24d, #f9aa18); background-image: linear-gradient(top, #fff24d, #f9aa18); -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); border-radius: 10px; -o-border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 #smallipop.orange a { color: #145d95; text-shadow: 0 1px 1px #fff24d; }
-#smallipop.orange .sipContent { border-top: 1px solid #fffabc; }
+#smallipop.orange .sipContent { border-top: 1px solid #fffabc; border-radius: 10px; -o-border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 #smallipop.orange .sipArrow { border-color: #f9aa18 transparent transparent transparent; }
 #smallipop.orange .sipArrowBorder { border-color: #e17500 transparent transparent transparent; }
 #smallipop.orange.sipAlignBottom .sipArrow { border-color: transparent transparent #f9aa18 transparent; }
@@ -96,16 +76,9 @@
 #smallipop.orange.sipPositionedRight .sipArrow { border-color: transparent #f9c718 transparent transparent; }
 #smallipop.orange.sipPositionedRight .sipArrowBorder { border-color: transparent #e17500 transparent transparent; }
 
-.cssgradients #smallipop.orange { background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, #fff24d, #f9aa18); background-image: -moz-linear-gradient(top, #fff24d, #f9aa18); background-image: -ms-linear-gradient(top, #fff24d, #f9aa18); background-image: -o-linear-gradient(top, #fff24d, #f9aa18); background-image: linear-gradient(top, #fff24d, #f9aa18); }
-
-.boxshadow.rgba #smallipop.orange { -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); }
-
-.borderradius #smallipop.orange { border-radius: 10px; -o-border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
-.borderradius #smallipop.orange .sipContent { border-radius: 10px; -o-border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
-
 /* white theme */
-#smallipop.white { background-color: #fafafa; border-color: #ccc; text-shadow: 0 1px 1px #eee; color: #444; width: 200px; max-width: 200px; }
-#smallipop.white .sipContent { text-align: center; }
+#smallipop.white { background-color: #fafafa; border-color: #ccc; text-shadow: 0 1px 1px #eee; color: #444; width: 200px; max-width: 200px; -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); border-radius: 12px; -o-border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; }
+#smallipop.white .sipContent { text-align: center; border-radius: 12px; -o-border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; }
 #smallipop.white .sipArrow { border-color: #fafafa transparent transparent transparent; }
 #smallipop.white .sipArrowBorder { border-color: #ccc transparent transparent transparent; }
 #smallipop.white.sipAlignBottom .sipArrow { border-color: transparent transparent #fafafa transparent; }
@@ -115,19 +88,14 @@
 #smallipop.white.sipPositionedRight .sipArrow { border-color: transparent #fafafa transparent transparent; }
 #smallipop.white.sipPositionedRight .sipArrowBorder { border-color: transparent #ccc transparent transparent; }
 
-.boxshadow.rgba #smallipop.white { -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); }
-
-.borderradius #smallipop.white { border-radius: 12px; -o-border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; }
-.borderradius #smallipop.white .sipContent { border-radius: 12px; -o-border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; }
-
 /* extension themes. keep at the bottom */
 /* white theme extended, requires rgba support */
-.rgba #smallipop.whiteTransparent { background-color: rgba(255, 255, 255, 0.8); }
-.rgba #smallipop.whiteTransparent .sipArrow { bottom: -21px; border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent; }
-.rgba #smallipop.whiteTransparent .sipArrowBorder { border-color: transparent; }
-.rgba #smallipop.whiteTransparent.sipAlignBottom .sipArrow { top: -21px; border-color: transparent transparent rgba(255, 255, 255, 0.8) transparent; }
-.rgba #smallipop.whiteTransparent.sipPositionedLeft .sipArrow { border-color: transparent transparent transparent rgba(255, 255, 255, 0.8); }
-.rgba #smallipop.whiteTransparent.sipPositionedRight .sipArrow { border-color: transparent rgba(255, 255, 255, 0.8) transparent transparent; }
+#smallipop.whiteTransparent { background-color: rgba(255, 255, 255, 0.8); }
+#smallipop.whiteTransparent .sipArrow { bottom: -21px; border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent; }
+#smallipop.whiteTransparent .sipArrowBorder { border-color: transparent; }
+#smallipop.whiteTransparent.sipAlignBottom .sipArrow { top: -21px; border-color: transparent transparent rgba(255, 255, 255, 0.8) transparent; }
+#smallipop.whiteTransparent.sipPositionedLeft .sipArrow { border-color: transparent transparent transparent rgba(255, 255, 255, 0.8); }
+#smallipop.whiteTransparent.sipPositionedRight .sipArrow { border-color: transparent rgba(255, 255, 255, 0.8) transparent transparent; }
 
 /* fat shadow extension theme */
-.boxshadow.rgba #smallipop.fatShadow { -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8); -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8); }
+#smallipop.fatShadow { -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8); -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8); }
