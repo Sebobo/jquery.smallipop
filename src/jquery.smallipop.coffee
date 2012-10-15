@@ -1,5 +1,5 @@
 ###!
-Smallipop (10/14/2012)
+Smallipop (10/15/2012)
 Copyright (c) 2011-2012 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -8,8 +8,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 ###
 
 (($) ->
-  $.smallipop =
-    version: '0.2.1'
+  sip = $.smallipop =
+    version: '0.3.0-alpha'
     defaults:
       contentAnimationSpeed: 150
       cssAnimations:
@@ -41,9 +41,22 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       windowPadding: 30 # Imaginary padding in viewport
     popup: null
     lastId: 1 # Counter for new smallipop id's
+    tours: {}
+    currentTour: null
+    labels:
+      prev: 'Prev'
+      next: 'Next'
+      close: 'Close'
+      of: 'of'
+    templates:
+      popup: '
+        <div id="smallipop">
+          <div class="sipContent"/>
+          <div class="sipArrowBorder"/>
+          <div class="sipArrow"/>
+        </div>'
 
     _hideSmallipop: (e) ->
-      sip = $.smallipop
       popup = sip.popup
       shownId = popup.data 'shown'
       target = if e?.target then $(e.target) else null
@@ -95,7 +108,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               triggerOptions.onAfterHide?()
 
     _showSmallipop: (e) ->
-      sip = $.smallipop
       self = $ @
       triggerData = self.data 'smallipop'
 
@@ -116,7 +128,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       clearTimeout(showTimer) if showTimer
 
     refreshPosition: () ->
-      sip = $.smallipop
       popup = sip.popup
       shownId = popup.data 'shown'
 
@@ -228,8 +239,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           .css(cssTarget)
 
         if beingShown
-          popup.data 'beingShown', false
-          options.onAfterShow? trigger
+          window.setTimeout ->
+              popup.data 'beingShown', false
+              options.onAfterShow? trigger
+            , options.popupAnimationSpeed
       else
         popup
           .stop(true)
@@ -242,8 +255,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     _getTrigger: (id) ->
       $ ".smallipop#{id}"
 
-    _showPopup: (trigger) ->
-      sip = $.smallipop
+    _showPopup: (trigger, content='') ->
       popup = sip.popup
 
       return unless popup.data 'triggerHovered'
@@ -265,13 +277,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       popup.data
         beingShown: true
         shown: triggerData.id
-      sip.popupContent.html triggerData.hint
+      sip.popupContent.html content or triggerData.hint
 
       sip.refreshPosition()
 
     _triggerMouseover: ->
       self = $ @
-      sip = $.smallipop
       popup = sip.popup
 
       id = self.data('smallipop')?.id
@@ -299,7 +310,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       self = $ @
       id = self.data('smallipop')?.id
 
-      sip = $.smallipop
       popup = sip.popup
       popupData = popup.data()
       shownId = popupData.shown
@@ -321,16 +331,14 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       $.smallipop.refreshPosition()
 
     _onWindowClick: (e) ->
-      sip = $.smallipop
       popup = sip.popup
       target = $ e.target
 
-      # Hide smallipop unless popup or a trigger is clicked
-      unless target.is(popup) or target.closest('.sipInitialized').length
+      # Hide smallipop unless popup, a trigger is clicked or popup is being shown
+      unless target.is(popup) or target.closest('.sipInitialized').length or popup.data('beingShown')
         sip._hideSmallipop e
 
     setContent: (content) ->
-      sip = $.smallipop
       shownId = sip.popup.data 'shown'
       trigger = sip._getTrigger shownId
       options = trigger.data('smallipop').options
@@ -343,6 +351,78 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .fadeTo options.contentAnimationSpeed, 1
           sip.refreshPosition()
 
+    _runTour: (trigger) ->
+      triggerData = trigger.data 'smallipop'
+      tourTitle = triggerData?.tourTitle
+
+      return unless tourTitle and sip.tours[tourTitle]
+
+      sip.currentTour = tourTitle
+
+      # Sort tour elements before running by their index
+      sip.tours[tourTitle].sort (a, b) ->
+        a.index - b.index
+
+      currentTourItems = sip.tours[tourTitle]
+      for i in [0..currentTourItems.length - 1]
+        if currentTourItems[i].id is triggerData.id
+          sip._tourShow tourTitle, i
+
+    _tourShow: (title, index) ->
+      currentTourItems = sip.tours[title]
+
+      trigger = currentTourItems[index].trigger
+      triggerData = trigger.data 'smallipop'
+
+      prevButton = if index > 0 then "<a href=\"#\" class=\"smallipop-tour-prev\">#{sip.labels.prev}</a>" else ''
+      nextButton = if index < currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-next\">#{sip.labels.next}</a>" else ''
+      closeButton = if index is currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-close\">#{sip.labels.close}</a>" else ''
+
+      progress = "<div class=\"smallipop-tour-progress\">#{index + 1} #{sip.labels.of} #{currentTourItems.length}</div>"
+
+      content = "
+        <div class=\"smallipop-tour-header\">#{triggerData.tourTitle}</div>
+        <div class=\"smallipop-tour-content\">#{triggerData.hint}</div>
+        <div class=\"smallipop-tour-footer\">
+          #{progress}
+          #{prevButton}
+          #{nextButton}
+          #{closeButton}
+          <br style=\"clear:both\"/>
+        </div>"
+
+      sip.killTimers()
+      sip.popup.data 'triggerHovered', true
+      sip._showPopup trigger, content
+
+    _tourNext: (e) ->
+      e?.preventDefault()
+      currentTourItems = sip.tours[sip.currentTour]
+      return unless currentTourItems
+
+      # Get currently shown tour item
+      shownId = sip.popup.data('shown') or currentTourItems[0].id
+
+      for i in [0..currentTourItems.length - 1]
+        if currentTourItems[i].id is shownId and i isnt currentTourItems.length - 1
+          return sip._tourShow sip.currentTour, i + 1
+
+    _tourPrev: (e) ->
+      e?.preventDefault()
+      currentTourItems = sip.tours[sip.currentTour]
+      return unless currentTourItems
+
+      # Get currently shown tour item
+      shownId = sip.popup.data('shown') or currentTourItems[0].id
+
+      for i in [0..currentTourItems.length - 1]
+        if currentTourItems[i].id is shownId and i isnt 0
+          return sip._tourShow sip.currentTour, i - 1
+
+    _tourClose: (e) ->
+      e?.preventDefault()
+      sip._hideSmallipop()
+
     _destroy: (instances) ->
       instances.each ->
         self = $ @
@@ -354,14 +434,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .removeClass "smallipop sipInitialized smallipop#{data.id} #{data.options.theme}"
 
     _init: ->
-      sip = $.smallipop
-      popup = sip.popup = $('
-          <div id="smallipop">
-            <div class="sipContent"/>
-            <div class="sipArrowBorder"/>
-            <div class="sipArrow"/>
-          </div>
-        ')
+      popup = sip.popup = $(sip.templates.popup)
         .css('opacity', 0)
         .data
           xDistance: 0
@@ -375,7 +448,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       $('body').append popup
 
       # Hide popup when clicking a contained link
-      popup.delegate 'a', 'click.smallipop', sip._hideSmallipop
+      popup
+        .delegate('a', 'click.smallipop', sip._hideSmallipop)
+        .delegate('.smallipop-tour-prev', 'click.smallipop', sip._tourPrev)
+        .delegate('.smallipop-tour-next', 'click.smallipop', sip._tourNext)
+        .delegate('.smallipop-tour-close', 'click.smallipop', sip._tourClose)
 
       $(document).bind 'click.smallipop touchend.smallipop', sip._onWindowClick
 
@@ -387,14 +464,13 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       if ((t/=d/2) < 1) then c/2*t*t + b else -c/2 * ((--t)*(t-2) - 1) + b
 
   $.fn.smallipop = (options={}, hint='') ->
-    sip = $.smallipop
-
     # Handle direct method calls
     if typeof(options) is 'string'
       switch options.toLowerCase()
         when 'show' then sip._showSmallipop.call @first().get(0)
         when 'hide' then sip._hideSmallipop()
         when 'destroy' then sip._destroy @
+        when 'tour' then sip._runTour @first()
       return @
 
     options = $.extend {}, sip.defaults, options
@@ -414,6 +490,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       self = $ @
       tagName = self[0].tagName.toLowerCase()
       type = self.attr 'type'
+      triggerData = self.data()
 
       # Get content for the popup
       objHint = hint or self.attr('title') or self.find(".#{options.infoClass}").html()
@@ -423,6 +500,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         newId = sip.lastId++
         triggerOptions = $.extend true, {}, options
         triggerEvents = {}
+        tourTitle = triggerData.smallipopTour
         isFormElement = triggerOptions.handleInputs and tagName in ['input', 'select', 'textarea']
 
         # Activate on blur events if used on inputs and disable hide on click
@@ -442,6 +520,18 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           triggerEvents['click.smallipop'] = sip._hideSmallipop
           triggerEvents['mouseover.smallipop'] = sip._triggerMouseover
 
+        # Add to tours if tourTitle is set
+        if tourTitle
+          sip.tours[tourTitle] = [] unless sip.tours[tourTitle]
+          sip.tours[tourTitle].push
+            index: triggerData.smallipopIndex or 0
+            id: newId
+            trigger: self
+
+          triggerEvents = {}
+          triggerOptions.hideOnTriggerClick = false
+          triggerOptions.hideOnPopupClick = false
+
         # Store parameters for this trigger
         self
           .addClass("sipInitialized smallipop#{newId}")
@@ -452,6 +542,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             options: triggerOptions
             tagName: tagName
             type: type
+            tourTitle: tourTitle
           .bind triggerEvents
 
         # Hide popup when links contained in the trigger are clicked

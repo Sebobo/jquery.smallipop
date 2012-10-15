@@ -2,6 +2,7 @@
 .smallipopHint { display: none; }
 
 #smallipop { position: absolute; display: none; top: 0; left: 0; background-color: #314b64; border: 1px solid #0f161e; color: #d2dfe7; z-index: 9999; max-width: 400px; }
+#smallipop a { color: #98cbea; }
 #smallipop .sipContent { padding: 10px; }
 #smallipop .sipArrow, #smallipop .sipArrowBorder { position: absolute; left: 50%; height: 0; width: 0; }
 #smallipop .sipArrow { bottom: -20px; margin-left: -10px; border: 10px solid transparent; }
@@ -16,7 +17,13 @@
 #smallipop.sipPositionedLeft .sipArrowBorder { right: -20px; border-width: 10px; margin: -10px 0 0; }
 #smallipop.sipPositionedRight .sipArrow, #smallipop.sipPositionedRight .sipArrowBorder { left: -16px; right: auto; top: 50%; bottom: auto; border-width: 8px; margin: -8px 0 0; }
 #smallipop.sipPositionedRight .sipArrowBorder { left: -20px; border-width: 10px; margin: -10px 0 0; }
-#smallipop a { color: #98cbea; }
+#smallipop .smallipop-tour-header { font-weight: bold; }
+#smallipop .smallipop-tour-content { padding: 5px 0; min-width: 150px; }
+#smallipop .smallipop-tour-footer { padding-top: 5px; position: relative; }
+#smallipop .smallipop-tour-progress { color: #888; text-align: center; position: absolute; left: 50%; width: 80px; margin-left: -40px; top: 8px; }
+#smallipop .smallipop-tour-prev, #smallipop .smallipop-tour-next, #smallipop .smallipop-tour-close { color: #ccc; display: block; padding: 2px 4px; float: left; border: 1px solid #555; background: #333; border-radius: 3px; -o-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+#smallipop .smallipop-tour-prev:hover, #smallipop .smallipop-tour-next:hover, #smallipop .smallipop-tour-close:hover { color: #fff; background: #444; text-decoration: none; }
+#smallipop .smallipop-tour-next, #smallipop .smallipop-tour-close { float: right; }
 
 /* default theme */
 #smallipop.default { text-shadow: 0 -1px 1px #0f161e; }

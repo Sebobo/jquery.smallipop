@@ -15,6 +15,8 @@
   z-index:9999;
   max-width:400px;
 
+  a { color:#98cbea; }
+
   .sipContent { padding:10px; }
 
   .sipArrow, .sipArrowBorder {
@@ -73,7 +75,47 @@
     }
   }
 
-  a { color:#98cbea; }
+  .smallipop-tour-header {
+    font-weight: bold;
+  }
+  .smallipop-tour-content {
+    padding: 5px 0;
+    min-width: 150px;
+  }
+  .smallipop-tour-footer {
+    padding-top: 5px;
+    position: relative;
+  }
+  .smallipop-tour-progress {
+    color: #888;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    width: 80px;
+    margin-left: -40px;
+    top: 8px;
+  }
+  .smallipop-tour-prev,
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    color: #ccc;
+    display: block;
+    padding: 2px 4px;
+    float: left;
+    border: 1px solid #555;
+    background: #333;
+    @include border-radius(3px);
+
+    &:hover {
+      color: #fff;
+      background: #444;
+      text-decoration: none;
+    }
+  }
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    float: right;
+  }
 }
 
 /* default theme */
