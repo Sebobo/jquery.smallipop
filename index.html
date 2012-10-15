@@ -67,7 +67,7 @@
             <br/>
 
             <p>
-                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.2.0" title="Download the most versatile tooltip plugin for jQuery" class="btn success smallipopWhite">
+                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.2.1" title="Download the most versatile tooltip plugin for jQuery" class="btn success smallipopWhite">
                     Download smallipop now
                 </a>
                 &nbsp;
@@ -585,17 +585,27 @@ $('.smallipopBottom').smallipop({
                 <br/>
                 <label>Checkboxes</label>
                 <input type="checkbox" class="smallipopFormElement" title="Check it!"/>
+                <br/><br/>
+                <label class="inline">Yes</label>
+                <input type="radio" name="radioTest" class="smallipopFormElement" title="Yes I want it!"/>
+                <br/>
+                <label class="inline">No</label>
+                <input type="radio" name="radioTest" class="smallipopFormElement" title="Never!"/>
+                <br/>
+                <label class="inline">Maybe</label>
+                <input type="radio" name="radioTest" class="smallipopFormElement" title="Ok maybe..."/>
                 <br/>
                 <br/>
 
                 <p>
-                    Use the following config to achieve this effect.
+                    Use the following config to achieve this:
                 </p>
                 <pre>
 $('.smallipopFormElement').smallipop({
     horizontal: true,
     theme: 'black',
-    popupOffset: 0
+    popupOffset: 0,
+    triggerOnClick: true
 });</pre>
             </div>
 
@@ -1062,7 +1072,8 @@ $('#tipCSSAnimated').smallipop({
                 $('.smallipopFormElement').smallipop({
                     horizontal: true,
                     theme: 'black',
-                    popupOffset: 0
+                    popupOffset: 0,
+                    triggerOnClick: true
                 });
 
                 $('#tipcustomhint').smallipop({}, "I'm the real hint!");

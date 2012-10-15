@@ -143,6 +143,7 @@ label, input, button, select, textarea { font: 13px normal 18px; }
 input, button, select, textarea { font-family: arial; }
 
 label { display: block; }
+label.inline { display: inline; }
 
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input { display: inline-block; padding: 4px 6px; margin-bottom: 9px; font-size: 13px; line-height: 18px; color: gray; border: 1px solid #eee; -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4) inset; -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4) inset; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4) inset; border-radius: 3px; -o-border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 

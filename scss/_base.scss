@@ -428,6 +428,10 @@ textarea {
 // Identify controls by their labels
 label {
   display: block;
+
+  &.inline {
+    display: inline;
+  }
 }
 // Form controls
 // -------------------------
