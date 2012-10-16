@@ -323,8 +323,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       sip.killTimers()
       popup.data (if id then 'triggerHovered' else 'hovered'), false
 
-      console.log popupData
-
       if id
         self.data('smallipop').options.onBeforeHide? self
 
@@ -405,6 +403,19 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       sip.killTimers()
       sip.popup.data 'triggerHovered', true
       sip._showPopup trigger, content
+
+      # Scroll to trigger if it isn't visible
+      sip._scrollUntilVisible trigger
+
+    _scrollUntilVisible: (target) ->
+      targetPosition = target.offset().top
+      offset = targetPosition - $(document).scrollTop()
+      windowHeight = $(window).height()
+
+      if offset < windowHeight * .3 or offset > windowHeight * .7
+        $('html, body').animate
+            scrollTop: targetPosition - windowHeight / 2
+          , 800, 'swing'
 
     _tourNext: (e) ->
       e?.preventDefault()
