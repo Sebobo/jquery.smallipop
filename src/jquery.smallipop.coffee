@@ -293,6 +293,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       self = popup = $ @
       isTrigger = self.hasClass 'sipInitialized'
       id = null
+      sip._killTimers popup
 
       if isTrigger
         triggerData = self.data 'smallipop'
@@ -300,26 +301,18 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         id = triggerData.id
         triggerData.options.onBeforeShow? self
 
-      shownId = popup.data 'shown'
-
-      sip._killTimers popup
       popup.data (if id then 'triggerHovered' else 'hovered'), true
 
+      shownId = popup.data 'shown'
       unless id
         self = sip._getTrigger shownId
         id = shownId
 
-      popupData = popup.data()
-      console.log 'Mouseover ' + id
-      console.log "Hovering: popup: #{popupData.hovered} trigger: #{popupData.triggerHovered}"
-
       # We should have a valid id and an active trigger by now
-      return unless self.length
-
-      if shownId isnt id
+      if self.length and (shownId isnt id or popup.css('opacity') is 0)
         popup.data 'showDelayTimer', setTimeout ->
             sip._showPopup self
-          , self.data('smallipop').popupDelay
+          , self.data('smallipop').options.popupDelay
 
     _triggerMouseout: ->
       self = popup = $ @
@@ -332,18 +325,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         popup = triggerData.popupInstance
         id = triggerData.id
 
-      shownId = popup.data 'shown'
-
-      sip._killTimers popup
       popup.data (if id then 'triggerHovered' else 'hovered'), false
 
       # Hide tip after a while
       popupData = popup.data()
-
-      console.log 'Mouseout ' + id
-      console.log "Hovering: popup: #{popupData.hovered} trigger: #{popupData.triggerHovered}"
-
       unless popupData.hovered or popupData.triggerHovered
+        sip._killTimers popup
         triggerData?.options.onBeforeHide? self
         popup.data 'hideDelayTimer', setTimeout ->
             sip._hideSmallipop popup
