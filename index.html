@@ -512,7 +512,7 @@ $('#tipkiller').click(function(e) {
 
                 <pre>
 $('.smallipopHorizontal').smallipop({
-    horizontal: true,
+    preferredPosition: right,
     theme: 'black',
     popupOffset: 10,
     invertAnimation: true
@@ -603,7 +603,7 @@ $('.smallipopBottom').smallipop({
                 </p>
                 <pre>
 $('.smallipopFormElement').smallipop({
-    horizontal: true,
+    preferredPosition: right,
     theme: 'black',
     popupOffset: 0,
     triggerOnClick: true
@@ -613,16 +613,16 @@ $('.smallipopFormElement').smallipop({
             <hr id="tours"/>
 
             <h3>
-                <span class="smallipopTour" data-smallipop-tour="Demo tour" data-smallipop-index="1" title="This is the title of the example">Tours</span>
+                <span class="smallipopTour" data-smallipop-tour-index="1" title="This is the title of the example">Tours</span>
             </h3>
 
             <div>
                 <a id="runTour" class="sampleElement">Run the tour</a>
                 <br/>
                 <br/>
-                <img style="margin-left:200px;" src="images/marker-arrow-green.png" class="smallipopTour floatLeft" title="This is a random marker" data-smallipop-tour="Demo tour" data-smallipop-index="10"/>
+                <img style="margin-left:200px;" src="images/marker-arrow-green.png" class="smallipopTour floatLeft" title="This is a random marker" data-smallipop-tour-index="10"/>
 
-                <button class="smallipopTour floatRight" title="Second step of the tour" data-smallipop-tour="Demo tour" data-smallipop-index="3">
+                <button class="smallipopTour floatRight" title="Second step of the tour" data-smallipop-tour-index="3">
                     This is the button of the example
                 </button>
 
@@ -820,11 +820,6 @@ $('#tipCSSAnimated').smallipop({
                     <td>Hide the trigger when the popup is shown.</td>
                 </tr>
                 <tr>
-                    <td>horizontal</td>
-                    <td>false</td>
-                    <td>The popup will be positioned left or right of the trigger.</td>
-                </tr>
-                <tr>
                     <td>infoClass</td>
                     <td>smallipopHint</td>
                     <td>Class in an element which contains markup content for the popup.</td>
@@ -885,7 +880,7 @@ $('#tipCSSAnimated').smallipop({
                 <tr>
                     <td>preferredPosition</td>
                     <td>top</td>
-                    <td>Use "top" or "bottom" for the default layout and "left" or "right" when horizontal mode is active.</td>
+                    <td>Use "top" or "bottom" for the default layout and "left" or "right" when the popup should stay horizontal.</td>
                 </tr>
                 <tr>
                     <td>theme</td>
@@ -1083,14 +1078,14 @@ $('#tipCSSAnimated').smallipop({
                 });
 
                 $('.smallipopHorizontal').smallipop({
-                    horizontal: true,
+                    preferredPosition: 'right',
                     theme: 'black',
                     popupOffset: 10,
                     invertAnimation: true
                 });
 
                 $('.smallipopFormElement').smallipop({
-                    horizontal: true,
+                    preferredPosition: 'right',
                     theme: 'black',
                     popupOffset: 0,
                     triggerOnClick: true
@@ -1110,10 +1105,10 @@ $('#tipCSSAnimated').smallipop({
 
                 $('#tipChangeContent').smallipop({
                     onAfterShow: function(trigger) {
-                        $.smallipop.setContent("I'm the new content and I have replaced the old boring content!");
+                        $.smallipop.setContent(trigger, "I'm the new content and I have replaced the old boring content!");
                     },
                     onBeforeHide: function(trigger) {
-                        $.smallipop.setContent("Bye bye");
+                        $.smallipop.setContent(trigger, "Bye bye");
                     }
                 });
 

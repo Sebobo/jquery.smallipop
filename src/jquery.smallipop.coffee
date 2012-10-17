@@ -21,7 +21,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       hideTrigger: false
       hideOnPopupClick: true
       hideOnTriggerClick: true
-      horizontal: false
       infoClass: 'smallipopHint'
       invertAnimation: false
       popupOffset: 31
@@ -41,17 +40,17 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       windowPadding: 30 # Imaginary padding in viewport
     currentTour: null
     lastId: 1 # Counter for new smallipop id's
+    nextInstanceId: 1 # Counter for new smallipop id's
     lastScrollCheck: 0
     labels:
-      prev: 'Prev'
+      prev: 'Back'
       next: 'Next'
       close: 'Close'
       of: 'of'
-    namespace: 'smallipop'
-    popup: null
+    instances: {}
     templates:
       popup: '
-        <div id="smallipop">
+        <div class="smallipop-instance">
           <div class="sipContent"/>
           <div class="sipArrowBorder"/>
           <div class="sipArrow"/>
@@ -59,215 +58,218 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     tours: {}
 
     _hideSmallipop: (e) ->
-      popup = sip.popup
-      shownId = popup.data 'shown'
-      target = if e?.target then $(e.target) else null
+      target = if e?.target then $(e.target) else e
+      for popupId, popup of sip.instances
+        popupData = popup.data()
 
-      # Show trigger if hidden before
-      trigger = $ ".smallipop#{shownId}"
-      triggerOptions = trigger.data('smallipop')?.options or sip.defaults
+        continue if popupData.isTour and not popup.is target
 
-      # Do nothing if clicked and hide on click is disabled for this case
-      return if target and trigger.length and e?.type is 'click' and \
-        ((not triggerOptions.hideOnTriggerClick and target.is(trigger)) or \
-        (not triggerOptions.hideOnPopupClick and popup.find(target).length))
+        # Show trigger if hidden before
+        shownId = popupData.shown
+        trigger = $ ".smallipop#{shownId}"
+        triggerOptions = trigger.data('smallipop')?.options or sip.defaults
 
-      # Show trigger if it was hidden
-      if shownId and triggerOptions.hideTrigger
-        trigger.stop(true).fadeTo triggerOptions.triggerAnimationSpeed, 1
+        # Do nothing if clicked and hide on click is disabled for this case
+        return if target and trigger.length and e?.type is 'click' and \
+          ((not triggerOptions.hideOnTriggerClick and target.is(trigger)) or \
+          (not triggerOptions.hideOnPopupClick and popup.find(target).length))
 
-      direction = if triggerOptions.invertAnimation then -1 else 1
-      xDistance = sip.popup.data('xDistance') * direction
-      yDistance = sip.popup.data('yDistance') * direction
+        # Show trigger if it was hidden
+        if shownId and triggerOptions.hideTrigger
+          trigger.stop(true).fadeTo triggerOptions.triggerAnimationSpeed, 1
 
-      popup
-        .data
-          hideDelayTimer: null
-          beingShown: false
+        direction = if triggerOptions.invertAnimation then -1 else 1
+        xDistance = popupData.xDistance * direction
+        yDistance = popupData.yDistance * direction
 
-      if triggerOptions.cssAnimations.enabled
         popup
-          .removeClass(triggerOptions.cssAnimations.show)
-          .addClass(triggerOptions.cssAnimations.hide)
-          .data('shown', '')
+          .data
+            hideDelayTimer: null
+            beingShown: false
 
-        if triggerOptions.onAfterHide
-          window.setTimeout triggerOptions.onAfterHide, triggerOptions.popupAnimationSpeed
-      else
-        popup
-          .stop(true)
-          .animate
-              top: "-=#{xDistance}px"
-              left: "+=#{yDistance}px"
-              opacity: 0
-            , triggerOptions.popupAnimationSpeed, triggerOptions.funcEase, ->
-              # Hide tip if not being shown in the meantime
-              tip = $ @
-              unless tip.data 'beingShown'
-                tip
-                  .css('display', 'none')
-                  .data('shown', '')
+        if triggerOptions.cssAnimations.enabled
+          popup
+            .removeClass(triggerOptions.cssAnimations.show)
+            .addClass(triggerOptions.cssAnimations.hide)
+            .data('shown', '')
 
-              triggerOptions.onAfterHide?()
+          if triggerOptions.onAfterHide
+            window.setTimeout triggerOptions.onAfterHide, triggerOptions.popupAnimationSpeed
+        else
+          popup
+            .stop(true)
+            .animate
+                top: "-=#{xDistance}px"
+                left: "+=#{yDistance}px"
+                opacity: 0
+              , triggerOptions.popupAnimationSpeed, triggerOptions.funcEase, ->
+                # Hide tip if not being shown in the meantime
+                tip = $ @
+                unless tip.data 'beingShown'
+                  tip
+                    .css('display', 'none')
+                    .data('shown', '')
+                triggerOptions.onAfterHide?()
 
     _showSmallipop: (e) ->
       self = $ @
       triggerData = self.data 'smallipop'
 
-      if sip.popup.data('shown') isnt triggerData.id \
+      if triggerData.popupInstance.data('shown') isnt triggerData.id \
         and not triggerData.type in ['checkbox', 'radio']
           e?.preventDefault()
 
       sip._triggerMouseover.call @
 
-    onTouchDevice: ->
+    _onTouchDevice: ->
       Modernizr?.touch
 
-    killTimers: ->
-      popup = sip.popup
+    _killTimers: (popup) ->
       hideTimer = popup.data 'hideDelayTimer'
       showTimer = popup.data 'showDelayTimer'
       clearTimeout(hideTimer) if hideTimer
       clearTimeout(showTimer) if showTimer
 
-    refreshPosition: () ->
-      popup = sip.popup
-      shownId = popup.data 'shown'
+    _refreshPosition: ->
+      for popupId, popup of sip.instances
+        popupData = popup.data()
+        shownId = popupData.shown
+        continue unless shownId
 
-      return unless shownId
+        trigger = $ ".smallipop#{shownId}"
+        options = trigger.data('smallipop').options
 
-      trigger = $ ".smallipop#{shownId}"
-      options = trigger.data('smallipop').options
+        # Remove alignment classes
+        popup.removeClass (index, classNames) ->
+          return (classNames?.match(/sip\w+/g) or []).join ' '
 
-      # Remove alignment classes
-      popup.removeClass (index, classNames) ->
-        return (classNames.match(/sip\w+/g) or []).join ' '
+        # Add theme class
+        popup.addClass options.theme
 
-      # Add theme class
-      popup.addClass options.theme
+        # Prepare some properties
+        win = $ window
+        xDistance = yDistance = options.popupDistance
+        yOffset = options.popupYOffset
 
-      # Prepare some properties
-      win = $ window
-      xDistance = yDistance = options.popupDistance
-      yOffset = options.popupYOffset
+        # Get new dimensions
+        offset = trigger.offset()
 
-      # Get new dimensions
-      offset = trigger.offset()
+        popupH = popup.outerHeight()
+        popupW = popup.outerWidth()
+        popupCenter = popupW / 2
 
-      popupH = popup.outerHeight()
-      popupW = popup.outerWidth()
-      popupCenter = popupW / 2
+        winWidth = win.width()
+        winHeight = win.height()
+        windowPadding = options.windowPadding
 
-      winWidth = win.width()
-      winHeight = win.height()
-      windowPadding = options.windowPadding
+        selfWidth = trigger.outerWidth()
+        selfHeight = trigger.outerHeight()
+        selfY = offset.top - win.scrollTop()
 
-      selfWidth = trigger.outerWidth()
-      selfHeight = trigger.outerHeight()
-      selfY = offset.top - win.scrollTop()
+        popupOffsetLeft = offset.left + selfWidth / 2
+        popupOffsetTop = offset.top - popupH + yOffset
+        popupY = popupH + options.popupDistance - yOffset
+        popupDistanceTop = selfY - popupY
+        popupDistanceBottom = winHeight - selfY - selfHeight - popupY
+        popupDistanceLeft = offset.left - popupW - options.popupOffset
+        popupDistanceRight = winWidth - offset.left - selfWidth - popupW
 
-      popupOffsetLeft = offset.left + selfWidth / 2
-      popupOffsetTop = offset.top - popupH + yOffset
-      popupY = popupH + options.popupDistance - yOffset
-      popupDistanceTop = selfY - popupY
-      popupDistanceBottom = winHeight - selfY - selfHeight - popupY
-      popupDistanceLeft = offset.left - popupW - options.popupOffset
-      popupDistanceRight = winWidth - offset.left - selfWidth - popupW
-
-      if options.horizontal
-        xDistance = 0
-        popupOffsetTop += selfHeight / 2 + popupH / 2
-        if (options.preferredPosition is 'left' and popupDistanceLeft > windowPadding) or popupDistanceRight < windowPadding
-          # Positioned left
-          popup.addClass 'sipPositionedLeft'
-          popupOffsetLeft = offset.left - popupW - options.popupOffset
-          yDistance = -yDistance
+        if options.preferredPosition in ['left', 'right']
+          xDistance = 0
+          popupOffsetTop += selfHeight / 2 + popupH / 2
+          if (options.preferredPosition is 'left' and popupDistanceLeft > windowPadding) or popupDistanceRight < windowPadding
+            # Positioned left
+            popup.addClass 'sipPositionedLeft'
+            popupOffsetLeft = offset.left - popupW - options.popupOffset
+            yDistance = -yDistance
+          else
+            # Positioned right
+            popup.addClass 'sipPositionedRight'
+            popupOffsetLeft = offset.left + selfWidth + options.popupOffset
         else
-          # Positioned right
-          popup.addClass 'sipPositionedRight'
-          popupOffsetLeft = offset.left + selfWidth + options.popupOffset
-      else
-        yDistance = 0
-        if popupOffsetLeft + popupCenter > winWidth - windowPadding
-          # Aligned left
-          popupOffsetLeft -= popupCenter * 2 - options.popupOffset
-          popup.addClass 'sipAlignLeft'
-        else if popupOffsetLeft - popupCenter < windowPadding
-          # Aligned right
-          popupOffsetLeft -= options.popupOffset
-          popup.addClass 'sipAlignRight'
-        else
-          # Centered
-          popupOffsetLeft -= popupCenter
+          yDistance = 0
+          if popupOffsetLeft + popupCenter > winWidth - windowPadding
+            # Aligned left
+            popupOffsetLeft -= popupCenter * 2 - options.popupOffset
+            popup.addClass 'sipAlignLeft'
+          else if popupOffsetLeft - popupCenter < windowPadding
+            # Aligned right
+            popupOffsetLeft -= options.popupOffset
+            popup.addClass 'sipAlignRight'
+          else
+            # Centered
+            popupOffsetLeft -= popupCenter
 
-        # Add class if positioned below
-        if (options.preferredPosition is 'bottom' and popupDistanceBottom > windowPadding) or popupDistanceTop < windowPadding
-          popupOffsetTop += popupH + selfHeight - 2 * yOffset
-          xDistance = -xDistance
-          yOffset = 0
-          popup.addClass 'sipAlignBottom'
+          # Add class if positioned below
+          if (options.preferredPosition is 'bottom' and popupDistanceBottom > windowPadding) or popupDistanceTop < windowPadding
+            popupOffsetTop += popupH + selfHeight - 2 * yOffset
+            xDistance = -xDistance
+            yOffset = 0
+            popup.addClass 'sipAlignBottom'
 
-      # Hide trigger if defined
-      if options.hideTrigger
-        trigger
-          .stop(true)
-          .fadeTo(options.triggerAnimationSpeed, 0)
+        # Hide trigger if defined
+        if options.hideTrigger
+          trigger
+            .stop(true)
+            .fadeTo(options.triggerAnimationSpeed, 0)
 
-      # Animate to new position if refresh does no
-      beingShown = popup.data 'beingShown'
-      if not beingShown or options.cssAnimations.enabled
-        popupOffsetTop -= xDistance
-        popupOffsetLeft += yDistance
-        xDistance = 0
-        yDistance = 0
+        # Animate to new position if refresh does no
+        opacity = 0
+        if not popupData.beingShown or options.cssAnimations.enabled
+          popupOffsetTop -= xDistance
+          popupOffsetLeft += yDistance
+          xDistance = 0
+          yDistance = 0
+          opacity = 1
 
-      popup
-        .data
-          xDistance: xDistance
-          yDistance: yDistance
+        popup
+          .data
+            xDistance: xDistance
+            yDistance: yDistance
+          .css
+            top: popupOffsetTop
+            left: popupOffsetLeft
+            display: 'block'
+            opacity: opacity
 
+        animationTarget =
+          top: "-=#{xDistance}px"
+          left: "+=#{yDistance}px"
+          opacity: 1
 
-      popup.css
-        top: popupOffsetTop
-        left: popupOffsetLeft
-        display: 'block'
-        opacity: if beingShown and not options.cssAnimations.enabled then 0 else 1
+        # Start fade in animation
+        sip._fadeInPopup popup, animationTarget
 
-      animationTarget =
-        top: "-=#{xDistance}px"
-        left: "+=#{yDistance}px"
-        opacity: 1
-
-      # Start fade in animation
+    _fadeInPopup: (popup, animationTarget) ->
+      options = sip._getTrigger(popup.data('shown')).data('smallipop').options
       if options.cssAnimations.enabled
         popup.addClass options.cssAnimations.show
-
-        if beingShown
-          window.setTimeout ->
-              popup.data 'beingShown', false
-              options.onAfterShow? trigger
-            , options.popupAnimationSpeed
+        window.setTimeout ->
+            sip._fadeInPopupFinished popup, options
+          , options.popupAnimationSpeed
       else
         popup
           .stop(true)
           .animate animationTarget, options.popupAnimationSpeed, options.funcEase, ->
-            if beingShown
-              popup.data 'beingShown', false
-              options.onAfterShow? trigger
+            sip._fadeInPopupFinished popup, options
+
+    _fadeInPopupFinished: (popup, options) ->
+      popupData = popup.data()
+      if popupData.beingShown
+        popup.data 'beingShown', false
+        options.onAfterShow? sip._getTrigger(popupData.shown)
 
     _getTrigger: (id) ->
       $ ".smallipop#{id}"
 
     _showPopup: (trigger, content='') ->
-      popup = sip.popup
-
-      return unless popup.data 'triggerHovered'
-
       # Get smallipop options stored in trigger and popup
       triggerData = trigger.data 'smallipop'
-      shownId = popup.data 'shown'
+      popup = triggerData.popupInstance
+      return unless popup.data 'triggerHovered'
 
       # Show last trigger if not yet visible
+      shownId = popup.data 'shown'
       if shownId
         lastTrigger = sip._getTrigger shownId
         lastTriggerOpt = lastTrigger.data('smallipop').options or sip.defaults
@@ -277,89 +279,94 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .fadeTo(lastTriggerOpt.fadeSpeed, 1)
 
       # Update tip content and remove all classes
-      popup.data
-        beingShown: true
-        shown: triggerData.id
-      sip.popupContent.html content or triggerData.hint
+      popup
+        .data
+          beingShown: true
+          shown: triggerData.id
+        .find('.sipContent').html content or triggerData.hint
 
       # Remove some css classes
-      popup.removeClass() if triggerData.id isnt shownId
-
-      sip.refreshPosition()
+      popup.attr('class', 'smallipop-instance') if triggerData.id isnt shownId
+      sip._refreshPosition()
 
     _triggerMouseover: ->
-      self = $ @
-      popup = sip.popup
+      self = popup = $ @
+      isTrigger = self.hasClass 'sipInitialized'
+      id = null
 
-      id = self.data('smallipop')?.id
+      if isTrigger
+        triggerData = self.data 'smallipop'
+        popup = triggerData.popupInstance
+        id = triggerData.id
+        triggerData.options.onBeforeShow? self
+
       shownId = popup.data 'shown'
 
-      sip.killTimers()
+      sip._killTimers popup
       popup.data (if id then 'triggerHovered' else 'hovered'), true
 
       unless id
         self = sip._getTrigger shownId
         id = shownId
 
+      popupData = popup.data()
+      console.log 'Mouseover ' + id
+      console.log "Hovering: popup: #{popupData.hovered} trigger: #{popupData.triggerHovered}"
+
       # We should have a valid id and an active trigger by now
       return unless self.length
-
-      options = self.data('smallipop').options
-      options.onBeforeShow? self
 
       if shownId isnt id
         popup.data 'showDelayTimer', setTimeout ->
             sip._showPopup self
-          , options.popupDelay
+          , self.data('smallipop').popupDelay
 
     _triggerMouseout: ->
-      self = $ @
-      id = self.data('smallipop')?.id
+      self = popup = $ @
+      isTrigger = self.hasClass 'sipInitialized'
+      id = null
+      triggerData = null
 
-      popup = sip.popup
-      popupData = popup.data()
-      shownId = popupData.shown
+      if isTrigger
+        triggerData = self.data 'smallipop'
+        popup = triggerData.popupInstance
+        id = triggerData.id
 
-      sip.killTimers()
+      shownId = popup.data 'shown'
+
+      sip._killTimers popup
       popup.data (if id then 'triggerHovered' else 'hovered'), false
 
-      if id
-        self.data('smallipop').options.onBeforeHide? self
-
       # Hide tip after a while
+      popupData = popup.data()
+
+      console.log 'Mouseout ' + id
+      console.log "Hovering: popup: #{popupData.hovered} trigger: #{popupData.triggerHovered}"
+
       unless popupData.hovered or popupData.triggerHovered
-        popup.data 'hideDelayTimer', setTimeout(sip._hideSmallipop, 500)
-
-    _onWindowResize: ->
-      $.smallipop.refreshPosition()
-
-    _onWindowClick: (e) ->
-      popup = sip.popup
-      target = $ e.target
-
-      # Hide smallipop unless popup, a trigger is clicked or popup is being shown
-      unless target.is(popup) or target.closest('.sipInitialized').length or popup.data('beingShown')
-        sip._hideSmallipop e
+        triggerData?.options.onBeforeHide? self
+        popup.data 'hideDelayTimer', setTimeout ->
+            sip._hideSmallipop popup
+          , 500
 
     _onWindowScroll: (e) ->
       now = new Date().getTime()
       return if now - sip.lastScrollCheck < 300
       sip.lastScrollCheck = now
-      $.smallipop.refreshPosition()
+      sip._refreshPosition()
 
-    setContent: (content) ->
-      shownId = sip.popup.data 'shown'
-      trigger = sip._getTrigger shownId
-      options = trigger.data('smallipop')?.options
+    setContent: (trigger, content) ->
+      return unless trigger?.length
+      triggerData = trigger.data 'smallipop'
 
       if options
-        sip.popupContent
+        popupContent = triggerData.popupInstance.find('.sipContent')
           .stop(true)
-          .fadeTo options.contentAnimationSpeed, 0, ->
-            sip.popupContent
+          .fadeTo triggerData.options.contentAnimationSpeed, 0, ->
+            popupContent
               .html(content)
-              .fadeTo options.contentAnimationSpeed, 1
-            sip.refreshPosition()
+              .fadeTo triggerData.options.contentAnimationSpeed, 1
+            sip._refreshPosition()
 
     _runTour: (trigger) ->
       triggerData = trigger.data 'smallipop'
@@ -367,12 +374,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       return unless tourTitle and sip.tours[tourTitle]
 
-      sip.currentTour = tourTitle
-
       # Sort tour elements before running by their index
       sip.tours[tourTitle].sort (a, b) ->
         a.index - b.index
 
+      sip.currentTour = tourTitle
       currentTourItems = sip.tours[tourTitle]
       for i in [0..currentTourItems.length - 1] when currentTourItems[i].id is triggerData.id
         return sip._tourShow tourTitle, i
@@ -400,8 +406,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           <br style=\"clear:both;\"/>
         </div>"
 
-      sip.killTimers()
-      sip.popup.data 'triggerHovered', true
+      sip._killTimers triggerData.popupInstance
+      triggerData.popupInstance.data 'triggerHovered', true
       sip._showPopup trigger, content
 
       # Scroll to trigger if it isn't visible
@@ -423,7 +429,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       return unless currentTourItems
 
       # Get currently shown tour item
-      shownId = sip.popup.data('shown') or currentTourItems[0].id
+      popup = $(e.target).closest '.smallipop-instance'
+      shownId = popup.data('shown') or currentTourItems[0].id
 
       for i in [0..currentTourItems.length - 2] when currentTourItems[i].id is shownId
         return sip._tourShow sip.currentTour, i + 1
@@ -434,14 +441,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       return unless currentTourItems
 
       # Get currently shown tour item
-      shownId = sip.popup.data('shown') or currentTourItems[0].id
+      popup = $(e.target).closest '.smallipop-instance'
+      shownId = popup.data('shown') or currentTourItems[0].id
 
       for i in [1..currentTourItems.length - 1] when currentTourItems[i].id is shownId
         return sip._tourShow sip.currentTour, i - 1
 
     _tourClose: (e) ->
       e?.preventDefault()
-      sip._hideSmallipop()
+      popup = $(e.target).closest '.smallipop-instance'
+      sip._hideSmallipop popup
 
     _destroy: (instances) ->
       instances.each ->
@@ -453,32 +462,43 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .data('smallipop', {})
             .removeClass "smallipop sipInitialized smallipop#{data.id} #{data.options.theme}"
 
-    _init: ->
-      popup = sip.popup = $(sip.templates.popup)
+    _getInstance: (id='default', isTour=false) ->
+      return sip.instances[id] if sip.instances[id]
+
+      instance = $(sip.templates.popup)
         .css('opacity', 0)
+        .attr('id', "smallipop#{sip.nextInstanceId++}")
+        .addClass('smallipop-instance')
         .data
           xDistance: 0
           yDistance: 0
+          isTour: isTour
         .bind
           'mouseover.smallipop': sip._triggerMouseover
           'mouseout.smallipop': sip._triggerMouseout
 
-      sip.popupContent = popup.find '.sipContent'
-
-      $('body').append popup
+      $('body').append instance
 
       # Add some binding to events in the popup
-      popup
-        .delegate('a', 'click.smallipop', sip._hideSmallipop)
-        .delegate('.smallipop-tour-prev', 'click.smallipop', sip._tourPrev)
-        .delegate('.smallipop-tour-next', 'click.smallipop', sip._tourNext)
-        .delegate('.smallipop-tour-close', 'click.smallipop', sip._tourClose)
+      if isTour
+        instance
+          .delegate('.smallipop-tour-prev', 'click.smallipop', sip._tourPrev)
+          .delegate('.smallipop-tour-next', 'click.smallipop', sip._tourNext)
+          .delegate('.smallipop-tour-close', 'click.smallipop', sip._tourClose)
+      else
+        instance
+          .delegate('a', 'click.smallipop', sip._hideSmallipop)
 
-      $(document).bind 'click.smallipop touchend.smallipop', sip._onWindowClick
+      # Bind some events to the document and window if we created the first smallipop
+      if sip.nextInstanceId is 2
+        $(document).bind 'click.smallipop touchend.smallipop', sip._hideSmallipop
+        $(window).bind
+          'resize.smallipop': sip._refreshPosition
+          'scroll.smallipop': sip._onWindowScroll
 
-      $(window).bind
-        'resize.smallipop': sip._onWindowResize
-        'scroll.smallipop': sip._onWindowScroll
+      sip.instances[id] = instance
+
+      instance
 
   ### Add default easing function for smallipop to jQuery if missing ###
   unless $.easing.easeInOutQuad
@@ -490,7 +510,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     if typeof(options) is 'string'
       switch options.toLowerCase()
         when 'show' then sip._showSmallipop.call @first().get(0)
-        when 'hide' then sip._hideSmallipop()
+        when 'hide' then sip._hideSmallipop @first().get(0)
         when 'destroy' then sip._destroy @
         when 'tour' then sip._runTour @first()
       return @
@@ -502,7 +522,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       options.cssAnimations.enabled = false
 
     # Initialize smallipop on first call
-    sip._init() unless sip.popup
+    popup = sip._getInstance()
 
     return @.each ->
       self = $ @
@@ -516,9 +536,17 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       # Initialize each trigger, create id and bind events
       if objHint and not self.hasClass 'sipInitialized'
         newId = sip.lastId++
-        triggerOptions = $.extend true, {}, options
+
         triggerEvents = {}
-        tourTitle = triggerData.smallipopTour
+        triggerPopupInstance = popup
+        triggerOptions = $.extend true, {}, options
+
+        # Extend the trigger options by options set in data attribute
+        for option, value of triggerData when option.indexOf('smallipop') >= 0
+          optionName = option.replace('smallipop', '')
+          optionName = optionName.substr(0, 1).toLowerCase() + optionName.substr(1)
+          triggerOptions[optionName] = value
+
         isFormElement = triggerOptions.handleInputs and tagName in ['input', 'select', 'textarea']
 
         # Activate on blur events if used on inputs and disable hide on click
@@ -532,17 +560,18 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           triggerEvents['mouseout.smallipop'] = sip._triggerMouseout
 
         # Check whether the trigger should activate smallipop by click or hover
-        if triggerOptions.triggerOnClick or (triggerOptions.touchSupport and sip.onTouchDevice())
+        if triggerOptions.triggerOnClick or (triggerOptions.touchSupport and sip._onTouchDevice())
           triggerEvents['click.smallipop'] = sip._showSmallipop
         else
           triggerEvents['click.smallipop'] = sip._hideSmallipop
           triggerEvents['mouseover.smallipop'] = sip._triggerMouseover
 
         # Add to tours if tourTitle is set
-        if tourTitle
+        if triggerOptions.tourIndex
+          tourTitle = triggerOptions.tourTitle or 'defaultTour'
           sip.tours[tourTitle] = [] unless sip.tours[tourTitle]
           sip.tours[tourTitle].push
-            index: triggerData.smallipopIndex or 0
+            index: triggerOptions.tourIndex or 0
             id: newId
             trigger: self
 
@@ -550,6 +579,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           triggerEvents = {}
           triggerOptions.hideOnTriggerClick = false
           triggerOptions.hideOnPopupClick = false
+          triggerPopupInstance = sip._getInstance tourTitle, true
 
         # Store parameters for this trigger
         self
@@ -562,6 +592,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             tagName: tagName
             type: type
             tourTitle: tourTitle
+            popupInstance: triggerPopupInstance
           .bind triggerEvents
 
         # Hide popup when links contained in the trigger are clicked
