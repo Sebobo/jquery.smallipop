@@ -786,6 +786,19 @@ $('#tipCSSAnimated').smallipop({
 
             <h3>Options</h3>
 
+            <p>
+                You can customize each smallipop with a lot of options and callbacks.<br/>
+                Most of the options can be defined via the html data attribute too. This will then only affect a single smallipop, which helps you customizing single smallipops without creating different calls for each configuration.
+            </p>
+
+            <span class="smallipop sampleElement" data-smallipop-preferred-position="right" title="I prefer the position on the right, even when my siblings stay on top!">Hover me!</span>
+            <br/><br/>
+
+            <pre>
+&lt;span class="smallipop" data-smallipop-preferred-position="right" title="Some text"&gt;
+    Hover me!
+&lt;/span&gt;</pre>
+
             <table class="options" summary="Options for the jQuery smallipop plugin">
                 <tr>
                     <th>Key</th>
@@ -851,6 +864,21 @@ $('#tipCSSAnimated').smallipop({
                     <td>onBeforeShow</td>
                     <td>null</td>
                     <td>Callback before smallipop is shown</td>
+                </tr>
+                <tr>
+                    <td>onTourClose</td>
+                    <td>null</td>
+                    <td>Callback when the tour has finished</td>
+                </tr>
+                <tr>
+                    <td>onTourNext</td>
+                    <td>null</td>
+                    <td>Callback when the next tour element is shown</td>
+                </tr>
+                <tr>
+                    <td>onTourPrev</td>
+                    <td>null</td>
+                    <td>Callback when the previous tour element is shown</td>
                 </tr>
                 <tr>
                     <td>popupAnimationSpeed</td>

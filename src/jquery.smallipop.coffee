@@ -37,6 +37,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       onAfterShow: null
       onBeforeHide: null
       onBeforeShow: null
+      onTourClose: null
+      onTourNext: null
+      onTourPrev: null
       windowPadding: 30 # Imaginary padding in viewport
     currentTour: null
     lastId: 1 # Counter for new smallipop id's
@@ -420,6 +423,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       shownId = popup.data('shown') or currentTourItems[0].id
 
       for i in [0..currentTourItems.length - 2] when currentTourItems[i].id is shownId
+        currentTourItems[i].trigger
+          .data('smallipop')?.options.onTourNext?(currentTourItems[i + 1].trigger)
         return sip._tourShow sip.currentTour, i + 1
 
     _tourPrev: (e) ->
@@ -432,11 +437,17 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       shownId = popup.data('shown') or currentTourItems[0].id
 
       for i in [1..currentTourItems.length - 1] when currentTourItems[i].id is shownId
+        currentTourItems[i].trigger
+          .data('smallipop')?.options.onTourPrev?(currentTourItems[i - 1].trigger)
         return sip._tourShow sip.currentTour, i - 1
 
     _tourClose: (e) ->
       e?.preventDefault()
       popup = $(e.target).closest '.smallipop-instance'
+
+      # Fire close callback
+      sip._getTrigger(popup.data('shown')).data('smallipop')?.options.onTourClose?()
+
       sip._hideSmallipop popup
 
     _destroy: (instances) ->
