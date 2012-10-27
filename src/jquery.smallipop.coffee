@@ -339,8 +339,13 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     setContent: (trigger, content) ->
       return unless trigger?.length
       triggerData = trigger.data 'smallipop'
+      partOfTour = triggerData.tourTitle
 
-      popupContent = triggerData.popupInstance.find('.sipContent')
+      if partOfTour
+        popupContent = triggerData.popupInstance.find('.smallipop-tour-content')
+      else
+        popupContent = triggerData.popupInstance.find('.sipContent')
+
       if popupContent.html() isnt content
         popupContent
           .stop(true)
@@ -504,6 +509,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         when 'hide' then sip._hideSmallipop @first().get(0)
         when 'destroy' then sip._destroy @
         when 'tour' then sip._runTour @first()
+        when 'update' then sip.setContent @first(), hint
       return @
 
     options = $.extend {}, sip.defaults, options

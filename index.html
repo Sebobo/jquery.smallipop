@@ -953,13 +953,18 @@ $('#tipCSSAnimated').smallipop({
                     You can show and hide smallipop via manual calls. Only the first element found in the selectors result will be triggered.
                 </p>
 
-                <pre>$('#myTrigger').smallipop('show');</pre>
-                <pre>$('#myTrigger').smallipop('hide');</pre>
+                <pre>$('.myTrigger').smallipop('show');</pre>
+                <pre>$('.myTrigger').smallipop('hide');</pre>
 
                 <p>
                     Removing smallipop from elements is also possible.
                 </p>
                 <pre>$('.myTriggers').smallipop('destroy');</pre>
+
+                <p>
+                    Update the content of a smallipop while it's visible.
+                </p>
+                <pre>$('.myTrigger').smallipop('update', 'Test');</pre>
 
             </div>
 
