@@ -72,13 +72,13 @@ legend { color: #000; }
 .borderradius .tabs li:before { border-radius: 0 0 6px 0; -o-border-radius: 0 0 6px 0; -moz-border-radius: 0 0 6px 0; -webkit-border-radius: 0 0 6px 0; }
 .borderradius .tabs li:after { border-radius: 0 0 0 6px; -o-border-radius: 0 0 0 6px; -moz-border-radius: 0 0 0 6px; -webkit-border-radius: 0 0 0 6px; }
 
-.boxshadow .tabs li { -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff; -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff; box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff; }
-.boxshadow .tabs li:before { -webkit-box-shadow: 2px 2px 0 #d1d1d1; -moz-box-shadow: 2px 2px 0 #d1d1d1; box-shadow: 2px 2px 0 #d1d1d1; }
-.boxshadow .tabs li:after { -webkit-box-shadow: -2px 2px 0 #d1d1d1; -moz-box-shadow: -2px 2px 0 #d1d1d1; box-shadow: -2px 2px 0 #d1d1d1; }
-.boxshadow .tabs li:hover:before { -webkit-box-shadow: 2px 2px 0 #dadada; -moz-box-shadow: 2px 2px 0 #dadada; box-shadow: 2px 2px 0 #dadada; }
-.boxshadow .tabs li:hover:after { -webkit-box-shadow: -2px 2px 0 #dadada; -moz-box-shadow: -2px 2px 0 #dadada; box-shadow: -2px 2px 0 #dadada; }
-.boxshadow .tabs li.selected:before { -webkit-box-shadow: 2px 2px 0 white; -moz-box-shadow: 2px 2px 0 white; box-shadow: 2px 2px 0 white; }
-.boxshadow .tabs li.selected:after { -webkit-box-shadow: -2px 2px 0 white; -moz-box-shadow: -2px 2px 0 white; box-shadow: -2px 2px 0 white; }
+.box-shadow .tabs li { -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff; -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff; box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff; }
+.box-shadow .tabs li:before { -webkit-box-shadow: 2px 2px 0 #d1d1d1; -moz-box-shadow: 2px 2px 0 #d1d1d1; box-shadow: 2px 2px 0 #d1d1d1; }
+.box-shadow .tabs li:after { -webkit-box-shadow: -2px 2px 0 #d1d1d1; -moz-box-shadow: -2px 2px 0 #d1d1d1; box-shadow: -2px 2px 0 #d1d1d1; }
+.box-shadow .tabs li:hover:before { -webkit-box-shadow: 2px 2px 0 #dadada; -moz-box-shadow: 2px 2px 0 #dadada; box-shadow: 2px 2px 0 #dadada; }
+.box-shadow .tabs li:hover:after { -webkit-box-shadow: -2px 2px 0 #dadada; -moz-box-shadow: -2px 2px 0 #dadada; box-shadow: -2px 2px 0 #dadada; }
+.box-shadow .tabs li.selected:before { -webkit-box-shadow: 2px 2px 0 white; -moz-box-shadow: 2px 2px 0 white; box-shadow: 2px 2px 0 white; }
+.box-shadow .tabs li.selected:after { -webkit-box-shadow: -2px 2px 0 white; -moz-box-shadow: -2px 2px 0 white; box-shadow: -2px 2px 0 white; }
 
 .btn.danger, .btn.danger:hover, .btn.error, .btn.error:hover, .btn.success, .btn.success:hover, .btn.info, .btn.info:hover, .alert-message.danger, .alert-message.danger:hover, .alert-message.error, .alert-message.error:hover, .alert-message.success, .alert-message.success:hover, .alert-message.info, .alert-message.info:hover { color: white; }
 .btn.danger, .btn.error, .alert-message.danger, .alert-message.error { background-color: #c43c35; }
@@ -106,9 +106,9 @@ legend { color: #000; }
 
 .csstransitions .btn { -webkit-transition: 0.1s linear all; -moz-transition: 0.1s linear all; -ms-transition: 0.1s linear all; transition: 0.1s linear all; }
 
-.boxshadow.rgba .btn { -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05); -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05); }
-.boxshadow.rgba .btn.active, .boxshadow.rgba .btn:active { -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05); -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05); box-shadow: inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05); }
-.boxshadow.rgba .btn.disabled, .boxshadow.rgba .btn[disabled] { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
+.box-shadow.rgba .btn { -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05); -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05); box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05); }
+.box-shadow.rgba .btn.active, .box-shadow.rgba .btn:active { -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05); -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05); box-shadow: inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05); }
+.box-shadow.rgba .btn.disabled, .box-shadow.rgba .btn[disabled] { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
 
 :root .alert-message, :root .btn { border-radius: 0 \0; }
 
@@ -178,11 +178,11 @@ ul li { margin: 0.6em 0; list-style-type: disc; }
 
 img.inline { margin: 10px; }
 
-.boxshadow.rgba img.inline { -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); }
+.box-shadow.rgba img.inline { -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); }
 
 .hasBorder { border: 4px solid #fff; }
 
-.boxshadow.rgba .hasShadow { -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
+.box-shadow.rgba .hasShadow { -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
 
 .page, .pageHeader { margin: 0 auto; width: 920px; background: #fafafa; padding: 30px; position: relative; }
 
@@ -224,8 +224,8 @@ img.inline { margin: 10px; }
 .cssgradients .sampleElement.blue { background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, #1279cb, #0064b4); background-image: -moz-linear-gradient(top, #1279cb, #0064b4); background-image: -ms-linear-gradient(top, #1279cb, #0064b4); background-image: -o-linear-gradient(top, #1279cb, #0064b4); background-image: linear-gradient(top, #1279cb, #0064b4); color: #eee; }
 .cssgradients .sampleElement.default { background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, #4f6c88, #314b64); background-image: -moz-linear-gradient(top, #4f6c88, #314b64); background-image: -ms-linear-gradient(top, #4f6c88, #314b64); background-image: -o-linear-gradient(top, #4f6c88, #314b64); background-image: linear-gradient(top, #4f6c88, #314b64); }
 
-.boxshadow.rgba .sampleElement { -webkit-box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3); -moz-box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3); box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3); }
-.boxshadow.rgba .sampleElement.white, .boxshadow.rgba .sampleElement.black, .boxshadow.rgba .sampleElement.blue, .boxshadow.rgba .sampleElement.green, .boxshadow.rgba .sampleElement.default { -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+.box-shadow.rgba .sampleElement { -webkit-box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3); -moz-box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3); box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3); }
+.box-shadow.rgba .sampleElement.white, .box-shadow.rgba .sampleElement.black, .box-shadow.rgba .sampleElement.blue, .box-shadow.rgba .sampleElement.green, .box-shadow.rgba .sampleElement.default { -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
 
 /* Sidemenu */
 .side-menu { position: fixed; top: 168px; left: 50%; margin-left: -650px; padding-top: 30px; text-align: right; width: 140px; font-size: 14px; z-index: 9999; }

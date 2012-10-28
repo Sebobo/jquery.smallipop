@@ -1,5 +1,22 @@
 @import "mixins";
 
+$default-background-color: #314b64;
+$default-border: 1px solid #0f161e;
+$default-border-radius: 12px;
+$default-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+$default-color: #d2dfe7;
+$default-text-shadow: 0 -1px 1px #0f161e;
+$default-link-color: #98cbea;
+$default-link-text-shadow: 0 -1px 1px #0f161e;
+$default-arrow-color: #1a2634;
+$default-arrow-border-color: #0f161e;
+
+$blue-arrow-color: #0064b4;
+$blue-arrow-border-color: rgba(0, 100, 180, 0.9);
+$blue-background-color: #fcfcfc;
+
+$orange-background-color: #f9aa18;
+
 /* smallipop css */
 
 .smallipopHint { display: none; }
@@ -9,13 +26,17 @@
   display: none;
   top: 0;
   left: 0;
-  background-color: #314b64;
-  border: 1px solid #0f161e;
-  color: #d2dfe7;
+  background-color: $default-background-color;
+  border: $default-border;
+  color: $default-color;
   z-index: 9999;
   max-width: 400px;
+  font {
+    size: 11px;
+    family: arial;
+  }
 
-  a { color: #98cbea; }
+  a { color: $default-link-color; }
 
   .sipContent { padding: 10px; }
 
@@ -91,7 +112,7 @@
     position: relative;
   }
   .smallipop-tour-progress {
-    color: #888;
+    color: #bbb;
     text-align: center;
     position: absolute;
     left: 50%;
@@ -104,15 +125,16 @@
   .smallipop-tour-close {
     color: #ccc;
     display: block;
-    padding: 2px 4px;
+    padding: 3px 4px 2px;
+    line-height: 1em;
     float: left;
-    border: 1px solid #555;
-    background: #333;
+    background: darken($default-background-color, 10%);
     @include border-radius(3px);
+    @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 
     &:hover {
       color: #fff;
-      background: #444;
+      background: darken($default-background-color, 5%);
       text-decoration: none;
     }
   }
@@ -124,50 +146,49 @@
 
 /* default theme */
 .smallipop-instance.default {
-  text-shadow: 0 -1px 1px #0f161e;
-  @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));
-  @include border-radius(12px);
+  text-shadow: $default-text-shadow;
+  @include box-shadow($default-box-shadow);
+  @include border-radius($default-border-radius);
   @include linear-gradient(rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); /* Fallback for opera */
   @include radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px);
 
   a {
-    text-shadow: 0 -1px 1px #0f161e;
+    text-shadow: $default-link-text-shadow;
   }
 
   .sipContent {
-    border-top:1px solid #586d82;
-    @include border-radius(12px);
+    border-top: 1px solid #586d82;
+    @include border-radius($default-border-radius);
   }
 
-  .sipArrow { border-color:#1a2634 transparent transparent transparent; }
-  .sipArrowBorder { border-color:#0f161e transparent transparent transparent; }
+  .sipArrow { @include border-color-top($default-arrow-color); }
+  .sipArrowBorder { @include border-color-top($default-arrow-border-color); }
 
   &.sipAlignBottom {
-    .sipArrow { border-color:transparent transparent #1a2634 transparent; }
-    .sipArrowBorder { border-color:transparent transparent #0f161e transparent; }
+    .sipArrow { @include border-color-bottom($default-arrow-color); }
+    .sipArrowBorder { @include border-color-bottom($default-arrow-border-color); }
   }
 
   &.sipPositionedLeft {
-    .sipArrow { border-color:transparent transparent transparent #1a2634; }
-    .sipArrowBorder { border-color:transparent transparent transparent #0f161e; }
+    .sipArrow { @include border-color-left($default-arrow-color); }
+    .sipArrowBorder { @include border-color-left($default-arrow-border-color); }
   }
   &.sipPositionedRight {
-    .sipArrow { border-color:transparent #1a2634 transparent transparent; }
-    .sipArrowBorder { border-color:transparent #0f161e transparent transparent; }
+    .sipArrow { @include border-color-right($default-arrow-color); }
+    .sipArrowBorder { @include border-color-right($default-arrow-border-color); }
   }
 }
 .cssgradients.rgba .smallipop-instance.default {
-  background-color:transparent;
+  background-color: transparent;
 }
 
 /* blue theme */
 .smallipop-instance.blue {
   background:transparent;
   color: #111;
-  font-size:11px;
-  border: 10px solid #0064b4;
+  border: 10px solid $blue-arrow-color;
   border-color: rgba(0, 100, 180, 0.9);
-  @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
   @include border-radius(7px);
 
   a {
@@ -176,29 +197,43 @@
 
   .sipContent {
     border: 0;
-    background: #fefefe;
+    background: $blue-background-color;
   }
 
   .sipArrow {
     bottom: -30px;
-    border-color: #0064b4 transparent transparent transparent;
-    border-color:rgba(0, 100, 180, 0.9) transparent transparent transparent;
+    @include border-color-top($blue-arrow-color);
+    @include border-color-top($blue-arrow-border-color);
   }
   &.sipAlignBottom .sipArrow {
     top: -30px;
-    border-color:transparent transparent #0064b4 transparent;
-    border-color:transparent transparent rgba(0, 100, 180, 0.9) transparent;
+    @include border-color-bottom($blue-arrow-color);
+    @include border-color-bottom($blue-arrow-border-color);
   }
 
   &.sipPositionedLeft .sipArrow {
     right: -26px;
-    border-color:transparent transparent transparent #0064b4;
-    border-color:transparent transparent transparent rgba(0, 100, 180, 0.9);
+    @include border-color-left($blue-arrow-color);
+    @include border-color-left($blue-arrow-border-color);
   }
   &.sipPositionedRight .sipArrow {
     left: -26px;
-    border-color:transparent #0064b4 transparent transparent;
-    border-color:transparent rgba(0, 100, 180, 0.9) transparent transparent;
+    @include border-color-right($blue-arrow-color);
+    @include border-color-right($blue-arrow-border-color);
+  }
+  .smallipop-tour-progress {
+    color: #777;
+  }
+  .smallipop-tour-prev,
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    color: #222;
+    background: darken($blue-background-color, 5%);
+
+    &:hover {
+      color: #111;
+      background: darken($blue-background-color, 2%);
+    }
   }
 }
 
@@ -208,7 +243,7 @@
   border-color:#111;
   text-shadow:0 -1px 1px #111;
   color:#f5f5f5;
-  @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
   @include linear-gradient(#333333, #222222);
   @include border-radius(5px);
 
@@ -237,6 +272,20 @@
     .sipArrow { border-color:transparent #222 transparent transparent; }
     .sipArrowBorder { border-color:transparent #111 transparent transparent; }
   }
+  .smallipop-tour-progress {
+    color: #888;
+  }
+  .smallipop-tour-prev,
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    color: #ccc;
+    background: #333;
+
+    &:hover {
+      color: #fff;
+      background: #3a3a3a;
+    }
+  }
 }
 .cssgradients .smallipop-instance.black {
   background-color:transparent;
@@ -244,12 +293,12 @@
 
 /* orange theme */
 .smallipop-instance.orange {
-  background-color:#f9aa18;
-  border-color:#e17500;
-  text-shadow:0 1px 1px #fff24d;
-  color:#714900;
+  background-color: $orange-background-color;
+  border-color: #e17500;
+  text-shadow: 0 1px 1px #fff24d;
+  color: #714900;
   @include linear-gradient(#fff24d, #f9aa18);
-  @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
   @include border-radius(10px);
 
   a {
@@ -277,6 +326,20 @@
     .sipArrow { border-color:transparent #f9c718 transparent transparent; }
     .sipArrowBorder { border-color:transparent #e17500 transparent transparent; }
   }
+  .smallipop-tour-progress {
+    color: #444;
+  }
+  .smallipop-tour-prev,
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    color: #444;
+    background: darken($orange-background-color, 5%);
+
+    &:hover {
+      color: #333;
+      background: darken($orange-background-color, 3%);
+    }
+  }
 }
 
 /* white theme */
@@ -287,12 +350,12 @@
   color:#444;
   width:200px;
   max-width:200px;
-  @include boxshadow(0 2px 6px rgba(0, 0, 0, 0.5));
-  @include border-radius(12px);
+  @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.1));
+  @include border-radius(6px);
 
   .sipContent {
     text-align:center;
-    @include border-radius(12px);
+    @include border-radius(6px);
   }
   .sipArrow { border-color:#fafafa transparent transparent transparent; }
   .sipArrowBorder { border-color:#ccc transparent transparent transparent; }
@@ -309,6 +372,20 @@
   &.sipPositionedRight {
     .sipArrow { border-color:transparent #fafafa transparent transparent; }
     .sipArrowBorder { border-color:transparent #ccc transparent transparent; }
+  }
+  .smallipop-tour-progress {
+    color: #777;
+  }
+  .smallipop-tour-prev,
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    color: #666;
+    background: #f0f0f0;
+
+    &:hover {
+      color: #333;
+      background: #f4f4f4;
+    }
   }
 }
 
@@ -341,5 +418,5 @@
 
 /* fat shadow extension theme */
 .smallipop-instance.fatShadow {
-  @include boxshadow(0 2px 20px rgba(0, 0, 0, 0.8));
+  @include box-shadow(0 2px 20px rgba(0, 0, 0, 0.8));
 }

@@ -180,17 +180,17 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   &:before { @include border-radius(0 0 6px 0); }
   &:after { @include border-radius(0 0 0 6px); }
 }
-.boxshadow .tabs li {
-  @include boxshadow("0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff");
-  &:before { @include boxshadow(2px 2px 0 #d1d1d1); }
-  &:after { @include boxshadow(-2px 2px 0 #d1d1d1); }
+.box-shadow .tabs li {
+  @include box-shadow("0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff");
+  &:before { @include box-shadow(2px 2px 0 #d1d1d1); }
+  &:after { @include box-shadow(-2px 2px 0 #d1d1d1); }
   &:hover {
-    &:before { @include boxshadow(2px 2px 0 #dadada); }
-    &:after { @include boxshadow(-2px 2px 0 #dadada); }
+    &:before { @include box-shadow(2px 2px 0 #dadada); }
+    &:after { @include box-shadow(-2px 2px 0 #dadada); }
   }
   &.selected {
-    &:before { @include boxshadow(2px 2px 0 #ffffff); }
-    &:after { @include boxshadow(-2px 2px 0 #ffffff); }
+    &:before { @include box-shadow(2px 2px 0 #ffffff); }
+    &:after { @include box-shadow(-2px 2px 0 #ffffff); }
   }
 }
 
@@ -323,17 +323,17 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 .csstransitions .btn {
   @include transition(.1s linear all);
 }
-.boxshadow.rgba .btn {
-  @include boxshadow("inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+.box-shadow.rgba .btn {
+  @include box-shadow("inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
 
   &.active,
   &:active {
-    @include boxshadow("inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05)");
+    @include box-shadow("inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05)");
   }
 
   &.disabled,
   &[disabled] {
-    @include boxshadow(none);
+    @include box-shadow(none);
   }
 }
 
@@ -461,6 +461,6 @@ input[type="color"],
   line-height: $baseLineHeight;
   color: $gray;
   border: 1px solid #eee;
-  @include boxshadow(0 0 3px rgba(0, 0, 0, 0.4) inset);
+  @include box-shadow(0 0 3px rgba(0, 0, 0, 0.4) inset);
   @include border-radius($inputBorderRadius);
 }
