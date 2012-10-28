@@ -458,6 +458,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .data('smallipop', {})
             .removeClass "smallipop sipInitialized smallipop#{data.id} #{data.options.theme}"
 
+    _onWindowKeyDown: (e) ->
+      # Escape was pressed
+      if e.which is 27
+        sip._hideSmallipop popup for popupId, popup of sip.instances
+
     _getInstance: (id='default', isTour=false) ->
       return sip.instances[id] if sip.instances[id]
 
@@ -491,6 +496,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         $(window).bind
           'resize.smallipop': sip._refreshPosition
           'scroll.smallipop': sip._onWindowScroll
+          'keydown': sip._onWindowKeyDown
 
       sip.instances[id] = instance
 
