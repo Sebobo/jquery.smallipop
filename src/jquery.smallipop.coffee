@@ -9,8 +9,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.3.0-alpha'
+    version: '0.3.0'
     defaults:
+      autoscrollPadding: 200
       contentAnimationSpeed: 150
       cssAnimations:
         enabled: false
@@ -402,8 +403,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       targetPosition = trigger.offset().top
       offset = targetPosition - $(document).scrollTop()
       windowHeight = $(window).height()
+      triggerOptions = trigger.data('smallipop').options
 
-      if offset < windowHeight * .3 or offset > windowHeight * .7
+      if offset < triggerOptions.autoscrollPadding or offset > windowHeight - triggerOptions.autoscrollPadding
         $('html, body').animate
             scrollTop: targetPosition - windowHeight / 2
           , 800, 'swing', ->

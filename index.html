@@ -8,7 +8,6 @@
         <meta http-equiv="content-language" content="en">
         <meta name="author" content="Sebastian Helzle"/>
         <link rel="stylesheet" href="css/contrib/animate.min.css" type="text/css" media="all" title="Screen" />
-        <link rel="stylesheet" href="css/contrib/prettify.css" type="text/css" media="all" title="Screen" />
         <link rel="stylesheet" href="css/jquery.smallipop.css" type="text/css" media="all" title="Screen" />
         <link rel="stylesheet" href="css/screen.css" type="text/css" media="all" title="Screen" />
     </head>
@@ -18,7 +17,7 @@
             <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips</h1>
 
             <p>
-                <b>Version 0.3.0-alpha</b> -
+                <b>Version 0.3.0</b> -
                 Created by <a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle Portfolio">Sebastian Helzle</a>
                 for <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a>
             </p>
@@ -32,17 +31,19 @@
         </div>
 
         <div class="side-menu">
-            <h2>Table of contents</h2>
+            <h2>Chapters</h2>
             <ul>
-                <li><a class="scrollToId current" href="#introduction" title="What smallipop is about">Introduction</a></li>
-                <li><a class="scrollToId" href="#imagedemo" title="Image with triggers">Image demo with markers</a></li>
-                <li><a class="scrollToId" href="#textdemo" title="Inline text triggers">Text demo with inline hints</a></li>
-                <li><a class="scrollToId" href="#createsmallipop" title="Multiple ways to create a smallipop">How to create a smallipop</a></li>
-                <li><a class="scrollToId" href="#advanced" title="Advanced techniques for smallipop">Advanced configuration</a></li>
-                <li><a class="scrollToId" href="#themes" title="Make it look your way">Themes</a></li>
-                <li><a class="scrollToId" href="#options" title="Customize smallipop the way you like">Options</a></li>
-                <li><a class="scrollToId" href="#methods" title="Control smallipop via javascript">Methods</a></li>
-                <li><a class="scrollToId" href="#installation" title="How to get it up and running">Installation</a></li>
+                <li><a class="scrollToId current smallipopHorizontal" href="#introduction" title="What smallipop is about">Introduction</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#createsmallipop" title="Multiple ways to create a smallipop">How to create a smallipop</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#imagedemo" title="Image with smallipops">Image with markers</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#textdemo" title="Inline text smallipops">Text with inline hints</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#tours" title="Tour">Create a tour</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#advanced" title="Advanced techniques for smallipop">Advanced configuration</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#themes" title="Make it look your way">Themes</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#options" title="Customize smallipop the way you like">Options</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#methods" title="Control smallipop via javascript">Methods</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#installation" title="How to get it up and running">Installation</a></li>
+                <li><a class="scrollToId smallipopHorizontal" href="#features" title="What it does and what's new">Features &amp; changes</a></li>
             </ul>
         </div>
 
@@ -79,148 +80,6 @@
             </p>
 
             <br/>
-            <p>
-                Licensed under the <a href="http://www.opensource.org/licenses/mit-license.php" title="MIT licence">MIT</a> license.
-            </p>
-
-            <br/>
-
-            <div class="row">
-                <div class="column size2of3">
-                    <h4>Features</h4>
-
-                    <ul>
-                        <li>
-                            <b>Small</b><br/>
-                            Only ~ 3.5KB minified and ~ 2KB gziped.
-                        </li>
-                        <li>
-                            <b>Pure css</b><br/>
-                            No images but fallbacks for older browsers.
-                        </li>
-                        <li>
-                            <b>Compatibility</b><br/>
-                            smallipop has been tested with IE7-9, Chrome, Safari 4+,<br/>
-                            Opera and Firefox 4+
-                        </li>
-                        <li>
-                            <b>Custom themes</b><br/>
-                            For different use cases.
-                        </li>
-                        <li>
-                            <b>Free positioning</b><br/>
-                            The popup code will be added to the document root so the<br/>
-                            position won't be affected by your layout.
-                        </li>
-                        <li>
-                            <b>Automatic orientation</b><br/>
-                            The popup will try to stay in the visible area of the screen,<br/>
-                            even when scrolling or at the edges.
-                        </li>
-                        <li>
-                            <b>Only a single popup element</b><br/>
-                            Some plugins create a hidden popup for each trigger.
-                        </li>
-                        <li>
-                            <b>Custom options for each trigger</b><br/>
-                            You can have 20 different popups with 20 different themes<br/>
-                            on one page if you like.
-                        </li>
-                    </ul>
-
-                    <br/>
-                    <p>
-                        We are using this plugin for a lot of things, so watch for new releases at <a class="smallipop" href="https://github.com/Sebobo/jquery.smallipop" title="smallipop at github">github</a>.
-                    </p>
-                </div>
-                <div class="column size1of3 last">
-                    <h5>New and improved in this version</h5>
-
-                    <ul>
-                        <li>
-                            <span class="label success">NEW</span>
-                            Support for css animations
-                        </li>
-                        <li>
-                            <span class="label success">NEW</span>
-                            Special handling for form elements
-                        </li>
-                        <li>
-                            <span class="label success">NEW</span>
-                            Show, hide and destroy methods can be called directly on triggers
-                        </li>
-                        <li>
-                            <span class="label success">NEW</span>
-                            Callbacks for show and hide events
-                        </li>
-                        <li>
-                            <span class="label success">NEW</span>
-                            Update content on the fly via the setContent method
-                        </li>
-                        <li>
-                            <span class="label notice">INFO</span>
-                            A lot of code cleanup, refactoring, namespacing and stuff
-                        </li>
-                    </ul>
-
-                    <br/>
-
-                    <p>
-                        <a href="#changelog" class="collapsor" title="Collapse code">+ Click here to see changes in the last versions</a>
-                    </p>
-                    <ul id="changelog" class="collapsible">
-                        <li>
-                            <h6>0.1.6</h6>
-                            <ul>
-                                <li>
-                                    <span class="label important">FIX</span>
-                                    "invalid argument" error in IE8 sometimes happening
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <h6>0.1.5</h6>
-                            <ul>
-                                <li>
-                                    Added <i>funcEase</i> option to set your own easing function for the animations.
-                                    (See the <a href="#options" class="scrollToId" title="List of options">options</a>)
-                                </li>
-                                <li>
-                                    Added touch support which disables the hover events and uses the <i>click</i> event on touch capable devices.<br/>
-                                    Can be disabled with the <i>touchSupport</i> option.
-                                </li>
-                                <li>
-                                    Added <i>triggerOnClick</i> option to force disable the hover events and just listen for the <i>click</i> event on your triggers.
-                                </li>
-                                <li>
-                                    Window padding can now be changed with the <i>windowPadding</i> option.<br/>
-                                    Smallipop tries to keep this distance from the window borders.
-                                </li>
-                            </ul>
-                        <li>
-                            <h6>0.1.4</h6>
-                            <ul>
-                                <li>Added option to define the animation easing function.</li>
-                                <li>Added options for triggers to show the smallipop on click instead of hover.</li>
-                                <li>Automatic touch device support which uses touch events instead of hover. Can be disabled.</li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <br/>
-
-                    <h5>Dependencies</h5>
-                    <ul>
-                        <li><a class="smallipop" href="http://www.jQuery.com" title="jQuery">jQuery</a> version 1.5.2 or better</li>
-                        <li>
-                            <a class="smallipop" href="http://www.modernizr.com/" title="Modernizr library">Modernizr</a> for browser capability fallbacks.<br/>
-                            The library is included in the plugins <i>lib</i> folder.<br/>
-                        </li>
-                    </ul>
-                </div>
-                <br class="clear"/>
-            </div>
-            <br/>
 
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style ">
@@ -237,161 +96,37 @@
             <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
             <!-- Flattr button END -->
 
-            <br/>
-
-            <hr id="imagedemo"/>
-
-            <h3>Image with absolute positioned hints:</h3>
-
-            <p>
-                Hints can be positioned anywhere, even on absolute positioned or floating elements.
-            </p>
-            <br/>
-            <div class="relative centered" style="width:600px;">
-                <img src="images/pic1.jpg" class="hasShadow hasBorder centered" width="600" height="450" alt="Bird in china" />
-
-                <div class="smallipopHideBlack" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
-                    <div class="pulser"><div class="inner">+</div><div class="outer">&nbsp;</div></div>
-                    <div class="smallipopHint">
-                        <b>Black hole sun</b>
-                    </div>
-                </div>
-
-                <div class="smallipopHideTrans" style="position:absolute; left:320px; top:170px;">
-                    <div class="indicator wobbler">
-                        <div class="indicatorPlus">+</div>
-                        <div class="indicatorArrow">&nbsp;</div>
-                    </div>
-                    <div class="smallipopHint">
-                        <b>The bird is the word</b><br/>
-                        <br/>
-                        This bubble has a white theme extended by another sub theme 'transparent'.<br/>
-                        <br/>
-                        Also the trigger is made out of pure css.
-                    </div>
-                </div>
-
-                <div class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
-                    <img class="smallipopArrow wobbler" src="images/marker-arrow-blue.png" alt="arrow" />
-                    <div class="smallipopHint">
-                        <i>It's a house!</i><br/>
-                        <br/>
-                        It has an image as trigger.<br/>
-                        We have provided some you can use in the <i>images</i> folder.
-                    </div>
-                </div>
-            </div>
-
-            <br/>
-
-            <p>
-                <a href="#imagedemoCode" class="collapsor" title="Collapse code">+ Click here to see how it's done</a>
-            </p>
-            <pre id="imagedemoCode" class="collapsible">
-$('.myElement').smallipop({
-    hideTrigger: true, // Trigger is hidden when the bubble is shown
-    theme: 'white whiteTransparent', // White theme is used with it's transparent extension
-    popupYOffset: 20, // Bubble has a 20px vertical offset
-    popupDistance: 30, // Bubble travels vertically by 30px when fading in
-    popupOffset: 0, // No horizontal offset
-});</pre>
-
-            <br/>
-
-            <hr id="textdemo"/>
-
-            <h3>Text with inline hints:</h3>
-            <br/>
-
-            <div class="textbox centered hasShadow">
-                <h4>Something completely different</h4>
-                <div>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                    sed diam nonumy eirmod tempor
-                    <span class="smallipopBlue">
-                        invidunt
-                        <span class="smallipopHint">
-                            Some info about <em>invidunt</em>
-                        </span>
-                    </span>
-                    ut labore et dolore magna aliquyam erat,
-                    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </div>
-                <br/>
-                <div>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                    At vero eos et
-                    <span class="smallipopBlue">
-                        accusam
-                        <div class="smallipopHint">
-                            <h4>accusam</h4>
-                            <img class="floatRight inline" src="images/pic1.jpg" alt="Bird in china" width="100" height="75" />
-                            <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                            </p>
-                            <p>
-                                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                                sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-                                Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-                                nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate
-                                velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                            </p>
-                        </div>
-                    </span>
-                    et justo duo dolores et ea rebum.
-                    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </div>
-            </div>
-
             <hr id="createsmallipop"/>
 
             <div>
                 <h3>Create a smallipop</h3>
 
                 <p>
-                    Here is the easiest way to create a smallipop:
+                    Here is the easiest way to create a smallipop
                 </p>
-
-                <pre>
-&lt;a class="myElement" href="#" title="That was easy!"&gt;And now hover me!&lt;/a&gt;</pre>
-
-                <p>
-                    Then add some javascript:
-                </p>
-
-                <pre>
-&lt;script type="text/javascript"&gt;
-    $(function() {
-        $('.myElement').smallipop();
-    });
-&lt;/script&gt;</pre>
-
-                <br/>
-
-                <div>
+                <div class="bs-docs-example">
                     <a class="smallipop sampleElement" href="#" title="That was easy!">
-                        And now hover me!
+                        Hover me!
                     </a>
                 </div>
+                <pre class="prettyprint linenums">
+&lt;a class="myElement" href="#" title="That was easy!"&gt;Hover me!&lt;/a&gt;
 
-                <hr/>
-                <h5>If you like some markup as tooltip, you can do that as well</h5>
+&lt;script type="text/javascript"&gt;
+    $('.myElement').smallipop();
+&lt;/script&gt;</pre>
 
-                <span class="smallipop sampleElement" style="display:inline-block;">
-                    Hover me!
-                    <span class="smallipopHint">
-                        <b>Give me some markup</b>
+                <p>If you like some markup as tooltip, you can do that as well</p>
+
+                <div class="bs-docs-example">
+                    <span class="smallipop sampleElement" style="display:inline-block;">
+                        Hover me!
+                        <span class="smallipopHint">
+                            Give me some <b>markup</b>
+                        </span>
                     </span>
-                </span>
-                <br/>
-                <br/>
-
-                <pre>
+                </div>
+                <pre class="prettyprint linenums">
 &lt;span class="smallipop"&gt;
     Hover me!
     &lt;span class="smallipopHint"&gt;
@@ -399,82 +134,67 @@ $('.myElement').smallipop({
     &lt;/span&gt;
 &lt;/span&gt;</pre>
 
-                <hr/>
+                <p>You can provide the content for the bubble via javascript too</p>
 
-                <h5>You can provide the content for the bubble via javascript too</h5>
-
-                <a href="#" id="tipcustomhint" class="sampleElement" title="I'm the old title">
-                    Hover me!
-                </a>
-                <br/>
-                <br/>
-
-                <pre>
-&lt;a href="#" id="tipcustomhint" title="I'm the old title"&gt;
-    Hover me!
-&lt;/a&gt;</pre>
-
-                <p>
-                    Add some javascript to the mix:
-                </p>
-
-                <pre>
-$('#tipcustomhint').smallipop({}, "I'm the real hint!");</pre>
-
-                <hr/>
-
-                <h5>
-                    There are cases when the trigger is replaced or changed when
-                    clicked and the tooltip needs to be hidden
-                </h5>
-
-                <div id="ajaxContainer2">
-                    <a href="#" id="tipkiller2" class="smallipop sampleElement" title="Click the link and I will be gone">
+                <div class="bs-docs-example">
+                    <a href="#" id="tipcustomhint" class="sampleElement" title="I'm the old title">
                         Hover me!
                     </a>
                 </div>
-                <br/>
-                <br/>
+                <pre class="prettyprint linenums">
+&lt;a href="#" id="tipcustomhint" title="I'm the old title"&gt;
+    Hover me!
+&lt;/a&gt;
 
-                <pre>
+&lt;script type="text/javascript"&gt;
+    $('#tipcustomhint').smallipop({}, "I'm the real hint!");
+&lt;/script&gt;</pre>
+
+                <p>
+                    There are cases when the trigger is replaced or changed when
+                    clicked and the tooltip needs to be hidden
+                </p>
+
+                <div class="bs-docs-example">
+                    <div id="ajaxContainer2">
+                        <a href="#" id="tipkiller2" class="smallipop sampleElement" title="Click the link and I will be gone">
+                            Hover me!
+                        </a>
+                    </div>
+                </div>
+                <pre class="prettyprint linenums">
 &lt;div id="sampleContainer"&gt;
     &lt;a href="#" id="tipkiller" class="smallipop" title="Click the link and I will be gone"&gt;
         Hover me!
     &lt;/a&gt;
 &lt;/div&gt;
-                </pre>
 
-                <p>With this javascript:</p>
+&lt;script type="text/javascript"&gt;
+    $('#tipkiller').click(function(e) {
+        e.preventDefault();
+        $('#sampleContainer').html('&lt;div&gt;Some new content&lt;/div&gt;');
+    });
+&lt;/script&gt;</pre>
 
-                <pre>
-$('#tipkiller').click(function(e) {
-    e.preventDefault();
-    $('#sampleContainer').html('&lt;div&gt;Some new content&lt;/div&gt;');
-});</pre>
+                <p>Elements can be positioned everywhere, smallipop will be at the right position</p>
 
-                <hr/>
-
-                <h5>Elements can be positioned everywhere, smallipop will be at the right position</h5>
-
-                <p class="floatLeft">
-                    Look to the right!
-                </p>
-
-                <div id="ajaxContainer" class="floatRight">
-                    <div class="smallipop sampleElement">
-                        Hover me!
-                        <span class="smallipopHint">
-                            <b>Markuptip with very long text</b><br/>
-                            <a id="tipkiller" href="other.html">and a link with some javascript which replaces the trigger</a>
-                        </span>
+                <div class="bs-docs-example">
+                    <div class="floatLeft">
+                        Look to the right
                     </div>
+                    <div id="ajaxContainer" class="floatRight">
+                        <div class="smallipop sampleElement">
+                            Hover me!
+                            <span class="smallipopHint">
+                                <b>Markuptip with very long text</b><br/>
+                                <a id="tipkiller" href="other.html">and a link with some javascript which replaces the trigger</a>
+                            </span>
+                        </div>
+                    </div>
+                    <br class="clear"/>
                 </div>
-
-                <br class="clear"/>
-                <br/>
-
-                <pre>
-&lt;div class="smallipop" style="float:right;"&gt;
+                <pre class="prettyprint linenums">
+&lt;div class="smallipop"&gt;
     Hover me!
     &lt;span class="smallipopHint"&gt;
         &lt;b>Markuptip with very long text&lt;/b&gt;&lt;br/&gt;
@@ -482,86 +202,79 @@ $('#tipkiller').click(function(e) {
     &lt;/span&gt;
 &lt;/div&gt;</pre>
 
-                <hr/>
+                <p>How about showing the bubble on the left or right of an element?</p>
 
-                <h5>How about showing the bubble on the left or right of an element?</h5>
-
-                <span class="smallipopHorizontal sampleElement floatLeft">
-                    Hover me!
-                    <span class="smallipopHint">
-                        Good for dropdowns!
+                <div class="bs-docs-example">
+                    <span class="smallipopHorizontal sampleElement floatLeft">
+                        Hover me!
+                        <span class="smallipopHint">
+                            Good for dropdowns!
+                        </span>
                     </span>
-                </span>
-                <span class="smallipopHorizontal sampleElement floatRight">
-                    Or me!
-                    <span class="smallipopHint">
-                        Auto align when there's no room on the right.
+                    <span class="smallipopHorizontal sampleElement floatRight">
+                        Or me!
+                        <span class="smallipopHint">
+                            Auto align when there's no room on the right.
+                        </span>
                     </span>
-                </span>
-                <br class="clear"/>
-                <br/>
-
-                <pre>
+                    <br class="clear"/>
+                </div>
+                <pre class="prettyprint linenums">
 &lt;span class="smallipopHorizontal"&gt;
     Hover me!
     &lt;span class="smallipopHint"&gt;
         Good for dropdowns!
     &lt;/span&gt;
-&lt;/span&gt;</pre>
+&lt;/span&gt;
 
-                <p>With this javascript:</p>
+&lt;script type="text/javascript"&gt;
+    $('.smallipopHorizontal').smallipop({
+        preferredPosition: right,
+        theme: 'black',
+        popupOffset: 10,
+        invertAnimation: true
+    });
+&lt;/script&gt;</pre>
 
-                <pre>
-$('.smallipopHorizontal').smallipop({
-    preferredPosition: right,
-    theme: 'black',
-    popupOffset: 10,
-    invertAnimation: true
-});</pre>
+                <p>Don't like animations? No Problem!</p>
 
-                <hr/>
-
-                <h5>Don't like animations? No Problem!</h5>
-
-                <a class="smallipopStatic sampleElement" title="Doesn't move an inch!">Hover me!</a>
-                <br/>
-                <br/>
-                <pre>
+                <div class="bs-docs-example">
+                    <a class="smallipopStatic sampleElement" title="Doesn't move an inch!">
+                        Hover me!
+                    </a>
+                </div>
+                <pre class="prettyprint linenums">
 &lt;a class="smallipopStatic" title="Doesn't move an inch"&gt;
     Hover me!
-&lt;/a&gt;</pre>
+&lt;/a&gt;
 
-                <p>With this javascript:</p>
+&lt;script type="text/javascript"&gt;
+    $('.smallipopStatic').smallipop({
+        theme: 'black',
+        popupDistance: 0,
+        popupYOffset: -14,
+        popupAnimationSpeed: 100
+    });
+&lt;/script&gt;</pre>
 
-                <pre>
-$('.smallipopStatic').smallipop({
-    theme: 'black',
-    popupDistance: 0,
-    popupYOffset: -14,
-    popupAnimationSpeed: 100
-});</pre>
+                <p>Change default positioning</p>
 
-                <hr/>
-
-                <h5>Change default positioning</h5>
-
-                <a class="smallipopBottom sampleElement" title="Below when possible">Hover me!</a>
-                <br/>
-                <br/>
-                <pre>
+                <div class="bs-docs-example">
+                    <a class="smallipopBottom sampleElement" title="Below when possible">
+                        Hover me!
+                    </a>
+                </div>
+                <pre class="prettyprint linenums">
 &lt;a class="smallipopStatic" title="Below when possible"&gt;
     Hover me!
-&lt;/a&gt;</pre>
+&lt;/a&gt;
 
-                <p>With this javascript:</p>
-
-                <pre>
-$('.smallipopBottom').smallipop({
-    theme: 'black',
-    preferredPosition: 'bottom'
-});</pre>
-
-                <hr/>
+&lt;script type="text/javascript"&gt;
+    $('.smallipopBottom').smallipop({
+        theme: 'black',
+        preferredPosition: 'bottom'
+    });
+&lt;/script&gt;</pre>
 
                 <h5>Special support for form elements</h5>
 
@@ -570,112 +283,218 @@ $('.smallipopBottom').smallipop({
                     stay even when the mouse leaves the input.
                 </p>
 
-                <label>Text</label>
-                <input class="smallipopFormElement" type="text" size="30" title="Enter some text"/>
-                <br/>
-                <label>Password</label>
-                <input class="smallipopFormElement" type="password" size="30" title="Enter something like a password"/>
-                <br/>
-                <label>Select</label>
-                <select class="smallipopFormElement" title="Select something">
-                    <option>Foo</option>
-                    <option>Bar</option>
-                </select>
-                <br/>
-                <label>Textarea</label>
-                <textarea class="smallipopFormElement" title="Write what you want" cols="30" rows="4"></textarea>
-                <br/>
-                <label>Checkboxes</label>
-                <input type="checkbox" class="smallipopFormElement" title="Check it!"/>
-                <br/><br/>
-                <label class="inline">Yes</label>
-                <input type="radio" name="radioTest" class="smallipopFormElement" title="Yes I want it!"/>
-                <br/>
-                <label class="inline">No</label>
-                <input type="radio" name="radioTest" class="smallipopFormElement" title="Never!"/>
-                <br/>
-                <label class="inline">Maybe</label>
-                <input type="radio" name="radioTest" class="smallipopFormElement" title="Ok maybe..."/>
-                <br/>
-                <br/>
+                <div class="bs-docs-example">
+                    <label>Text</label>
+                    <input class="smallipopFormElement" type="text" size="30" title="Enter some text"/>
+                    <br/>
+                    <label>Password</label>
+                    <input class="smallipopFormElement" type="password" size="30" title="Enter something like a password"/>
+                    <br/>
+                    <label>Select</label>
+                    <select class="smallipopFormElement" title="Select something">
+                        <option>Foo</option>
+                        <option>Bar</option>
+                    </select>
+                    <br/>
+                    <label>Textarea</label>
+                    <textarea class="smallipopFormElement" title="Write what you want" cols="30" rows="4"></textarea>
+                    <br/>
+                    <label>Checkboxes</label>
+                    <input type="checkbox" class="smallipopFormElement" title="Check it!"/>
+                    <br/><br/>
+                    <label class="inline">Yes</label>
+                    <input type="radio" name="radioTest" class="smallipopFormElement" title="Yes I want it!"/>
+                    <br/>
+                    <label class="inline">No</label>
+                    <input type="radio" name="radioTest" class="smallipopFormElement" title="Never!"/>
+                    <br/>
+                    <label class="inline">Maybe</label>
+                    <input type="radio" name="radioTest" class="smallipopFormElement" title="Ok maybe..."/>
+                </div>
 
-                <p>
-                    Use the following config to achieve this:
-                </p>
-                <pre>
-$('.smallipopFormElement').smallipop({
-    preferredPosition: right,
-    theme: 'black',
-    popupOffset: 0,
-    triggerOnClick: true
-});</pre>
+                <pre class="prettyprint linenums">
+&lt;input class="smallipopInput" type="text" size="30" title="Enter some text"/&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('.smallipopInput').smallipop({
+        preferredPosition: right,
+        theme: 'black',
+        popupOffset: 0,
+        triggerOnClick: true
+    });
+&lt;/script&gt;</pre>
             </div>
 
-            <hr id="tours"/>
+            <h5 id="imagedemo">Image with absolute positioned hints</h5>
 
-            <h3>
+            <p>
+                Hints can be positioned anywhere, even on absolute positioned or floating elements.
+            </p>
+            <div class="bs-docs-example">
+                <div class="relative centered" style="width:600px;">
+                    <img src="images/pic1.jpg" class="hasShadow hasBorder centered" width="600" height="450" alt="Bird in china" />
+
+                    <div class="smallipopHideBlack" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
+                        <div class="pulser"><div class="inner">+</div><div class="outer">&nbsp;</div></div>
+                        <div class="smallipopHint">
+                            <b>Black hole sun</b>
+                        </div>
+                    </div>
+
+                    <div class="smallipopHideTrans" style="position:absolute; left:320px; top:170px;">
+                        <div class="indicator wobbler">
+                            <div class="indicatorPlus">+</div>
+                            <div class="indicatorArrow">&nbsp;</div>
+                        </div>
+                        <div class="smallipopHint">
+                            <b>The bird is the word</b><br/>
+                            <br/>
+                            This bubble has a white theme extended by another sub theme 'transparent'.<br/>
+                            <br/>
+                            Also the trigger is made out of pure css.
+                        </div>
+                    </div>
+
+                    <div class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
+                        <img class="smallipopArrow wobbler" src="images/marker-arrow-blue.png" alt="arrow" />
+                        <div class="smallipopHint">
+                            <i>It's a house!</i><br/>
+                            <br/>
+                            It has an image as trigger.<br/>
+                            We have provided some you can use in the <i>images</i> folder.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <pre class="prettyprint linenums">
+&lt;script type="text/javascript"&gt;
+    $('.myElement').smallipop({
+        hideTrigger: true, // Trigger is hidden when the bubble is shown
+        theme: 'white whiteTransparent', // White theme is used with it's transparent extension
+        popupYOffset: 20, // Bubble has a 20px vertical offset
+        popupDistance: 30, // Bubble travels vertically by 30px when fading in
+        popupOffset: 0, // No horizontal offset
+    });
+&lt;/script&gt;</pre>
+
+            <h5 id="textdemo">Text with inline hints</h5>
+
+            <div class="bs-docs-example">
+                <div class="textbox centered hasShadow">
+                    <h4>Something completely different</h4>
+                    <div>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor
+                        <span class="smallipopBlue">
+                            invidunt
+                            <span class="smallipopHint">
+                                Some info about <em>invidunt</em>
+                            </span>
+                        </span>
+                        ut labore et dolore magna aliquyam erat,
+                        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    </div>
+                    <br/>
+                    <div>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        At vero eos et
+                        <span class="smallipopBlue">
+                            accusam
+                            <div class="smallipopHint">
+                                <h4>accusam</h4>
+                                <img class="floatRight inline" src="images/pic1.jpg" alt="Bird in china" width="100" height="75" />
+                                <p>
+                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+                                    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                                </p>
+                                <p>
+                                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
+                                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+                                    Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
+                                    nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate
+                                    velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                                </p>
+                            </div>
+                        </span>
+                        et justo duo dolores et ea rebum.
+                        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    </div>
+                </div>
+            </div>
+            <pre class="prettyprint linenums">
+&lt;p&gt;
+    Some long &lt;span class="smallipop"&gt;text&lt;/span&gt;...
+
+    And more with a more
+    &lt;span class="smallipop"&gt;
+        complex
+        &lt;span class="smallipopHint"&gt;
+            Some really important hint about the word &lt;b&gt;complex&lt;/b&gt;
+        &lt;/span&gt;
+    &lt;/span&gt;
+    hint...
+&lt;/p&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('.smallipop').smallipop();
+&lt;/script&gt;</pre>
+
+            <hr/>
+
+            <h5 id="tours">
                 <span class="smallipopTour" data-smallipop-tour-index="1" title="This is the title of the example">Tours</span>
-            </h3>
+            </h5>
 
-            <div>
-                <a id="runTour" class="sampleElement">Run the tour</a>
+            <div class="bs-docs-example">
+                <a id="runTour" class="sampleElement">Click to start the tour</a>
                 <br/>
                 <br/>
-                <img style="margin-left:200px;" src="images/marker-arrow-green.png" class="smallipopTour floatLeft" title="This is a random marker" data-smallipop-tour-index="10"/>
 
-                <button class="smallipopTour floatRight" title="Second step of the tour" data-smallipop-tour-index="3">
-                    This is the button of the example
-                </button>
-
-                <br class="clear"/>
+                <b class="smallipopTour" title="Second step of the tour" data-smallipop-tour-index="3">
+                    This is the second step of the example
+                </b>
+                <img style="margin-left:200px;" src="images/marker-arrow-green.png" class="smallipopTour" title="This is a random marker" data-smallipop-tour-index="10"/>
             </div>
+            <pre class="prettyprint linenums">
+&lt;span class="smallipopTour" data-smallipop-tour-index="1"&gt;Step 1&lt;/span&gt;
+&lt;span class="smallipopTour" data-smallipop-tour-index="2"&gt;Step 2&lt;/span&gt;
+&lt;span class="smallipopTour" data-smallipop-tour-index="3"&gt;Step 3&lt;/span&gt;
+&lt;span class="smallipopTour" data-smallipop-tour-index="10"&gt;Step 4&lt;/span&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('.smallipopTour').smallipop();
+&lt;/script&gt;</pre>
 
             <hr id="advanced"/>
 
             <h3>Advanced configuration</h3>
 
             <div>
-                <h5>Change content on the fly and use callbacks</h5>
-                <br/>
-                <a id="tipChangeContent" class="sampleElement" title="Change">Hover me!</a>
-                <br/>
-                <br/>
-                <pre>
+                <p>Change content on the fly and use callbacks</p>
+                <div class="bs-docs-example">
+                    <a id="tipChangeContent" class="sampleElement" title="Change">Hover me!</a>
+                </div>
+                <pre class="prettyprint linenums">
 &lt;a id="tipChangeContent" title="Change"&gt;
     Hover me!
-&lt;/a&gt;</pre>
+&lt;/a&gt;
 
-                <p>With this javascript:</p>
+&lt;script type="text/javascript"&gt;
+    $('#tipChangeContent').smallipop({
+        onAfterShow: function(trigger) {
+            $.smallipop.setContent("I'm the new content and replaced the old boring content!");
+        },
+        onBeforeHide: function(trigger) {
+            $.smallipop.setContent("Bye bye");
+        }
+    });
+&lt;/script&gt;</pre>
 
-                <pre>
-$('#tipChangeContent').smallipop({
-    onAfterShow: function(trigger) {
-        $.smallipop.setContent("I'm the new content and replaced the old boring content!");
-    },
-    onBeforeHide: function(trigger) {
-        $.smallipop.setContent("Bye bye");
-    }
-});</pre>
-                <hr/>
-                <h5>Use advanced css animations</h5>
-                <br/>
-                <a id="tipCSSAnimated" class="sampleElement" title="Smallipop can handle fancy animations too!">
-                    Bounce and hinge
-                </a>
-                &nbsp;-&nbsp;
-                <a id="tipCSSAnimated2" class="sampleElement" title="Fancy animations part 2">
-                    Flip
-                </a>
-                &nbsp;-&nbsp;
-                <a id="tipCSSAnimated3" class="sampleElement" title="Fancy animations part 3">
-                    Fade
-                </a>
-                &nbsp;-&nbsp;
-                <a id="tipCSSAnimated4" class="sampleElement" title="Fancy animations part 4">
-                    Rotate
-                </a>
-                <br/>
-                <br/>
+                <h5>Use css animations</h5>
                 <p>
                     Example powered by
                     <a class="smallipop" target="_blank" href="http://daneden.me/animate" title="Just-add-water CSS animation">Animate.css</a>
@@ -684,38 +503,79 @@ $('#tipChangeContent').smallipop({
                     These effects will only work if your browser support css animations.<br/>
                     When the Modernizr library is used and the browser doesn't support css animations the jQuery animations will be used as fallback.
                 </p>
-                <pre>
+                <div class="bs-docs-example">
+                    <a id="tipCSSAnimated" class="sampleElement" title="Smallipop can handle fancy animations too!">
+                        Bounce and hinge
+                    </a>
+                    &nbsp;-&nbsp;
+                    <a id="tipCSSAnimated2" class="sampleElement" title="Fancy animations part 2">
+                        Flip
+                    </a>
+                    &nbsp;-&nbsp;
+                    <a id="tipCSSAnimated3" class="sampleElement" title="Fancy animations part 3">
+                        Fade
+                    </a>
+                    &nbsp;-&nbsp;
+                    <a id="tipCSSAnimated4" class="sampleElement" title="Fancy animations part 4">
+                        Rotate
+                    </a>
+                </div>
+                <pre class="prettyprint linenums">
 &lt;a id="tipCSSAnimated" title="Fancy"&gt;
     Hover me!
-&lt;/a&gt;</pre>
+&lt;/a&gt;
 
-                <p>With this javascript:</p>
+&lt;script type="text/javascript"&gt;
+    $('#tipCSSAnimated').smallipop({
+        cssAnimations: {
+            enabled: true,
+            show: 'animated bounceInDown',
+            hide: 'animated hinge'
+        }
+    });
+&lt;/script&gt;</pre>
 
-                <pre>
-$('#tipCSSAnimated').smallipop({
-    cssAnimations: {
-        enabled: true,
-        show: 'animated bounceInDown',
-        hide: 'animated hinge'
-    }
-});</pre>
-                <hr/>
                 <h5>Hide on click specials</h5>
 
-                <span>Tip won't hide when clicking the trigger</span>
-                <a id="tipDontHideOnTriggerClick" class="sampleElement" title="Change">Hover me!</a>
-                <br/>
-                <br/>
-                <span>Tip wont't hide when clicking into the popup</span>
-                <span id="tipDontHideOnContentClick" class="sampleElement">
-                    Hover me!
-                    <span class="smallipopHint">
-                        <b>Markuptip with very long text</b><br/>
-                        <a href="#" onclick="return false;">
-                            and a link which doesn't hide the popup
-                        </a>
+                <div class="bs-docs-example">
+                    <span>Tip won't hide when clicking the trigger</span>
+                    <a id="tipDontHideOnTriggerClick" class="sampleElement" title="Change">Hover me!</a>
+                    <br/>
+                    <br/>
+                    <span>Tip wont't hide when clicking into the popup</span>
+                    <span id="tipDontHideOnContentClick" class="sampleElement">
+                        Hover me!
+                        <span class="smallipopHint">
+                            <b>Markuptip with very long text</b><br/>
+                            <a href="#" onclick="return false;">
+                                and a link which doesn't hide the popup
+                            </a>
+                        </span>
                     </span>
-                </span>
+                </div>
+                <pre class="prettyprint linenums">
+&lt;a id="tipDontHideOnTriggerClick" title="Change"&gt;
+    Hover me!
+&lt;/a&gt;
+
+&lt;a id="tipDontHideOnContentClick" title="Change"&gt;
+    Hover me!
+    &lt;span class="smallipopHint"&gt;
+        &lt;b&gt;Markuptip with very long text&lt;/b&gt;&lt;br/&gt;
+        &lt;a href="#" onclick="return false;"&gt;
+            and a link which doesn't hide the popup
+        &lt;/a&gt;
+    &lt;/span&gt;
+&lt;/a&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('#tipDontHideOnTriggerClick').smallipop({
+        hideOnTriggerClick: false
+    });
+    $('#tipDontHideOnContentClick').smallipop({
+        hideOnPopupClick: false
+    });
+&lt;/script&gt;</pre>
 
             </div>
 
@@ -725,63 +585,55 @@ $('#tipCSSAnimated').smallipop({
 
             <p>Hover the links to see the different themes</p>
 
-            <br/>
+            <div class="bs-docs-example">
+                <a href="#themes" class="smallipop sampleElement default" title="I'm a title with a long text">
+                    Default theme
+                </a>
+                &nbsp;-&nbsp;
+                <a href="#themes" class="smallipopBlue sampleElement blue" title="I'm a title with a long text">
+                    Blue theme
+                </a>
+                &nbsp;-&nbsp;
+                <a href="#themes" class="smallipopBlack sampleElement black" title="I'm a title with a long text">
+                    Black theme
+                </a>
+                &nbsp;-&nbsp;
+                <a href="#themes" class="smallipopWhite sampleElement white" title="I'm a title with a long text">
+                    White theme
+                </a>
+                &nbsp;-&nbsp;
+                <a href="#themes" class="smallipopOrange sampleElement orange" title="I'm a title with a long text">
+                    Orange theme
+                </a>
+            </div>
 
-            <a href="#themes" class="smallipop sampleElement default" title="I'm a title with a long text">
-                Default theme
-            </a>
-            &nbsp;-&nbsp;
-            <a href="#themes" class="smallipopBlue sampleElement blue" title="I'm a title with a long text">
-                Blue theme
-            </a>
-            &nbsp;-&nbsp;
-            <a href="#themes" class="smallipopBlack sampleElement black" title="I'm a title with a long text">
-                Black theme
-            </a>
-            &nbsp;-&nbsp;
-            <a href="#themes" class="smallipopWhite sampleElement white" title="I'm a title with a long text">
-                White theme
-            </a>
-            &nbsp;-&nbsp;
-            <a href="#themes" class="smallipopOrange sampleElement orange" title="I'm a title with a long text">
-                Orange theme
-            </a>
-            <br/>
-            <br/>
-
-            <p>
-                You can extend a theme with an extension theme:
-            </p>
-            <br/>
-            <code>
-                $('.myElement').smallipop({
-                    theme: 'blue fatShadow'
-                });
-            </code>
-            <br/>
-            <br/>
-            <p>
+            <div class="bs-docs-example">
+                You can extend a theme with an extension theme
                 <span class="smallipopBlueFatShadow sampleElement">
                     Hover me!
                     <span class="smallipopHint">
                         Look at this fat shadow!
                     </span>
                 </span>
+            </div>
+<pre class="prettyprint linenums">
+&lt;script type="text/javascript"&gt;
+    $('.myElement').smallipop({
+        theme: 'blue fatShadow'
+    });
+&lt;/script&gt;</pre>
+            <p>
+                This allows you to have one basic theme and several subthemes with different border styles or colors for example.
             </p>
-            <br/>
             <p>
                 The css for the extension theme looks like this:
             </p>
-            <pre>
+<pre class="prettyprint linenums">
 #smallipop.fatShadow {
   -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
      -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
           box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
 }</pre>
-            <p>
-                This allows you to have one basic theme and several subthemes with different border styles or colors for example.
-            </p>
-
 
             <hr id="options"/>
 
@@ -792,10 +644,12 @@ $('#tipCSSAnimated').smallipop({
                 Most of the options can be defined via the html data attribute too. This will then only affect a single smallipop, which helps you customizing single smallipops without creating different calls for each configuration.
             </p>
 
-            <span class="smallipop sampleElement" data-smallipop-preferred-position="right" title="I prefer the position on the right, even when my siblings stay on top!">Hover me!</span>
-            <br/><br/>
-
-            <pre>
+            <div class="bs-docs-example">
+                <span class="smallipop sampleElement" data-smallipop-preferred-position="right" title="I prefer the position on the right, even when my siblings stay on top!">
+                    Hover me!
+                </span>
+            </div>
+<pre class="prettyprint linenums">
 &lt;span class="smallipop" data-smallipop-preferred-position="right" title="Some text"&gt;
     Hover me!
 &lt;/span&gt;</pre>
@@ -805,6 +659,11 @@ $('#tipCSSAnimated').smallipop({
                     <th>Key</th>
                     <th>Default value</th>
                     <th>Description</th>
+                </tr>
+                <tr>
+                    <td>autoscrollPadding</td>
+                    <td>200</td>
+                    <td>Visible window margin in pixels in which the tour feature tries to stay in, when showing the next or previous step in a tour.</td>
                 </tr>
                 <tr>
                     <td>funcEase</td>
@@ -954,18 +813,18 @@ $('#tipCSSAnimated').smallipop({
                     You can show and hide smallipop via manual calls. Only the first element found in the selectors result will be triggered.
                 </p>
 
-                <pre>$('.myTrigger').smallipop('show');</pre>
-                <pre>$('.myTrigger').smallipop('hide');</pre>
+                <pre class="prettyprint">$('.myTrigger').smallipop('show');</pre>
+                <pre class="prettyprint">$('.myTrigger').smallipop('hide');</pre>
 
                 <p>
                     Removing smallipop from elements is also possible.
                 </p>
-                <pre>$('.myTriggers').smallipop('destroy');</pre>
+                <pre class="prettyprint">$('.myTriggers').smallipop('destroy');</pre>
 
                 <p>
                     Update the content of a smallipop while it's visible.
                 </p>
-                <pre>$('.myTrigger').smallipop('update', 'Test');</pre>
+                <pre class="prettyprint">$('.myTrigger').smallipop('update', 'Test');</pre>
 
             </div>
 
@@ -1011,17 +870,170 @@ $('#tipCSSAnimated').smallipop({
                 <h6>Modify your html header</h6>
 
                 <p>Add these lines to the header of your html file and replace x.x.x with the correct versions</p>
-                <pre>
+                <pre class="prettyprint linenums">
 &lt;link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen"/&gt;
 &lt;script type="text/javascript" src="lib/jquery-x.x.x.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="lib/modernizr-x.x.x.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="lib/jquery-smallipop.js"&gt;&lt;/script&gt;</pre>
             </div>
 
+            <hr id="features"/>
+
+            <div class="row">
+                <div class="column size2of3">
+                    <h4>Features</h4>
+
+                    <ul>
+                        <li>
+                            <b>Small</b><br/>
+                            Only ~ 12KB minified and even less when gziped by your server.
+                        </li>
+                        <li>
+                            <b>Pure css</b><br/>
+                            No images but fallbacks for older browsers.
+                        </li>
+                        <li>
+                            <b>Compatibility</b><br/>
+                            smallipop has been tested with IE7-9, Chrome, Safari 4+,<br/>
+                            Opera and Firefox 4+
+                        </li>
+                        <li>
+                            <b>Custom themes</b><br/>
+                            For different use cases.
+                        </li>
+                        <li>
+                            <b>Free positioning</b><br/>
+                            The popup code will be added to the document root so the<br/>
+                            position won't be affected by your layout.
+                        </li>
+                        <li>
+                            <b>Automatic orientation</b><br/>
+                            The popup will try to stay in the visible area of the screen,<br/>
+                            even when scrolling or at the edges.
+                        </li>
+                        <li>
+                            <b>Only a single popup element</b><br/>
+                            Some plugins create a hidden popup for each trigger.
+                        </li>
+                        <li>
+                            <b>Custom options for each trigger</b><br/>
+                            You can have 20 different popups with 20 different themes<br/>
+                            on one page if you like.
+                        </li>
+                        <li>
+                            Licensed under the <a href="http://www.opensource.org/licenses/mit-license.php" title="MIT licence">MIT</a> license.
+                        </li>
+                    </ul>
+
+                    <br/>
+                    <p>
+                        We are using this plugin for a lot of things, so watch for new releases at <a class="smallipop" href="https://github.com/Sebobo/jquery.smallipop" title="smallipop at github">github</a>.
+                    </p>
+                </div>
+                <div class="column size1of3 last">
+                    <h5>New and improved in this version</h5>
+                    <ul>
+                        <li>
+                            <span class="label success">NEW</span>
+                            The <a href="#tours">tour</a> feature!
+                        </li>
+                        <li>
+                            <span class="label success">NEW</span>
+                            Customize each smallipop via the data attribute
+                        </li>
+                        <li>
+                            <span class="label success">NEW</span>
+                            More callable methods
+                        </li>
+                    </ul>
+                    <p>
+                        <a href="#changelog" class="collapsor" title="Collapse code">+ Click here to see changes in the last versions</a>
+                    </p>
+                    <ul id="changelog" class="collapsible">
+                        <li>
+                            <h6>0.2.0</h6>
+                            <ul>
+                                <li>
+                                    <span class="label success">NEW</span>
+                                    Support for css animations
+                                </li>
+                                <li>
+                                    <span class="label success">NEW</span>
+                                    Special handling for form elements
+                                </li>
+                                <li>
+                                    <span class="label success">NEW</span>
+                                    Show, hide and destroy methods can be called directly on triggers
+                                </li>
+                                <li>
+                                    <span class="label success">NEW</span>
+                                    Callbacks for show and hide events
+                                </li>
+                                <li>
+                                    <span class="label success">NEW</span>
+                                    Update content on the fly via the setContent method
+                                </li>
+                                <li>
+                                    <span class="label notice">INFO</span>
+                                    A lot of code cleanup, refactoring, namespacing and stuff
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>0.1.6</h6>
+                            <ul>
+                                <li>
+                                    <span class="label important">FIX</span>
+                                    "invalid argument" error in IE8 sometimes happening
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h6>0.1.5</h6>
+                            <ul>
+                                <li>
+                                    Added <i>funcEase</i> option to set your own easing function for the animations.
+                                    (See the <a href="#options" class="scrollToId" title="List of options">options</a>)
+                                </li>
+                                <li>
+                                    Added touch support which disables the hover events and uses the <i>click</i> event on touch capable devices.<br/>
+                                    Can be disabled with the <i>touchSupport</i> option.
+                                </li>
+                                <li>
+                                    Added <i>triggerOnClick</i> option to force disable the hover events and just listen for the <i>click</i> event on your triggers.
+                                </li>
+                                <li>
+                                    Window padding can now be changed with the <i>windowPadding</i> option.<br/>
+                                    Smallipop tries to keep this distance from the window borders.
+                                </li>
+                            </ul>
+                        <li>
+                            <h6>0.1.4</h6>
+                            <ul>
+                                <li>Added option to define the animation easing function.</li>
+                                <li>Added options for triggers to show the smallipop on click instead of hover.</li>
+                                <li>Automatic touch device support which uses touch events instead of hover. Can be disabled.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <br/>
+
+                    <h5>Dependencies</h5>
+                    <ul>
+                        <li><a class="smallipop" href="http://www.jQuery.com" title="jQuery">jQuery</a> version 1.5.2 or better</li>
+                        <li>
+                            <a class="smallipop" href="http://www.modernizr.com/" title="Modernizr library">Modernizr</a> for browser capability fallbacks.<br/>
+                            The library is included in the plugins <i>lib</i> folder.<br/>
+                        </li>
+                    </ul>
+                </div>
+                <br class="clear"/>
+            </div>
+
             <hr/>
 
             <h4>Have fun and check out my other plugins</h4>
-            <br/>
             <p>
                 <a href="/jquery.rondell" class="btn primary smallipop" title="Display images and other content in a nice way">jQuery Rondell</a>
             </p>
@@ -1050,6 +1062,7 @@ $('#tipCSSAnimated').smallipop({
         <br/>
         <script type="text/javascript" src="lib/contrib/modernizr-2.0.6.min.js"></script>
         <script type="text/javascript" src="lib/contrib/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="lib/contrib/prettify.js"></script>
         <script type="text/javascript" src="lib/jquery.smallipop.js"></script>
         <script type="text/javascript" src="lib/demohelpers.js"></script>
         <script type="text/javascript">
