@@ -3,6 +3,10 @@
 
 /* Demo css */
 
+html {
+  background: #222 url('../images/bg.png');
+}
+
 body {
   height: 100%;
   font-family: arial;
@@ -31,7 +35,6 @@ h3 { font-size: 1.6em; }
 h4 { font-size: 1.4em; }
 h5 { font-size: 1.2em; }
 
-code, pre { color: #555; border: 1px solid #f0f0f0; background-color: #fafafa; padding:5px; font-size:0.9em; }
 ul {
   padding-left:20px;
 
@@ -198,9 +201,7 @@ img.inline { margin: 10px; }
   &.default { @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.3)); }
 }
 
-/*
- * Sidemenu
- */
+/* Sidemenu */
 .side-menu {
   position: fixed;
   top: 168px;
@@ -224,15 +225,15 @@ img.inline { margin: 10px; }
   li {
     list-style-type: none;
     a {
-      color: #999;
+      color: #aaa;
 
       &:hover {
-        color: #333;
+        color: #ccc;
         text-decoration: underline;
       }
 
       &.current {
-        color: #333;
+        color: #eee;
       }
     }
   }
