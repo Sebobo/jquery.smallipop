@@ -115,16 +115,26 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
     margin: 0 -3px;
     padding: 0;
     cursor: pointer;
+    @include border-radius(6px 6px 0 0);
+    @include box-shadow("0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff");
+    @include transition(.05s linear all);
+    @include linear-gradient(#ececec 50%, #d1d1d1 100%);
 
     &:hover {
       background: #dadada;
       background-position: 0 -15px;
+      @include linear-gradient(#efefef 50%, #dadada 100%);
+      &:before { @include box-shadow(2px 2px 0 #dadada); }
+      &:after { @include box-shadow(-2px 2px 0 #dadada); }
     }
     &.selected {
       background: #fff;
       color: #333;
       z-index: 2;
       border-bottom-color: #fff;
+      &:before { @include box-shadow(2px 2px 0 #ffffff); }
+      &:after { @include box-shadow(-2px 2px 0 #ffffff); }
+      &:hover { background: #fff; }
     }
 
     &:before,
@@ -140,8 +150,14 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
     &:before {
       left: -6px;
       border-width: 0 1px 1px 0;
+      @include border-radius(0 0 6px 0);
+      @include box-shadow(2px 2px 0 #d1d1d1);
     }
-    &:after { right: -6px; }
+    &:after {
+      right: -6px;
+      @include border-radius(0 0 0 6px);
+      @include box-shadow(-2px 2px 0 #d1d1d1);
+    }
   }
   a {
     color: #555;
@@ -162,35 +178,6 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
     left: 0;
     border-bottom: 1px solid #aaa;
     z-index: 1;
-  }
-}
-.csstransitions .tabs li {
-  @include transition(.05s linear all);
-}
-.cssgradients .tabs li {
-  @include linear-gradient(#ececec 50%, #d1d1d1 100%);
-
-  &:hover { @include linear-gradient(#efefef 50%, #dadada 100%); }
-  &.selected {
-    &, &:hover { background: #fff; }
-  }
-}
-.borderradius .tabs li {
-  @include border-radius(6px 6px 0 0);
-  &:before { @include border-radius(0 0 6px 0); }
-  &:after { @include border-radius(0 0 0 6px); }
-}
-.boxshadow .tabs li {
-  @include boxshadow("0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff");
-  &:before { @include boxshadow(2px 2px 0 #d1d1d1); }
-  &:after { @include boxshadow(-2px 2px 0 #d1d1d1); }
-  &:hover {
-    &:before { @include boxshadow(2px 2px 0 #dadada); }
-    &:after { @include boxshadow(-2px 2px 0 #dadada); }
-  }
-  &.selected {
-    &:before { @include boxshadow(2px 2px 0 #ffffff); }
-    &:after { @include boxshadow(-2px 2px 0 #ffffff); }
   }
 }
 
@@ -323,17 +310,17 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 .csstransitions .btn {
   @include transition(.1s linear all);
 }
-.boxshadow.rgba .btn {
-  @include boxshadow("inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+.box-shadow.rgba .btn {
+  @include box-shadow("inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
 
   &.active,
   &:active {
-    @include boxshadow("inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05)");
+    @include box-shadow("inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05)");
   }
 
   &.disabled,
   &[disabled] {
-    @include boxshadow(none);
+    @include box-shadow(none);
   }
 }
 
@@ -381,11 +368,7 @@ code, pre {
   padding: 0 3px 2px;
   font-family: Monaco, Andale Mono, Courier New, monospace;
   font-size: 12px;
-}
-.borderradius {
-  code, pre {
-    @include border-radius(3px);
-  }
+  @include border-radius(3px);
 }
 code {
   background-color: lighten($orange, 40%);
@@ -393,22 +376,49 @@ code {
   padding: 1px 3px;
 }
 pre {
-  background-color: #f5f5f5;
+  background-color: #fcfcfc;
   display: block;
   padding: ($baseLineHeight - 1) / 2;
   margin: 0 0 $baseLineHeight;
   line-height: $baseLineHeight;
   font-size: 12px;
-  border: 1px solid #ccc;
+  border-color: rgba(0, 0, 0, .15);
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-.rgba pre {
-  border-color: rgba(0, 0, 0, .15);
+
+.com { color: #93a1a1; }
+.lit { color: #195f91; }
+.pun, .opn, .clo { color: #93a1a1; }
+.fun { color: #dc322f; }
+.str, .atv { color: #D14; }
+.kwd, .prettyprint .tag { color: #1e347b; }
+.typ, .atn, .dec, .var { color: teal; }
+.pln { color: #48484c; }
+
+.prettyprint {
+  padding: 8px;
+  background-color: #fcfcfc;
+  border: 1px solid #ddd;
+
+  &.linenums {
+    @include box-shadow("inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0");
+  }
 }
 
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin: 0 0 0 33px; /* IE indents via margin-left */
 
+  li {
+    list-style-type: decimal;
+    padding-left: 12px;
+    color: #bebec5;
+    line-height: 20px;
+    text-shadow: 0 1px 0 #fff;
+  }
+}
 
 // Set font for forms
 label,
@@ -461,6 +471,43 @@ input[type="color"],
   line-height: $baseLineHeight;
   color: $gray;
   border: 1px solid #eee;
-  @include boxshadow(0 0 3px rgba(0, 0, 0, 0.4) inset);
+  @include box-shadow(0 0 3px rgba(0, 0, 0, 0.4) inset);
   @include border-radius($inputBorderRadius);
+}
+
+
+/* Base class */
+.bs-docs-example {
+  position: relative;
+  margin: 15px 0;
+  padding: 39px 19px 14px;
+  *padding-top: 19px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+/* Echo out a label for the example */
+.bs-docs-example:after {
+  content: "Example";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  color: #9da0a4;
+  -webkit-border-radius: 4px 0 4px 0;
+     -moz-border-radius: 4px 0 4px 0;
+          border-radius: 4px 0 4px 0;
+}
+
+/* Remove spacing between an example and it's code */
+.bs-docs-example + .prettyprint {
+  margin-top: -20px;
+  padding-top: 15px;
 }

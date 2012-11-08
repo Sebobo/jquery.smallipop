@@ -3,6 +3,10 @@
 
 /* Demo css */
 
+html {
+  background: #222 url('../images/bg.png');
+}
+
 body {
   height: 100%;
   font-family: arial;
@@ -31,7 +35,6 @@ h3 { font-size: 1.6em; }
 h4 { font-size: 1.4em; }
 h5 { font-size: 1.2em; }
 
-code, pre { color: #555; border: 1px solid #f0f0f0; background-color: #fafafa; padding:5px; font-size:0.9em; }
 ul {
   padding-left:20px;
 
@@ -41,12 +44,12 @@ ul {
 .collapsible { display:none; }
 
 img.inline { margin: 10px; }
-.boxshadow.rgba img.inline { @include boxshadow(0 1px 2px rgba(0, 0, 0, 0.5)); }
+.box-shadow.rgba img.inline { @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.5)); }
 
 .hasBorder { border: 4px solid #fff; }
 
-.boxshadow.rgba .hasShadow {
-  @include boxshadow(0 2px 4px rgba(0, 0, 0, 0.5));
+.box-shadow.rgba .hasShadow {
+  @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .page,
@@ -121,7 +124,7 @@ img.inline { margin: 10px; }
     font-size: 1.4em;
   }
 
-  &, a { text-decoration: none; }
+  &, a { text-decoration: none; cursor:pointer; }
 
   &:hover {
     background-color: #fff4d9;
@@ -188,19 +191,17 @@ img.inline { margin: 10px; }
     @include linear-gradient(#4f6c88, #314b64);
   }
 }
-.boxshadow.rgba .sampleElement {
-  @include boxshadow(0 1px 4px rgba(255, 162, 0, 0.3));
+.box-shadow.rgba .sampleElement {
+  @include box-shadow(0 1px 4px rgba(255, 162, 0, 0.3));
 
   &.white,
   &.black,
   &.blue,
   &.green,
-  &.default { @include boxshadow(0 1px 4px rgba(0, 0, 0, 0.3)); }
+  &.default { @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.3)); }
 }
 
-/*
- * Sidemenu
- */
+/* Sidemenu */
 .side-menu {
   position: fixed;
   top: 168px;
@@ -224,15 +225,15 @@ img.inline { margin: 10px; }
   li {
     list-style-type: none;
     a {
-      color: #999;
+      color: #aaa;
 
       &:hover {
-        color: #333;
+        color: #ccc;
         text-decoration: underline;
       }
 
       &.current {
-        color: #333;
+        color: #eee;
       }
     }
   }
