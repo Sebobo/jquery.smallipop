@@ -1,0 +1,54 @@
+/* blue theme */
+.smallipop-instance.blue {
+  background:transparent;
+  color: #111;
+  border: 10px solid $blue-arrow-color;
+  border-color: rgba(0, 100, 180, 0.9);
+  @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  @include border-radius(7px);
+
+  a {
+    color:#2276aa;
+  }
+
+  .sipContent {
+    border: 0;
+    background: $blue-background-color;
+  }
+
+  .sipArrow {
+    bottom: -30px;
+    @include border-color-top($blue-arrow-color);
+    @include border-color-top($blue-arrow-border-color);
+  }
+  &.sipAlignBottom .sipArrow {
+    top: -30px;
+    @include border-color-bottom($blue-arrow-color);
+    @include border-color-bottom($blue-arrow-border-color);
+  }
+
+  &.sipPositionedLeft .sipArrow {
+    right: -26px;
+    @include border-color-left($blue-arrow-color);
+    @include border-color-left($blue-arrow-border-color);
+  }
+  &.sipPositionedRight .sipArrow {
+    left: -26px;
+    @include border-color-right($blue-arrow-color);
+    @include border-color-right($blue-arrow-border-color);
+  }
+  .smallipop-tour-progress {
+    color: #777;
+  }
+  .smallipop-tour-prev,
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    color: #222;
+    background: darken($blue-background-color, 5%);
+
+    &:hover {
+      color: #111;
+      background: darken($blue-background-color, 2%);
+    }
+  }
+}

@@ -1,0 +1,37 @@
+/* default theme */
+.smallipop-instance.default {
+  text-shadow: $default-text-shadow;
+  @include box-shadow($default-box-shadow);
+  @include border-radius($default-border-radius);
+  @include linear-gradient(rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); /* Fallback for opera */
+  @include radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px);
+
+  a {
+    text-shadow: $default-link-text-shadow;
+  }
+
+  .sipContent {
+    border-top: 1px solid #586d82;
+    @include border-radius($default-border-radius);
+  }
+
+  .sipArrow { @include border-color-top($default-arrow-color); }
+  .sipArrowBorder { @include border-color-top($default-arrow-border-color); }
+
+  &.sipAlignBottom {
+    .sipArrow { @include border-color-bottom($default-arrow-color); }
+    .sipArrowBorder { @include border-color-bottom($default-arrow-border-color); }
+  }
+
+  &.sipPositionedLeft {
+    .sipArrow { @include border-color-left($default-arrow-color); }
+    .sipArrowBorder { @include border-color-left($default-arrow-border-color); }
+  }
+  &.sipPositionedRight {
+    .sipArrow { @include border-color-right($default-arrow-color); }
+    .sipArrowBorder { @include border-color-right($default-arrow-border-color); }
+  }
+}
+.cssgradients.rgba .smallipop-instance.default {
+  background-color: transparent;
+}
