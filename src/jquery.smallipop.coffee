@@ -1,5 +1,5 @@
 ###!
-Smallipop (10/15/2012)
+Smallipop (11/30/2012)
 Copyright (c) 2011-2012 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.3.0'
+    version: '0.3.1'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -419,7 +419,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       return unless currentTourItems
 
       # Get currently shown tour item
-      popup = $(e.target).closest '.smallipop-instance'
+      popup = currentTourItems[0].popupInstance
       shownId = popup.data('shown') or currentTourItems[0].id
 
       for i in [0..currentTourItems.length - 2] when currentTourItems[i].id is shownId
@@ -433,7 +433,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       return unless currentTourItems
 
       # Get currently shown tour item
-      popup = $(e.target).closest '.smallipop-instance'
+      popup = currentTourItems[0].popupInstance
       shownId = popup.data('shown') or currentTourItems[0].id
 
       for i in [1..currentTourItems.length - 1] when currentTourItems[i].id is shownId
@@ -460,10 +460,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .data('smallipop', {})
             .removeClass "smallipop sipInitialized smallipop#{data.id} #{data.options.theme}"
 
-    _onWindowKeyDown: (e) ->
-      # Escape was pressed
-      if e.which is 27
-        sip._hideSmallipop popup for popupId, popup of sip.instances
+    _onWindowKeyUp: (e) ->
+      targetIsInput = e?.target.tagName.toLowerCase() in ['input', 'textarea']
+
+      switch e.which
+        # Escape - close all popups
+        when 27 then sip._hideSmallipop popup for popupId, popup of sip.instances
+        # Arrow left
+        when 37 then sip._tourPrev() unless targetIsInput
+        # Arrow right
+        when 39 then sip._tourNext() unless targetIsInput
 
     _getInstance: (id='default', isTour=false) ->
       return sip.instances[id] if sip.instances[id]
@@ -498,11 +504,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         $(window).bind
           'resize.smallipop': sip._refreshPosition
           'scroll.smallipop': sip._onWindowScroll
-          'keydown': sip._onWindowKeyDown
+          'keyup': sip._onWindowKeyUp
 
       sip.instances[id] = instance
-
-      instance
 
   ### Add default easing function for smallipop to jQuery if missing ###
   unless $.easing.easeInOutQuad
@@ -536,7 +540,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       triggerData = self.data()
 
       # Get content for the popup
-      objHint = hint or self.attr('title') or self.find(".#{options.infoClass}").html()
+      objHint = hint or self.find(".#{options.infoClass}").html() or self.attr('title')
 
       # Initialize each trigger, create id and bind events
       if objHint and not self.hasClass 'sipInitialized'
@@ -573,17 +577,19 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         # Add to tours if tourTitle is set
         if triggerOptions.tourIndex
           tourTitle = triggerOptions.tourTitle or 'defaultTour'
-          sip.tours[tourTitle] = [] unless sip.tours[tourTitle]
-          sip.tours[tourTitle].push
-            index: triggerOptions.tourIndex or 0
-            id: newId
-            trigger: self
 
           # Disable all trigger events
           triggerEvents = {}
           triggerOptions.hideOnTriggerClick = false
           triggerOptions.hideOnPopupClick = false
           triggerPopupInstance = sip._getInstance tourTitle, true
+
+          sip.tours[tourTitle] = [] unless sip.tours[tourTitle]
+          sip.tours[tourTitle].push
+            index: triggerOptions.tourIndex or 0
+            id: newId
+            trigger: self
+            popupInstance: triggerPopupInstance
 
         # Store parameters for this trigger
         self
