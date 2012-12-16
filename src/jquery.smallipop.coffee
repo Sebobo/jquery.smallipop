@@ -19,6 +19,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         hide: 'animated fadeOut'
       funcEase: 'easeInOutQuad'
       handleInputs: true
+      hideDelay: 500
       hideTrigger: false
       hideOnPopupClick: true
       hideOnTriggerClick: true
@@ -340,7 +341,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         popup
           .data 'hideDelayTimer', setTimeout ->
               sip._hideSmallipop popup
-            , 500
+            , triggerData.options.hideDelay
 
     _onWindowScroll: (e) ->
       clearTimeout sip.scrollTimer
