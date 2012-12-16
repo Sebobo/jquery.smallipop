@@ -1,0 +1,70 @@
+/* white theme */
+.smallipop-instance.white {
+  background-color: #fcfcfc;
+  border-color:#ccc;
+  text-shadow:0 1px 1px #eee;
+  color:#444;
+  width:200px;
+  max-width:200px;
+  @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.1));
+  @include border-radius(6px);
+
+  .sipContent {
+    text-align:center;
+    @include border-radius(6px);
+  }
+  .sipArrow { border-color:#fcfcfc transparent transparent transparent; }
+  .sipArrowBorder { border-color:#ccc transparent transparent transparent; }
+
+  &.sipAlignBottom {
+    .sipArrow { border-color:transparent transparent #fcfcfc transparent; }
+    .sipArrowBorder { border-color:transparent transparent #ccc transparent; }
+  }
+
+  &.sipPositionedLeft {
+    .sipArrow { border-color:transparent transparent transparent #fcfcfc; }
+    .sipArrowBorder { border-color:transparent transparent transparent #ccc; }
+  }
+  &.sipPositionedRight {
+    .sipArrow { border-color:transparent #fcfcfc transparent transparent; }
+    .sipArrowBorder { border-color:transparent #ccc transparent transparent; }
+  }
+  .smallipop-tour-progress {
+    color: #777;
+  }
+  .smallipop-tour-prev,
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    color: #666;
+    background: #f0f0f0;
+
+    &:hover {
+      color: #333;
+      background: #f4f4f4;
+    }
+  }
+}
+
+/* white theme extended, requires rgba support */
+.smallipop-instance.whiteTransparent {
+  background-color: rgba(255, 255, 255, 0.8);
+
+  .sipArrow {
+    bottom: -21px;
+    border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
+  }
+  .sipArrowBorder {
+    border-color: transparent;
+  }
+
+  &.sipAlignBottom .sipArrow {
+    top: -21px;
+    border-color: transparent transparent rgba(255, 255, 255, 0.8) transparent;
+  }
+  &.sipPositionedLeft .sipArrow {
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.8);
+  }
+  &.sipPositionedRight .sipArrow {
+    border-color: transparent rgba(255, 255, 255, 0.8) transparent transparent;
+  }
+}

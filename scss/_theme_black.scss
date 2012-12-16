@@ -1,0 +1,53 @@
+/* black theme */
+.smallipop-instance.black {
+  background-color:#222;
+  border-color:#111;
+  text-shadow:0 -1px 1px #111;
+  color:#f5f5f5;
+  @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  @include linear-gradient(#333333, #222222);
+  @include border-radius(5px);
+
+  a {
+    color: #eef8ff;
+    text-shadow:0 -1px 1px #111;
+  }
+
+  .sipContent {
+    border-top:1px solid #666;
+    @include border-radius(5px);
+  }
+  .sipArrow { border-color:#222 transparent transparent transparent; }
+  .sipArrowBorder { border-color:#111 transparent transparent transparent; }
+
+  &.sipAlignBottom {
+    .sipArrow { border-color:transparent transparent #222 transparent; }
+    .sipArrowBorder { border-color:transparent transparent #111 transparent; }
+  }
+
+  &.sipPositionedLeft {
+    .sipArrow { border-color:transparent transparent transparent #222; }
+    .sipArrowBorder { border-color:transparent transparent transparent #111; }
+  }
+  &.sipPositionedRight {
+    .sipArrow { border-color:transparent #222 transparent transparent; }
+    .sipArrowBorder { border-color:transparent #111 transparent transparent; }
+  }
+  .smallipop-tour-progress {
+    color: #888;
+  }
+  .smallipop-tour-prev,
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    color: #ccc;
+    background: #333;
+
+    &:hover {
+      color: #fff;
+      background: #3a3a3a;
+    }
+  }
+}
+.cssgradients .smallipop-instance.black {
+  background-color:transparent;
+}

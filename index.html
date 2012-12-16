@@ -17,7 +17,7 @@
             <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips</h1>
 
             <p>
-                <b>Version 0.3.0</b> -
+                <b>Version 0.3.2</b> -
                 Created by <a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle Portfolio">Sebastian Helzle</a>
                 for <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a>
             </p>
@@ -71,7 +71,7 @@
             <br/>
 
             <p>
-                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.3.0" title="Download the most versatile tooltip plugin for jQuery" class="btn success smallipopWhite">
+                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.3.2" title="Download the most versatile tooltip plugin for jQuery" class="btn success smallipopWhite">
                     Download smallipop now
                 </a>
                 &nbsp;
@@ -475,7 +475,7 @@
             <h3>Advanced configuration</h3>
 
             <div>
-                <p>Change content on the fly and use callbacks</p>
+                <h5>Change content on the fly and use callbacks</h5>
                 <div class="bs-docs-example">
                     <a id="tipChangeContent" class="sampleElement" title="Change">Hover me!</a>
                 </div>
@@ -493,6 +493,27 @@
             $.smallipop.setContent("Bye bye");
         }
     });
+&lt;/script&gt;</pre>
+
+                <h5>Use referenced element as tooltip content</h5>
+                <div class="bs-docs-example">
+                    <a id="tipReferenced" class="smallipop sampleElement" title="Referenced content" data-smallipop-referenced-content="#tipReferencedTarget">Hover me!</a>
+                    <br/>
+                    <br/>
+                    <div id="tipReferencedTarget">
+                        The real tooltip content!
+                    </div>
+                </div>
+                <pre class="prettyprint linenums">
+&lt;a id="tipReferenced" data-smallipop-referenced-content="#tipReferencedTarget" title="Referenced content"&gt;
+    Hover me!
+&lt;/a&gt;
+&lt;div id="tipReferencedTarget"&gt;
+    The real tooltip content!
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('#tipReferenced').smallipop();
 &lt;/script&gt;</pre>
 
                 <h5>Use css animations</h5>
@@ -677,6 +698,11 @@
                     <td>
                         Enables the focus and blur events on tags like <i>input, textarea, select</i> and disables the hide on click.
                     </td>
+                </tr>
+                <tr>
+                    <td>hideDelay</td>
+                    <td>500</td>
+                    <td>Time before popup will be hidden.</td>
                 </tr>
                 <tr>
                     <td>hideOnPopupClick</td>
@@ -936,21 +962,46 @@
                     <ul>
                         <li>
                             <span class="label success">NEW</span>
-                            The <a href="#tours">tour</a> feature!
+                            Control the tour with arrow keys
                         </li>
                         <li>
                             <span class="label success">NEW</span>
-                            Customize each smallipop via the data attribute
+                            Inline hint is now preferred to title attribute for tooltip content
                         </li>
                         <li>
                             <span class="label success">NEW</span>
-                            More callable methods
+                            Use 'data-smallipop-referenced-content'-attribute to display updateable referenced content
+                        </li>
+                        <li>
+                            <span class="label success">NEW</span>
+                            Option 'hideDelay' to customize time before the popup is hidden
+                        </li>
+                        <li>
+                            <span class="label important">FIX</span>
+                            Javascript error when showing smallipop after deleting the last shown hint
                         </li>
                     </ul>
                     <p>
                         <a href="#changelog" class="collapsor" title="Collapse code">+ Click here to see changes in the last versions</a>
                     </p>
                     <ul id="changelog" class="collapsible">
+                        <li>
+                            <h6>0.3.1</h6>
+                            <ul>
+                                <li>
+                                    <span class="label success">NEW</span>
+                                    The <a href="#tours">tour</a> feature!
+                                </li>
+                                <li>
+                                    <span class="label success">NEW</span>
+                                    Customize each smallipop via the data attribute
+                                </li>
+                                <li>
+                                    <span class="label success">NEW</span>
+                                    More callable methods
+                                </li>
+                            </ul>
+                        </li>
                         <li>
                             <h6>0.2.0</h6>
                             <ul>

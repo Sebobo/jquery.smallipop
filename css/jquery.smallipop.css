@@ -87,21 +87,20 @@
 .smallipop-instance.orange .smallipop-tour-prev:hover, .smallipop-instance.orange .smallipop-tour-next:hover, .smallipop-instance.orange .smallipop-tour-close:hover { color: #333; background: #f9a509; }
 
 /* white theme */
-.smallipop-instance.white { background-color: #fafafa; border-color: #ccc; text-shadow: 0 1px 1px #eee; color: #444; width: 200px; max-width: 200px; -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); border-radius: 6px; -o-border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; }
+.smallipop-instance.white { background-color: #fcfcfc; border-color: #ccc; text-shadow: 0 1px 1px #eee; color: #444; width: 200px; max-width: 200px; -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); border-radius: 6px; -o-border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; }
 .smallipop-instance.white .sipContent { text-align: center; border-radius: 6px; -o-border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; }
-.smallipop-instance.white .sipArrow { border-color: #fafafa transparent transparent transparent; }
+.smallipop-instance.white .sipArrow { border-color: #fcfcfc transparent transparent transparent; }
 .smallipop-instance.white .sipArrowBorder { border-color: #ccc transparent transparent transparent; }
-.smallipop-instance.white.sipAlignBottom .sipArrow { border-color: transparent transparent #fafafa transparent; }
+.smallipop-instance.white.sipAlignBottom .sipArrow { border-color: transparent transparent #fcfcfc transparent; }
 .smallipop-instance.white.sipAlignBottom .sipArrowBorder { border-color: transparent transparent #ccc transparent; }
-.smallipop-instance.white.sipPositionedLeft .sipArrow { border-color: transparent transparent transparent #fafafa; }
+.smallipop-instance.white.sipPositionedLeft .sipArrow { border-color: transparent transparent transparent #fcfcfc; }
 .smallipop-instance.white.sipPositionedLeft .sipArrowBorder { border-color: transparent transparent transparent #ccc; }
-.smallipop-instance.white.sipPositionedRight .sipArrow { border-color: transparent #fafafa transparent transparent; }
+.smallipop-instance.white.sipPositionedRight .sipArrow { border-color: transparent #fcfcfc transparent transparent; }
 .smallipop-instance.white.sipPositionedRight .sipArrowBorder { border-color: transparent #ccc transparent transparent; }
 .smallipop-instance.white .smallipop-tour-progress { color: #777; }
 .smallipop-instance.white .smallipop-tour-prev, .smallipop-instance.white .smallipop-tour-next, .smallipop-instance.white .smallipop-tour-close { color: #666; background: #f0f0f0; }
 .smallipop-instance.white .smallipop-tour-prev:hover, .smallipop-instance.white .smallipop-tour-next:hover, .smallipop-instance.white .smallipop-tour-close:hover { color: #333; background: #f4f4f4; }
 
-/* extension themes. keep at the bottom */
 /* white theme extended, requires rgba support */
 .smallipop-instance.whiteTransparent { background-color: rgba(255, 255, 255, 0.8); }
 .smallipop-instance.whiteTransparent .sipArrow { bottom: -21px; border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent; }

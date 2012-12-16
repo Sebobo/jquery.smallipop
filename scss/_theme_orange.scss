@@ -1,0 +1,50 @@
+/* orange theme */
+.smallipop-instance.orange {
+  background-color: $orange-background-color;
+  border-color: #e17500;
+  text-shadow: 0 1px 1px #fff24d;
+  color: #714900;
+  @include linear-gradient(#fff24d, #f9aa18);
+  @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+  @include border-radius(10px);
+
+  a {
+    color: #145d95;
+    text-shadow:0 1px 1px #fff24d;
+  }
+
+  .sipContent {
+    border-top:1px solid #fffabc;
+    @include border-radius(10px);
+  }
+  .sipArrow { border-color:#f9aa18 transparent transparent transparent; }
+  .sipArrowBorder { border-color:#e17500 transparent transparent transparent; }
+
+  &.sipAlignBottom {
+    .sipArrow { border-color:transparent transparent #f9aa18 transparent; }
+    .sipArrowBorder { border-color:transparent transparent #e17500 transparent; }
+  }
+
+  &.sipPositionedLeft {
+    .sipArrow { border-color:transparent transparent transparent #f9c718; }
+    .sipArrowBorder { border-color:transparent transparent transparent #e17500; }
+  }
+  &.sipPositionedRight {
+    .sipArrow { border-color:transparent #f9c718 transparent transparent; }
+    .sipArrowBorder { border-color:transparent #e17500 transparent transparent; }
+  }
+  .smallipop-tour-progress {
+    color: #444;
+  }
+  .smallipop-tour-prev,
+  .smallipop-tour-next,
+  .smallipop-tour-close {
+    color: #444;
+    background: darken($orange-background-color, 5%);
+
+    &:hover {
+      color: #333;
+      background: darken($orange-background-color, 3%);
+    }
+  }
+}
