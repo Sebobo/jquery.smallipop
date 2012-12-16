@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.3.2-pre'
+    version: '0.3.2'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
