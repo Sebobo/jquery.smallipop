@@ -1,5 +1,5 @@
 ###!
-Smallipop (11/30/2012)
+Smallipop (12/16/2012)
 Copyright (c) 2011-2012 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.3.1'
+    version: '0.3.2-pre'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -30,6 +30,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       popupDelay: 100
       popupAnimationSpeed: 200
       preferredPosition: 'top' # bottom, top, left or right
+      referencedSelector: null
       theme: 'default'
       touchSupport: true
       triggerAnimationSpeed: 150
@@ -245,7 +246,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           opacity: 1
 
     _fadeInPopup: (popup, animationTarget) ->
-      options = sip._getTrigger(popup.data('shown')).data('smallipop').options
+      options = sip._getTrigger(popup.data('shown')).data('smallipop')?.options or sip.defaults
       if options.cssAnimations.enabled
         popup.addClass options.cssAnimations.show
         window.setTimeout ->
@@ -276,18 +277,24 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       shownId = popup.data 'shown'
       if shownId
         lastTrigger = sip._getTrigger shownId
-        lastTriggerOpt = lastTrigger.data('smallipop').options or sip.defaults
-        if lastTriggerOpt.hideTrigger
-          lastTrigger
-            .stop(true)
-            .fadeTo(lastTriggerOpt.fadeSpeed, 1)
+        if lastTrigger.length
+          lastTriggerOpt = lastTrigger.data('smallipop').options or sip.defaults
+          if lastTriggerOpt.hideTrigger
+            lastTrigger
+              .stop(true)
+              .fadeTo(lastTriggerOpt.fadeSpeed, 1)
+
+      popupContent = content or triggerData.hint
+      # If referenced content element is defined, use it's content
+      if triggerData.options.referencedContent and not content
+        popupContent = $(triggerData.options.referencedContent).html() or popupContent
 
       # Update tip content and remove all classes
       popup
         .data
           beingShown: true
           shown: triggerData.id
-        .find('.sipContent').html content or triggerData.hint
+        .find('.sipContent').html popupContent
 
       # Remove some css classes
       popup.attr('class', 'smallipop-instance') if triggerData.id isnt shownId
@@ -299,6 +306,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       unless isTrigger
         trigger = sip._getTrigger popup.data('shown')
 
+      return unless trigger.length
       triggerData = trigger.data 'smallipop'
       popup = triggerData.popupInstance
         .data((if isTrigger then 'triggerHovered' else 'hovered'), true)
@@ -319,6 +327,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       unless isTrigger
         trigger = sip._getTrigger popup.data('shown')
 
+      return unless trigger.length
       triggerData = trigger.data 'smallipop'
       popup = triggerData.popupInstance
         .data((if isTrigger then 'triggerHovered' else 'hovered'), false)
