@@ -3,7 +3,7 @@
     "version": "0.3.3",
     "title": "jQuery Smallipop",
     "description": "A versatile jQuery plugin for displaying beautiful tooltips",
-    "homepage": "http://projects.sebastianhelzle.net/jquery.smallipop"
+    "homepage": "http://projects.sebastianhelzle.net/jquery.smallipop",
     "author": {
         "name": "Sebastian Helzle",
         "url": "https://github.com/sebobo"
@@ -11,7 +11,7 @@
     "licenses": [
         {
             "type": "MIT",
-            "url": "MIT-LICENSE.txt"
+            "url": "https://raw.github.com/Sebobo/jquery.smallipop/master/MIT-LICENSE.txt"
         }
     ],
     "dependencies": {
@@ -24,7 +24,7 @@
             "email": "sebastian@helzle.net",
             "url": "http://www.sebastianhelzle.net"
         }
-    ]
+    ],
     "keywords": [
         "tooltip",
         "bubble",
@@ -32,5 +32,5 @@
         "popup"
     ],
     "bugs": "https://github.com/Sebobo/jquery.smallipop",
-    "docs": "http://projects.sebastianhelzle.net/jquery.smallipop",
+    "docs": "http://projects.sebastianhelzle.net/jquery.smallipop"
 }
