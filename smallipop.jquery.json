@@ -31,6 +31,7 @@
         "hint",
         "popup"
     ],
-    "bugs": "https://github.com/Sebobo/jquery.smallipop",
-    "docs": "http://projects.sebastianhelzle.net/jquery.smallipop"
+    "bugs": "https://github.com/Sebobo/jquery.smallipop/issues",
+    "docs": "http://projects.sebastianhelzle.net/jquery.smallipop",
+    "download": "https://github.com/Sebobo/jquery.smallipop"
 }
