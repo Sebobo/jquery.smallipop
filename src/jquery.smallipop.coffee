@@ -1,5 +1,5 @@
 ###!
-Smallipop (01/18/2013)
+Smallipop (01/21/2013)
 Copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.3.3'
+    version: '0.3.4'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -158,6 +158,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         yOffset = options.popupYOffset
 
         # Get new dimensions
+        isFixed = popup.data('position') is 'fixed'
         offset = trigger.offset()
 
         popupH = popup.outerHeight()
@@ -170,6 +171,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
         selfWidth = trigger.outerWidth()
         selfHeight = trigger.outerHeight()
+
         selfY = offset.top - win.scrollTop()
 
         popupOffsetLeft = offset.left + selfWidth / 2
@@ -229,6 +231,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           xDistance = 0
           yDistance = 0
           opacity = 1
+
+        if isFixed
+          popupOffsetLeft -= win.scrollLeft()
+          popupOffsetTop -= win.scrollTop()
 
         popup
           .data
@@ -296,6 +302,20 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           beingShown: true
           shown: triggerData.id
         .find('.sipContent').html popupContent
+
+      # Check if trigger has fixed position
+      popup
+        .data('position', '')
+        .css('position', 'absolute')
+
+      elemToCheck = trigger
+      while elemToCheck.length
+        if elemToCheck.css('position') is 'fixed'
+          popup
+            .data('position', 'fixed')
+            .css('position', 'fixed')
+          break
+        elemToCheck = elemToCheck.parent()
 
       # Remove some css classes
       popup.attr('class', 'smallipop-instance') if triggerData.id isnt shownId
