@@ -1,11 +1,12 @@
 {
     "name": "smallipop",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "title": "jQuery Smallipop",
     "description": "A versatile jQuery plugin for displaying beautiful tooltips",
     "homepage": "http://projects.sebastianhelzle.net/jquery.smallipop",
     "author": {
         "name": "Sebastian Helzle",
+        "email": "sebastian@helzle.net",
         "url": "https://github.com/sebobo"
     },
     "licenses": [
@@ -15,8 +16,7 @@
         }
     ],
     "dependencies": {
-        "jquery": ">=1.5.2",
-        "modernizr": ">=2.0.0"
+        "jquery": ">=1.5.2"
     },
     "maintainers": [
         {
