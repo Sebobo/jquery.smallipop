@@ -309,7 +309,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         .css('position', 'absolute')
 
       elemToCheck = trigger
-      while elemToCheck.length
+      while elemToCheck.length and elemToCheck[0].nodeName isnt 'HTML'
         if elemToCheck.css('position') is 'fixed'
           popup
             .data('position', 'fixed')
