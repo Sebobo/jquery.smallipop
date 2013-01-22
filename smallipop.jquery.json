@@ -1,6 +1,6 @@
 {
     "name": "smallipop",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "title": "jQuery Smallipop",
     "description": "A versatile jQuery plugin for displaying beautiful tooltips",
     "homepage": "http://projects.sebastianhelzle.net/jquery.smallipop",
@@ -31,6 +31,7 @@
         "hint",
         "popup"
     ],
-    "bugs": "https://github.com/Sebobo/jquery.smallipop",
-    "docs": "http://projects.sebastianhelzle.net/jquery.smallipop"
+    "bugs": "https://github.com/Sebobo/jquery.smallipop/issues",
+    "docs": "http://projects.sebastianhelzle.net/jquery.smallipop",
+    "download": "https://github.com/Sebobo/jquery.smallipop"
 }
