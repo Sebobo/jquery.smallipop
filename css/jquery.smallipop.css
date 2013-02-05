@@ -100,6 +100,8 @@
 .smallipop-instance.white.sipPositionedRight .sipArrow { border-color: transparent #fcfcfc transparent transparent; }
 .smallipop-instance.white.sipPositionedRight .sipArrowBorder { border-color: transparent #ccc transparent transparent; }
 .smallipop-instance.white .smallipop-tour-progress { color: #777; }
+.smallipop-instance.white .smallipop-tour-close-icon { background: #fafafa; color: #555; text-shadow: 0 1px 1px #fff; }
+.smallipop-instance.white .smallipop-tour-close-icon:hover { background: #f5f5f5; color: #222; }
 .smallipop-instance.white .smallipop-tour-prev, .smallipop-instance.white .smallipop-tour-next, .smallipop-instance.white .smallipop-tour-close { color: #666; background: #f0f0f0; }
 .smallipop-instance.white .smallipop-tour-prev:hover, .smallipop-instance.white .smallipop-tour-next:hover, .smallipop-instance.white .smallipop-tour-close:hover { color: #333; background: #f4f4f4; }
 
