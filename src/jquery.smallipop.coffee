@@ -1,5 +1,5 @@
 ###!
-Smallipop (01/22/2013)
+Smallipop (02/05/2013)
 Copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.3.5'
+    version: '0.4.0'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -56,7 +56,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     instances: {}
     scrollTimer: null
     templates:
-      popup: '
+      popup: $.trim '
         <div class="smallipop-instance">
           <div class="sipContent"/>
           <div class="sipArrowBorder"/>
@@ -308,18 +308,22 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         .data('position', '')
         .css('position', 'absolute')
 
-      elemToCheck = trigger
-      while elemToCheck.length and elemToCheck[0].nodeName isnt 'HTML'
-        if elemToCheck.css('position') is 'fixed'
-          popup
-            .data('position', 'fixed')
-            .css('position', 'fixed')
-          break
-        elemToCheck = elemToCheck.parent()
+      if @_isElementFixed trigger
+        popup
+          .data('position', 'fixed')
+          .css('position', 'fixed')
 
       # Remove some css classes
       popup.attr('class', 'smallipop-instance') if triggerData.id isnt shownId
       sip._refreshPosition()
+
+    _isElementFixed: (element) ->
+      elemToCheck = element
+      while elemToCheck.length and elemToCheck[0].nodeName isnt 'HTML'
+        if elemToCheck.css('position') is 'fixed'
+          return true
+        elemToCheck = elemToCheck.parent()
+      false
 
     _triggerMouseover: ->
       trigger = popup = $ @
@@ -410,9 +414,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       prevButton = if index > 0 then "<a href=\"#\" class=\"smallipop-tour-prev\">#{sip.labels.prev}</a>" else ''
       nextButton = if index < currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-next\">#{sip.labels.next}</a>" else ''
       closeButton = if index is currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-close\">#{sip.labels.close}</a>" else ''
+      closeIcon = "<a href=\"#\" class=\"smallipop-tour-close-icon\">&Chi;</a>"
 
       content = "
         <div class=\"smallipop-tour-content\">#{triggerData.hint}</div>
+        #{closeIcon}
         <div class=\"smallipop-tour-footer\">
           <div class=\"smallipop-tour-progress\">
             #{index + 1} #{sip.labels.of} #{currentTourItems.length}
@@ -435,7 +441,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       windowHeight = $(window).height()
       triggerOptions = trigger.data('smallipop').options
 
-      if offset < triggerOptions.autoscrollPadding or offset > windowHeight - triggerOptions.autoscrollPadding
+      if not @_isElementFixed(trigger) and (offset < triggerOptions.autoscrollPadding or offset > windowHeight - triggerOptions.autoscrollPadding)
         $('html, body').animate
             scrollTop: targetPosition - windowHeight / 2
           , 800, 'swing', ->
@@ -523,7 +529,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         instance
           .delegate('.smallipop-tour-prev', 'click.smallipop', sip._tourPrev)
           .delegate('.smallipop-tour-next', 'click.smallipop', sip._tourNext)
-          .delegate('.smallipop-tour-close', 'click.smallipop', sip._tourClose)
+          .delegate('.smallipop-tour-close, .smallipop-tour-close-icon', 'click.smallipop', sip._tourClose)
       else
         instance
           .delegate('a', 'click.smallipop', sip._hideSmallipop)
