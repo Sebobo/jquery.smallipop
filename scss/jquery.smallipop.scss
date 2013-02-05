@@ -120,6 +120,27 @@ $orange-background-color: #f9aa18;
     margin-left: -40px;
     top: 8px;
   }
+  .smallipop-tour-close-icon {
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    width: 16px;
+    height: 16px;
+    padding-top: 0px;
+    font-size: 11px;
+    background: #555;
+    color: #ccc;
+    text-align: center;
+    text-shadow: 0 -1px 1px #666;
+    @include border-radius(8px);
+    @include box-shadow(0 1px 3px rgba(0, 0, 0, .3));
+
+    &:hover {
+      text-decoration: none;
+      background: #666;
+      color: #fff;
+    }
+  }
   .smallipop-tour-prev,
   .smallipop-tour-next,
   .smallipop-tour-close {
@@ -130,7 +151,7 @@ $orange-background-color: #f9aa18;
     float: left;
     background: darken($default-background-color, 10%);
     @include border-radius(3px);
-    @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    @include box-shadow(0 1px 2px rgba(0, 0, 0, .3));
 
     &:hover {
       color: #fff;
