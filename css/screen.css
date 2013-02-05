@@ -201,12 +201,8 @@ img.inline { margin: 10px; }
 
 .page, .pageHeader { margin: 0 auto; width: 920px; background: #fafafa; padding: 30px; position: relative; }
 
-.pageHeader { background: #267be4; color: #fafafa; }
+.pageHeader { background: #267be4; color: #fafafa; background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, #337edc, #0a5abf); background-image: -moz-linear-gradient(top, #337edc, #0a5abf); background-image: -ms-linear-gradient(top, #337edc, #0a5abf); background-image: -o-linear-gradient(top, #337edc, #0a5abf); background-image: linear-gradient(top, #337edc, #0a5abf); border-radius: 8px 8px 0 0; -o-border-radius: 8px 8px 0 0; -moz-border-radius: 8px 8px 0 0; -webkit-border-radius: 8px 8px 0 0; }
 .pageHeader p a { color: #fff; }
-
-.cssgradients .pageHeader { background-repeat: repeat-x; background-image: -webkit-linear-gradient(top, #337edc, #0a5abf); background-image: -moz-linear-gradient(top, #337edc, #0a5abf); background-image: -ms-linear-gradient(top, #337edc, #0a5abf); background-image: -o-linear-gradient(top, #337edc, #0a5abf); background-image: linear-gradient(top, #337edc, #0a5abf); }
-
-.borderradius .pageHeader { border-radius: 8px 8px 0 0; -o-border-radius: 8px 8px 0 0; -moz-border-radius: 8px 8px 0 0; -webkit-border-radius: 8px 8px 0 0; }
 
 .options th { background: #222; border: 1px solid #111; padding: 6px 10px; color: #eee; vertical-align: middle; }
 .options tr:nth-child(even) { background: #eee; }
