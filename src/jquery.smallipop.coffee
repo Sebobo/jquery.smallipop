@@ -1,5 +1,5 @@
 ###!
-Smallipop (02/05/2013)
+Smallipop (02/08/2013)
 Copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.4.0'
+    version: '0.4.1'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -74,6 +74,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
         trigger = $ ".smallipop#{shownId}"
         triggerOptions = trigger.data('smallipop')?.options or sip.defaults
+
+        # Fire close callback
+        if popupData.isTour
+          trigger.data('smallipop')?.options.onTourClose?()
 
         # Do nothing if clicked and hide on click is disabled for this case
         ignoreTriggerClick = not triggerOptions.hideOnTriggerClick \
@@ -480,9 +484,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     _tourClose: (e) ->
       e?.preventDefault()
       popup = $(e.target).closest '.smallipop-instance'
-
-      # Fire close callback
-      sip._getTrigger(popup.data('shown')).data('smallipop')?.options.onTourClose?()
 
       sip._hideSmallipop popup
 
