@@ -17,7 +17,7 @@
             <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips</h1>
 
             <p>
-                <b>Version 0.4.0</b> -
+                <b>Version 0.4.1</b> -
                 Created by <a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle Portfolio">Sebastian Helzle</a>
                 for <a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a>
             </p>
@@ -79,7 +79,7 @@
             <br/>
 
             <p>
-                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.4.0" title="Download the most versatile tooltip plugin for jQuery" class="btn success smallipopWhite">
+                <a href="https://github.com/Sebobo/jquery.smallipop/zipball/0.4.1" title="Download the most versatile tooltip plugin for jQuery" class="btn success smallipopWhite">
                     Download smallipop now
                 </a>
                 &nbsp;
@@ -878,14 +878,13 @@
                     <li>
                         <b><a href="http://www.modernizr.com" target="_blank" title="Modernizr library">Modernizr</a></b><br/>
                         This library tests the browser for feature support and adds classes to the body tag.<br/>
-                        We use this for css fallbacks in our themes.
+                        We use this for css fallbacks in our themes.<br/>
+                        Required features:
+                        <i>rgba, cssanimations, cssgradients, csstransitions, touch, cssclasses</i>
                     </li>
                 </ul>
                 <p>
-                    Both are also provided in the <i>lib</i> folder.
-
-                    If you don't want to use the <i>Modernizr</i> library and want to save space you can remove the<br/>
-                    <i>.cssgradients</i>, <i>.borderradius</i>, <i>.rgba</i> and <i>.boxshadow</i> classes in <i>css/jquery-smallipop.css</i>.
+                    Both are also provided in a current version in the <i>lib</i> folder.
                 </p>
 
                 <br/>
@@ -1146,7 +1145,7 @@
             </p>
         </div>
         <br/>
-        <script type="text/javascript" src="lib/contrib/modernizr-2.0.6.min.js"></script>
+        <script type="text/javascript" src="lib/contrib/modernizr.js"></script>
         <script type="text/javascript" src="lib/contrib/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="lib/contrib/prettify.js"></script>
         <script type="text/javascript" src="lib/jquery.smallipop.js"></script>

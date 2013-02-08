@@ -50,12 +50,12 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   text-transform: uppercase;
   white-space: nowrap;
   background-color: #ccc;
+  @include border-radius(3px);
   &.important { background-color: #c43c35; }
   &.warning   { background-color: $orange; }
   &.success   { background-color: $green; }
   &.notice    { background-color: lighten($blue, 25%); }
 }
-.borderradius .label { @include border-radius(3px); }
 
 // Basic stuff
 .clear {
@@ -230,6 +230,18 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   border-bottom-color: #bbb;
   text-decoration: none;
   background-color: darken(#ffffff, 10%);
+  @include border-radius(4px);
+  @include box-shadow("inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+
+  &.active,
+  &:active {
+    @include box-shadow("inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05)");
+  }
+
+  &.disabled,
+  &[disabled] {
+    @include box-shadow(none);
+  }
 
   &:hover {
     background-position: 0 -15px;
@@ -267,6 +279,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
     font-size: $baseFontSize + 2px;
     line-height: normal;
     padding: 9px 14px 9px;
+    @include border-radius(6px);
   }
   &.small {
     padding: 7px 9px 7px;
@@ -300,28 +313,8 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   }
 }
 
-.borderradius .btn {
-  @include border-radius(4px);
-
-  &.large {
-    @include border-radius(6px);
-  }
-}
 .csstransitions .btn {
   @include transition(.1s linear all);
-}
-.box-shadow.rgba .btn {
-  @include box-shadow("inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
-
-  &.active,
-  &:active {
-    @include box-shadow("inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05)");
-  }
-
-  &.disabled,
-  &[disabled] {
-    @include box-shadow(none);
-  }
 }
 
 // Super jank hack for removing border-radius from IE9 so we can keep filter gradients on alerts and buttons
