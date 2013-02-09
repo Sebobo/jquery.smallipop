@@ -171,12 +171,13 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
         winWidth = win.width()
         winHeight = win.height()
+        winScrollTop = win.scrollTop()
         windowPadding = options.windowPadding
 
         selfWidth = trigger.outerWidth()
         selfHeight = trigger.outerHeight()
 
-        selfY = offset.top - win.scrollTop()
+        selfY = offset.top - winScrollTop
 
         popupOffsetLeft = offset.left + selfWidth / 2
         popupOffsetTop = offset.top - popupH + yOffset
@@ -186,10 +187,13 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         popupDistanceLeft = offset.left - popupW - options.popupOffset
         popupDistanceRight = winWidth - offset.left - selfWidth - popupW
 
-        if options.preferredPosition in ['left', 'right']
+        preferredPosition = options.preferredPosition
+
+        if preferredPosition in ['left', 'right']
           xDistance = 0
           popupOffsetTop += selfHeight / 2 + popupH / 2
-          if (options.preferredPosition is 'left' and popupDistanceLeft > windowPadding) or popupDistanceRight < windowPadding
+          if (preferredPosition is 'left' and popupDistanceLeft > windowPadding) \
+              or popupDistanceRight < windowPadding
             # Positioned left
             popup.addClass 'sipPositionedLeft'
             popupOffsetLeft = offset.left - popupW - options.popupOffset
@@ -213,23 +217,27 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             popupOffsetLeft -= popupCenter
 
           # Add class if positioned below
-          if (options.preferredPosition is 'bottom' and popupDistanceBottom > windowPadding) or popupDistanceTop < windowPadding
-            popupOffsetTop += popupH + selfHeight - 2 * yOffset
+          if (preferredPosition is 'bottom' and popupDistanceBottom > windowPadding) \
+              or popupDistanceTop < windowPadding
             xDistance = -xDistance
-            yOffset = 0
+            popupOffsetTop += popupH + selfHeight - 2 * yOffset
+
+            # Move Smallipop up if it wouldn't fit in the viewport
+            yOverflow = popupOffsetTop + popupH - winScrollTop - winHeight
+            if yOverflow > 0
+              popupOffsetTop -= yOverflow - xDistance + windowPadding
             popup.addClass 'sipAlignBottom'
 
         # Hide trigger if defined
         if options.hideTrigger
           trigger
             .stop(true)
-            .fadeTo(options.triggerAnimationSpeed, 0)
+            .fadeTo options.triggerAnimationSpeed, 0
+
+        opacity = 0
 
         # Animate to new position if refresh does nothing
-        opacity = 0
-        doAnimate = popupData.beingShown and not options.cssAnimations.enabled
-
-        unless doAnimate
+        if not popupData.beingShown or options.cssAnimations.enabled
           popupOffsetTop -= xDistance
           popupOffsetLeft += yDistance
           xDistance = 0
