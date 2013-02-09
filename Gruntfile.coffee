@@ -34,7 +34,8 @@ module.exports = (grunt) ->
         options:
           bare: true
         files:
-          'lib/jquery.smallipop.js': ['src/coffee/*.coffee']
+          'lib/jquery.smallipop.js': ['src/coffee/jquery.smallipop.coffee']
+          'tests/tests.js': ['src/coffee/tests.coffee']
     watch:
       coffee:
         files: 'src/coffee/**/*.coffee',
