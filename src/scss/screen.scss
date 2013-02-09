@@ -1,3 +1,4 @@
+@import "compass";
 @import "mixins";
 @import "base";
 
@@ -64,7 +65,7 @@ img.inline { margin: 10px; }
 .pageHeader {
   background: #267be4;
   color: #fafafa;
-  @include linear-gradient(#337edc, #0a5abf);
+  @include background(linear-gradient(#337edc, #0a5abf));
   @include border-radius(8px 8px 0 0);
 
   p a {
@@ -173,27 +174,30 @@ img.inline { margin: 10px; }
   }
 }
 .cssgradients .sampleElement {
-  @include linear-gradient(#fff24d, #f9aa18);
+  @include background(linear-gradient(#fff24d, #f9aa18));
 
-  &:hover { @include linear-gradient(#fff24d, #fdc661); }
+  &:hover {
+    @include background(linear-gradient(#fff24d, #fdc661));
+  }
 
   &.white {
-    @include linear-gradient(#ffffff, #fafafa);
+    @include background(inear-gradient(#ffffff, #fafafa));
   }
   &.green {
-    @include linear-gradient(#35b125, #29a219);
+    @include background(linear-gradient(#35b125, #29a219));
     &:hover {
-      @include linear-gradient(#40bb30, #31aa21);
+      @include background(linear-gradient(#40bb30, #31aa21));
     }
   }
   &.black {
-    @include linear-gradient(#444444, #111111);
+    @include background(linear-gradient(#444444, #111111));
   }
   &.blue {
-    @include linear-gradient(#1279cb, #0064b4); color: #eee;
+    @include background(linear-gradient(#1279cb, #0064b4));
+    color: #eee;
   }
   &.default {
-    @include linear-gradient(#4f6c88, #314b64);
+    @include background(linear-gradient(#4f6c88, #314b64));
   }
 }
 
@@ -256,7 +260,7 @@ img.inline { margin: 10px; }
   }
 }
 .cssgradients .indicator {
-  @include linear-gradient(#ffffff, #fafafa);
+  @include background(linear-gradient(#ffffff, #fafafa));
 }
 
 .smallipopArrow {
@@ -343,7 +347,7 @@ img.inline { margin: 10px; }
   text-align:center;
 }
 .cssgradients .pulser .inner {
-  @include linear-gradient(#fafafa, #dddddd);
+  @include background(linear-gradient(#fafafa, #dddddd));
 }
 .cssanimations .pulser .outer {
   height: 12px; width: 12px;

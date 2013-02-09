@@ -1,0 +1,20 @@
+
+@mixin gradient-bar($primaryColor, $secondaryColor) {
+  @include background(linear-gradient($primaryColor, $secondaryColor));
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+  border-color: $secondaryColor $secondaryColor darken($secondaryColor, 15%);
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
+}
+
+@mixin border-color-top($color) {
+  border-color: $color transparent transparent transparent;
+}
+@mixin border-color-right($color) {
+  border-color: transparent $color transparent transparent;
+}
+@mixin border-color-bottom($color) {
+  border-color: transparent transparent $color transparent;
+}
+@mixin border-color-left($color) {
+  border-color: transparent transparent transparent $color;
+}

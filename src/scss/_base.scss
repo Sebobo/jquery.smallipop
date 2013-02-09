@@ -118,12 +118,12 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
     @include border-radius(6px 6px 0 0);
     @include box-shadow("0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #ffffff");
     @include transition(.05s linear all);
-    @include linear-gradient(#ececec 50%, #d1d1d1 100%);
+    @include background(linear-gradient(#ececec 50%, #d1d1d1 100%));
 
     &:hover {
       background: #dadada;
       background-position: 0 -15px;
-      @include linear-gradient(#efefef 50%, #dadada 100%);
+      @include background(linear-gradient(#efefef 50%, #dadada 100%));
       &:before { @include box-shadow(2px 2px 0 #dadada); }
       &:after { @include box-shadow(-2px 2px 0 #dadada); }
     }
@@ -232,6 +232,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
   background-color: darken(#ffffff, 10%);
   @include border-radius(4px);
   @include box-shadow("inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+  @include transition(.1s linear all);
 
   &.active,
   &:active {
@@ -288,7 +289,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 }
 .cssgradients {
   .btn {
-    @include linear-gradient-with-stop(#ffffff, #ffffff 25%, darken(#ffffff, 10%));
+    @include background(linear-gradient(#ffffff, #ffffff 25%, darken(#ffffff, 10%)));
 
     &.primary {
       @include gradient-bar($blue, $blueDark);
@@ -311,10 +312,6 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
       @include gradient-bar(#5bc0de, #339bb9);
     }
   }
-}
-
-.csstransitions .btn {
-  @include transition(.1s linear all);
 }
 
 // Super jank hack for removing border-radius from IE9 so we can keep filter gradients on alerts and buttons
@@ -477,9 +474,7 @@ input[type="color"],
   *padding-top: 19px;
   background-color: #fff;
   border: 1px solid #ddd;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
+  @include border-radius(4px);
 }
 
 /* Echo out a label for the example */
@@ -494,9 +489,7 @@ input[type="color"],
   background-color: #f5f5f5;
   border: 1px solid #ddd;
   color: #9da0a4;
-  -webkit-border-radius: 4px 0 4px 0;
-     -moz-border-radius: 4px 0 4px 0;
-          border-radius: 4px 0 4px 0;
+  @include border-radius(4px 0 4px 0);
 }
 
 /* Remove spacing between an example and it's code */
