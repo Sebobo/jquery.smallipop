@@ -172,6 +172,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         winWidth = win.width()
         winHeight = win.height()
         winScrollTop = win.scrollTop()
+        winScrollLeft = win.scrollLeft()
         windowPadding = options.windowPadding
 
         selfWidth = trigger.outerWidth()
@@ -192,16 +193,26 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         if preferredPosition in ['left', 'right']
           xDistance = 0
           popupOffsetTop += selfHeight / 2 + popupH / 2
-          if (preferredPosition is 'left' and popupDistanceLeft > windowPadding) \
-              or popupDistanceRight < windowPadding
+          if (preferredPosition is 'right' and popupDistanceRight > windowPadding) \
+              or popupDistanceLeft < windowPadding
+            # Positioned right
+            popup.addClass 'sipPositionedRight'
+            popupOffsetLeft = offset.left + selfWidth + options.popupOffset
+
+            # Move Smallipop to the left if it wouldn't fit in the viewport
+            xOverflow = popupOffsetLeft + popupW + windowPadding + yDistance - winScrollLeft - winWidth
+            if xOverflow > 0
+              popupOffsetLeft -= xOverflow - yDistance + windowPadding
+              popupOffsetLeft = Math.max popupOffsetLeft, offset.left + options.popupOffset
+          else
             # Positioned left
             popup.addClass 'sipPositionedLeft'
             popupOffsetLeft = offset.left - popupW - options.popupOffset
             yDistance = -yDistance
-          else
-            # Positioned right
-            popup.addClass 'sipPositionedRight'
-            popupOffsetLeft = offset.left + selfWidth + options.popupOffset
+
+          yOverflow = popupOffsetTop + popupH + windowPadding + yOffset - winScrollTop - winHeight
+          if yOverflow > 0
+            popupOffsetTop = Math.max popupOffsetTop - yOverflow - windowPadding, offset.top + yOffset
         else
           yDistance = 0
           if popupOffsetLeft + popupCenter > winWidth - windowPadding
@@ -223,9 +234,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             popupOffsetTop += popupH + selfHeight - 2 * yOffset
 
             # Move Smallipop up if it wouldn't fit in the viewport
-            yOverflow = popupOffsetTop + popupH - winScrollTop - winHeight
+            yOverflow = popupOffsetTop + popupH + windowPadding + xDistance - winScrollTop - winHeight
             if yOverflow > 0
               popupOffsetTop -= yOverflow - xDistance + windowPadding
+              popupOffsetTop = Math.max popupOffsetTop, offset.top + yOffset
             popup.addClass 'sipAlignBottom'
 
         # Hide trigger if defined
