@@ -2,10 +2,17 @@
 Test suite for jQuery Smallipop
 ###
 
+# Prepare test suite
+
 $('.smallipop').smallipop()
 
+$('.run-tour').click ->
+  $('.smallipop-tour').smallipop 'tour'
+
+# Run test suite
+
 test 'Smallipop exists', ->
-  smallipop = $ '.smallipop-instance'
+  smallipop = $ '.smallipop-instance:first'
 
   # Test existance of rondell
   equal smallipop.length, 1, 'Smallipop instance should exist'
@@ -14,7 +21,7 @@ test 'Smallipop exists', ->
 
 
 asyncTest 'Show and hide tooltip by interaction', ->
-  smallipop = $ '.smallipop-instance'
+  smallipop = $ '#smallipop1'
   trigger = $ '.smallipop:first'
 
   # Check if lightbox is created and shown by calling the api
@@ -36,7 +43,7 @@ asyncTest 'Show and hide tooltip by interaction', ->
 
 
 asyncTest 'Show and hide tooltip with api', ->
-  smallipop = $ '.smallipop-instance'
+  smallipop = $ '#smallipop1'
   trigger = $ '.smallipop:first'
 
   # Check if lightbox is created and shown by calling the api
@@ -58,20 +65,37 @@ asyncTest 'Show and hide tooltip with api', ->
 
 
 asyncTest 'Change tooltip content with api', ->
-  smallipop = $ '.smallipop-instance'
+  smallipop = $ '#smallipop1'
   trigger = $ '.smallipop:first'
 
   oldHint = trigger.data('smallipop').hint
   newHint = 'some fancy new hint'
 
-  notEqual oldHint, newHint
+  notEqual oldHint, newHint, 'Old and new content are different'
 
   # Update the smallipop hint
   trigger.smallipop 'update', newHint
 
-  setTimeout( ->
-    equal $('.sipContent', smallipop).text(), newHint, 'Hint should have changed'
+  setTimeout ->
+      equal $('.sipContent', smallipop).text(), newHint, 'Hint should have changed'
 
-    # Resume testrunner
-    start()
+      # Resume testrunner
+      start()
+    , 200
+
+asyncTest 'Run tour', ->
+  smallipopTour = $ '#smallipop2'
+
+  $('.smallipop-tour').smallipop 'tour'
+
+  setTimeout( ->
+    ok $('.smallipop-tour-progress', smallipopTour).text().indexOf('1 of 2') > 0, 'Tour should start at the first element'
+
+    $('.smallipop-tour').smallipop 'tour', 2
+
+    setTimeout( ->
+      ok $('.smallipop-tour-progress', smallipopTour).text().indexOf('2 of 2') > 0, 'Tour with startindex 2 should start at the second element'
+      # Resume testrunne
+      start()
+    , 200)
   , 200)

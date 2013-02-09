@@ -49,7 +49,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     nextInstanceId: 1 # Counter for new smallipop id's
     lastScrollCheck: 0
     labels:
-      prev: 'Back'
+      prev: 'Prev'
       next: 'Next'
       close: 'Close'
       of: 'of'
@@ -402,7 +402,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               .fadeTo triggerData.options.contentAnimationSpeed, 1
             sip._refreshPosition()
 
-    _runTour: (trigger) ->
+    _runTour: (trigger, step) ->
       triggerData = trigger.data 'smallipop'
       tourTitle = triggerData?.tourTitle
       return unless tourTitle and sip.tours[tourTitle]
@@ -411,9 +411,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       sip.tours[tourTitle].sort (a, b) ->
         a.index - b.index
 
+      # Check if a valid step as array index was provided
+      unless typeof step is 'number' and step % 1 is 0
+        step = 0
+      else
+        step -= 1
+
       sip.currentTour = tourTitle
       currentTourItems = sip.tours[tourTitle]
-      for i in [0..currentTourItems.length - 1] when currentTourItems[i].id is triggerData.id
+      for i in [0..currentTourItems.length - 1] when i is step \
+          or currentTourItems[i].id is triggerData.id
         return sip._tourShow tourTitle, i
 
     _tourShow: (title, index) ->
@@ -428,7 +435,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       closeButton = if index is currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-close\">#{sip.labels.close}</a>" else ''
       closeIcon = "<a href=\"#\" class=\"smallipop-tour-close-icon\">&Chi;</a>"
 
-      content = "
+      content = $.trim "
         <div class=\"smallipop-tour-content\">#{triggerData.hint}</div>
         #{closeIcon}
         <div class=\"smallipop-tour-footer\">
@@ -565,7 +572,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         when 'show' then sip._showSmallipop.call @first().get(0)
         when 'hide' then sip._hideSmallipop @first().get(0)
         when 'destroy' then sip._destroy @
-        when 'tour' then sip._runTour @first()
+        when 'tour' then sip._runTour @first(), hint
         when 'update' then sip.setContent @first(), hint
       return @
 
