@@ -10,8 +10,10 @@ $('.run-tour').click ->
   $('.smallipop-tour').smallipop 'tour'
 
 # Run test suite
+module 'core'
 
 test 'Smallipop exists', ->
+  expect 2
   smallipop = $ '.smallipop-instance:first'
 
   # Test existance of rondell
@@ -20,7 +22,10 @@ test 'Smallipop exists', ->
   equal smallipop.attr('id'), 'smallipop1', 'First smallipop should have id 1'
 
 
+module 'interaction'
+
 asyncTest 'Show and hide tooltip by interaction', ->
+  expect 2
   smallipop = $ '#smallipop1'
   trigger = $ '.smallipop:first'
 
@@ -42,7 +47,10 @@ asyncTest 'Show and hide tooltip by interaction', ->
   , 200)
 
 
+module 'api'
+
 asyncTest 'Show and hide tooltip with api', ->
+  expect 2
   smallipop = $ '#smallipop1'
   trigger = $ '.smallipop:first'
 
@@ -65,6 +73,7 @@ asyncTest 'Show and hide tooltip with api', ->
 
 
 asyncTest 'Change tooltip content with api', ->
+  expect 2
   smallipop = $ '#smallipop1'
   trigger = $ '.smallipop:first'
 
@@ -84,6 +93,7 @@ asyncTest 'Change tooltip content with api', ->
     , 200
 
 asyncTest 'Run tour', ->
+  expect 2
   smallipopTour = $ '#smallipop2'
 
   $('.smallipop-tour').smallipop 'tour'

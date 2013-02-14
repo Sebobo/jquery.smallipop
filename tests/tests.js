@@ -8,15 +8,21 @@ $('.run-tour').click(function() {
   return $('.smallipop-tour').smallipop('tour');
 });
 
+module('core');
+
 test('Smallipop exists', function() {
   var smallipop;
+  expect(2);
   smallipop = $('.smallipop-instance:first');
   equal(smallipop.length, 1, 'Smallipop instance should exist');
   return equal(smallipop.attr('id'), 'smallipop1', 'First smallipop should have id 1');
 });
 
+module('interaction');
+
 asyncTest('Show and hide tooltip by interaction', function() {
   var smallipop, trigger;
+  expect(2);
   smallipop = $('#smallipop1');
   trigger = $('.smallipop:first');
   trigger.trigger('mouseenter');
@@ -30,8 +36,11 @@ asyncTest('Show and hide tooltip by interaction', function() {
   }, 200);
 });
 
+module('api');
+
 asyncTest('Show and hide tooltip with api', function() {
   var smallipop, trigger;
+  expect(2);
   smallipop = $('#smallipop1');
   trigger = $('.smallipop:first');
   trigger.smallipop('show');
@@ -47,6 +56,7 @@ asyncTest('Show and hide tooltip with api', function() {
 
 asyncTest('Change tooltip content with api', function() {
   var newHint, oldHint, smallipop, trigger;
+  expect(2);
   smallipop = $('#smallipop1');
   trigger = $('.smallipop:first');
   oldHint = trigger.data('smallipop').hint;
@@ -61,6 +71,7 @@ asyncTest('Change tooltip content with api', function() {
 
 asyncTest('Run tour', function() {
   var smallipopTour;
+  expect(2);
   smallipopTour = $('#smallipop2');
   $('.smallipop-tour').smallipop('tour');
   return setTimeout(function() {
