@@ -37,7 +37,9 @@ $orange-background-color: #f9aa18;
     family: arial;
   }
 
-  a { color: $default-link-color; }
+  a {
+    color: $default-link-color;
+  }
 
   .sipContent { padding: 10px; }
 
@@ -111,6 +113,7 @@ $orange-background-color: #f9aa18;
   .smallipop-tour-footer {
     padding-top: 5px;
     position: relative;
+    @include clearfix();
   }
   .smallipop-tour-progress {
     color: #bbb;

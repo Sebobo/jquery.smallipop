@@ -457,7 +457,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           #{prevButton}
           #{nextButton}
           #{closeButton}
-          <br style=\"clear:both;\"/>
         </div>"
 
       sip._killTimers triggerData.popupInstance
