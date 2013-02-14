@@ -257,8 +257,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           opacity = 1
 
         if isFixed
-          popupOffsetLeft -= win.scrollLeft()
-          popupOffsetTop -= win.scrollTop()
+          popupOffsetLeft -= winScrollLeft
+          popupOffsetTop -= winScrollTop
 
         popup
           .data
