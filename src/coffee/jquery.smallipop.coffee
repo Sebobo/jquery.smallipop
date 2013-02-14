@@ -159,6 +159,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         # Prepare some properties
         win = $ window
         xDistance = yDistance = options.popupDistance
+        xOffset = options.popupOffset
         yOffset = options.popupYOffset
 
         # Get new dimensions
@@ -185,7 +186,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         popupY = popupH + options.popupDistance - yOffset
         popupDistanceTop = selfY - popupY
         popupDistanceBottom = winHeight - selfY - selfHeight - popupY
-        popupDistanceLeft = offset.left - popupW - options.popupOffset
+        popupDistanceLeft = offset.left - popupW - xOffset
         popupDistanceRight = winWidth - offset.left - selfWidth - popupW
 
         preferredPosition = options.preferredPosition
@@ -197,31 +198,21 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               or popupDistanceLeft < windowPadding
             # Positioned right
             popup.addClass 'sipPositionedRight'
-            popupOffsetLeft = offset.left + selfWidth + options.popupOffset
-
-            # Move Smallipop to the left if it wouldn't fit in the viewport
-            xOverflow = popupOffsetLeft + popupW + windowPadding + yDistance - winScrollLeft - winWidth
-            if xOverflow > 0
-              popupOffsetLeft -= xOverflow - yDistance + windowPadding
-              popupOffsetLeft = Math.max popupOffsetLeft, offset.left + options.popupOffset
+            popupOffsetLeft = offset.left + selfWidth + xOffset
           else
             # Positioned left
             popup.addClass 'sipPositionedLeft'
-            popupOffsetLeft = offset.left - popupW - options.popupOffset
+            popupOffsetLeft = offset.left - popupW - xOffset
             yDistance = -yDistance
-
-          yOverflow = popupOffsetTop + popupH + windowPadding + yOffset - winScrollTop - winHeight
-          if yOverflow > 0
-            popupOffsetTop = Math.max popupOffsetTop - yOverflow - windowPadding, offset.top + yOffset
         else
           yDistance = 0
           if popupOffsetLeft + popupCenter > winWidth - windowPadding
             # Aligned left
-            popupOffsetLeft -= popupCenter * 2 - options.popupOffset
+            popupOffsetLeft -= popupCenter * 2 - xOffset
             popup.addClass 'sipAlignLeft'
           else if popupOffsetLeft - popupCenter < windowPadding
             # Aligned right
-            popupOffsetLeft -= options.popupOffset
+            popupOffsetLeft -= xOffset
             popup.addClass 'sipAlignRight'
           else
             # Centered
@@ -232,13 +223,19 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               or popupDistanceTop < windowPadding
             xDistance = -xDistance
             popupOffsetTop += popupH + selfHeight - 2 * yOffset
-
-            # Move Smallipop up if it wouldn't fit in the viewport
-            yOverflow = popupOffsetTop + popupH + windowPadding + xDistance - winScrollTop - winHeight
-            if yOverflow > 0
-              popupOffsetTop -= yOverflow - xDistance + windowPadding
-              popupOffsetTop = Math.max popupOffsetTop, offset.top + yOffset
             popup.addClass 'sipAlignBottom'
+
+        # Move Smallipop vertically if it wouldn't fit in the viewport
+        yOverflow = popupOffsetTop + popupH + windowPadding + yDistance + yOffset - winScrollTop - winHeight
+        if yOverflow > 0
+          popupOffsetTop = Math.max popupOffsetTop - yOverflow
+            , offset.top + yOffset + windowPadding
+
+        # Move Smallipop horizontally if it wouldn't fit in the viewport
+        xOverflow = popupOffsetLeft + popupW + windowPadding + xDistance + xOffset - winScrollLeft - winWidth
+        if xOverflow > 0
+          popupOffsetLeft = Math.max popupOffsetLeft - xOverflow
+            , offset.left + xOffset + windowPadding
 
         # Hide trigger if defined
         if options.hideTrigger
@@ -247,7 +244,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             .fadeTo options.triggerAnimationSpeed, 0
 
         opacity = 0
-
         # Animate to new position if refresh does nothing
         if not popupData.beingShown or options.cssAnimations.enabled
           popupOffsetTop -= xDistance
