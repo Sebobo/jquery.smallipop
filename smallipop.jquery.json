@@ -32,6 +32,6 @@
         "popup",
         "ui"
     ],
-    "bugs": "https://github.com/Sebobo/jquery.smallipop",
+    "bugs": "https://github.com/Sebobo/jquery.smallipop/issues",
     "docs": "http://projects.sebastianhelzle.net/jquery.smallipop"
 }
