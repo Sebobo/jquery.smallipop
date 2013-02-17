@@ -34,6 +34,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       referencedSelector: null
       theme: 'default'
       touchSupport: true
+      tourHighlight: false
+      tourHighlightColor: '#222'
+      tourHightlightFadeDuration: 200
+      tourHighlightOpacity: .5
+      tourHighlightZIndex: 9997
       triggerAnimationSpeed: 150
       triggerOnClick: false
       onAfterHide: null
@@ -79,6 +84,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         # Fire close callback
         if popupData.isTour
           trigger.data('smallipop')?.options.onTourClose?()
+
+          @_getTourOverlay(triggerOptions)
+            .fadeOut triggerOptions.tourHightlightFadeDuration
 
         # Do nothing if clicked and hide on click is disabled for this case
         ignoreTriggerClick = not triggerOptions.hideOnTriggerClick \
@@ -321,6 +329,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     _showPopup: (trigger, content='') ->
       # Get smallipop options stored in trigger and popup
       triggerData = trigger.data 'smallipop'
+      triggerOptions = triggerData.options
       popup = triggerData.popupInstance
       return unless popup.data 'triggerHovered'
 
@@ -333,12 +342,38 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           if lastTriggerOpt.hideTrigger
             lastTrigger
               .stop(true)
-              .fadeTo(lastTriggerOpt.fadeSpeed, 1)
+              .fadeTo lastTriggerOpt.fadeSpeed, 1
+
+      # Display overlay under the trigger when tourHighlight is enabled
+      tourOverlay = @_getTourOverlay triggerOptions
+      if triggerOptions.tourHighlight
+        # Reset z-index for all other triggers in tours
+        for tour of sip.tours
+          for idx of sip.tours[tour]
+            tourTrigger = sip.tours[tour][idx].trigger
+            if tourTrigger.data 'originalZIndex'
+              tourTrigger.css 'z-index', tourTrigger.data('originalZIndex')
+
+        # Trigger should stay on top of the overlay
+        unless trigger.data 'originalZIndex'
+          trigger.data 'originalZIndex', trigger.css 'z-index'
+
+        trigger.css 'z-index', triggerOptions.tourHighlightZIndex + 1
+        # Set position at least to relative if it's static, or z-index won't work
+        if trigger.css('position') is 'static'
+          trigger.css 'position', 'relative'
+
+        # Show overlay
+        tourOverlay
+          .fadeTo triggerOptions.tourHightlightFadeDuration, triggerOptions.tourHighlightOpacity
+      else if tourOverlay.is ':visible'
+        # Hide overlay if visible
+        tourOverlay.fadeOut triggerOptions.tourHightlightFadeDuration
 
       popupContent = content or triggerData.hint
       # If referenced content element is defined, use it's content
-      if triggerData.options.referencedContent and not content
-        popupContent = $(triggerData.options.referencedContent).html() or popupContent
+      if triggerOptions.referencedContent and not content
+        popupContent = $(triggerOptions.referencedContent).html() or popupContent
 
       popupPosition = if @_isElementFixed trigger then 'fixed' else 'absolute'
 
@@ -481,12 +516,24 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       # Scroll to trigger if it isn't visible
       sip._showWhenVisible trigger, content
 
+    _getTourOverlay: (options) ->
+      overlay = $ '#smallipop-tour-overlay'
+      unless overlay.length
+        overlay = $('<div id="smallipop-tour-overlay"/>')
+          .appendTo($('body'))
+          .fadeOut 0
+
+      overlay.css
+        backgroundColor: options.tourHighlightColor
+        zIndex: options.tourHighlightZIndex
+
     _showWhenVisible: (trigger, content) ->
       targetPosition = trigger.offset().top
       offset = targetPosition - $(document).scrollTop()
       windowHeight = $(window).height()
       triggerOptions = trigger.data('smallipop').options
 
+      # First scroll to trigger then show tour
       if not @_isElementFixed(trigger) and (offset < triggerOptions.autoscrollPadding or offset > windowHeight - triggerOptions.autoscrollPadding)
         $('html, body').animate
             scrollTop: targetPosition - windowHeight / 2
