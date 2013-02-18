@@ -1,5 +1,5 @@
 ###!
-Smallipop (02/05/2013)
+Smallipop (02/18/2013)
 Copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.4.0'
+    version: '0.5.0'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -34,6 +34,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       referencedSelector: null
       theme: 'default'
       touchSupport: true
+      tourHighlight: false
+      tourHighlightColor: '#222'
+      tourHightlightFadeDuration: 200
+      tourHighlightOpacity: .5
+      tourHighlightZIndex: 9997
       triggerAnimationSpeed: 150
       triggerOnClick: false
       onAfterHide: null
@@ -49,19 +54,20 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     nextInstanceId: 1 # Counter for new smallipop id's
     lastScrollCheck: 0
     labels:
-      prev: 'Back'
+      prev: 'Prev'
       next: 'Next'
       close: 'Close'
       of: 'of'
     instances: {}
     scrollTimer: null
+    refreshQueueTimer: null
     templates:
-      popup: $.trim '
-        <div class="smallipop-instance">
-          <div class="sipContent"/>
-          <div class="sipArrowBorder"/>
-          <div class="sipArrow"/>
-        </div>'
+      popup:
+        '<div class="smallipop-instance">' +
+          '<div class="sipContent"/>' +
+          '<div class="sipArrowBorder"/>' +
+          '<div class="sipArrow"/>' +
+        '</div>'
     tours: {}
 
     _hideSmallipop: (e) ->
@@ -74,6 +80,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
         trigger = $ ".smallipop#{shownId}"
         triggerOptions = trigger.data('smallipop')?.options or sip.defaults
+
+        # Fire close callback
+        if popupData.isTour
+          sip.currentTour = null
+          trigger.data('smallipop')?.options.onTourClose?()
+          @_hideTourOverlay triggerOptions
 
         # Do nothing if clicked and hide on click is disabled for this case
         ignoreTriggerClick = not triggerOptions.hideOnTriggerClick \
@@ -96,7 +108,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           popup
             .removeClass(triggerOptions.cssAnimations.show)
             .addClass(triggerOptions.cssAnimations.hide)
-            .data('shown', '')
+            .data 'shown', ''
 
           if triggerOptions.onAfterHide
             window.setTimeout triggerOptions.onAfterHide, triggerOptions.popupAnimationSpeed
@@ -108,16 +120,17 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           popup
             .stop(true)
             .animate
-                top: "-=#{xDistance}px"
-                left: "+=#{yDistance}px"
+                top: "-=#{yDistance}px"
+                left: "+=#{xDistance}px"
                 opacity: 0
               , triggerOptions.popupAnimationSpeed, triggerOptions.funcEase, ->
                 # Hide tip if not being shown in the meantime
-                tip = $ @
-                unless tip.data 'beingShown'
-                  tip
+                self = $ @
+                unless self.data 'beingShown'
+                  self
                     .css('display', 'none')
                     .data('shown', '')
+
                 triggerOptions.onAfterHide?()
 
     _showSmallipop: (e) ->
@@ -136,6 +149,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       clearTimeout popup.data('hideDelayTimer')
       clearTimeout popup.data('showDelayTimer')
 
+    ###
+    Queue a refresh to the popups position
+    ###
+    _queueRefreshPosition: (delay=50) ->
+      clearTimeout sip.refreshQueueTimer
+      sip.refreshQueueTimer = setTimeout sip._refreshPosition, delay
+
+    ###
+    Refresh the position for each visible popup
+    ###
     _refreshPosition: ->
       for popupId, popup of sip.instances
         popupData = popup.data()
@@ -155,86 +178,114 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         # Prepare some properties
         win = $ window
         xDistance = yDistance = options.popupDistance
+        xOffset = options.popupOffset
         yOffset = options.popupYOffset
-
-        # Get new dimensions
         isFixed = popup.data('position') is 'fixed'
-        offset = trigger.offset()
 
+        # Get popup dimensions
         popupH = popup.outerHeight()
         popupW = popup.outerWidth()
         popupCenter = popupW / 2
+        # popup.css 'width', popupW
 
+        # Get viewport dimensions and offsets
         winWidth = win.width()
         winHeight = win.height()
+        winScrollTop = win.scrollTop()
+        winScrollLeft = win.scrollLeft()
         windowPadding = options.windowPadding
 
+        # Get trigger dimensions and offset
+        offset = trigger.offset()
         selfWidth = trigger.outerWidth()
         selfHeight = trigger.outerHeight()
+        selfY = offset.top - winScrollTop
 
-        selfY = offset.top - win.scrollTop()
-
+        # Compute distances and offsets
         popupOffsetLeft = offset.left + selfWidth / 2
         popupOffsetTop = offset.top - popupH + yOffset
         popupY = popupH + options.popupDistance - yOffset
         popupDistanceTop = selfY - popupY
         popupDistanceBottom = winHeight - selfY - selfHeight - popupY
-        popupDistanceLeft = offset.left - popupW - options.popupOffset
+        popupDistanceLeft = offset.left - popupW - xOffset
         popupDistanceRight = winWidth - offset.left - selfWidth - popupW
 
-        if options.preferredPosition in ['left', 'right']
-          xDistance = 0
+        # Check desired position and try to fit the popup into the viewport
+        preferredPosition = options.preferredPosition
+        if preferredPosition in ['left', 'right']
+          yDistance = 0
           popupOffsetTop += selfHeight / 2 + popupH / 2
-          if (options.preferredPosition is 'left' and popupDistanceLeft > windowPadding) or popupDistanceRight < windowPadding
-            # Positioned left
-            popup.addClass 'sipPositionedLeft'
-            popupOffsetLeft = offset.left - popupW - options.popupOffset
-            yDistance = -yDistance
-          else
+          if (preferredPosition is 'right' and popupDistanceRight > windowPadding) \
+              or popupDistanceLeft < windowPadding
             # Positioned right
             popup.addClass 'sipPositionedRight'
-            popupOffsetLeft = offset.left + selfWidth + options.popupOffset
+            popupOffsetLeft = offset.left + selfWidth + xOffset
+          else
+            # Positioned left
+            popup.addClass 'sipPositionedLeft'
+            popupOffsetLeft = offset.left - popupW - xOffset
+            xDistance = -xDistance
         else
-          yDistance = 0
+          xDistance = 0
           if popupOffsetLeft + popupCenter > winWidth - windowPadding
             # Aligned left
-            popupOffsetLeft -= popupCenter * 2 - options.popupOffset
+            popupOffsetLeft -= popupCenter * 2 - xOffset
             popup.addClass 'sipAlignLeft'
           else if popupOffsetLeft - popupCenter < windowPadding
             # Aligned right
-            popupOffsetLeft -= options.popupOffset
+            popupOffsetLeft -= xOffset
             popup.addClass 'sipAlignRight'
           else
             # Centered
             popupOffsetLeft -= popupCenter
 
+          # Move right if popup would violate left viewport bounds
+          if popupOffsetLeft < windowPadding
+            popupOffsetLeft = windowPadding
+
           # Add class if positioned below
-          if (options.preferredPosition is 'bottom' and popupDistanceBottom > windowPadding) or popupDistanceTop < windowPadding
+          if (preferredPosition is 'bottom' and popupDistanceBottom > windowPadding) \
+              or popupDistanceTop < windowPadding
+            yDistance = -yDistance
             popupOffsetTop += popupH + selfHeight - 2 * yOffset
-            xDistance = -xDistance
-            yOffset = 0
             popup.addClass 'sipAlignBottom'
+
+        # Move Smallipop vertically if it wouldn't fit in the viewport
+        if popupH < selfHeight
+          yOverflow = popupOffsetTop + popupH + windowPadding - yDistance \
+            + yOffset - winScrollTop - winHeight
+          if yOverflow > 0
+            popupOffsetTop = Math.max popupOffsetTop - yOverflow - windowPadding
+              , offset.top + yOffset + windowPadding + yDistance
+
+        # Move Smallipop horizontally if it wouldn't fit in the viewport
+        # and it's smaller than the trigger
+        if popupW < selfWidth
+          xOverflow = popupOffsetLeft + popupW + windowPadding + xDistance \
+            + xOffset - winScrollLeft - winWidth
+          if xOverflow > 0
+            popupOffsetLeft = Math.max popupOffsetLeft - xOverflow + windowPadding
+              , offset.left + xOffset + windowPadding - xDistance
 
         # Hide trigger if defined
         if options.hideTrigger
           trigger
             .stop(true)
-            .fadeTo(options.triggerAnimationSpeed, 0)
+            .fadeTo options.triggerAnimationSpeed, 0
 
-        # Animate to new position if refresh does nothing
         opacity = 0
-        doAnimate = popupData.beingShown and not options.cssAnimations.enabled
-
-        unless doAnimate
-          popupOffsetTop -= xDistance
-          popupOffsetLeft += yDistance
+        # Animate to new position if refresh does nothing
+        if not popupData.beingShown or options.cssAnimations.enabled
+          popupOffsetTop -= yDistance
+          popupOffsetLeft += xDistance
           xDistance = 0
           yDistance = 0
           opacity = 1
 
+        # If the element is fixed, it has to be moved by the current scroll offset
         if isFixed
-          popupOffsetLeft -= win.scrollLeft()
-          popupOffsetTop -= win.scrollTop()
+          popupOffsetLeft -= winScrollLeft
+          popupOffsetTop -= winScrollTop
 
         popup
           .data
@@ -248,8 +299,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
         # Start fade in animation
         sip._fadeInPopup popup,
-          top: "-=#{xDistance}px"
-          left: "+=#{yDistance}px"
+          top: "-=#{yDistance}px"
+          left: "+=#{xDistance}px"
           opacity: 1
 
     _fadeInPopup: (popup, animationTarget) ->
@@ -277,6 +328,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     _showPopup: (trigger, content='') ->
       # Get smallipop options stored in trigger and popup
       triggerData = trigger.data 'smallipop'
+      triggerOptions = triggerData.options
       popup = triggerData.popupInstance
       return unless popup.data 'triggerHovered'
 
@@ -289,33 +341,51 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           if lastTriggerOpt.hideTrigger
             lastTrigger
               .stop(true)
-              .fadeTo(lastTriggerOpt.fadeSpeed, 1)
+              .fadeTo lastTriggerOpt.fadeSpeed, 1
+
+      # Display overlay under the trigger when tourHighlight is enabled
+      if triggerOptions.tourHighlight and triggerOptions.tourIndex
+        tourOverlay = @_getTourOverlay triggerOptions
+
+        @_resetTourZIndices()
+
+        # Set position at least to relative if it's static, or z-index won't work
+        if trigger.css('position') is 'static'
+          trigger.css 'position', 'relative'
+
+        # Trigger should stay on top of the overlay
+        unless trigger.data 'originalZIndex'
+          trigger.data 'originalZIndex', trigger.css 'zIndex'
+
+        trigger.css 'zIndex', triggerOptions.tourHighlightZIndex + 1
+
+        # Show overlay
+        tourOverlay
+          .fadeTo triggerOptions.tourHightlightFadeDuration, triggerOptions.tourHighlightOpacity
+      else
+        @_hideTourOverlay triggerOptions
 
       popupContent = content or triggerData.hint
       # If referenced content element is defined, use it's content
-      if triggerData.options.referencedContent and not content
-        popupContent = $(triggerData.options.referencedContent).html() or popupContent
+      if triggerOptions.referencedContent and not content
+        popupContent = $(triggerOptions.referencedContent).html() or popupContent
+
+      popupPosition = if @_isElementFixed trigger then 'fixed' else 'absolute'
 
       # Update tip content and remove all classes
       popup
         .data
           beingShown: true
           shown: triggerData.id
+          position: popupPosition
         .find('.sipContent').html popupContent
 
       # Check if trigger has fixed position
-      popup
-        .data('position', '')
-        .css('position', 'absolute')
-
-      if @_isElementFixed trigger
-        popup
-          .data('position', 'fixed')
-          .css('position', 'fixed')
+      popup.css 'position', popupPosition
 
       # Remove some css classes
       popup.attr('class', 'smallipop-instance') if triggerData.id isnt shownId
-      sip._refreshPosition()
+      sip._queueRefreshPosition 0
 
     _isElementFixed: (element) ->
       elemToCheck = element
@@ -334,7 +404,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       return unless trigger.length
       triggerData = trigger.data 'smallipop'
       popup = triggerData.popupInstance
-        .data((if isTrigger then 'triggerHovered' else 'hovered'), true)
+        .data (if isTrigger then 'triggerHovered' else 'hovered'), true
       sip._killTimers popup
       shownId = popup.data 'shown'
 
@@ -355,7 +425,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       return unless trigger.length
       triggerData = trigger.data 'smallipop'
       popup = triggerData.popupInstance
-        .data((if isTrigger then 'triggerHovered' else 'hovered'), false)
+        .data (if isTrigger then 'triggerHovered' else 'hovered'), false
       sip._killTimers popup
 
       # Hide tip after a while
@@ -390,7 +460,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               .fadeTo triggerData.options.contentAnimationSpeed, 1
             sip._refreshPosition()
 
-    _runTour: (trigger) ->
+    _runTour: (trigger, step) ->
       triggerData = trigger.data 'smallipop'
       tourTitle = triggerData?.tourTitle
       return unless tourTitle and sip.tours[tourTitle]
@@ -399,9 +469,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       sip.tours[tourTitle].sort (a, b) ->
         a.index - b.index
 
+      # Check if a valid step as array index was provided
+      unless typeof step is 'number' and step % 1 is 0
+        step = 0
+      else
+        step -= 1
+
       sip.currentTour = tourTitle
       currentTourItems = sip.tours[tourTitle]
-      for i in [0..currentTourItems.length - 1] when currentTourItems[i].id is triggerData.id
+      for i in [0..currentTourItems.length - 1] when i is step \
+          or currentTourItems[i].id is triggerData.id
         return sip._tourShow tourTitle, i
 
     _tourShow: (title, index) ->
@@ -416,7 +493,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       closeButton = if index is currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-close\">#{sip.labels.close}</a>" else ''
       closeIcon = "<a href=\"#\" class=\"smallipop-tour-close-icon\">&Chi;</a>"
 
-      content = "
+      content = $.trim "
         <div class=\"smallipop-tour-content\">#{triggerData.hint}</div>
         #{closeIcon}
         <div class=\"smallipop-tour-footer\">
@@ -426,7 +503,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           #{prevButton}
           #{nextButton}
           #{closeButton}
-          <br style=\"clear:both;\"/>
         </div>"
 
       sip._killTimers triggerData.popupInstance
@@ -435,12 +511,36 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       # Scroll to trigger if it isn't visible
       sip._showWhenVisible trigger, content
 
+    _getTourOverlay: (options) ->
+      overlay = $ '#smallipop-tour-overlay'
+      unless overlay.length
+        overlay = $('<div id="smallipop-tour-overlay"/>')
+          .appendTo($('body'))
+          .fadeOut 0
+
+      overlay.css
+        backgroundColor: options.tourHighlightColor
+        zIndex: options.tourHighlightZIndex
+
+    _hideTourOverlay: (options) ->
+      $('#smallipop-tour-overlay').fadeOut options.tourHightlightFadeDuration
+      @_resetTourZIndices()
+
+    _resetTourZIndices: ->
+      # Reset z-index for all other triggers in tours
+      for tour, steps of sip.tours
+        for step in steps
+          tourTrigger = step.trigger
+          if tourTrigger.data 'originalZIndex'
+            tourTrigger.css 'zIndex', tourTrigger.data('originalZIndex')
+
     _showWhenVisible: (trigger, content) ->
       targetPosition = trigger.offset().top
       offset = targetPosition - $(document).scrollTop()
       windowHeight = $(window).height()
       triggerOptions = trigger.data('smallipop').options
 
+      # First scroll to trigger then show tour
       if not @_isElementFixed(trigger) and (offset < triggerOptions.autoscrollPadding or offset > windowHeight - triggerOptions.autoscrollPadding)
         $('html, body').animate
             scrollTop: targetPosition - windowHeight / 2
@@ -480,9 +580,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     _tourClose: (e) ->
       e?.preventDefault()
       popup = $(e.target).closest '.smallipop-instance'
-
-      # Fire close callback
-      sip._getTrigger(popup.data('shown')).data('smallipop')?.options.onTourClose?()
 
       sip._hideSmallipop popup
 
@@ -538,7 +635,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       if sip.nextInstanceId is 2
         $(document).bind 'click.smallipop touchend.smallipop', sip._hideSmallipop
         $(window).bind
-          'resize.smallipop': sip._refreshPosition
+          'resize.smallipop': sip._queueRefreshPosition
           'scroll.smallipop': sip._onWindowScroll
           'keyup': sip._onWindowKeyUp
 
@@ -556,7 +653,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         when 'show' then sip._showSmallipop.call @first().get(0)
         when 'hide' then sip._hideSmallipop @first().get(0)
         when 'destroy' then sip._destroy @
-        when 'tour' then sip._runTour @first()
+        when 'tour' then sip._runTour @first(), hint
         when 'update' then sip.setContent @first(), hint
       return @
 

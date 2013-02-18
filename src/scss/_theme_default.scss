@@ -3,8 +3,8 @@
   text-shadow: $default-text-shadow;
   @include box-shadow($default-box-shadow);
   @include border-radius($default-border-radius);
-  @include linear-gradient(rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)); /* Fallback for opera */
-  @include radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px);
+  @include background(linear-gradient(rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9))); /* Fallback for opera */
+  @include background(radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px));
 
   a {
     text-shadow: $default-link-text-shadow;
