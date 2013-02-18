@@ -344,7 +344,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               .fadeTo lastTriggerOpt.fadeSpeed, 1
 
       # Display overlay under the trigger when tourHighlight is enabled
-      if triggerOptions.tourHighlight
+      if triggerOptions.tourHighlight and triggerOptions.tourIndex
         tourOverlay = @_getTourOverlay triggerOptions
 
         @_resetTourZIndices()

@@ -58,7 +58,7 @@
 
         <div class="page hasShadow" id="introduction">
 
-            <div class="smallipopOrange floatRight">
+            <div class="smallipopOrange floatRight" data-smallipop-tour-highlight="true">
                 <img src="images/smallipop-logo.png" alt="smallipop logo" title="The smallipop logo" />
                 <div class="smallipopHint">
                     <b>smallipop</b><br/>
@@ -820,6 +820,41 @@
                         When touch events are supported hover events are disabled and smallipop will activated by touching a trigger.<br/>
                         A second touch will trigger the default action on the trigger. I.e. open a link.
                         The touch feature detection currently requires the modernizr library.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHighlight</td>
+                    <td>false</td>
+                    <td>
+                        Will display an transparent overlay to highlight the tour triggers.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHighlightColor</td>
+                    <td>'#222'</td>
+                    <td>
+                        The overlay color.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHightlightFadeDuration</td>
+                    <td>200</td>
+                    <td>
+                        The duration for the overlay fade effect.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHighlightOpacity</td>
+                    <td>.5</td>
+                    <td>
+                        The opacity of the overlay.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHighlightZIndex</td>
+                    <td>9997</td>
+                    <td>
+                        The z-index which will be used for the overlay and the highlighted trigger.
                     </td>
                 </tr>
                 <tr>
