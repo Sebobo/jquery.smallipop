@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Smallipop - A versatile jQuery plugin for displaying tooltips</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content="jquery,tooltip,popup,plugin,css3,open-source,mit-license,extension,overlay" />
+        <meta name="description" content="Smallipop is a versatile jQuery plugin for displaying tooltips. It has automatic layout, pure css, free positioning, small size and much more!" />
+        <meta http-equiv="content-language" content="en">
+        <meta name="author" content="Sebastian Helzle"/>
+        <link rel="stylesheet" href="../css/contrib/animate.min.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/jquery.smallipop.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="all" title="Screen" />
+    </head>
+    <body>
+        <div class="pageHeader hasShadow">
+
+            <h1 id="docustart">Smallipop - Testsuite</h1>
+        </div>
+
+        <div class="page hasShadow">
+            <a class="sampleElement smallipop" title="Samplehint">
+                Test
+            </a>
+
+            <hr class="clear"/>
+
+            <a class="sampleElement smallipop smallipop-tour" title="Samplehint for tour 2" data-smallipop-tour-index="2">
+                Tour Test 2
+            </a>
+            -
+            <a class="sampleElement smallipop smallipop-tour" title="Samplehint for tour 1" data-smallipop-tour-index="1">
+                Tour Test 1
+            </a>
+            -
+            <a class="sampleElement run-tour" href="#">Run tour</a>
+
+            <hr class="clear"/>
+
+            <div id="qunit">test</div>
+            <div id="qunit-fixture">test</div>
+        </div>
+
+        <script type="text/javascript" src="../lib/contrib/modernizr.js"></script>
+        <script type="text/javascript" src="../lib/contrib/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="../lib/jquery.smallipop.js"></script>
+        <script type="text/javascript" src="qunit/qunit.js"></script>
+        <script type="text/javascript" src="tests.js"></script>
+    </body>
+</html>

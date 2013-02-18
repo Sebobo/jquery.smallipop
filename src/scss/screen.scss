@@ -1,3 +1,4 @@
+@import "compass";
 @import "mixins";
 @import "base";
 
@@ -48,7 +49,7 @@ img.inline { margin: 10px; }
 
 .hasBorder { border: 4px solid #fff; }
 
-.box-shadow.rgba .hasShadow {
+.hasShadow {
   @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
@@ -64,7 +65,7 @@ img.inline { margin: 10px; }
 .pageHeader {
   background: #267be4;
   color: #fafafa;
-  @include linear-gradient(#337edc, #0a5abf);
+  @include background(linear-gradient(#337edc, #0a5abf));
   @include border-radius(8px 8px 0 0);
 
   p a {
@@ -115,6 +116,16 @@ img.inline { margin: 10px; }
   background-color: #ffe199;
   font-size: 1.1em;
   text-shadow:0 1px 1px #fff24d;
+  @include border-radius(6px);
+  @include box-shadow(0 1px 4px rgba(255, 162, 0, 0.3));
+
+  &.white,
+  &.black,
+  &.blue,
+  &.green,
+  &.default {
+    @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.3));
+  }
 
   &.big {
     font-size: 1.4em;
@@ -162,39 +173,32 @@ img.inline { margin: 10px; }
     text-shadow:none;
   }
 }
-.borderradius .sampleElement { @include border-radius(6px); }
 .cssgradients .sampleElement {
-  @include linear-gradient(#fff24d, #f9aa18);
+  @include background(linear-gradient(#fff24d, #f9aa18));
 
-  &:hover { @include linear-gradient(#fff24d, #fdc661); }
+  &:hover {
+    @include background(linear-gradient(#fff24d, #fdc661));
+  }
 
   &.white {
-    @include linear-gradient(#ffffff, #fafafa);
+    @include background(inear-gradient(#ffffff, #fafafa));
   }
   &.green {
-    @include linear-gradient(#35b125, #29a219);
+    @include background(linear-gradient(#35b125, #29a219));
     &:hover {
-      @include linear-gradient(#40bb30, #31aa21);
+      @include background(linear-gradient(#40bb30, #31aa21));
     }
   }
   &.black {
-    @include linear-gradient(#444444, #111111);
+    @include background(linear-gradient(#444444, #111111));
   }
   &.blue {
-    @include linear-gradient(#1279cb, #0064b4); color: #eee;
+    @include background(linear-gradient(#1279cb, #0064b4));
+    color: #eee;
   }
   &.default {
-    @include linear-gradient(#4f6c88, #314b64);
+    @include background(linear-gradient(#4f6c88, #314b64));
   }
-}
-.box-shadow.rgba .sampleElement {
-  @include box-shadow(0 1px 4px rgba(255, 162, 0, 0.3));
-
-  &.white,
-  &.black,
-  &.blue,
-  &.green,
-  &.default { @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.3)); }
 }
 
 /* Sidemenu */
@@ -247,6 +251,7 @@ img.inline { margin: 10px; }
   color: #6fc048;
   background-color: #fff;
   opacity: 0.95;
+  @include border-radius(2px);
 
   .indicatorPlus {
     width: 14px;
@@ -254,10 +259,14 @@ img.inline { margin: 10px; }
     overflow:hidden;
   }
 }
-.cssgradients .indicator { @include linear-gradient(#ffffff, #fafafa); }
-.borderradius .indicator { @include border-radius(2px); }
+.cssgradients .indicator {
+  @include background(linear-gradient(#ffffff, #fafafa));
+}
 
-.smallipopArrow { width: 25px; height: 42px; }
+.smallipopArrow {
+  width: 25px;
+  height: 42px;
+}
 
 /* wobbler */
 .wobble {
@@ -320,6 +329,10 @@ img.inline { margin: 10px; }
 .pulser {
   height:12px; width:12px;
   position:absolute;
+
+  &,
+  .outer,
+  .inner { @include border-radius(30px); }
 }
 .pulser .inner {
   height:16px; width:16px;
@@ -334,12 +347,7 @@ img.inline { margin: 10px; }
   text-align:center;
 }
 .cssgradients .pulser .inner {
-  @include linear-gradient(#fafafa, #dddddd);
-}
-.borderradius .pulser {
-  &,
-  .outer,
-  .inner { @include border-radius(30px); }
+  @include background(linear-gradient(#fafafa, #dddddd));
 }
 .cssanimations .pulser .outer {
   height: 12px; width: 12px;

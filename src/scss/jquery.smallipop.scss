@@ -1,3 +1,4 @@
+@import "compass";
 @import "mixins";
 
 $default-background-color: #314b64;
@@ -21,6 +22,14 @@ $orange-background-color: #f9aa18;
 
 .smallipopHint { display: none; }
 
+#smallipop-tour-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
 .smallipop-instance {
   position: absolute;
   display: none;
@@ -36,7 +45,9 @@ $orange-background-color: #f9aa18;
     family: arial;
   }
 
-  a { color: $default-link-color; }
+  a {
+    color: $default-link-color;
+  }
 
   .sipContent { padding: 10px; }
 
@@ -110,6 +121,7 @@ $orange-background-color: #f9aa18;
   .smallipop-tour-footer {
     padding-top: 5px;
     position: relative;
+    @include clearfix();
   }
   .smallipop-tour-progress {
     color: #bbb;
@@ -132,6 +144,7 @@ $orange-background-color: #f9aa18;
     color: #ccc;
     text-align: center;
     text-shadow: 0 -1px 1px #666;
+    text-decoration: none;
     @include border-radius(8px);
     @include box-shadow(0 1px 3px rgba(0, 0, 0, .3));
 
