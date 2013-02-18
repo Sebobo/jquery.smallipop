@@ -1,5 +1,5 @@
 ###!
-Smallipop (02/15/2013)
+Smallipop (02/18/2013)
 Copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -83,10 +83,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
         # Fire close callback
         if popupData.isTour
+          sip.currentTour = null
           trigger.data('smallipop')?.options.onTourClose?()
-
-          @_getTourOverlay(triggerOptions)
-            .fadeOut triggerOptions.tourHightlightFadeDuration
+          @_hideTourOverlay triggerOptions
 
         # Do nothing if clicked and hide on click is disabled for this case
         ignoreTriggerClick = not triggerOptions.hideOnTriggerClick \
@@ -345,30 +344,26 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
               .fadeTo lastTriggerOpt.fadeSpeed, 1
 
       # Display overlay under the trigger when tourHighlight is enabled
-      tourOverlay = @_getTourOverlay triggerOptions
       if triggerOptions.tourHighlight
-        # Reset z-index for all other triggers in tours
-        for tour of sip.tours
-          for idx of sip.tours[tour]
-            tourTrigger = sip.tours[tour][idx].trigger
-            if tourTrigger.data 'originalZIndex'
-              tourTrigger.css 'z-index', tourTrigger.data('originalZIndex')
+        tourOverlay = @_getTourOverlay triggerOptions
 
-        # Trigger should stay on top of the overlay
-        unless trigger.data 'originalZIndex'
-          trigger.data 'originalZIndex', trigger.css 'z-index'
+        @_resetTourZIndices()
 
-        trigger.css 'z-index', triggerOptions.tourHighlightZIndex + 1
         # Set position at least to relative if it's static, or z-index won't work
         if trigger.css('position') is 'static'
           trigger.css 'position', 'relative'
 
+        # Trigger should stay on top of the overlay
+        unless trigger.data 'originalZIndex'
+          trigger.data 'originalZIndex', trigger.css 'zIndex'
+
+        trigger.css 'zIndex', triggerOptions.tourHighlightZIndex + 1
+
         # Show overlay
         tourOverlay
           .fadeTo triggerOptions.tourHightlightFadeDuration, triggerOptions.tourHighlightOpacity
-      else if tourOverlay.is ':visible'
-        # Hide overlay if visible
-        tourOverlay.fadeOut triggerOptions.tourHightlightFadeDuration
+      else
+        @_hideTourOverlay triggerOptions
 
       popupContent = content or triggerData.hint
       # If referenced content element is defined, use it's content
@@ -526,6 +521,18 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       overlay.css
         backgroundColor: options.tourHighlightColor
         zIndex: options.tourHighlightZIndex
+
+    _hideTourOverlay: (options) ->
+      $('#smallipop-tour-overlay').fadeOut options.tourHightlightFadeDuration
+      @_resetTourZIndices()
+
+    _resetTourZIndices: ->
+      # Reset z-index for all other triggers in tours
+      for tour, steps of sip.tours
+        for step in steps
+          tourTrigger = step.trigger
+          if tourTrigger.data 'originalZIndex'
+            tourTrigger.css 'zIndex', tourTrigger.data('originalZIndex')
 
     _showWhenVisible: (trigger, content) ->
       targetPosition = trigger.offset().top
