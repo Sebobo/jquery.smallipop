@@ -365,7 +365,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       popupContent = content or triggerData.hint
       # If referenced content element is defined, use it's content
       if triggerOptions.referencedContent and not content
-        popupContent = $(triggerOptions.referencedContent).html() or popupContent
+        popupContent = $(triggerOptions.referencedContent).clone(true, true) or popupContent
 
       popupPosition = if @_isElementFixed trigger then 'fixed' else 'absolute'
 
@@ -493,8 +493,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       closeButton = if index is currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-close\">#{sip.labels.close}</a>" else ''
       closeIcon = "<a href=\"#\" class=\"smallipop-tour-close-icon\">&Chi;</a>"
 
-      content = $.trim "
-        <div class=\"smallipop-tour-content\">#{triggerData.hint}</div>
+      $content = $($.trim "
+        <div class=\"smallipop-tour-content\"></div>
         #{closeIcon}
         <div class=\"smallipop-tour-footer\">
           <div class=\"smallipop-tour-progress\">
@@ -503,13 +503,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           #{prevButton}
           #{nextButton}
           #{closeButton}
-        </div>"
+        </div>")
+
+      # Append hint object to tour content
+      $content.eq(0).append triggerData.hint
 
       sip._killTimers triggerData.popupInstance
       triggerData.popupInstance.data 'triggerHovered', true
 
       # Scroll to trigger if it isn't visible
-      sip._showWhenVisible trigger, content
+      sip._showWhenVisible trigger, $content
 
     _getTourOverlay: (options) ->
       overlay = $ '#smallipop-tour-overlay'
@@ -673,7 +676,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       triggerData = self.data()
 
       # Get content for the popup
-      objHint = hint or self.find(".#{options.infoClass}").html() or self.attr('title')
+      # If it's inline markup, create a deep copy of the hint html
+      objHint = hint \
+        or self.find(".#{options.infoClass}")
+          .clone(true, true)
+          .removeClass("#{options.infoClass}") \
+        or self.attr('title')
 
       # Initialize each trigger, create id and bind events
       if objHint and not self.hasClass 'sipInitialized'
