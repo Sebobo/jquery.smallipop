@@ -683,11 +683,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         triggerPopupInstance = popup
         triggerOptions = $.extend true, {}, options
 
+        # Check if inline smallipop options are provided as object or single data attributes
+        if typeof(triggerData['smallipop']) is 'object'
+          $.extend true, triggerOptions, triggerData['smallipop']
+
         # Extend the trigger options by options set in data attribute
         for option, value of triggerData when option.indexOf('smallipop') >= 0
           optionName = option.replace 'smallipop', ''
-          optionName = optionName.substr(0, 1).toLowerCase() + optionName.substr(1)
-          triggerOptions[optionName] = value
+          if optionName
+            optionName = optionName.substr(0, 1).toLowerCase() + optionName.substr(1)
+            triggerOptions[optionName] = value
 
         isFormElement = triggerOptions.handleInputs and tagName in ['input', 'select', 'textarea']
 
