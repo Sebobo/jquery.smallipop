@@ -172,9 +172,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         popup.removeClass (index, classNames) ->
           return (classNames?.match(/sip\w+/g) or []).join ' '
 
-        # Add theme class
-        popup.addClass options.theme
-
         # Prepare some properties
         win = $ window
         xDistance = yDistance = options.popupDistance
@@ -378,13 +375,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           beingShown: true
           shown: triggerData.id
           position: popupPosition
-        .find('.sipContent').html popupContent
+        .find('.sipContent').empty().append popupContent
 
       # Check if trigger has fixed position
       popup.css 'position', popupPosition
 
-      # Remove some css classes
-      popup.attr('class', 'smallipop-instance') if triggerData.id isnt shownId
+      # Reset theme class
+      if triggerData.id isnt shownId
+        popup.attr 'class', "smallipop-instance #{triggerOptions.theme}"
+
+      # Queue the next refresh
       sip._queueRefreshPosition 0
 
     _isElementFixed: (element) ->
