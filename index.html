@@ -1,10 +1,10 @@
 <!doctype html>
 <html>
     <head>
-        <title>Smallipop - A versatile jQuery plugin for displaying tooltips</title>
+        <title>Documentation - Smallipop</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="keywords" content="jquery,tooltip,popup,plugin,css3,open-source,mit-license,extension,overlay" />
-        <meta name="description" content="Smallipop is a versatile jQuery plugin for displaying tooltips. It has automatic layout, pure css, free positioning, small size and much more!" />
+        <meta name="description" content="Smallipop is a versatile jQuery plugin for displaying tooltips and interactive tours. It has automatic layout, pure css, free positioning, small size and much more!" />
         <meta http-equiv="content-language" content="en">
         <meta name="author" content="Sebastian Helzle"/>
         <link rel="stylesheet" href="css/contrib/animate.min.css" type="text/css" media="all" title="Screen" />
@@ -14,7 +14,7 @@
     <body>
         <div class="pageHeader hasShadow">
 
-            <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips</h1>
+            <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips and interactive tours</h1>
 
             <p>
                 <b>Version 0.5.0</b> -
@@ -1197,7 +1197,7 @@
             <br/>
 
             <p>
-                &copy; 2012 by <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a>
+                &copy; 2012-2013 by <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a>
             </p>
 
             <br/>
@@ -1207,36 +1207,12 @@
                 and <a href="http://sass-lang.com/" target="_blank" title="Sass">sass</a>.
             </p>
         </div>
-        <br/>
         <script type="text/javascript" src="lib/contrib/modernizr.js"></script>
         <script type="text/javascript" src="lib/contrib/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="lib/contrib/prettify.js"></script>
         <script type="text/javascript" src="lib/jquery.smallipop.js"></script>
-        <script type="text/javascript" src="lib/demohelpers.js"></script>
-        <script type="text/javascript">
-            var hostname = document.location.hostname;
-            if (hostname && (hostname.indexOf('github') >= 0 || hostname.indexOf('sebastianhelzle') >= 0)) {
-                var pkBaseURL = (("https:" == document.location.protocol) ? "https://tracking.sebastianhelzle.net/" : "http://tracking.sebastianhelzle.net/");
-                document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-
-                document.write(unescape("%3Cscript src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=sebobo' type='text/javascript'%3E%3C/script%3E"));
-
-                var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-                s.type = 'text/javascript';
-                s.async = true;
-                s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-                t.parentNode.insertBefore(s, t);
-            }
-        </script>
-        <!-- Piwik -->
-        <script type="text/javascript">
-            try {
-                var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 5);
-                piwikTracker.trackPageView();
-                piwikTracker.enableLinkTracking();
-            } catch( err ) {}
-        </script>
-        <noscript><p><img src="http://tracking.sebastianhelzle.net/piwik.php?idsite=5" style="border:0" alt="" /></p></noscript>
-        <!-- End Piwik Tracking Code -->
+        <script type="text/javascript" src="https://tracking.sebastianhelzle.net/piwik.js"></script>
+        <script type="text/javascript" src="lib/demo.js"></script>
+        <noscript><img src="http://tracking.sebastianhelzle.net/piwik.php?idsite=5" style="border:0" alt="" /></noscript>
     </body>
 </html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <title>Smallipop - A versatile jQuery plugin for displaying tooltips and interactive tours</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content="jquery,tooltip,popup,plugin,css3,open-source,mit-license,extension,overlay" />
+        <meta name="description" content="Smallipop is a versatile jQuery plugin for displaying tooltips and interactive tours. It has automatic layout, pure css, free positioning, small size and much more!" />
+        <meta http-equiv="content-language" content="en">
+        <meta name="author" content="Sebastian Helzle"/>
+        <link rel="stylesheet" href="../css/contrib/animate.min.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/jquery.smallipop.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" title="Screen" />
+    </head>
+    <body>
+        <div class="pageHeader hasShadow">
+            <h1>An introduction to the Smallipop tour feature</h1>
+        </div>
+        <div class="page hasShadow">
+            <h2>
+                This example will teach you how to use the Smallipop tour feature.
+            </h2>
+
+            <h3>Overview</h3>
+            <ul>
+                <li>
+                    <a href="#example1">How to start</a>
+                </li>
+                <li>
+                    <a href="#example2">Your first tour element</a>
+                </li>
+            </ul>
+            <hr/>
+
+            <div id="example1">
+                <h4 id="exampleStart">How to start</h4>
+                <p>
+                    We start with a basic layout and some sample content for which we want to create a tour.
+                </p>
+                <a id="startExample1" href="#" class="sampleElement">Click here to start</a>
+
+                <br/>
+                <br/>
+
+                <div class="borderContainer">
+                    <div class="column size1of3 smallipop bgWhite" data-smallipop='{"tourIndex": 1, "tourTitle": "example1", "preferredPosition": "right", "tourHighlight": true}'>
+                        <h5>Menu</h5>
+                        <ul>
+                            <li>Foo</li>
+                            <li>Bar</li>
+                            <li>Test</li>
+                        </ul>
+                        <div class="smallipopHint">
+                            <p>
+                                You can use the html data attribute to setup each tour step
+                            </p>
+                            <pre class="prettyprint linenums">
+&lt;div class="column size1of3 smallipop"
+    data-smallipop='{"tourIndex": 1, "tourTitle": "example1",
+        "preferredPosition": "right", "tourHighlight": true}'&gt;
+    ...
+&lt;/div&gt;</pre>
+                        </div>
+                    </div>
+                    <div class="column size2of3 last">
+                        <p>
+                            Some text
+                        </p>
+                    </div>
+                    <br class="clear"/>
+                </div>
+            </div>
+
+            <hr/>
+            <p>
+                &copy; 2012-2013 by <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a>
+            </p>
+        </div>
+        <script type="text/javascript" src="../lib/contrib/modernizr.js"></script>
+        <script type="text/javascript" src="../lib/contrib/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="../lib/contrib/prettify.js"></script>
+        <script type="text/javascript" src="../lib/jquery.smallipop.js"></script>
+        <script type="text/javascript" src="../lib/examples.js"></script>
+    </body>
+</html>
