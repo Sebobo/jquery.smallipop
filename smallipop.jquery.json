@@ -2,7 +2,7 @@
     "name": "smallipop",
     "version": "0.5.0",
     "title": "jQuery Smallipop",
-    "description": "A versatile jQuery plugin for displaying beautiful tooltips",
+    "description": "A versatile jQuery plugin for displaying beautiful tooltips and interactive tours",
     "homepage": "http://projects.sebastianhelzle.net/jquery.smallipop",
     "author": {
         "name": "Sebastian Helzle",
