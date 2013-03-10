@@ -20,39 +20,6 @@ General demo helpers for smallipop
     self.slideUp 300, ->
       $(self.attr('href')).slideDown 300
 
-  ### Menu scroller ###
-  $(window).scroll((e) ->
-    scrollY = $(document).scrollTop()
-
-    return if scrollY is lastSideMenuY
-
-    lastSideMenuY = scrollY
-
-    # Move floating menu
-    if scrollY > sideMenuMinY
-      sideMenu.css
-        position: 'fixed'
-        top: 0
-    else
-      sideMenu.css
-        position: "absolute"
-        top: sideMenuMinY
-
-    # Check where we are in the document
-    $currentItem = null
-    sideMenuItems.each ->
-      $sideMenuItem = $ @
-      $sideMenuItem.removeClass 'current'
-      itemY = $($sideMenuItem.attr('href')).position().top
-      if itemY < scrollY
-        $currentItem = $sideMenuItem
-      else
-        false
-
-    # Switch current menu item
-    $currentItem?.addClass 'current'
-  ).trigger 'scroll'
-
   ### Smooth scroller for menu ###
   $('.scrollToId').click (e) ->
     e.preventDefault()
@@ -168,15 +135,20 @@ General demo helpers for smallipop
   $('#tipDontHideOnContentClick').smallipop
       hideOnPopupClick: false
 
+  ### Tour stuff ###
   $('.smallipopTour').smallipop
-    theme: 'black'
+    theme: 'black wide'
     cssAnimations:
       enabled: true
-      show: 'animated flipInX'
-      hide: 'animated flipOutX'
+      show: 'animated fadeIn'
+      hide: 'animated fadeOut'
 
   $('#runTour').click ->
     $('.smallipopTour').smallipop 'tour'
+
+  $('#startExample1').click (e) ->
+    e.preventDefault()
+    $('#example2 .smallipopTour').smallipop 'tour'
 
   ### Animate smallipops when scrolling ###
   if $('.wobbler').length
