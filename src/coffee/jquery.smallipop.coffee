@@ -677,11 +677,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       # Get content for the popup
       # If it's inline markup, create a deep copy of the hint html
-      objHint = hint \
-        or self.find(".#{options.infoClass}")
-          .clone(true, true)
-          .removeClass("#{options.infoClass}") \
-        or self.attr('title')
+      objHint = hint or self.attr('title')
+
+      $objInfo = $ ".#{options.infoClass}", self
+      if $objInfo.length
+        objHint = $objInfo.clone(true, true)
+          .removeClass("#{options.infoClass}")
 
       # Initialize each trigger, create id and bind events
       if objHint and not self.hasClass 'sipInitialized'
@@ -702,7 +703,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             optionName = optionName.substr(0, 1).toLowerCase() + optionName.substr(1)
             triggerOptions[optionName] = value
 
-        isFormElement = triggerOptions.handleInputs and tagName in ['input', 'select', 'textarea']
+        isFormElement = triggerOptions.handleInputs \
+          and tagName in ['input', 'select', 'textarea']
 
         # Activate on blur events if used on inputs and disable hide on click
         if isFormElement
@@ -714,7 +716,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           triggerEvents['mouseout.smallipop'] = sip._triggerMouseout
 
         # Check whether the trigger should activate smallipop by click or hover
-        if triggerOptions.triggerOnClick or (triggerOptions.touchSupport and sip._onTouchDevice())
+        if triggerOptions.triggerOnClick or \
+            (triggerOptions.touchSupport and sip._onTouchDevice())
           triggerEvents['click.smallipop'] = sip._showSmallipop
         else
           triggerEvents['click.smallipop'] = sip._triggerMouseout
