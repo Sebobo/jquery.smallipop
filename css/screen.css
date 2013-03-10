@@ -638,6 +638,64 @@ input[type="color"],
   padding-top: 15px;
 }
 
+.nav {
+  margin: 0 0 18px;
+  list-style: none;
+  padding: 0;
+}
+.nav li {
+  list-style: none;
+}
+.nav li a {
+  display: block;
+}
+.nav li a:hover {
+  text-decoration: none;
+  background-color: #e6e6e6;
+}
+.nav.noHover a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.nav-pills {
+  padding-left: 14px;
+  overflow: hidden;
+  *zoom: 1;
+}
+.nav-pills li {
+  float: left;
+  list-style: none;
+}
+.nav-pills li a {
+  text-shadow: 0 1px 1px #e6e6e6;
+  padding: 8px 12px;
+  margin: 2px;
+  line-height: 14px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+.nav-pills li.active a, .nav-pills li.active a:hover {
+  text-shadow: 0 1px 1px gray;
+  color: white;
+  background-color: #0069d6;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.nav-pills li a:hover {
+  background-color: #e6e6e6;
+}
+.nav-pills .spacer {
+  padding: 6px 0 0;
+  margin: 2px 0;
+  color: #ccc;
+  display: block;
+}
+
 /* Demo css */
 html {
   background: #222222 url("../images/bg.png");
@@ -794,6 +852,9 @@ img.inline {
 
 .sampleElement {
   border: 1px solid #fed980;
+  line-height: 1em;
+  margin: 0 3px 3px 0;
+  display: inline-block;
   padding: 3px 5px;
   background-color: #ffe199;
   font-size: 1.1em;
@@ -873,7 +934,11 @@ img.inline {
   background: linear-gradient(#fff24d, #fdc661);
 }
 .cssgradients .sampleElement.white {
-  background: inear-gradient(white, #fafafa);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fafafa));
+  background: -webkit-linear-gradient(#ffffff, #fafafa);
+  background: -moz-linear-gradient(#ffffff, #fafafa);
+  background: -o-linear-gradient(#ffffff, #fafafa);
+  background: linear-gradient(#ffffff, #fafafa);
 }
 .cssgradients .sampleElement.green {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #35b125), color-stop(100%, #29a219));
@@ -1252,4 +1317,18 @@ img.inline {
   margin: 0 -30px;
   width: 933px;
   padding: 0 10px 0 37px;
+}
+
+/* Example css */
+.borderContainer {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #fafafa;
+  -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.bgWhite {
+  background-color: #fafafa;
 }

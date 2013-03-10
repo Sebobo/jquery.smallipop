@@ -1,5 +1,5 @@
 ###!
-Smallipop (02/18/2013)
+Smallipop (03/10/2013)
 Copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.5.0'
+    version: '0.5.1'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -71,6 +71,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     tours: {}
 
     _hideSmallipop: (e) ->
+      clearTimeout sip.scrollTimer
+
       target = if e?.target then $(e.target) else e
       for popupId, popup of sip.instances
         popupData = popup.data()
@@ -159,21 +161,23 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     ###
     Refresh the position for each visible popup
     ###
-    _refreshPosition: ->
+    _refreshPosition: (resetTheme=true) ->
       for popupId, popup of sip.instances
         popupData = popup.data()
         shownId = popupData.shown
         continue unless shownId
 
         trigger = $ ".smallipop#{shownId}"
-        options = trigger.data('smallipop').options
+        triggerData = trigger.data 'smallipop'
+        options = triggerData.options
 
         # Remove alignment classes
         popup.removeClass (index, classNames) ->
           return (classNames?.match(/sip\w+/g) or []).join ' '
 
-        # Add theme class
-        popup.addClass options.theme
+        # Reset theme class
+        if resetTheme
+          popup.attr 'class', "smallipop-instance #{options.theme}"
 
         # Prepare some properties
         win = $ window
@@ -368,9 +372,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       popupContent = content or triggerData.hint
       # If referenced content element is defined, use it's content
       if triggerOptions.referencedContent and not content
-        popupContent = $(triggerOptions.referencedContent).html() or popupContent
+        popupContent = $(triggerOptions.referencedContent).clone(true, true) or popupContent
 
       popupPosition = if @_isElementFixed trigger then 'fixed' else 'absolute'
+
+      if shownId isnt triggerData.id
+        popup.hide 0
 
       # Update tip content and remove all classes
       popup
@@ -378,13 +385,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           beingShown: true
           shown: triggerData.id
           position: popupPosition
-        .find('.sipContent').html popupContent
+        .find('.sipContent').empty().append popupContent
 
       # Check if trigger has fixed position
       popup.css 'position', popupPosition
 
-      # Remove some css classes
-      popup.attr('class', 'smallipop-instance') if triggerData.id isnt shownId
+      # Queue the next refresh
       sip._queueRefreshPosition 0
 
     _isElementFixed: (element) ->
@@ -439,7 +445,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     _onWindowScroll: (e) ->
       clearTimeout sip.scrollTimer
-      sip.scrollTimer = setTimeout sip._refreshPosition, 250
+      sip.scrollTimer = setTimeout =>
+          sip._refreshPosition false
+        , 250
 
     setContent: (trigger, content) ->
       return unless trigger?.length
@@ -493,8 +501,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       closeButton = if index is currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-close\">#{sip.labels.close}</a>" else ''
       closeIcon = "<a href=\"#\" class=\"smallipop-tour-close-icon\">&Chi;</a>"
 
-      content = $.trim "
-        <div class=\"smallipop-tour-content\">#{triggerData.hint}</div>
+      $content = $($.trim "
+        <div class=\"smallipop-tour-content\"></div>
         #{closeIcon}
         <div class=\"smallipop-tour-footer\">
           <div class=\"smallipop-tour-progress\">
@@ -503,13 +511,16 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           #{prevButton}
           #{nextButton}
           #{closeButton}
-        </div>"
+        </div>")
+
+      # Append hint object to tour content
+      $content.eq(0).append triggerData.hint
 
       sip._killTimers triggerData.popupInstance
       triggerData.popupInstance.data 'triggerHovered', true
 
       # Scroll to trigger if it isn't visible
-      sip._showWhenVisible trigger, content
+      sip._showWhenVisible trigger, $content
 
     _getTourOverlay: (options) ->
       overlay = $ '#smallipop-tour-overlay'
@@ -673,7 +684,13 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       triggerData = self.data()
 
       # Get content for the popup
-      objHint = hint or self.find(".#{options.infoClass}").html() or self.attr('title')
+      # If it's inline markup, create a deep copy of the hint html
+      objHint = hint or self.attr('title')
+
+      $objInfo = $ ".#{options.infoClass}", self
+      if $objInfo.length
+        objHint = $objInfo.clone(true, true)
+          .removeClass("#{options.infoClass}")
 
       # Initialize each trigger, create id and bind events
       if objHint and not self.hasClass 'sipInitialized'
@@ -683,13 +700,19 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         triggerPopupInstance = popup
         triggerOptions = $.extend true, {}, options
 
+        # Check if inline smallipop options are provided as object or single data attributes
+        if typeof(triggerData['smallipop']) is 'object'
+          $.extend true, triggerOptions, triggerData['smallipop']
+
         # Extend the trigger options by options set in data attribute
         for option, value of triggerData when option.indexOf('smallipop') >= 0
           optionName = option.replace 'smallipop', ''
-          optionName = optionName.substr(0, 1).toLowerCase() + optionName.substr(1)
-          triggerOptions[optionName] = value
+          if optionName
+            optionName = optionName.substr(0, 1).toLowerCase() + optionName.substr(1)
+            triggerOptions[optionName] = value
 
-        isFormElement = triggerOptions.handleInputs and tagName in ['input', 'select', 'textarea']
+        isFormElement = triggerOptions.handleInputs \
+          and tagName in ['input', 'select', 'textarea']
 
         # Activate on blur events if used on inputs and disable hide on click
         if isFormElement
@@ -701,7 +724,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
           triggerEvents['mouseout.smallipop'] = sip._triggerMouseout
 
         # Check whether the trigger should activate smallipop by click or hover
-        if triggerOptions.triggerOnClick or (triggerOptions.touchSupport and sip._onTouchDevice())
+        if triggerOptions.triggerOnClick or \
+            (triggerOptions.touchSupport and sip._onTouchDevice())
           triggerEvents['click.smallipop'] = sip._showSmallipop
         else
           triggerEvents['click.smallipop'] = sip._triggerMouseout
