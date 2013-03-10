@@ -71,6 +71,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     tours: {}
 
     _hideSmallipop: (e) ->
+      clearTimeout sip.scrollTimer
+
       target = if e?.target then $(e.target) else e
       for popupId, popup of sip.instances
         popupData = popup.data()
@@ -159,18 +161,23 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     ###
     Refresh the position for each visible popup
     ###
-    _refreshPosition: ->
+    _refreshPosition: (resetTheme=true) ->
       for popupId, popup of sip.instances
         popupData = popup.data()
         shownId = popupData.shown
         continue unless shownId
 
         trigger = $ ".smallipop#{shownId}"
-        options = trigger.data('smallipop').options
+        triggerData = trigger.data 'smallipop'
+        options = triggerData.options
 
         # Remove alignment classes
         popup.removeClass (index, classNames) ->
           return (classNames?.match(/sip\w+/g) or []).join ' '
+
+        # Reset theme class
+        if resetTheme
+          popup.attr 'class', "smallipop-instance #{options.theme}"
 
         # Prepare some properties
         win = $ window
@@ -369,6 +376,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       popupPosition = if @_isElementFixed trigger then 'fixed' else 'absolute'
 
+      if shownId isnt triggerData.id
+        popup.hide 0
+
       # Update tip content and remove all classes
       popup
         .data
@@ -379,10 +389,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       # Check if trigger has fixed position
       popup.css 'position', popupPosition
-
-      # Reset theme class
-      if triggerData.id isnt shownId
-        popup.attr 'class', "smallipop-instance #{triggerOptions.theme}"
 
       # Queue the next refresh
       sip._queueRefreshPosition 0
@@ -439,7 +445,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     _onWindowScroll: (e) ->
       clearTimeout sip.scrollTimer
-      sip.scrollTimer = setTimeout sip._refreshPosition, 250
+      sip.scrollTimer = setTimeout =>
+          sip._refreshPosition false
+        , 250
 
     setContent: (trigger, content) ->
       return unless trigger?.length
