@@ -1,0 +1,119 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <title>Form handling - Smallipop</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content="jquery,tooltip,popup,plugin,css3,open-source,mit-license,extension,overlay" />
+        <meta name="description" content="Smallipop is a versatile jQuery plugin for displaying tooltips and interactive tours. It has automatic layout, pure css, free positioning, small size and much more!" />
+        <meta http-equiv="content-language" content="en">
+        <meta name="author" content="Sebastian Helzle"/>
+        <link rel="stylesheet" href="../css/contrib/animate.min.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/jquery.smallipop.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" title="Screen" />
+    </head>
+    <body>
+        <div class="pageHeader hasShadow">
+            <h1>Special handling for inputs when using Smallipop</h1>
+        </div>
+        <div class="page hasShadow">
+
+            <div class="subnav centered">
+              <ul class="nav nav-pills">
+                <li>
+                    <a href="../index.html" title="An introduction to Smallipop">
+                        Overview
+                    </a>
+                </li>
+                <li>
+                    <a href="installation.html" title="Get Smallipop up and running">
+                        Installation
+                    </a>
+                </li>
+                <li>
+                    <a href="options.html" title="How to customize Smallipop">
+                        Options
+                    </a>
+                </li>
+                <li>
+                    <a href="methods.html" title="Public methods to control Smallipop">
+                        Methods
+                    </a>
+                </li>
+                <li><span class="spacer">|</span></li>
+                <li>
+                    <a href="tours.html" title="Create interactive tours">
+                        Tour feature
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="forms.html" title="Smallipop has special handling for different form inputs">
+                        Form handling
+                    </a>
+                </li>
+              </ul>
+            </div>
+
+            <br/>
+
+            <h2>Special support for form elements</h2>
+
+            <p>
+                Smallipop will appear when form elements are focused and
+                stay even when the mouse leaves the input.
+            </p>
+
+            <div class="bs-docs-example">
+                <label>Text</label>
+                <input class="smallipopFormElement" type="text" size="30" title="Enter some text"/>
+                <br/>
+                <label>Password</label>
+                <input class="smallipopFormElement" type="password" size="30" title="Enter something like a password"/>
+                <br/>
+                <label>Select</label>
+                <select class="smallipopFormElement" title="Select something">
+                    <option>Foo</option>
+                    <option>Bar</option>
+                </select>
+                <br/>
+                <label>Textarea</label>
+                <textarea class="smallipopFormElement" title="Write what you want" cols="30" rows="4"></textarea>
+                <br/>
+                <label>Checkboxes</label>
+                <input type="checkbox" class="smallipopFormElement" title="Check it!"/>
+                <br/><br/>
+                <label class="inline">Yes</label>
+                <input type="radio" name="radioTest" class="smallipopFormElement" title="Yes I want it!"/>
+                <br/>
+                <label class="inline">No</label>
+                <input type="radio" name="radioTest" class="smallipopFormElement" title="Never!"/>
+                <br/>
+                <label class="inline">Maybe</label>
+                <input type="radio" name="radioTest" class="smallipopFormElement" title="Ok maybe..."/>
+            </div>
+
+            <pre class="prettyprint linenums">
+&lt;input class="smallipopInput" type="text" size="30" title="Enter some text"/&gt;
+
+&lt;script type="text/javascript"&gt;
+$('.smallipopInput').smallipop({
+    preferredPosition: 'right',
+    theme: 'black',
+    popupOffset: 0,
+    triggerOnClick: true
+});
+&lt;/script&gt;</pre>
+
+            <hr/>
+            <p>
+                &copy; 2012-2013 by <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a>
+            </p>
+        </div>
+        <script type="text/javascript" src="../lib/contrib/modernizr.js"></script>
+        <script type="text/javascript" src="../lib/contrib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="../lib/contrib/prettify.js"></script>
+        <script type="text/javascript" src="../lib/jquery.smallipop.js"></script>
+        <script type="text/javascript" src="https://tracking.sebastianhelzle.net/piwik.js"></script>
+        <script type="text/javascript" src="../lib/demo.js"></script>
+        <noscript><img src="http://tracking.sebastianhelzle.net/piwik.php?idsite=5" style="border:0" alt="" /></noscript>
+    </body>
+</html>

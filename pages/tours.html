@@ -1,0 +1,168 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <title>Creating a tour - Smallipop</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content="jquery,tooltip,popup,plugin,css3,open-source,mit-license,extension,overlay" />
+        <meta name="description" content="Smallipop is a versatile jQuery plugin for displaying tooltips and interactive tours. It has automatic layout, pure css, free positioning, small size and much more!" />
+        <meta http-equiv="content-language" content="en">
+        <meta name="author" content="Sebastian Helzle"/>
+        <link rel="stylesheet" href="../css/contrib/animate.min.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/jquery.smallipop.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" title="Screen" />
+    </head>
+    <body>
+        <div class="pageHeader hasShadow">
+            <h1>An introduction to the Smallipop tour feature</h1>
+        </div>
+        <div class="page hasShadow">
+
+            <div class="subnav centered">
+              <ul class="nav nav-pills">
+                <li>
+                    <a href="../index.html" title="An introduction to Smallipop">
+                        Overview
+                    </a>
+                </li>
+                <li>
+                    <a href="installation.html" title="Get Smallipop up and running">
+                        Installation
+                    </a>
+                </li>
+                <li>
+                    <a href="options.html" title="How to customize Smallipop">
+                        Options
+                    </a>
+                </li>
+                <li>
+                    <a href="methods.html" title="Public methods to control Smallipop">
+                        Methods
+                    </a>
+                </li>
+                <li><span class="spacer">|</span></li>
+                <li class="active">
+                    <a href="tours.html" title="Create interactive tours">
+                        Tour feature
+                    </a>
+                </li>
+                <li>
+                    <a href="forms.html" title="Smallipop has special handling for different form inputs">
+                        Form handling
+                    </a>
+                </li>
+              </ul>
+            </div>
+
+            <h2>
+                These examples will teach you how to use the Smallipop tour feature.
+            </h2>
+            <ul>
+                <li>
+                    <a href="#example1">A simple example</a>
+                </li>
+                <li>
+                    <a href="#example2">How to start</a>
+                </li>
+                <li>
+                    <a href="#example3">Your first tour element</a>
+                </li>
+            </ul>
+
+            <hr/>
+
+            <div id="example1">
+                <h4>
+                    <span class="smallipopTour" style="z-index:5;" data-smallipop-tour-index="1" title="This is the start of the tour. Try pressing the left and right arrow keys to control the tour.">A simple tour example</span>
+                </h4>
+
+                <div class="bs-docs-example">
+                    <a id="runTour" class="sampleElement">Click to start the tour</a>
+
+                    <img style="float:right" src="../images/smallipop-logo.png" class="smallipopTour" title="It can highlight elements too!" data-smallipop-tour-index="10" data-smallipop-tour-highlight="true"/>
+
+                    <br/>
+                    <br/>
+
+                    <b class="smallipopTour" title="And this is the second step of the tour with a different tip alignment" data-smallipop-tour-index="3" data-smallipop-preferred-position="right">
+                        This is some sample text
+                    </b>
+                    <img style="margin-left:200px;" src="../images/marker-arrow-green.png" class="smallipopTour" title="And this is a marker and the end of the tour" data-smallipop-tour-index="12" data-smallipop-tour-highlight="true"/>
+                </div>
+                <pre class="prettyprint linenums">
+&lt;span class="smallipopTour" data-smallipop-tour-index="1"&gt;Step 1&lt;/span&gt;
+&lt;span class="smallipopTour" data-smallipop-tour-index="2"&gt;Step 2&lt;/span&gt;
+&lt;span class="smallipopTour" data-smallipop-tour-index="3" data-smallipop-preferred-position="right"&gt;Step 3&lt;/span&gt;
+&lt;span class="smallipopTour" data-smallipop-tour-index="10"&gt;Step 4&lt;/span&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('.smallipopTour').smallipop();
+&lt;/script&gt;</pre>
+            </div>
+
+            <hr/>
+
+            <div id="example2">
+                <h4 id="exampleStart">How to start</h4>
+                <p>
+                    We start with a basic layout and some sample content for which we want to create a tour.
+                </p>
+                <a id="startExample1" href="#" class="sampleElement">Click here to start</a>
+
+                <br/>
+                <br/>
+
+                <div class="borderContainer">
+                    <div class="column size1of3 smallipopTour bgWhite" data-smallipop='{"tourIndex": 1, "tourTitle": "example1", "preferredPosition": "right", "tourHighlight": true}'>
+                        <h5>Menu</h5>
+                        <ul>
+                            <li>Foo</li>
+                            <li>Bar</li>
+                            <li>Test</li>
+                        </ul>
+                        <div class="smallipopHint">
+                            <p>
+                                You can use the html data attribute to setup each tour step
+                            </p>
+                            <pre class="prettyprint linenums">
+&lt;div class="column size1of3 smallipop"
+    data-smallipop='
+        {
+            "tourIndex": 1,
+            "tourTitle": "example1",
+            "preferredPosition": "right",
+            "tourHighlight": true
+        }'&gt;
+    ...
+&lt;/div&gt;</pre>
+                        </div>
+                    </div>
+                    <div class="column size2of3 last">
+                        <p>
+                            Some text
+                        </p>
+                    </div>
+                    <br class="clear"/>
+                </div>
+            </div>
+
+            <hr/>
+
+            <h3>That's it?</h3>
+            <p>
+                No! More is coming soon!
+            </p>
+
+            <hr/>
+            <p>
+                &copy; 2012-2013 by <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a>
+            </p>
+        </div>
+        <script type="text/javascript" src="../lib/contrib/modernizr.js"></script>
+        <script type="text/javascript" src="../lib/contrib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="../lib/contrib/prettify.js"></script>
+        <script type="text/javascript" src="../lib/jquery.smallipop.js"></script>
+        <script type="text/javascript" src="https://tracking.sebastianhelzle.net/piwik.js"></script>
+        <script type="text/javascript" src="../lib/demo.js"></script>
+        <noscript><img src="http://tracking.sebastianhelzle.net/piwik.php?idsite=5" style="border:0" alt="" /></noscript>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <title>Installation - Smallipop</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content="jquery,tooltip,popup,plugin,css3,open-source,mit-license,extension,overlay" />
+        <meta name="description" content="Smallipop is a versatile jQuery plugin for displaying tooltips and interactive tours. It has automatic layout, pure css, free positioning, small size and much more!" />
+        <meta http-equiv="content-language" content="en">
+        <meta name="author" content="Sebastian Helzle"/>
+        <link rel="stylesheet" href="../css/contrib/animate.min.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/jquery.smallipop.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" title="Screen" />
+    </head>
+    <body>
+        <div class="pageHeader hasShadow">
+            <h1>How to install Smallipop</h1>
+        </div>
+        <div class="page hasShadow">
+
+            <div class="subnav centered">
+              <ul class="nav nav-pills">
+                <li>
+                    <a href="../index.html" title="An introduction to Smallipop">
+                        Overview
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="installation.html" title="Get Smallipop up and running">
+                        Installation
+                    </a>
+                </li>
+                <li>
+                    <a href="options.html" title="How to customize Smallipop">
+                        Options
+                    </a>
+                </li>
+                <li>
+                    <a href="methods.html" title="Public methods to control Smallipop">
+                        Methods
+                    </a>
+                </li>
+                <li><span class="spacer">|</span></li>
+                <li>
+                    <a href="tours.html" title="Create interactive tours">
+                        Tour feature
+                    </a>
+                </li>
+                <li>
+                    <a href="forms.html" title="Smallipop has special handling for different form inputs">
+                        Form handling
+                    </a>
+                </li>
+              </ul>
+            </div>
+
+            <br/>
+
+            <h3>Installation</h3>
+
+            <h6>Prequisites</h6>
+
+            <ul>
+                <li>
+                    <b>
+                        <a href="http://www.jquery.com" class="smallipop" target="_blank" title="jQuery library">
+                            jQuery
+                        </a>
+                    </b>
+                    <br/>
+                    1.5.2 or better
+                </li>
+                <li>
+                    <b>
+                        <a href="http://www.modernizr.com" class="smallipop" target="_blank" title="Modernizr library">
+                            Modernizr
+                        </a>
+                    </b>
+                    <br/>
+                    This library tests the browser for feature support and adds classes to the body tag.<br/>
+                    We use this for css fallbacks in our themes.<br/>
+                    Required features:
+                    <i>rgba, cssanimations, cssgradients, csstransitions, touch, cssclasses</i>
+                </li>
+            </ul>
+            <p>
+                Both are also provided in a current version in the <i>lib</i> folder.
+            </p>
+
+            <br/>
+
+            <h6>Required files</h6>
+
+            <p>1. Copy <i>lib/jquery-smallipop.js</i> to your javascript folder.</p>
+            <p>2. Copy <i>lib/jquery-x.x.x.min.js</i> to your javascript folder if you don't use jQuery already.</p>
+            <p>3. Copy <i>lib/modernizr-x.x.x.js</i> to your javascript folder if you don't use modernizr already.</p>
+            <p>4. Copy <i>css/jquery-smallipop.css</i> to your css folder.</p>
+            <p>5. Copy <i>css/animate.min.css</i> to your css folder if you want to use the advanced css based animations.</p>
+
+            <p>There is a minified version of the smallipop javascript for production in the lib folder too.</p>
+
+            <br/>
+
+            <h6>Modify your html header</h6>
+
+            <p>Add these lines to the header of your html file and replace x.x.x with the correct versions</p>
+            <pre class="prettyprint linenums">
+&lt;link rel="stylesheet" href="css/jquery-smallipop.css" type="text/css" media="all" title="Screen"/&gt;
+&lt;script type="text/javascript" src="lib/jquery-x.x.x.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="lib/modernizr-x.x.x.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="lib/jquery-smallipop.js"&gt;&lt;/script&gt;</pre>
+
+            <hr/>
+            <p>
+                &copy; 2012-2013 by <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a>
+            </p>
+        </div>
+        <script type="text/javascript" src="../lib/contrib/modernizr.js"></script>
+        <script type="text/javascript" src="../lib/contrib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="../lib/contrib/prettify.js"></script>
+        <script type="text/javascript" src="../lib/jquery.smallipop.js"></script>
+        <script type="text/javascript" src="https://tracking.sebastianhelzle.net/piwik.js"></script>
+        <script type="text/javascript" src="../lib/demo.js"></script>
+        <noscript><img src="http://tracking.sebastianhelzle.net/piwik.php?idsite=5" style="border:0" alt="" /></noscript>
+    </body>
+</html>

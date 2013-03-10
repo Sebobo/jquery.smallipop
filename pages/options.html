@@ -1,0 +1,496 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <title>Options - Smallipop</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content="jquery,tooltip,popup,plugin,css3,open-source,mit-license,extension,overlay" />
+        <meta name="description" content="Smallipop is a versatile jQuery plugin for displaying tooltips and interactive tours. It has automatic layout, pure css, free positioning, small size and much more!" />
+        <meta http-equiv="content-language" content="en">
+        <meta name="author" content="Sebastian Helzle"/>
+        <link rel="stylesheet" href="../css/contrib/animate.min.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/jquery.smallipop.css" type="text/css" media="all" title="Screen" />
+        <link rel="stylesheet" href="../css/screen.css" type="text/css" media="all" title="Screen" />
+    </head>
+    <body>
+        <div class="pageHeader hasShadow">
+            <h1>How to customize Smallipop and use themes</h1>
+        </div>
+        <div class="page hasShadow">
+
+            <div class="subnav centered">
+              <ul class="nav nav-pills">
+                <li>
+                    <a href="../index.html" title="An introduction to Smallipop">
+                        Overview
+                    </a>
+                </li>
+                <li>
+                    <a href="installation.html" title="Get Smallipop up and running">
+                        Installation
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="options.html" title="How to customize Smallipop" class="smallipopBlack" data-smallipop-referenced-content="#optionsMenu">
+                        Options
+                    </a>
+                </li>
+                <li>
+                    <a href="methods.html" title="Public methods to control Smallipop">
+                        Methods
+                    </a>
+                </li>
+                <li><span class="spacer">|</span></li>
+                <li>
+                    <a href="tours.html" title="Create interactive tours">
+                        Tour feature
+                    </a>
+                </li>
+                <li>
+                    <a href="forms.html" title="Smallipop has special handling for different form inputs">
+                        Form handling
+                    </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="smallipopHint">
+                <div id="optionsMenu">
+                    <h6>Chapters</h6>
+                    <ul class="nav noHover">
+                        <li><a class="scrollToId" href="#options" title="All available Smallipop options">Options</a></li>
+                        <li><a class="scrollToId" href="#dataAttribute" title="Each Smallipop can be configured via the data attribute">Data attribute usage</a></li>
+                        <li><a class="scrollToId" href="#advanced" title="More complex options">Advanced configuration</a></li>
+                        <li><a class="scrollToId" href="#themes" title="Multiple themes are provided">Theming</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <br/>
+
+            <h2 id="options">Options</h2>
+
+            <table class="options" summary="Options for the jQuery smallipop plugin">
+                <tr>
+                    <th>Key</th>
+                    <th>Default value</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>autoscrollPadding</td>
+                    <td>200</td>
+                    <td>Visible window margin in pixels in which the tour feature tries to stay in, when showing the next or previous step in a tour.</td>
+                </tr>
+                <tr>
+                    <td>funcEase</td>
+                    <td>easeInOutQuad</td>
+                    <td>Easing function for the animations.</td>
+                </tr>
+                <tr>
+                    <td>handleInputs</td>
+                    <td>true</td>
+                    <td>
+                        Enables the focus and blur events on tags like <i>input, textarea, select</i> and disables the hide on click.
+                    </td>
+                </tr>
+                <tr>
+                    <td>hideDelay</td>
+                    <td>500</td>
+                    <td>Time before popup will be hidden.</td>
+                </tr>
+                <tr>
+                    <td>hideOnPopupClick</td>
+                    <td>true</td>
+                    <td>Hide smallipop when it is clicked.</td>
+                </tr>
+                <tr>
+                    <td>hideOnTriggerClick</td>
+                    <td>true</td>
+                    <td>Hide smallipop when the trigger is clicked.</td>
+                </tr>
+                <tr>
+                    <td>hideTrigger</td>
+                    <td>false</td>
+                    <td>Hide the trigger when the popup is shown.</td>
+                </tr>
+                <tr>
+                    <td>infoClass</td>
+                    <td>smallipopHint</td>
+                    <td>Class in an element which contains markup content for the popup.</td>
+                </tr>
+                <tr>
+                    <td>invertAnimation</td>
+                    <td>false</td>
+                    <td>
+                        The popup will move up when an element is hovered and further up when fading out. If you set this
+                        to true, the popup will move down when fading out.
+                    </td>
+                </tr>
+                <tr>
+                    <td>onAfterHide</td>
+                    <td>null</td>
+                    <td>Callback after smallipop is hidden</td>
+                </tr>
+                <tr>
+                    <td>onAfterShow</td>
+                    <td>null</td>
+                    <td>Callback after smallipop is shown</td>
+                </tr>
+                <tr>
+                    <td>onBeforeHide</td>
+                    <td>null</td>
+                    <td>Callback before smallipop is hidden</td>
+                </tr>
+                <tr>
+                    <td>onBeforeShow</td>
+                    <td>null</td>
+                    <td>Callback before smallipop is shown</td>
+                </tr>
+                <tr>
+                    <td>onTourClose</td>
+                    <td>null</td>
+                    <td>Callback when the tour has finished</td>
+                </tr>
+                <tr>
+                    <td>onTourNext</td>
+                    <td>null</td>
+                    <td>Callback when the next tour element is shown</td>
+                </tr>
+                <tr>
+                    <td>onTourPrev</td>
+                    <td>null</td>
+                    <td>Callback when the previous tour element is shown</td>
+                </tr>
+                <tr>
+                    <td>popupAnimationSpeed</td>
+                    <td>200</td>
+                    <td>How much time the popup needs to reach it's final animation position and opacity in milliseconds.</td>
+                </tr>
+                <tr>
+                    <td>popupDelay</td>
+                    <td>100</td>
+                    <td>How much time in milliseconds you have to hover on an element before the popups shows up.</td>
+                </tr>
+                <tr>
+                    <td>popupDistance</td>
+                    <td>20</td>
+                    <td>Vertical distance when the popup appears and disappears.</td>
+                </tr>
+                <tr>
+                    <td>popupOffset</td>
+                    <td>31</td>
+                    <td>Horizontal offset for the popup from the center of the trigger when the popup is aligned left or right.</td>
+                </tr>
+                <tr>
+                    <td>popupYOffset</td>
+                    <td>0</td>
+                    <td>Vertical offset for the popup.</td>
+                </tr>
+                <tr>
+                    <td>preferredPosition</td>
+                    <td>'top'</td>
+                    <td>Use "top" or "bottom" for the default layout and "left" or "right" when the popup should stay horizontal.</td>
+                </tr>
+                <tr>
+                    <td>theme</td>
+                    <td>default</td>
+                    <td><i>black</i>, <i>blue</i>, <i>white</i> and a default theme are included in the css file.</td>
+                </tr>
+                <tr>
+                    <td>touchSupport</td>
+                    <td>true</td>
+                    <td>
+                        When touch events are supported hover events are disabled and smallipop will activated by touching a trigger.<br/>
+                        A second touch will trigger the default action on the trigger. I.e. open a link.
+                        The touch feature detection currently requires the modernizr library.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHighlight</td>
+                    <td>false</td>
+                    <td>
+                        Will display an transparent overlay to highlight the tour triggers.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHighlightColor</td>
+                    <td>'#222'</td>
+                    <td>
+                        The overlay color.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHightlightFadeDuration</td>
+                    <td>200</td>
+                    <td>
+                        The duration for the overlay fade effect.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHighlightOpacity</td>
+                    <td>.5</td>
+                    <td>
+                        The opacity of the overlay.
+                    </td>
+                </tr>
+                <tr>
+                    <td>tourHighlightZIndex</td>
+                    <td>9997</td>
+                    <td>
+                        The z-index which will be used for the overlay and the highlighted trigger.
+                    </td>
+                </tr>
+                <tr>
+                    <td>triggerAnimationSpeed</td>
+                    <td>150</td>
+                    <td>How fast the trigger fades in and out when hideTrigger is set.</td>
+                </tr>
+                <tr>
+                    <td>triggerOnClick</td>
+                    <td>false</td>
+                    <td>
+                        Disables the hover event for triggers and smallipop will be activated by clicking the trigger.<br/>
+                        A second click will trigger the default action on the trigger. I.e. open a link.
+                    </td>
+                </tr>
+                <tr>
+                    <td>windowPadding</td>
+                    <td>30</td>
+                    <td>Minimal distance to the window borders the smallipop should keep when computing it's orientation.</td>
+                </tr>
+            </table>
+
+            <hr id="dataAttribute"/>
+
+            <h2>Customize Smallipops individually</h2>
+
+            <p>
+                You can customize each smallipop with a lot of options and callbacks.<br/>
+                Most of the options can be defined via the html data attribute too. This will then only affect a single smallipop, which helps you customizing single smallipops without creating different calls for each configuration.
+            </p>
+
+            <div class="bs-docs-example">
+                <span class="smallipop sampleElement" data-smallipop-preferred-position="right" title="I prefer the position on the right, even when my siblings stay on top!">
+                    Hover me!
+                </span>
+            </div>
+<pre class="prettyprint linenums">
+&lt;span class="smallipop" data-smallipop-preferred-position="right" title="Some text"&gt;
+    Hover me!
+&lt;/span&gt;</pre>
+
+            <p>
+                It's also possible to use JSON in the data attribute
+            </p>
+
+            <div class="bs-docs-example">
+                <span class="smallipop sampleElement" data-smallipop='{"theme":"black","preferredPosition":"bottom"}' title="I prefer the position at the bottom and use the black theme!">
+                    Hover me!
+                </span>
+            </div>
+<pre class="prettyprint linenums">
+&lt;span class="smallipop" data-smallipop='{"theme":"black","preferredPosition":"bottom"}' title="Some text"&gt;
+    Hover me!
+&lt;/span&gt;</pre>
+
+            <hr id="advanced"/>
+
+            <h3>Advanced configuration</h3>
+
+            <div>
+                <h5>Change content on the fly and use callbacks</h5>
+                <div class="bs-docs-example">
+                    <a id="tipChangeContent" class="sampleElement" title="Change">Hover me!</a>
+                </div>
+                <pre class="prettyprint linenums">
+&lt;a id="tipChangeContent" title="Change"&gt;
+    Hover me!
+&lt;/a&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('#tipChangeContent').smallipop({
+        onAfterShow: function(trigger) {
+            $.smallipop.setContent("I'm the new content and replaced the old boring content!");
+        },
+        onBeforeHide: function(trigger) {
+            $.smallipop.setContent("Bye bye");
+        }
+    });
+&lt;/script&gt;</pre>
+
+                <h5>Use referenced element as tooltip content</h5>
+                <div class="bs-docs-example">
+                    <a id="tipReferenced" class="smallipop sampleElement" title="Referenced content" data-smallipop-referenced-content="#tipReferencedTarget">Hover me!</a>
+                    <br/>
+                    <br/>
+                    <div id="tipReferencedTarget">
+                        The real tooltip content!
+                    </div>
+                </div>
+                <pre class="prettyprint linenums">
+&lt;a id="tipReferenced" data-smallipop-referenced-content="#tipReferencedTarget" title="Referenced content"&gt;
+    Hover me!
+&lt;/a&gt;
+&lt;div id="tipReferencedTarget"&gt;
+    The real tooltip content!
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('#tipReferenced').smallipop();
+&lt;/script&gt;</pre>
+
+                <h5>Use css animations</h5>
+                <p>
+                    Example powered by
+                    <a class="smallipop" target="_blank" href="http://daneden.me/animate" title="Just-add-water CSS animation">Animate.css</a>
+                </p>
+                <p>
+                    These effects will only work if your browser support css animations.<br/>
+                    When the Modernizr library is used and the browser doesn't support css animations the jQuery animations will be used as fallback.
+                </p>
+                <div class="bs-docs-example">
+                    <a id="tipCSSAnimated" class="sampleElement" title="Smallipop can handle fancy animations too!">
+                        Bounce and hinge
+                    </a>
+                    &nbsp;-&nbsp;
+                    <a id="tipCSSAnimated2" class="sampleElement" title="Fancy animations part 2">
+                        Flip
+                    </a>
+                    &nbsp;-&nbsp;
+                    <a id="tipCSSAnimated3" class="sampleElement" title="Fancy animations part 3">
+                        Fade
+                    </a>
+                    &nbsp;-&nbsp;
+                    <a id="tipCSSAnimated4" class="sampleElement" title="Fancy animations part 4">
+                        Rotate
+                    </a>
+                </div>
+                <pre class="prettyprint linenums">
+&lt;a id="tipCSSAnimated" title="Fancy"&gt;
+    Hover me!
+&lt;/a&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('#tipCSSAnimated').smallipop({
+        cssAnimations: {
+            enabled: true,
+            show: 'animated bounceInDown',
+            hide: 'animated hinge'
+        }
+    });
+&lt;/script&gt;</pre>
+
+                <h5>Hide on click specials</h5>
+
+                <div class="bs-docs-example">
+                    <span>Tip won't hide when clicking the trigger</span>
+                    <a id="tipDontHideOnTriggerClick" class="sampleElement" title="Change">Hover me!</a>
+                    <br/>
+                    <br/>
+                    <span>Tip wont't hide when clicking into the popup</span>
+                    <span id="tipDontHideOnContentClick" class="sampleElement">
+                        Hover me!
+                        <span class="smallipopHint">
+                            <b>Markuptip with very long text</b><br/>
+                            <a href="#" onclick="return false;">
+                                and a link which doesn't hide the popup
+                            </a>
+                        </span>
+                    </span>
+                </div>
+                <pre class="prettyprint linenums">
+&lt;a id="tipDontHideOnTriggerClick" title="Change"&gt;
+    Hover me!
+&lt;/a&gt;
+
+&lt;a id="tipDontHideOnContentClick" title="Change"&gt;
+    Hover me!
+    &lt;span class="smallipopHint"&gt;
+        &lt;b&gt;Markuptip with very long text&lt;/b&gt;&lt;br/&gt;
+        &lt;a href="#" onclick="return false;"&gt;
+            and a link which doesn't hide the popup
+        &lt;/a&gt;
+    &lt;/span&gt;
+&lt;/a&gt;
+
+&lt;script type="text/javascript"&gt;
+    $('#tipDontHideOnTriggerClick').smallipop({
+        hideOnTriggerClick: false
+    });
+    $('#tipDontHideOnContentClick').smallipop({
+        hideOnPopupClick: false
+    });
+&lt;/script&gt;</pre>
+
+            </div>
+
+            <hr id="themes"/>
+
+            <h2>Themes:</h2>
+
+            <p>Hover the links to see the different themes</p>
+
+            <div class="bs-docs-example">
+                <a href="#themes" class="smallipop sampleElement default" title="I'm a title with a long text">
+                    Default theme
+                </a>
+                &nbsp;-&nbsp;
+                <a href="#themes" class="smallipopBlue sampleElement blue" title="I'm a title with a long text">
+                    Blue theme
+                </a>
+                &nbsp;-&nbsp;
+                <a href="#themes" class="smallipopBlack sampleElement black" title="I'm a title with a long text">
+                    Black theme
+                </a>
+                &nbsp;-&nbsp;
+                <a href="#themes" class="smallipopWhite sampleElement white" title="I'm a title with a long text">
+                    White theme
+                </a>
+                &nbsp;-&nbsp;
+                <a href="#themes" class="smallipopOrange sampleElement orange" title="I'm a title with a long text">
+                    Orange theme
+                </a>
+            </div>
+
+            <div class="bs-docs-example">
+                You can extend a theme with an extension theme
+                <span class="smallipopBlueFatShadow sampleElement">
+                    Hover me!
+                    <span class="smallipopHint">
+                        Look at this fat shadow!
+                    </span>
+                </span>
+            </div>
+<pre class="prettyprint linenums">
+&lt;script type="text/javascript"&gt;
+    $('.myElement').smallipop({
+        theme: 'blue fatShadow'
+    });
+&lt;/script&gt;</pre>
+            <p>
+                This allows you to have one basic theme and several subthemes with different border styles or colors for example.
+            </p>
+            <p>
+                The css for the extension theme looks like this:
+            </p>
+<pre class="prettyprint linenums">
+#smallipop.fatShadow {
+  -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+     -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+          box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+}</pre>
+
+            <hr/>
+
+            <p>
+                &copy; 2012-2013 by <a href="http://www.small-improvements.com" title="Small Improvements">Small Improvements</a>
+            </p>
+        </div>
+        <script type="text/javascript" src="../lib/contrib/modernizr.js"></script>
+        <script type="text/javascript" src="../lib/contrib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="../lib/contrib/prettify.js"></script>
+        <script type="text/javascript" src="../lib/jquery.smallipop.js"></script>
+        <script type="text/javascript" src="https://tracking.sebastianhelzle.net/piwik.js"></script>
+        <script type="text/javascript" src="../lib/demo.js"></script>
+        <noscript><img src="http://tracking.sebastianhelzle.net/piwik.php?idsite=5" style="border:0" alt="" /></noscript>
+    </body>
+</html>

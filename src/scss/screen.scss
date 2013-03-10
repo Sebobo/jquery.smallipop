@@ -112,6 +112,9 @@ img.inline { margin: 10px; }
 
 .sampleElement {
   border: 1px solid #fed980;
+  line-height: 1em;
+  margin: 0 3px 3px 0;
+  display: inline-block;
   padding: 3px 5px;
   background-color: #ffe199;
   font-size: 1.1em;
@@ -181,7 +184,7 @@ img.inline { margin: 10px; }
   }
 
   &.white {
-    @include background(inear-gradient(#ffffff, #fafafa));
+    @include background(linear-gradient(#ffffff, #fafafa));
   }
   &.green {
     @include background(linear-gradient(#35b125, #29a219));
@@ -377,4 +380,17 @@ img.inline { margin: 10px; }
   margin: 0 -30px;
   width: 933px;
   padding: 0 10px 0 37px;
+}
+
+/* Example css */
+.borderContainer {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #fafafa;
+
+  @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.2));
+}
+
+.bgWhite {
+  background-color: #fafafa;
 }

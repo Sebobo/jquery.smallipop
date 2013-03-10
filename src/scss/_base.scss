@@ -497,3 +497,68 @@ input[type="color"],
   margin-top: -20px;
   padding-top: 15px;
 }
+
+// NAV BASE CLASS
+// ----------
+
+.nav {
+  margin: 0 0 $baseLineHeight;
+  list-style: none;
+  padding: 0;
+
+  li {
+    list-style: none;
+
+    a {
+      display: block;
+
+      &:hover {
+        text-decoration: none;
+        background-color: $grayLighter;
+      }
+    }
+  }
+
+  &.noHover a:hover {
+    background-color: transparent;
+    text-decoration: underline;
+  }
+}
+
+// Common styles
+.nav-pills {
+  padding-left: 14px;
+  @include clearfix();
+
+  & li {
+    float: left;
+    list-style: none;
+  }
+  // Links rendered as pills
+  & li a {
+    text-shadow: 0 1px 1px $grayLighter;
+    padding: 8px 12px;
+    margin: 2px;
+    line-height: 14px;
+    @include border-radius(5px);
+  }
+
+  // Active state
+  & li.active a,
+  & li.active a:hover {
+    text-shadow: 0 1px 1px $gray;
+    color: $white;
+    background-color: $linkColor;
+    @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  }
+  & li a:hover {
+    background-color: $grayLighter;
+  }
+
+  .spacer {
+    padding: 6px 0 0 ;
+    margin: 2px 0;
+    color: #ccc;
+    display: block;
+  }
+}
