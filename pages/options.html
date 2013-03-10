@@ -19,48 +19,55 @@
 
             <div class="subnav centered">
               <ul class="nav nav-pills">
-                <li><a href="../index.html">Overview</a></li>
-                <li><a href="installation.html">Installation</a></li>
-                <li class="active"><a href="options.html">Options</a></li>
-                <li><a href="methods.html">Methods</a></li>
+                <li>
+                    <a href="../index.html" title="An introduction to Smallipop">
+                        Overview
+                    </a>
+                </li>
+                <li>
+                    <a href="installation.html" title="Get Smallipop up and running">
+                        Installation
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="options.html" title="How to customize Smallipop" class="smallipopBlack" data-smallipop-referenced-content="#optionsMenu">
+                        Options
+                    </a>
+                </li>
+                <li>
+                    <a href="methods.html" title="Public methods to control Smallipop">
+                        Methods
+                    </a>
+                </li>
                 <li><span class="spacer">|</span></li>
-                <li><a href="tours.html">Tour feature</a></li>
-                <li><a href="forms.html">Form handling</a></li>
+                <li>
+                    <a href="tours.html" title="Create interactive tours">
+                        Tour feature
+                    </a>
+                </li>
+                <li>
+                    <a href="forms.html" title="Smallipop has special handling for different form inputs">
+                        Form handling
+                    </a>
+                </li>
               </ul>
+            </div>
+
+            <div class="smallipopHint">
+                <div id="optionsMenu">
+                    <h6>Chapters</h6>
+                    <ul class="nav noHover">
+                        <li><a class="scrollToId" href="#options" title="All available Smallipop options">Options</a></li>
+                        <li><a class="scrollToId" href="#dataAttribute" title="Each Smallipop can be configured via the data attribute">Data attribute usage</a></li>
+                        <li><a class="scrollToId" href="#advanced" title="More complex options">Advanced configuration</a></li>
+                        <li><a class="scrollToId" href="#themes" title="Multiple themes are provided">Theming</a></li>
+                    </ul>
+                </div>
             </div>
 
             <br/>
 
             <h2 id="options">Options</h2>
-
-            <p>
-                You can customize each smallipop with a lot of options and callbacks.<br/>
-                Most of the options can be defined via the html data attribute too. This will then only affect a single smallipop, which helps you customizing single smallipops without creating different calls for each configuration.
-            </p>
-
-            <div class="bs-docs-example">
-                <span class="smallipop sampleElement" data-smallipop-preferred-position="right" title="I prefer the position on the right, even when my siblings stay on top!">
-                    Hover me!
-                </span>
-            </div>
-<pre class="prettyprint linenums">
-&lt;span class="smallipop" data-smallipop-preferred-position="right" title="Some text"&gt;
-    Hover me!
-&lt;/span&gt;</pre>
-
-            <p>
-                It's also possible to use JSON in the data attribute
-            </p>
-
-            <div class="bs-docs-example">
-                <span class="smallipop sampleElement" data-smallipop='{"theme":"black","preferredPosition":"bottom"}' title="I prefer the position at the bottom and use the black theme!">
-                    Hover me!
-                </span>
-            </div>
-<pre class="prettyprint linenums">
-&lt;span class="smallipop" data-smallipop='{"theme":"black","preferredPosition":"bottom"}' title="Some text"&gt;
-    Hover me!
-&lt;/span&gt;</pre>
 
             <table class="options" summary="Options for the jQuery smallipop plugin">
                 <tr>
@@ -251,6 +258,39 @@
                     <td>Minimal distance to the window borders the smallipop should keep when computing it's orientation.</td>
                 </tr>
             </table>
+
+            <hr id="dataAttribute"/>
+
+            <h2>Customize Smallipops individually</h2>
+
+            <p>
+                You can customize each smallipop with a lot of options and callbacks.<br/>
+                Most of the options can be defined via the html data attribute too. This will then only affect a single smallipop, which helps you customizing single smallipops without creating different calls for each configuration.
+            </p>
+
+            <div class="bs-docs-example">
+                <span class="smallipop sampleElement" data-smallipop-preferred-position="right" title="I prefer the position on the right, even when my siblings stay on top!">
+                    Hover me!
+                </span>
+            </div>
+<pre class="prettyprint linenums">
+&lt;span class="smallipop" data-smallipop-preferred-position="right" title="Some text"&gt;
+    Hover me!
+&lt;/span&gt;</pre>
+
+            <p>
+                It's also possible to use JSON in the data attribute
+            </p>
+
+            <div class="bs-docs-example">
+                <span class="smallipop sampleElement" data-smallipop='{"theme":"black","preferredPosition":"bottom"}' title="I prefer the position at the bottom and use the black theme!">
+                    Hover me!
+                </span>
+            </div>
+<pre class="prettyprint linenums">
+&lt;span class="smallipop" data-smallipop='{"theme":"black","preferredPosition":"bottom"}' title="Some text"&gt;
+    Hover me!
+&lt;/span&gt;</pre>
 
             <hr id="advanced"/>
 
@@ -451,7 +491,6 @@
         <script type="text/javascript" src="../lib/jquery.smallipop.js"></script>
         <script type="text/javascript" src="https://tracking.sebastianhelzle.net/piwik.js"></script>
         <script type="text/javascript" src="../lib/demo.js"></script>
-        <script type="text/javascript" src="../lib/examples.js"></script>
         <noscript><img src="http://tracking.sebastianhelzle.net/piwik.php?idsite=5" style="border:0" alt="" /></noscript>
     </body>
 </html>

@@ -506,14 +506,22 @@ input[type="color"],
   list-style: none;
   padding: 0;
 
-  // Make links block level
-  & > li > a {
-    display: block;
+  li {
+    list-style: none;
 
-    &:hover {
-      text-decoration: none;
-      background-color: $grayLighter;
+    a {
+      display: block;
+
+      &:hover {
+        text-decoration: none;
+        background-color: $grayLighter;
+      }
     }
+  }
+
+  &.noHover a:hover {
+    background-color: transparent;
+    text-decoration: underline;
   }
 }
 

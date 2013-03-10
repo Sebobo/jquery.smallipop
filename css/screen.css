@@ -643,12 +643,19 @@ input[type="color"],
   list-style: none;
   padding: 0;
 }
-.nav > li > a {
+.nav li {
+  list-style: none;
+}
+.nav li a {
   display: block;
 }
-.nav > li > a:hover {
+.nav li a:hover {
   text-decoration: none;
   background-color: #e6e6e6;
+}
+.nav.noHover a:hover {
+  background-color: transparent;
+  text-decoration: underline;
 }
 
 .nav-pills {
@@ -845,6 +852,9 @@ img.inline {
 
 .sampleElement {
   border: 1px solid #fed980;
+  line-height: 1em;
+  margin: 0 3px 3px 0;
+  display: inline-block;
   padding: 3px 5px;
   background-color: #ffe199;
   font-size: 1.1em;
