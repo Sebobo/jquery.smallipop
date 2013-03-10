@@ -1,6 +1,7 @@
 ###
 General demo helpers for smallipop
 ###
+
 (($) ->
   # Floating side menu
   sideMenu = $ '.side-menu'
@@ -13,11 +14,11 @@ General demo helpers for smallipop
   window.prettyPrint?()
 
   ### Collapsable contentelements ###
-  $('.collapsor').click(e) ->
-      e.preventDefault()
-      self = $ @
-      self.slideUp 300, ->
-        $(self.attr('href')).slideDown 300
+  $('.collapsor').click (e) ->
+    e.preventDefault()
+    self = $ @
+    self.slideUp 300, ->
+      $(self.attr('href')).slideDown 300
 
   ### Menu scroller ###
   $(window).scroll((e) ->
@@ -38,25 +39,26 @@ General demo helpers for smallipop
         top: sideMenuMinY
 
     # Check where we are in the document
-    currentItem = 0
-    for sideMenuItem in sideMenuItems
-      sideMenuItem.removeClass 'current'
-      itemY = $(sideMenuItem.attr('href')).position().top
+    $currentItem = null
+    sideMenuItems.each ->
+      $sideMenuItem = $ @
+      $sideMenuItem.removeClass 'current'
+      itemY = $($sideMenuItem.attr('href')).position().top
       if itemY < scrollY
-        currentItem = i
+        $currentItem = $sideMenuItem
       else
-        break
+        false
 
     # Switch current menu item
-    sideMenuItem.addClass 'current'
+    $currentItem?.addClass 'current'
   ).trigger 'scroll'
 
   ### Smooth scroller for menu ###
   $('.scrollToId').click (e) ->
-      e.preventDefault()
-      $('html, body').animate
-          scrollTop: $($(@).attr('href')).offset().top
-        , 800, 'swing'
+    e.preventDefault()
+    $('html, body').animate
+        scrollTop: $($(@).attr('href')).offset().top
+      , 800, 'swing'
 
   ### Smallipop creation calls ###
   $('.smallipop').smallipop()
@@ -194,21 +196,22 @@ General demo helpers for smallipop
   ### Special 3rd party script calls ###
   hostname = document.location.hostname
   if hostname and (hostname.indexOf('github') >= 0 or hostname.indexOf('sebastianhelzle') >= 0)
-      # Piwik tracking
-      try
-          piwikTracker = Piwik.getTracker pkBaseURL + "piwik.php", 5
-          piwikTracker.trackPageView()
-          piwikTracker.enableLinkTracking()
-      catch err
+    # Piwik tracking
+    try
+        piwikTracker = Piwik.getTracker pkBaseURL + "piwik.php", 5
+        piwikTracker.trackPageView()
+        piwikTracker.enableLinkTracking()
+    catch err
 
-      # Addthis code
-      document.write unescape("%3Cscript src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=sebobo' type='text/javascript'%3E%3C/script%3E")
+    # Addthis code
+    document.write unescape("%3Cscript src='http://s7.addthis.com/js/250/addthis_widget.js#pubid=sebobo' type='text/javascript'%3E%3C/script%3E")
 
-      # Flattr button
-      s = document.createElement 'script'
-      t = document.getElementsByTagName('script')[0]
-      s.type = 'text/javascript'
-      s.async = true
-      s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto'
-      t.parentNode.insertBefore s, t
+    # Flattr button
+    s = document.createElement 'script'
+    t = document.getElementsByTagName('script')[0]
+    s.type = 'text/javascript'
+    s.async = true
+    s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto'
+    t.parentNode.insertBefore s, t
+
 )(jQuery)
