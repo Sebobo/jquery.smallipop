@@ -170,7 +170,7 @@ General demo helpers for smallipop
   if hostname and (hostname.indexOf('github') >= 0 or hostname.indexOf('sebastianhelzle') >= 0)
     # Piwik tracking
     try
-        piwikTracker = Piwik.getTracker pkBaseURL + "piwik.php", 5
+        piwikTracker = Piwik.getTracker 'https://tracking.sebastianhelzle.net/piwik.php', 5
         piwikTracker.trackPageView()
         piwikTracker.enableLinkTracking()
     catch err
