@@ -138,6 +138,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     _showSmallipop: (e) ->
       triggerData = $(@).data 'smallipop'
 
+      return unless triggerData
+
       if triggerData.popupInstance.data('shown') isnt triggerData.id \
         and not triggerData.type in ['checkbox', 'radio']
           e?.preventDefault()
