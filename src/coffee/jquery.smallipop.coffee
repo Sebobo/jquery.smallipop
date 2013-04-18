@@ -78,7 +78,13 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         popupData = popup.data()
 
         continue unless shownId = popupData.shown
-        continue if popupData.isTour and not popup.is target
+
+        trigger = $ ".smallipop#{shownId}"
+        triggerIsTarget = trigger.is target
+
+        continue if popupData.isTour \
+          and not popup.is(target) \
+          and not (triggerIsTarget and popup.is(trigger.data('smallipop').popupInstance))
 
         trigger = $ ".smallipop#{shownId}"
         triggerOptions = trigger.data('smallipop')?.options or sip.defaults
@@ -87,11 +93,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         if popupData.isTour
           sip.currentTour = null
           trigger.data('smallipop')?.options.onTourClose?()
-          @_hideTourOverlay triggerOptions
+          sip._hideTourOverlay triggerOptions
 
         # Do nothing if clicked and hide on click is disabled for this case
-        ignoreTriggerClick = not triggerOptions.hideOnTriggerClick \
-          and target.is trigger
+        ignoreTriggerClick = not triggerOptions.hideOnTriggerClick and triggerIsTarget
         ignorePopupClick = not triggerOptions.hideOnPopupClick \
           and popup.find(target).length
 
@@ -537,7 +542,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     _hideTourOverlay: (options) ->
       $('#smallipop-tour-overlay').fadeOut options.tourHightlightFadeDuration
-      @_resetTourZIndices()
+      sip._resetTourZIndices()
 
     _resetTourZIndices: ->
       # Reset z-index for all other triggers in tours
@@ -689,7 +694,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       # If it's inline markup, create a deep copy of the hint html
       objHint = hint or self.attr('title')
 
-      $objInfo = $ ".#{options.infoClass}", self
+      $objInfo = $("> .#{options.infoClass}:first", self)
       if $objInfo.length
         objHint = $objInfo.clone(true, true)
           .removeClass("#{options.infoClass}")
