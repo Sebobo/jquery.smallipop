@@ -475,16 +475,16 @@
                     <h5>New and improved in this version</h5>
                     <ul>
                         <li>
-                            <span class="label notice">NEW</span>
-                            Set multiple options via the data-attribute and JSON.
+                            <span class="label success">NEW</span>
+                            Tour navigation can be disabled with <i>tourNavigationEnabled</i>. This hides the current position, navigation buttons and the disables the navigation by keyboard.
                         </li>
                         <li>
                             <span class="label notice">CHANGE</span>
-                            Inline hints are now deep copied instead of just a html copy.
+                            Improved clickable area (Thanks to <b>maedi</b>). See github for <a href="https://github.com/Sebobo/jquery.smallipop/issues/19" target="_blank">details</a>.
                         </li>
                         <li>
                             <span class="label important">FIX</span>
-                            No flickering when Smallipop switching themes.
+                            Jumping to tour steps with <i>$('.myTour').smallipop('tour', index)</i> should now work fine.
                         </li>
                     </ul>
 
@@ -493,15 +493,34 @@
 
                     <div id="changelog">
                         <span class="sampleElement smallipopBlack">
+                            0.5.1
+                            <div class="smallipopHint">
+                                <ul>
+                                    <li>
+                                        <span class="label success">NEW</span>
+                                        Set multiple options via the data-attribute and JSON.
+                                    </li>
+                                    <li>
+                                        <span class="label notice">CHANGE</span>
+                                        Inline hints are now deep copied instead of just a html copy.
+                                    </li>
+                                    <li>
+                                        <span class="label important">FIX</span>
+                                        No flickering when Smallipop switching themes.
+                                    </li>
+                                </ul>
+                            </div>
+                        </span>
+                        <span class="sampleElement smallipopBlack">
                             0.5.0
                             <div class="smallipopHint">
                                 <ul>
                                     <li>
-                                        <span class="label notice">NEW</span>
+                                        <span class="label success">NEW</span>
                                         Auto-align will now move the smallipop into the trigger area if the popup would violate the window bounds.
                                     </li>
                                     <li>
-                                        <span class="label notice">NEW</span>
+                                        <span class="label success">NEW</span>
                                         Optional highlighting for tour elements
                                     </li>
                                     <li>
@@ -524,11 +543,11 @@
                             <div class="smallipopHint">
                                 <ul>
                                     <li>
-                                        <span class="label notice">NEW</span>
+                                        <span class="label success">NEW</span>
                                         Icon for closing the tour.
                                     </li>
                                     <li>
-                                        <span class="label notice">NEW</span>
+                                        <span class="label success">NEW</span>
                                         Compatibility with jQuery 1.9.
                                     </li>
                                     <li>
