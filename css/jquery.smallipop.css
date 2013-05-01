@@ -37,6 +37,7 @@
   left: 50%;
   height: 0;
   width: 0;
+  pointer-events: none;
 }
 .smallipop-instance .sipArrow {
   bottom: -20px;
