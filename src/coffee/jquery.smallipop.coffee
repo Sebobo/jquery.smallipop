@@ -1,5 +1,5 @@
 ###!
-Smallipop (03/10/2013)
+Smallipop (05/01/2013)
 Copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -9,7 +9,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
 (($) ->
   $.smallipop = sip =
-    version: '0.5.1'
+    version: '0.5.2'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -39,6 +39,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       tourHightlightFadeDuration: 200
       tourHighlightOpacity: .5
       tourHighlightZIndex: 9997
+      tourNavigationEnabled: true
       triggerAnimationSpeed: 150
       triggerOnClick: false
       onAfterHide: null
@@ -78,7 +79,13 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         popupData = popup.data()
 
         continue unless shownId = popupData.shown
-        continue if popupData.isTour and not popup.is target
+
+        trigger = $ ".smallipop#{shownId}"
+        triggerIsTarget = trigger.is target
+
+        continue if popupData.isTour \
+          and not popup.is(target) \
+          and not (triggerIsTarget and popup.is(trigger.data('smallipop').popupInstance))
 
         trigger = $ ".smallipop#{shownId}"
         triggerOptions = trigger.data('smallipop')?.options or sip.defaults
@@ -87,11 +94,10 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         if popupData.isTour
           sip.currentTour = null
           trigger.data('smallipop')?.options.onTourClose?()
-          @_hideTourOverlay triggerOptions
+          sip._hideTourOverlay triggerOptions
 
         # Do nothing if clicked and hide on click is disabled for this case
-        ignoreTriggerClick = not triggerOptions.hideOnTriggerClick \
-          and target.is trigger
+        ignoreTriggerClick = not triggerOptions.hideOnTriggerClick and triggerIsTarget
         ignorePopupClick = not triggerOptions.hideOnPopupClick \
           and popup.find(target).length
 
@@ -137,6 +143,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     _showSmallipop: (e) ->
       triggerData = $(@).data 'smallipop'
+
+      return unless triggerData
 
       if triggerData.popupInstance.data('shown') isnt triggerData.id \
         and not triggerData.type in ['checkbox', 'radio']
@@ -479,14 +487,15 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       # Check if a valid step as array index was provided
       unless typeof step is 'number' and step % 1 is 0
-        step = 0
+        step = -1
       else
         step -= 1
 
       sip.currentTour = tourTitle
       currentTourItems = sip.tours[tourTitle]
-      for i in [0..currentTourItems.length - 1] when i is step \
-          or currentTourItems[i].id is triggerData.id
+      for i in [0..currentTourItems.length - 1] when \
+          (step >= 0 and i is step) \
+          or (step < 0 and currentTourItems[i].id is triggerData.id)
         return sip._tourShow tourTitle, i
 
     _tourShow: (title, index) ->
@@ -495,23 +504,22 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       trigger = currentTourItems[index].trigger
       triggerData = trigger.data 'smallipop'
+      navigationEnabled = triggerData.options.tourNavigationEnabled
 
-      prevButton = if index > 0 then "<a href=\"#\" class=\"smallipop-tour-prev\">#{sip.labels.prev}</a>" else ''
-      nextButton = if index < currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-next\">#{sip.labels.next}</a>" else ''
-      closeButton = if index is currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-close\">#{sip.labels.close}</a>" else ''
+      navigation = ''
+
+      if navigationEnabled
+        navigation += "<div class=\"smallipop-tour-progress\">#{index + 1} #{sip.labels.of} #{currentTourItems.length}</div>"
+        navigation += if index > 0 then "<a href=\"#\" class=\"smallipop-tour-prev\">#{sip.labels.prev}</a>" else ''
+        navigation += if index < currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-next\">#{sip.labels.next}</a>" else ''
+
+      navigation += if not navigationEnabled or index is currentTourItems.length - 1 then "<a href=\"#\" class=\"smallipop-tour-close\">#{sip.labels.close}</a>" else ''
       closeIcon = "<a href=\"#\" class=\"smallipop-tour-close-icon\">&Chi;</a>"
 
       $content = $($.trim "
         <div class=\"smallipop-tour-content\"></div>
         #{closeIcon}
-        <div class=\"smallipop-tour-footer\">
-          <div class=\"smallipop-tour-progress\">
-            #{index + 1} #{sip.labels.of} #{currentTourItems.length}
-          </div>
-          #{prevButton}
-          #{nextButton}
-          #{closeButton}
-        </div>")
+        <div class=\"smallipop-tour-footer\">#{navigation}</div>")
 
       # Append hint object to tour content
       $content.eq(0).append triggerData.hint
@@ -535,7 +543,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
     _hideTourOverlay: (options) ->
       $('#smallipop-tour-overlay').fadeOut options.tourHightlightFadeDuration
-      @_resetTourZIndices()
+      sip._resetTourZIndices()
 
     _resetTourZIndices: ->
       # Reset z-index for all other triggers in tours
@@ -570,9 +578,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       shownId = popup.data('shown') or currentTourItems[0].id
 
       for i in [0..currentTourItems.length - 2] when currentTourItems[i].id is shownId
-        currentTourItems[i].trigger
-          .data('smallipop')?.options.onTourNext?(currentTourItems[i + 1].trigger)
-        return sip._tourShow sip.currentTour, i + 1
+        triggerOptions = currentTourItems[i].trigger.data('smallipop').options
+
+        if triggerOptions.tourNavigationEnabled
+          triggerOptions.onTourNext?(currentTourItems[i + 1].trigger)
+          return sip._tourShow sip.currentTour, i + 1
 
     _tourPrev: (e) ->
       e?.preventDefault()
@@ -584,9 +594,11 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       shownId = popup.data('shown') or currentTourItems[0].id
 
       for i in [1..currentTourItems.length - 1] when currentTourItems[i].id is shownId
-        currentTourItems[i].trigger
-          .data('smallipop')?.options.onTourPrev?(currentTourItems[i - 1].trigger)
-        return sip._tourShow sip.currentTour, i - 1
+        triggerOptions = currentTourItems[i].trigger.data('smallipop').options
+
+        if triggerOptions.tourNavigationEnabled
+          triggerOptions.onTourPrev?(currentTourItems[i - 1].trigger)
+          return sip._tourShow sip.currentTour, i - 1
 
     _tourClose: (e) ->
       e?.preventDefault()
@@ -687,7 +699,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       # If it's inline markup, create a deep copy of the hint html
       objHint = hint or self.attr('title')
 
-      $objInfo = $ ".#{options.infoClass}", self
+      $objInfo = $("> .#{options.infoClass}:first", self)
       if $objInfo.length
         objHint = $objInfo.clone(true, true)
           .removeClass("#{options.infoClass}")
