@@ -2,7 +2,7 @@
 General demo helpers for smallipop
 ###
 
-(($) ->
+define ['jquery', 'prettify', 'piwik', 'smallipop'], ($) ->
   # Floating side menu
   sideMenu = $ '.side-menu'
   sideMenuItems = $ 'a', sideMenu
@@ -34,11 +34,11 @@ General demo helpers for smallipop
     theme: 'orange'
 
   $('.smallipopBlack').smallipop
-      theme: 'black'
+    theme: 'black'
 
   $('.smallipopHideBlack').smallipop
-      theme: 'black'
-      hideTrigger: true
+    theme: 'black'
+    hideTrigger: true
 
   $('.smallipopBlue').smallipop
     theme: 'blue'
@@ -185,5 +185,3 @@ General demo helpers for smallipop
     s.async = true
     s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto'
     t.parentNode.insertBefore s, t
-
-)(jQuery)
