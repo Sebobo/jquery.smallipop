@@ -17,7 +17,7 @@
             <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips and interactive tours</h1>
 
             <p>
-                <b>Version 0.5.2</b> -
+                <b>Version 0.5.3</b> -
                 Created by <b><a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle Portfolio">Sebastian Helzle</a></b>
                 for <b><a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a></b>
             </p>
@@ -25,13 +25,13 @@
 
             <ul class="tabs">
                 <li>
-                    <a href="/" title="Projects overview">Home</a>
+                    <a href="http://projects.sebastianhelzle.net" title="Projects overview">Home</a>
                 </li>
                 <li class="selected">
-                    <a href="/jquery.smallipop" title="jQuery smallipop - A tooltip plugin">Smallipop</a>
+                    <a href="#" title="jQuery smallipop - A tooltip plugin">Smallipop</a>
                 </li>
                 <li>
-                    <a href="/jquery.rondell" title="jQuery rondell - A graphical plugin for carousels and more">Rondell</a>
+                    <a href="http://projects.sebastianhelzle.net/jquery.rondell" title="jQuery rondell - A graphical plugin for carousels and more">Rondell</a>
                 </li>
                 <li>
                     <a href="https://github.com/SmallImprovements/jquery.smallimap" target="_blank" title="jQuery smallimap - An interactive map plugin">Smallimap</a>
@@ -73,7 +73,7 @@
             <br/>
 
             <div class="smallipopOrange floatRight" data-smallipop-tour-highlight="true">
-                <img src="images/smallipop-logo.png" alt="smallipop logo" title="The smallipop logo" />
+                <img src="images/smallipop-logo.png" alt="smallipop logo" title="The smallipop logo" width="286" height="79" />
                 <div class="smallipopHint">
                     <b>smallipop</b><br/>
                     <br/>
@@ -331,7 +331,7 @@
                     </div>
 
                     <div class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
-                        <img class="smallipopArrow wobbler" src="images/marker-arrow-blue.png" alt="arrow" />
+                        <img class="smallipopArrow wobbler" src="images/marker-arrow-blue.png" alt="arrow" width="25" height="42" />
                         <div class="smallipopHint">
                             <i>It's a house!</i><br/>
                             <br/>
@@ -476,15 +476,7 @@
                     <ul>
                         <li>
                             <span class="label success">NEW</span>
-                            Tour navigation can be disabled with <i>tourNavigationEnabled</i>. This hides the current position, navigation buttons and the disables the navigation by keyboard.
-                        </li>
-                        <li>
-                            <span class="label notice">CHANGE</span>
-                            Improved clickable area (Thanks to <b>maedi</b>). See github for <a href="https://github.com/Sebobo/jquery.smallipop/issues/19" target="_blank">details</a>.
-                        </li>
-                        <li>
-                            <span class="label important">FIX</span>
-                            Jumping to tour steps with <i>$('.myTour').smallipop('tour', index)</i> should now work fine.
+                            Smallipop is now loadable as amd module via requirejs or something similar.
                         </li>
                     </ul>
 
@@ -492,6 +484,25 @@
                     <h5>Older versions</h5>
 
                     <div id="changelog">
+                        <span class="sampleElement smallipopBlack">
+                            0.5.2
+                            <div class="smallipopHint">
+                                <ul>
+                                    <li>
+                                        <span class="label success">NEW</span>
+                                        Tour navigation can be disabled with <i>tourNavigationEnabled</i>. This hides the current position, navigation buttons and the disables the navigation by keyboard.
+                                    </li>
+                                    <li>
+                                        <span class="label notice">CHANGE</span>
+                                        Improved clickable area (Thanks to <b>maedi</b>). See github for <a href="https://github.com/Sebobo/jquery.smallipop/issues/19" target="_blank">details</a>.
+                                    </li>
+                                    <li>
+                                        <span class="label important">FIX</span>
+                                        Jumping to tour steps with <i>$('.myTour').smallipop('tour', index)</i> should now work fine.
+                                    </li>
+                                </ul>
+                            </div>
+                        </span>
                         <span class="sampleElement smallipopBlack">
                             0.5.1
                             <div class="smallipopHint">
@@ -732,12 +743,9 @@
                 and <a href="http://sass-lang.com/" target="_blank" title="Sass">sass</a>.
             </p>
         </div>
-        <script type="text/javascript" src="lib/contrib/modernizr.js"></script>
-        <script type="text/javascript" src="lib/contrib/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" src="lib/contrib/prettify.js"></script>
-        <script type="text/javascript" src="lib/jquery.smallipop.js"></script>
-        <script type="text/javascript" src="https://tracking.sebastianhelzle.net/piwik.js"></script>
-        <script type="text/javascript" src="lib/demo.js"></script>
-        <noscript><img src="http://tracking.sebastianhelzle.net/piwik.php?idsite=5" style="border:0" alt="" /></noscript>
+        <script data-main="lib/main.js" src="lib/contrib/require.min.js" type="text/javascript"></script>
+        <noscript>
+            <img src="http://tracking.sebastianhelzle.net/piwik.php?idsite=5" style="border:0" alt="" />
+        </noscript>
     </body>
 </html>
