@@ -1,6 +1,6 @@
 {
     "name": "smallipop",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "title": "jQuery Smallipop",
     "description": "A versatile jQuery plugin for displaying beautiful tooltips and interactive tours",
     "homepage": "http://projects.sebastianhelzle.net/jquery.smallipop",
@@ -33,7 +33,8 @@
         "ui",
         "tour",
         "exposure",
-        "highlighting"
+        "highlighting",
+        "amd"
     ],
     "bugs": "https://github.com/Sebobo/jquery.smallipop/issues",
     "docs": "http://projects.sebastianhelzle.net/jquery.smallipop",

@@ -1,5 +1,5 @@
 ###!
-Smallipop (05/01/2013)
+Smallipop (06/05/2013)
 Copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -7,9 +7,14 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 @author Sebastian Helzle (sebastian@helzle.net)
 ###
 
-(($) ->
+(((factory) ->
+  if typeof define is 'function' and define.amd
+    define ['jquery'], factory
+  else
+    factory jQuery
+)(($) ->
   $.smallipop = sip =
-    version: '0.5.2'
+    version: '0.5.3'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -777,4 +782,4 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
         # Hide popup when links contained in the trigger are clicked
         unless triggerOptions.hideOnTriggerClick
           self.delegate 'a', 'click.smallipop', sip._hideSmallipop
-)(jQuery)
+))
