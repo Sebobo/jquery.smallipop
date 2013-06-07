@@ -1,5 +1,5 @@
 /* smallipop css */
-.smallipopHint {
+.smallipopHint, .smallipop-instance .sipArrow, .smallipop-instance .sipArrowBorder {
   display: none;
 }
 
@@ -32,78 +32,57 @@
 .smallipop-instance .sipContent {
   padding: 10px;
 }
-.smallipop-instance .sipArrow, .smallipop-instance .sipArrowBorder {
+.smallipop-instance:before, .smallipop-instance:after {
+  content: '';
   position: absolute;
   left: 50%;
   height: 0;
   width: 0;
-  pointer-events: none;
+  font-size: 0;
+  pointer-events:none;
 }
-.smallipop-instance .sipArrow {
+.smallipop-instance:before {
   bottom: -20px;
-  margin-left: -10px;
+  margin: 0 0 0 -10px;
   border: 10px solid transparent;
 }
-.smallipop-instance .sipArrowBorder {
-  bottom: -24px;
-  margin-left: -12px;
-  border: 12px solid transparent;
+.smallipop-instance:after {
+  bottom: -10px;
+  margin: 0 0 0 -5px;
+  border: 5px solid transparent;
 }
-.smallipop-instance.sipAlignLeft .sipArrow {
-  margin-left: 0;
-  left: auto;
-  right: 20px;
-}
-.smallipop-instance.sipAlignLeft .sipArrowBorder {
-  margin-left: 0;
-  left: auto;
-  right: 18px;
-}
-.smallipop-instance.sipAlignRight .sipArrow {
-  margin-left: 0;
-  left: 20px;
-  right: auto;
-}
-.smallipop-instance.sipAlignRight .sipArrowBorder {
-  margin-left: 0;
-  left: 18px;
-  right: auto;
-}
-.smallipop-instance.sipAlignBottom .sipArrow {
+.sipAlignBottom:before, .sipAlignBottom:after {
   bottom: auto;
+}
+.sipAlignBottom:before {
   top: -20px;
 }
-.smallipop-instance.sipAlignBottom .sipArrowBorder {
-  bottom: auto;
-  top: -24px;
+.sipAlignBottom:after {
+  top: -10px;
 }
-.smallipop-instance.sipPositionedLeft .sipArrow,
-.smallipop-instance.sipPositionedLeft .sipArrowBorder {
-  right: -16px;
+.sipPositionedLeft:before, .sipPositionedLeft:after {
   left: auto;
   top: 50%;
-  bottom: auto;
-  border-width: 8px;
-  margin: -8px 0 0;
 }
-.smallipop-instance.sipPositionedLeft .sipArrowBorder {
+.sipPositionedLeft:before {
   right: -20px;
-  border-width: 10px;
-  margin: -10px 0 0;
+  margin: -10px 0 0 0;
 }
-.smallipop-instance.sipPositionedRight .sipArrow,
-.smallipop-instance.sipPositionedRight .sipArrowBorder {
-  left: -16px;
+.sipPositionedLeft:after {
+  right: -10px;
+  margin: -5px 0 0 0;
+}
+.sipPositionedRight:before, .sipPositionedRight:after {
   right: auto;
   top: 50%;
-  bottom: auto;
-  border-width: 8px;
-  margin: -8px 0 0;
 }
-.smallipop-instance.sipPositionedRight .sipArrowBorder {
+.sipPositionedRight:before {
   left: -20px;
-  border-width: 10px;
-  margin: -10px 0 0;
+  margin: -10px 0 0 0;
+}
+.sipPositionedRight:after {
+  left: -10px;
+  margin: -5px 0 0 0;
 }
 .smallipop-instance .smallipop-tour-content {
   padding: 5px 0;
@@ -215,28 +194,28 @@
   -o-border-radius: 12px;
   border-radius: 12px;
 }
-.smallipop-instance.default .sipArrow {
+.smallipop-instance.default:before {
   border-color: #1a2634 transparent transparent transparent;
 }
-.smallipop-instance.default .sipArrowBorder {
+.smallipop-instance.default:after {
   border-color: #0f161e transparent transparent transparent;
 }
-.smallipop-instance.default.sipAlignBottom .sipArrow {
+.smallipop-instance.default.sipAlignBottom:before {
   border-color: transparent transparent #1a2634 transparent;
 }
-.smallipop-instance.default.sipAlignBottom .sipArrowBorder {
+.smallipop-instance.default.sipAlignBottom:after {
   border-color: transparent transparent #0f161e transparent;
 }
-.smallipop-instance.default.sipPositionedLeft .sipArrow {
+.smallipop-instance.default.sipPositionedLeft:before {
   border-color: transparent transparent transparent #1a2634;
 }
-.smallipop-instance.default.sipPositionedLeft .sipArrowBorder {
+.smallipop-instance.default.sipPositionedLeft:after {
   border-color: transparent transparent transparent #0f161e;
 }
-.smallipop-instance.default.sipPositionedRight .sipArrow {
+.smallipop-instance.default.sipPositionedRight:before {
   border-color: transparent #1a2634 transparent transparent;
 }
-.smallipop-instance.default.sipPositionedRight .sipArrowBorder {
+.smallipop-instance.default.sipPositionedRight:after {
   border-color: transparent #0f161e transparent transparent;
 }
 
@@ -266,22 +245,22 @@
   border: 0;
   background: #fcfcfc;
 }
-.smallipop-instance.blue .sipArrow {
+.smallipop-instance.blue:before {
   bottom: -30px;
   border-color: #0064b4 transparent transparent transparent;
   border-color: rgba(0, 100, 180, 0.9) transparent transparent transparent;
 }
-.smallipop-instance.blue.sipAlignBottom .sipArrow {
+.smallipop-instance.blue.sipAlignBottom:before {
   top: -30px;
   border-color: transparent transparent #0064b4 transparent;
   border-color: transparent transparent rgba(0, 100, 180, 0.9) transparent;
 }
-.smallipop-instance.blue.sipPositionedLeft .sipArrow {
+.smallipop-instance.blue.sipPositionedLeft:before {
   right: -26px;
   border-color: transparent transparent transparent #0064b4;
   border-color: transparent transparent transparent rgba(0, 100, 180, 0.9);
 }
-.smallipop-instance.blue.sipPositionedRight .sipArrow {
+.smallipop-instance.blue.sipPositionedRight:before {
   left: -26px;
   border-color: transparent #0064b4 transparent transparent;
   border-color: transparent rgba(0, 100, 180, 0.9) transparent transparent;
@@ -334,28 +313,28 @@
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-.smallipop-instance.black .sipArrow {
+.smallipop-instance.black:before {
   border-color: #222 transparent transparent transparent;
 }
-.smallipop-instance.black .sipArrowBorder {
+.smallipop-instance.black:after {
   border-color: #111 transparent transparent transparent;
 }
-.smallipop-instance.black.sipAlignBottom .sipArrow {
+.smallipop-instance.black.sipAlignBottom:before {
   border-color: transparent transparent #222 transparent;
 }
-.smallipop-instance.black.sipAlignBottom .sipArrowBorder {
+.smallipop-instance.black.sipAlignBottom:after {
   border-color: transparent transparent #111 transparent;
 }
-.smallipop-instance.black.sipPositionedLeft .sipArrow {
+.smallipop-instance.black.sipPositionedLeft:before {
   border-color: transparent transparent transparent #222;
 }
-.smallipop-instance.black.sipPositionedLeft .sipArrowBorder {
+.smallipop-instance.black.sipPositionedLeft:after {
   border-color: transparent transparent transparent #111;
 }
-.smallipop-instance.black.sipPositionedRight .sipArrow {
+.smallipop-instance.black.sipPositionedRight:before {
   border-color: transparent #222 transparent transparent;
 }
-.smallipop-instance.black.sipPositionedRight .sipArrowBorder {
+.smallipop-instance.black.sipPositionedRight:after {
   border-color: transparent #111 transparent transparent;
 }
 .smallipop-instance.black .smallipop-tour-progress {
@@ -410,28 +389,28 @@
   -o-border-radius: 10px;
   border-radius: 10px;
 }
-.smallipop-instance.orange .sipArrow {
+.smallipop-instance.orange:before {
   border-color: #f9aa18 transparent transparent transparent;
 }
-.smallipop-instance.orange .sipArrowBorder {
+.smallipop-instance.orange:after {
   border-color: #e17500 transparent transparent transparent;
 }
-.smallipop-instance.orange.sipAlignBottom .sipArrow {
+.smallipop-instance.orange.sipAlignBottom:before {
   border-color: transparent transparent #f9aa18 transparent;
 }
-.smallipop-instance.orange.sipAlignBottom .sipArrowBorder {
+.smallipop-instance.orange.sipAlignBottom:after {
   border-color: transparent transparent #e17500 transparent;
 }
-.smallipop-instance.orange.sipPositionedLeft .sipArrow {
+.smallipop-instance.orange.sipPositionedLeft:before {
   border-color: transparent transparent transparent #f9c718;
 }
-.smallipop-instance.orange.sipPositionedLeft .sipArrowBorder {
+.smallipop-instance.orange.sipPositionedLeft:after {
   border-color: transparent transparent transparent #e17500;
 }
-.smallipop-instance.orange.sipPositionedRight .sipArrow {
+.smallipop-instance.orange.sipPositionedRight:before {
   border-color: transparent #f9c718 transparent transparent;
 }
-.smallipop-instance.orange.sipPositionedRight .sipArrowBorder {
+.smallipop-instance.orange.sipPositionedRight:after {
   border-color: transparent #e17500 transparent transparent;
 }
 .smallipop-instance.orange .smallipop-tour-progress {
@@ -475,28 +454,28 @@
   -o-border-radius: 6px;
   border-radius: 6px;
 }
-.smallipop-instance.white .sipArrow {
+.smallipop-instance.white:before {
   border-color: #fcfcfc transparent transparent transparent;
 }
-.smallipop-instance.white .sipArrowBorder {
+.smallipop-instance.white:after {
   border-color: #ccc transparent transparent transparent;
 }
-.smallipop-instance.white.sipAlignBottom .sipArrow {
+.smallipop-instance.white.sipAlignBottom:before {
   border-color: transparent transparent #fcfcfc transparent;
 }
-.smallipop-instance.white.sipAlignBottom .sipArrowBorder {
+.smallipop-instance.white.sipAlignBottom:after {
   border-color: transparent transparent #ccc transparent;
 }
-.smallipop-instance.white.sipPositionedLeft .sipArrow {
+.smallipop-instance.white.sipPositionedLeft:before {
   border-color: transparent transparent transparent #fcfcfc;
 }
-.smallipop-instance.white.sipPositionedLeft .sipArrowBorder {
+.smallipop-instance.white.sipPositionedLeft:after {
   border-color: transparent transparent transparent #ccc;
 }
-.smallipop-instance.white.sipPositionedRight .sipArrow {
+.smallipop-instance.white.sipPositionedRight:before {
   border-color: transparent #fcfcfc transparent transparent;
 }
-.smallipop-instance.white.sipPositionedRight .sipArrowBorder {
+.smallipop-instance.white.sipPositionedRight:after {
   border-color: transparent #ccc transparent transparent;
 }
 .smallipop-instance.white .smallipop-tour-progress {
@@ -528,21 +507,21 @@
 .smallipop-instance.whiteTransparent {
   background-color: rgba(255, 255, 255, 0.8);
 }
-.smallipop-instance.whiteTransparent .sipArrow {
+.smallipop-instance.whiteTransparent:before {
   bottom: -21px;
   border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
 }
-.smallipop-instance.whiteTransparent .sipArrowBorder {
+.smallipop-instance.whiteTransparent:after {
   border-color: transparent;
 }
-.smallipop-instance.whiteTransparent.sipAlignBottom .sipArrow {
+.smallipop-instance.whiteTransparent.sipAlignBottom:before {
   top: -21px;
   border-color: transparent transparent rgba(255, 255, 255, 0.8) transparent;
 }
-.smallipop-instance.whiteTransparent.sipPositionedLeft .sipArrow {
+.smallipop-instance.whiteTransparent.sipPositionedLeft:before {
   border-color: transparent transparent transparent rgba(255, 255, 255, 0.8);
 }
-.smallipop-instance.whiteTransparent.sipPositionedRight .sipArrow {
+.smallipop-instance.whiteTransparent.sipPositionedRight:before {
   border-color: transparent rgba(255, 255, 255, 0.8) transparent transparent;
 }
 
