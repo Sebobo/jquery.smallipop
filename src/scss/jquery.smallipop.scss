@@ -51,39 +51,42 @@ $orange-background-color: #f9aa18;
 
   .sipContent { padding: 10px; }
 
-  .sipArrow, .sipArrowBorder {
+  .sipArrow, .sipArrowBorder { display: none; }
+
+  &:before, &:after {
+    content: '';
     position: absolute;
     left: 50%;
     height: 0;
     width: 0;
     pointer-events: none;
   }
-  .sipArrow {
+  &:before {
     bottom: -20px;
     margin-left: -10px;
     border: 10px solid transparent;
   }
-  .sipArrowBorder {
+  &:after {
     bottom: -24px;
     margin-left: -12px;
     border: 12px solid transparent;
   }
   &.sipAlignLeft {
-    .sipArrow { margin-left:0; left:auto; right:20px; }
-    .sipArrowBorder { margin-left:0; left:auto; right:18px; }
+    &:before { margin-left:0; left:auto; right:20px; }
+    &:after { margin-left:0; left:auto; right:18px; }
   }
   &.sipAlignRight {
-    .sipArrow { margin-left:0; left:20px; right:auto; }
-    .sipArrowBorder { margin-left:0; left:18px; right:auto; }
+    &:before { margin-left:0; left:20px; right:auto; }
+    &:after { margin-left:0; left:18px; right:auto; }
   }
   &.sipAlignBottom {
-    .sipArrow { bottom:auto; top:-20px; }
-    .sipArrowBorder { bottom:auto; top:-24px; }
+    &:before { bottom:auto; top:-20px; }
+    &:after { bottom:auto; top:-24px; }
   }
 
   &.sipPositionedLeft {
-    .sipArrow,
-    .sipArrowBorder {
+    &:before,
+    &:after {
       right: -16px;
       left: auto;
       top:50%;
@@ -91,7 +94,7 @@ $orange-background-color: #f9aa18;
       border-width: 8px;
       margin: -8px 0 0;
     }
-    .sipArrowBorder {
+    &:after {
       right: -20px;
       border-width: 10px;
       margin: -10px 0 0;
@@ -99,8 +102,8 @@ $orange-background-color: #f9aa18;
   }
 
   &.sipPositionedRight {
-    .sipArrow,
-    .sipArrowBorder {
+    &:before,
+    &:after {
       left: -16px;
       right: auto;
       top: 50%;
@@ -108,7 +111,7 @@ $orange-background-color: #f9aa18;
       border-width: 8px;
       margin: -8px 0 0;
     }
-    .sipArrowBorder {
+    &:after {
       left: -20px;
       border-width: 10px;
       margin: -10px 0 0;
