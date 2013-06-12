@@ -15,21 +15,21 @@
     @include border-radius($default-border-radius);
   }
 
-  .sipArrow { @include border-color-top($default-arrow-color); }
-  .sipArrowBorder { @include border-color-top($default-arrow-border-color); }
+  &:before { @include border-color-top($default-arrow-color); }
+  &:after { @include border-color-top($default-arrow-border-color); }
 
   &.sipAlignBottom {
-    .sipArrow { @include border-color-bottom($default-arrow-color); }
-    .sipArrowBorder { @include border-color-bottom($default-arrow-border-color); }
+    &:before { @include border-color-bottom($default-arrow-color); }
+    &:after { @include border-color-bottom($default-arrow-border-color); }
   }
 
   &.sipPositionedLeft {
-    .sipArrow { @include border-color-left($default-arrow-color); }
-    .sipArrowBorder { @include border-color-left($default-arrow-border-color); }
+    &:before { @include border-color-left($default-arrow-color); }
+    &:after { @include border-color-left($default-arrow-border-color); }
   }
   &.sipPositionedRight {
-    .sipArrow { @include border-color-right($default-arrow-color); }
-    .sipArrowBorder { @include border-color-right($default-arrow-border-color); }
+    &:before { @include border-color-right($default-arrow-color); }
+    &:after { @include border-color-right($default-arrow-border-color); }
   }
 }
 .cssgradients.rgba .smallipop-instance.default {
