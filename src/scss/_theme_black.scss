@@ -17,21 +17,21 @@
     border-top:1px solid #666;
     @include border-radius(5px);
   }
-  .sipArrow { border-color:#222 transparent transparent transparent; }
-  .sipArrowBorder { border-color:#111 transparent transparent transparent; }
+  &:before { border-color:#222 transparent transparent transparent; }
+  &:after { border-color:#111 transparent transparent transparent; }
 
   &.sipAlignBottom {
-    .sipArrow { border-color:transparent transparent #222 transparent; }
-    .sipArrowBorder { border-color:transparent transparent #111 transparent; }
+    &:before { border-color:transparent transparent #222 transparent; }
+    &:after { border-color:transparent transparent #111 transparent; }
   }
 
   &.sipPositionedLeft {
-    .sipArrow { border-color:transparent transparent transparent #222; }
-    .sipArrowBorder { border-color:transparent transparent transparent #111; }
+    &:before { border-color:transparent transparent transparent #222; }
+    &:after { border-color:transparent transparent transparent #111; }
   }
   &.sipPositionedRight {
-    .sipArrow { border-color:transparent #222 transparent transparent; }
-    .sipArrowBorder { border-color:transparent #111 transparent transparent; }
+    &:before { border-color:transparent #222 transparent transparent; }
+    &:after { border-color:transparent #111 transparent transparent; }
   }
   .smallipop-tour-progress {
     color: #888;
