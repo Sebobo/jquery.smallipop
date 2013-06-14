@@ -463,7 +463,18 @@
                     <ul>
                         <li>
                             <span class="label success">NEW</span>
-                            Smallipop is now loadable as amd module via requirejs or something similar.
+                            Done a lot of refactoring. Minified versions of js and css lost some KB.
+                        </li>
+                        <li>
+                            <span class="label success">NEW</span>
+                            Tooltip arrows are now using :after and :before pseudo elements.
+                            Thanks to <a href="https://github.com/zalog" title="zalog on github">zalog</a> for this patch. <br/>
+                            These arrows won't show up when using IE7 and earlier.
+                        </li>
+                        <li>
+                            <span class="label success">NEW</span>
+                            All css classes are now using dashes. This simplifies a lot of things and makes the plugin more consistent. <br/>
+                            You should check your custom themes!
                         </li>
                     </ul>
 
@@ -471,6 +482,17 @@
                     <h5>Older versions</h5>
 
                     <div id="changelog">
+                        <span class="sampleElement smallipopBlack">
+                            0.5.3
+                            <div class="smallipop-hint">
+                                <ul>
+                                    <li>
+                                        <span class="label success">NEW</span>
+                                        Smallipop is now loadable as amd module via requirejs or something similar.
+                                    </li>
+                                </ul>
+                            </div>
+                        </span>
                         <span class="sampleElement smallipopBlack">
                             0.5.2
                             <div class="smallipop-hint">
