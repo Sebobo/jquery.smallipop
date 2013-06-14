@@ -1,5 +1,8 @@
 /* default theme */
-.smallipop-instance.default {
+$default-arrow-color: #1a2634;
+$default-arrow-border-color: $base-color;
+
+.smallipop-theme-default {
   text-shadow: $default-text-shadow;
   @include box-shadow($default-box-shadow);
   @include border-radius($default-border-radius);
@@ -18,20 +21,20 @@
   &:before { @include border-color-top($default-arrow-color); }
   &:after { @include border-color-top($default-arrow-border-color); }
 
-  &.sipAlignBottom {
+  &.smallipop-align-bottom {
     &:before { @include border-color-bottom($default-arrow-color); }
     &:after { @include border-color-bottom($default-arrow-border-color); }
   }
 
-  &.sipPositionedLeft {
+  &.smallipop-left {
     &:before { @include border-color-left($default-arrow-color); }
     &:after { @include border-color-left($default-arrow-border-color); }
   }
-  &.sipPositionedRight {
+  &.smallipop-right {
     &:before { @include border-color-right($default-arrow-color); }
     &:after { @include border-color-right($default-arrow-border-color); }
   }
 }
-.cssgradients.rgba .smallipop-instance.default {
+.cssgradients.rgba .smallipop-theme-default {
   background-color: transparent;
 }

@@ -53,7 +53,7 @@
               </ul>
             </div>
 
-            <div class="smallipopHint">
+            <div class="smallipop-hint">
                 <div id="optionsMenu">
                     <h6>Chapters</h6>
                     <ul class="nav noHover">
@@ -114,7 +114,7 @@
                 </tr>
                 <tr>
                     <td>infoClass</td>
-                    <td>smallipopHint</td>
+                    <td>smallipop-hint</td>
                     <td>Class in an element which contains markup content for the popup.</td>
                 </tr>
                 <tr>
@@ -393,10 +393,10 @@
                     <a id="tipDontHideOnTriggerClick" class="sampleElement" title="Change">Hover me!</a>
                     <br/>
                     <br/>
-                    <span>Tip wont't hide when clicking into the popup</span>
+                    <span>Tip won't hide when clicking into the popup</span>
                     <span id="tipDontHideOnContentClick" class="sampleElement">
                         Hover me!
-                        <span class="smallipopHint">
+                        <span class="smallipop-hint">
                             <b>Markuptip with very long text</b><br/>
                             <a href="#" onclick="return false;">
                                 and a link which doesn't hide the popup
@@ -411,7 +411,7 @@
 
 &lt;a id="tipDontHideOnContentClick" title="Change"&gt;
     Hover me!
-    &lt;span class="smallipopHint"&gt;
+    &lt;span class="smallipop-hint"&gt;
         &lt;b&gt;Markuptip with very long text&lt;/b&gt;&lt;br/&gt;
         &lt;a href="#" onclick="return false;"&gt;
             and a link which doesn't hide the popup
@@ -462,7 +462,7 @@
                 You can extend a theme with an extension theme
                 <span class="smallipopBlueFatShadow sampleElement">
                     Hover me!
-                    <span class="smallipopHint">
+                    <span class="smallipop-hint">
                         Look at this fat shadow!
                     </span>
                 </span>
@@ -470,7 +470,7 @@
 <pre class="prettyprint linenums">
 &lt;script type="text/javascript"&gt;
     $('.myElement').smallipop({
-        theme: 'blue fatShadow'
+        theme: 'blue fat-shadow'
     });
 &lt;/script&gt;</pre>
             <p>
@@ -480,7 +480,7 @@
                 The css for the extension theme looks like this:
             </p>
 <pre class="prettyprint linenums">
-#smallipop.fatShadow {
+.smallipop-instance.smallipop-theme-fat-shadow {
   -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
      -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
           box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);

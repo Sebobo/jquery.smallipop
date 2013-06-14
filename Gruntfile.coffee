@@ -35,8 +35,6 @@ module.exports = (grunt) ->
           bare: true
         files:
           'lib/jquery.smallipop.js': ['src/coffee/jquery.smallipop.coffee']
-          'lib/examples.js': ['src/coffee/examples.coffee']
-          'lib/demo.js': ['src/coffee/demo.coffee']
           'lib/main.js': ['src/coffee/main.coffee']
           'tests/tests.js': ['src/coffee/tests.coffee']
     watch:
@@ -69,5 +67,7 @@ module.exports = (grunt) ->
 
   # Default task which watches, sass and coffee.
   grunt.registerTask 'default', ['watch']
+  # Minify task
+  grunt.registerTask 'minify', ['uglify', 'sass:dist']
   # Release task to run tests then minify js and css
   grunt.registerTask 'release', ['qunit', 'uglify', 'sass:dist']

@@ -1,5 +1,5 @@
 /* smallipop css */
-.smallipopHint, .smallipop-instance .sipArrow, .smallipop-instance .sipArrowBorder {
+.smallipop-hint {
   display: none;
 }
 
@@ -29,72 +29,93 @@
 .smallipop-instance a {
   color: #98cbea;
 }
-.smallipop-instance .sipContent {
-  padding: 10px;
-}
 .smallipop-instance:before, .smallipop-instance:after {
   content: '';
   position: absolute;
   left: 50%;
   height: 0;
   width: 0;
-  font-size: 0;
-  pointer-events:none;
+  pointer-events: none;
 }
 .smallipop-instance:before {
   bottom: -20px;
-  margin: 0 0 0 -10px;
+  margin-left: -10px;
   border: 10px solid transparent;
 }
 .smallipop-instance:after {
-  bottom: -10px;
-  margin: 0 0 0 -5px;
-  border: 5px solid transparent;
+  bottom: -24px;
+  margin-left: -12px;
+  border: 12px solid transparent;
 }
-.sipAlignBottom:before, .sipAlignBottom:after {
+
+.smallipop-align-left:before, .smallipop-align-left:after {
+  margin-left: 0;
+  left: auto;
+  right: 20px;
+}
+.smallipop-align-left:after {
+  right: 18px;
+}
+
+.smallipop-align-right:before, .smallipop-align-right:after {
+  margin-left: 0;
+  left: 20px;
+  right: auto;
+}
+.smallipop-align-right:after {
+  left: 18px;
+}
+
+.smallipop-align-bottom:before, .smallipop-align-bottom:after {
   bottom: auto;
-}
-.sipAlignBottom:before {
   top: -20px;
 }
-.sipAlignBottom:after {
-  top: -10px;
+.smallipop-align-bottom:after {
+  top: -24px;
 }
-.sipPositionedLeft:before, .sipPositionedLeft:after {
+
+.smallipop-left:before, .smallipop-left:after,
+.smallipop-right:before,
+.smallipop-right:after {
+  right: -16px;
   left: auto;
   top: 50%;
+  bottom: auto;
+  border-width: 8px;
+  margin: -8px 0 0;
 }
-.sipPositionedLeft:before {
+.smallipop-left:after,
+.smallipop-right:after {
   right: -20px;
-  margin: -10px 0 0 0;
+  border-width: 10px;
+  margin: -10px 0 0;
 }
-.sipPositionedLeft:after {
-  right: -10px;
-  margin: -5px 0 0 0;
-}
-.sipPositionedRight:before, .sipPositionedRight:after {
+
+.smallipop-right:before, .smallipop-right:after {
+  left: -16px;
   right: auto;
-  top: 50%;
 }
-.sipPositionedRight:before {
+.smallipop-right:after {
   left: -20px;
-  margin: -10px 0 0 0;
 }
-.sipPositionedRight:after {
-  left: -10px;
-  margin: -5px 0 0 0;
+
+.smallipop-content {
+  padding: 10px;
 }
-.smallipop-instance .smallipop-tour-content {
+
+.smallipop-tour-content {
   padding: 5px 0;
   min-width: 150px;
 }
-.smallipop-instance .smallipop-tour-footer {
+
+.smallipop-tour-footer {
   padding-top: 5px;
   position: relative;
   overflow: hidden;
   *zoom: 1;
 }
-.smallipop-instance .smallipop-tour-progress {
+
+.smallipop-tour-progress {
   color: #bbb;
   text-align: center;
   position: absolute;
@@ -103,7 +124,8 @@
   margin-left: -40px;
   top: 8px;
 }
-.smallipop-instance .smallipop-tour-close-icon {
+
+.smallipop-tour-close-icon {
   position: absolute;
   right: -8px;
   top: -8px;
@@ -125,14 +147,15 @@
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
-.smallipop-instance .smallipop-tour-close-icon:hover {
+.smallipop-tour-close-icon:hover {
   text-decoration: none;
   background: #666;
   color: #fff;
 }
-.smallipop-instance .smallipop-tour-prev,
-.smallipop-instance .smallipop-tour-next,
-.smallipop-instance .smallipop-tour-close {
+
+.smallipop-tour-prev,
+.smallipop-tour-next,
+.smallipop-tour-close {
   color: #ccc;
   display: block;
   padding: 3px 4px 2px;
@@ -148,20 +171,21 @@
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
-.smallipop-instance .smallipop-tour-prev:hover,
-.smallipop-instance .smallipop-tour-next:hover,
-.smallipop-instance .smallipop-tour-close:hover {
+.smallipop-tour-prev:hover,
+.smallipop-tour-next:hover,
+.smallipop-tour-close:hover {
   color: #fff;
   background: #293e53;
   text-decoration: none;
 }
-.smallipop-instance .smallipop-tour-next,
-.smallipop-instance .smallipop-tour-close {
+
+.smallipop-tour-next,
+.smallipop-tour-close {
   float: right;
 }
 
 /* default theme */
-.smallipop-instance.default {
+.smallipop-theme-default {
   text-shadow: 0 -1px 1px #0f161e;
   -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
@@ -183,10 +207,10 @@
   background: -o-radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px);
   background: radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px);
 }
-.smallipop-instance.default a {
+.smallipop-theme-default a {
   text-shadow: 0 -1px 1px #0f161e;
 }
-.smallipop-instance.default .sipContent {
+.smallipop-theme-default .sipContent {
   border-top: 1px solid #586d82;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
@@ -194,37 +218,37 @@
   -o-border-radius: 12px;
   border-radius: 12px;
 }
-.smallipop-instance.default:before {
+.smallipop-theme-default:before {
   border-color: #1a2634 transparent transparent transparent;
 }
-.smallipop-instance.default:after {
+.smallipop-theme-default:after {
   border-color: #0f161e transparent transparent transparent;
 }
-.smallipop-instance.default.sipAlignBottom:before {
+.smallipop-theme-default.smallipop-align-bottom:before {
   border-color: transparent transparent #1a2634 transparent;
 }
-.smallipop-instance.default.sipAlignBottom:after {
+.smallipop-theme-default.smallipop-align-bottom:after {
   border-color: transparent transparent #0f161e transparent;
 }
-.smallipop-instance.default.sipPositionedLeft:before {
+.smallipop-theme-default.smallipop-left:before {
   border-color: transparent transparent transparent #1a2634;
 }
-.smallipop-instance.default.sipPositionedLeft:after {
+.smallipop-theme-default.smallipop-left:after {
   border-color: transparent transparent transparent #0f161e;
 }
-.smallipop-instance.default.sipPositionedRight:before {
+.smallipop-theme-default.smallipop-right:before {
   border-color: transparent #1a2634 transparent transparent;
 }
-.smallipop-instance.default.sipPositionedRight:after {
+.smallipop-theme-default.smallipop-right:after {
   border-color: transparent #0f161e transparent transparent;
 }
 
-.cssgradients.rgba .smallipop-instance.default {
+.cssgradients.rgba .smallipop-theme-default {
   background-color: transparent;
 }
 
 /* blue theme */
-.smallipop-instance.blue {
+.smallipop-theme-blue {
   background: transparent;
   color: #111;
   border: 10px solid #0064b4;
@@ -238,52 +262,68 @@
   -o-border-radius: 7px;
   border-radius: 7px;
 }
-.smallipop-instance.blue a {
+.smallipop-theme-blue a {
   color: #2276aa;
 }
-.smallipop-instance.blue .sipContent {
+.smallipop-theme-blue:before, .smallipop-theme-blue:after {
+  bottom: -30px;
+}
+.smallipop-theme-blue:before {
+  border-color: #0064b4 transparent transparent transparent;
+}
+.smallipop-theme-blue:after {
+  border-color: rgba(0, 100, 180, 0.9) transparent transparent transparent;
+}
+.smallipop-theme-blue.smallipop-align-bottom {
+  top: -30px;
+}
+.smallipop-theme-blue.smallipop-align-bottom:before {
+  border-color: transparent transparent #0064b4 transparent;
+}
+.smallipop-theme-blue.smallipop-align-bottom:after {
+  border-color: transparent transparent rgba(0, 100, 180, 0.9) transparent;
+}
+.smallipop-theme-blue.smallipop-left {
+  right: -26px;
+}
+.smallipop-theme-blue.smallipop-left:before {
+  border-color: transparent transparent transparent #0064b4;
+}
+.smallipop-theme-blue.smallipop-left:after {
+  border-color: transparent transparent transparent rgba(0, 100, 180, 0.9);
+}
+.smallipop-theme-blue.smallipop-right {
+  left: -26px;
+}
+.smallipop-theme-blue.smallipop-right:before {
+  border-color: transparent #0064b4 transparent transparent;
+}
+.smallipop-theme-blue.smallipop-right:after {
+  border-color: transparent rgba(0, 100, 180, 0.9) transparent transparent;
+}
+.smallipop-theme-blue .smallipop-content {
   border: 0;
   background: #fcfcfc;
 }
-.smallipop-instance.blue:before {
-  bottom: -30px;
-  border-color: #0064b4 transparent transparent transparent;
-  border-color: rgba(0, 100, 180, 0.9) transparent transparent transparent;
-}
-.smallipop-instance.blue.sipAlignBottom:before {
-  top: -30px;
-  border-color: transparent transparent #0064b4 transparent;
-  border-color: transparent transparent rgba(0, 100, 180, 0.9) transparent;
-}
-.smallipop-instance.blue.sipPositionedLeft:before {
-  right: -26px;
-  border-color: transparent transparent transparent #0064b4;
-  border-color: transparent transparent transparent rgba(0, 100, 180, 0.9);
-}
-.smallipop-instance.blue.sipPositionedRight:before {
-  left: -26px;
-  border-color: transparent #0064b4 transparent transparent;
-  border-color: transparent rgba(0, 100, 180, 0.9) transparent transparent;
-}
-.smallipop-instance.blue .smallipop-tour-progress {
+.smallipop-theme-blue .smallipop-tour-progress {
   color: #777;
 }
-.smallipop-instance.blue .smallipop-tour-prev,
-.smallipop-instance.blue .smallipop-tour-next,
-.smallipop-instance.blue .smallipop-tour-close {
+.smallipop-theme-blue .smallipop-tour-prev,
+.smallipop-theme-blue .smallipop-tour-next,
+.smallipop-theme-blue .smallipop-tour-close {
   color: #222;
   background: #efefef;
 }
-.smallipop-instance.blue .smallipop-tour-prev:hover,
-.smallipop-instance.blue .smallipop-tour-next:hover,
-.smallipop-instance.blue .smallipop-tour-close:hover {
+.smallipop-theme-blue .smallipop-tour-prev:hover,
+.smallipop-theme-blue .smallipop-tour-next:hover,
+.smallipop-theme-blue .smallipop-tour-close:hover {
   color: #111;
   background: #f7f7f7;
 }
 
 /* black theme */
-.smallipop-instance.black {
-  background-color: #222;
+.smallipop-theme-black {
+  background-color: #222222;
   border-color: #111;
   text-shadow: 0 -1px 1px #111111;
   color: #f5f5f5;
@@ -301,11 +341,35 @@
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-.smallipop-instance.black a {
+.smallipop-theme-black a {
   color: #eef8ff;
   text-shadow: 0 -1px 1px #111111;
 }
-.smallipop-instance.black .sipContent {
+.smallipop-theme-black:before {
+  border-color: #222222 transparent transparent transparent;
+}
+.smallipop-theme-black:after {
+  border-color: #111111 transparent transparent transparent;
+}
+.smallipop-theme-black.smallipop-align-bottom:before {
+  border-color: transparent transparent #222222 transparent;
+}
+.smallipop-theme-black.smallipop-align-bottom:after {
+  border-color: transparent transparent #111111 transparent;
+}
+.smallipop-theme-black.smallipop-left:before {
+  border-color: transparent transparent transparent #222222;
+}
+.smallipop-theme-black.smallipop-left:after {
+  border-color: transparent transparent transparent #111111;
+}
+.smallipop-theme-black.smallipop-right:before {
+  border-color: transparent #222222 transparent transparent;
+}
+.smallipop-theme-black.smallipop-right:after {
+  border-color: transparent #111111 transparent transparent;
+}
+.smallipop-theme-black .smallipop-content {
   border-top: 1px solid #666;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -313,52 +377,28 @@
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-.smallipop-instance.black:before {
-  border-color: #222 transparent transparent transparent;
-}
-.smallipop-instance.black:after {
-  border-color: #111 transparent transparent transparent;
-}
-.smallipop-instance.black.sipAlignBottom:before {
-  border-color: transparent transparent #222 transparent;
-}
-.smallipop-instance.black.sipAlignBottom:after {
-  border-color: transparent transparent #111 transparent;
-}
-.smallipop-instance.black.sipPositionedLeft:before {
-  border-color: transparent transparent transparent #222;
-}
-.smallipop-instance.black.sipPositionedLeft:after {
-  border-color: transparent transparent transparent #111;
-}
-.smallipop-instance.black.sipPositionedRight:before {
-  border-color: transparent #222 transparent transparent;
-}
-.smallipop-instance.black.sipPositionedRight:after {
-  border-color: transparent #111 transparent transparent;
-}
-.smallipop-instance.black .smallipop-tour-progress {
+.smallipop-theme-black .smallipop-tour-progress {
   color: #888;
 }
-.smallipop-instance.black .smallipop-tour-prev,
-.smallipop-instance.black .smallipop-tour-next,
-.smallipop-instance.black .smallipop-tour-close {
+.smallipop-theme-black .smallipop-tour-prev,
+.smallipop-theme-black .smallipop-tour-next,
+.smallipop-theme-black .smallipop-tour-close {
   color: #ccc;
   background: #333;
 }
-.smallipop-instance.black .smallipop-tour-prev:hover,
-.smallipop-instance.black .smallipop-tour-next:hover,
-.smallipop-instance.black .smallipop-tour-close:hover {
+.smallipop-theme-black .smallipop-tour-prev:hover,
+.smallipop-theme-black .smallipop-tour-next:hover,
+.smallipop-theme-black .smallipop-tour-close:hover {
   color: #fff;
   background: #3a3a3a;
 }
 
-.cssgradients .smallipop-instance.black {
+.cssgradients .smallipop-theme-black {
   background-color: transparent;
 }
 
 /* orange theme */
-.smallipop-instance.orange {
+.smallipop-theme-orange {
   background-color: #f9aa18;
   border-color: #e17500;
   text-shadow: 0 1px 1px #fff24d;
@@ -377,11 +417,35 @@
   -o-border-radius: 10px;
   border-radius: 10px;
 }
-.smallipop-instance.orange a {
+.smallipop-theme-orange a {
   color: #145d95;
   text-shadow: 0 1px 1px #fff24d;
 }
-.smallipop-instance.orange .sipContent {
+.smallipop-theme-orange:before {
+  border-color: #f9aa18 transparent transparent transparent;
+}
+.smallipop-theme-orange:after {
+  border-color: #e17500 transparent transparent transparent;
+}
+.smallipop-theme-orange.smallipop-align-bottom:before {
+  border-color: transparent transparent #f9aa18 transparent;
+}
+.smallipop-theme-orange.smallipop-align-bottom:after {
+  border-color: transparent transparent #e17500 transparent;
+}
+.smallipop-theme-orange.smallipop-left:before {
+  border-color: transparent transparent transparent #f9aa18;
+}
+.smallipop-theme-orange.smallipop-left:after {
+  border-color: transparent transparent transparent #e17500;
+}
+.smallipop-theme-orange.smallipop-right:before {
+  border-color: transparent #f9aa18 transparent transparent;
+}
+.smallipop-theme-orange.smallipop-right:after {
+  border-color: transparent #e17500 transparent transparent;
+}
+.smallipop-theme-orange .smallipop-content {
   border-top: 1px solid #fffabc;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -389,48 +453,24 @@
   -o-border-radius: 10px;
   border-radius: 10px;
 }
-.smallipop-instance.orange:before {
-  border-color: #f9aa18 transparent transparent transparent;
-}
-.smallipop-instance.orange:after {
-  border-color: #e17500 transparent transparent transparent;
-}
-.smallipop-instance.orange.sipAlignBottom:before {
-  border-color: transparent transparent #f9aa18 transparent;
-}
-.smallipop-instance.orange.sipAlignBottom:after {
-  border-color: transparent transparent #e17500 transparent;
-}
-.smallipop-instance.orange.sipPositionedLeft:before {
-  border-color: transparent transparent transparent #f9c718;
-}
-.smallipop-instance.orange.sipPositionedLeft:after {
-  border-color: transparent transparent transparent #e17500;
-}
-.smallipop-instance.orange.sipPositionedRight:before {
-  border-color: transparent #f9c718 transparent transparent;
-}
-.smallipop-instance.orange.sipPositionedRight:after {
-  border-color: transparent #e17500 transparent transparent;
-}
-.smallipop-instance.orange .smallipop-tour-progress {
+.smallipop-theme-orange .smallipop-tour-progress {
   color: #444;
 }
-.smallipop-instance.orange .smallipop-tour-prev,
-.smallipop-instance.orange .smallipop-tour-next,
-.smallipop-instance.orange .smallipop-tour-close {
+.smallipop-theme-orange .smallipop-tour-prev,
+.smallipop-theme-orange .smallipop-tour-next,
+.smallipop-theme-orange .smallipop-tour-close {
   color: #444;
   background: #f19f06;
 }
-.smallipop-instance.orange .smallipop-tour-prev:hover,
-.smallipop-instance.orange .smallipop-tour-next:hover,
-.smallipop-instance.orange .smallipop-tour-close:hover {
+.smallipop-theme-orange .smallipop-tour-prev:hover,
+.smallipop-theme-orange .smallipop-tour-next:hover,
+.smallipop-theme-orange .smallipop-tour-close:hover {
   color: #333;
   background: #f9a509;
 }
 
 /* white theme */
-.smallipop-instance.white {
+.smallipop-theme-white {
   background-color: #fcfcfc;
   border-color: #ccc;
   text-shadow: 0 1px 1px #eee;
@@ -446,7 +486,31 @@
   -o-border-radius: 6px;
   border-radius: 6px;
 }
-.smallipop-instance.white .sipContent {
+.smallipop-theme-white:before {
+  border-color: #fcfcfc transparent transparent transparent;
+}
+.smallipop-theme-white:after {
+  border-color: #cccccc transparent transparent transparent;
+}
+.smallipop-theme-white.smallipop-align-bottom:before {
+  border-color: transparent transparent #fcfcfc transparent;
+}
+.smallipop-theme-white.smallipop-align-bottom:after {
+  border-color: transparent transparent #cccccc transparent;
+}
+.smallipop-theme-white.smallipop-left:before {
+  border-color: transparent transparent transparent #fcfcfc;
+}
+.smallipop-theme-white.smallipop-left:after {
+  border-color: transparent transparent transparent #cccccc;
+}
+.smallipop-theme-white.smallipop-right:before {
+  border-color: transparent #fcfcfc transparent transparent;
+}
+.smallipop-theme-white.smallipop-right:after {
+  border-color: transparent #cccccc transparent transparent;
+}
+.smallipop-theme-white .smallipop-content {
   text-align: center;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -454,85 +518,61 @@
   -o-border-radius: 6px;
   border-radius: 6px;
 }
-.smallipop-instance.white:before {
-  border-color: #fcfcfc transparent transparent transparent;
-}
-.smallipop-instance.white:after {
-  border-color: #ccc transparent transparent transparent;
-}
-.smallipop-instance.white.sipAlignBottom:before {
-  border-color: transparent transparent #fcfcfc transparent;
-}
-.smallipop-instance.white.sipAlignBottom:after {
-  border-color: transparent transparent #ccc transparent;
-}
-.smallipop-instance.white.sipPositionedLeft:before {
-  border-color: transparent transparent transparent #fcfcfc;
-}
-.smallipop-instance.white.sipPositionedLeft:after {
-  border-color: transparent transparent transparent #ccc;
-}
-.smallipop-instance.white.sipPositionedRight:before {
-  border-color: transparent #fcfcfc transparent transparent;
-}
-.smallipop-instance.white.sipPositionedRight:after {
-  border-color: transparent #ccc transparent transparent;
-}
-.smallipop-instance.white .smallipop-tour-progress {
+.smallipop-theme-white .smallipop-tour-progress {
   color: #777;
 }
-.smallipop-instance.white .smallipop-tour-close-icon {
+.smallipop-theme-white .smallipop-tour-close-icon {
   background: #fafafa;
   color: #555;
   text-shadow: 0 1px 1px #fff;
 }
-.smallipop-instance.white .smallipop-tour-close-icon:hover {
+.smallipop-theme-white .smallipop-tour-close-icon:hover {
   background: #f5f5f5;
   color: #222;
 }
-.smallipop-instance.white .smallipop-tour-prev,
-.smallipop-instance.white .smallipop-tour-next,
-.smallipop-instance.white .smallipop-tour-close {
+.smallipop-theme-white .smallipop-tour-prev,
+.smallipop-theme-white .smallipop-tour-next,
+.smallipop-theme-white .smallipop-tour-close {
   color: #666;
   background: #f0f0f0;
 }
-.smallipop-instance.white .smallipop-tour-prev:hover,
-.smallipop-instance.white .smallipop-tour-next:hover,
-.smallipop-instance.white .smallipop-tour-close:hover {
+.smallipop-theme-white .smallipop-tour-prev:hover,
+.smallipop-theme-white .smallipop-tour-next:hover,
+.smallipop-theme-white .smallipop-tour-close:hover {
   color: #333;
   background: #f4f4f4;
 }
 
 /* white theme extended, requires rgba support */
-.smallipop-instance.whiteTransparent {
+.smallipop-theme-white-transparent {
   background-color: rgba(255, 255, 255, 0.8);
 }
-.smallipop-instance.whiteTransparent:before {
+.smallipop-theme-white-transparent:before {
   bottom: -21px;
   border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
 }
-.smallipop-instance.whiteTransparent:after {
+.smallipop-theme-white-transparent:after {
   border-color: transparent;
 }
-.smallipop-instance.whiteTransparent.sipAlignBottom:before {
+.smallipop-theme-white-transparent.sipAlignBottom:before {
   top: -21px;
   border-color: transparent transparent rgba(255, 255, 255, 0.8) transparent;
 }
-.smallipop-instance.whiteTransparent.sipPositionedLeft:before {
+.smallipop-theme-white-transparent.sipPositionedLeft:before {
   border-color: transparent transparent transparent rgba(255, 255, 255, 0.8);
 }
-.smallipop-instance.whiteTransparent.sipPositionedRight:before {
+.smallipop-theme-white-transparent.sipPositionedRight:before {
   border-color: transparent rgba(255, 255, 255, 0.8) transparent transparent;
 }
 
 /* fat shadow extension theme */
-.smallipop-instance.fatShadow {
+.smallipop-instance.smallipop-theme-fat-shadow {
   -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
 }
 
 /* wide content extension theme */
-.smallipop-instance.wide {
+.smallipop-instance.smallipop-theme-wide {
   max-width: 600px;
 }

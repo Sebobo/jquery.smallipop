@@ -1,5 +1,9 @@
 /* blue theme */
-.smallipop-instance.blue {
+$blue-arrow-color: #0064b4;
+$blue-arrow-border-color: rgba(0, 100, 180, .9);
+$blue-background-color: #fcfcfc;
+
+.smallipop-theme-blue {
   background:transparent;
   color: #111;
   border: 10px solid $blue-arrow-color;
@@ -8,35 +12,38 @@
   @include border-radius(7px);
 
   a {
-    color:#2276aa;
+    color: #2276aa;
   }
 
-  .sipContent {
+  &:before,
+  &:after {
+    bottom: -30px;
+  }
+
+  &:before { @include border-color-top($blue-arrow-color); }
+  &:after { @include border-color-top($blue-arrow-border-color); }
+
+  &.smallipop-align-bottom {
+    top: -30px;
+    &:before { @include border-color-bottom($blue-arrow-color); }
+    &:after { @include border-color-bottom($blue-arrow-border-color); }
+  }
+  &.smallipop-left {
+    right: -26px;
+    &:before { @include border-color-left($blue-arrow-color); }
+    &:after { @include border-color-left($blue-arrow-border-color); }
+  }
+  &.smallipop-right {
+    left: -26px;
+    &:before { @include border-color-right($blue-arrow-color); }
+    &:after { @include border-color-right($blue-arrow-border-color); }
+  }
+
+  .smallipop-content {
     border: 0;
     background: $blue-background-color;
   }
 
-  .sipArrow {
-    bottom: -30px;
-    @include border-color-top($blue-arrow-color);
-    @include border-color-top($blue-arrow-border-color);
-  }
-  &.sipAlignBottom .sipArrow {
-    top: -30px;
-    @include border-color-bottom($blue-arrow-color);
-    @include border-color-bottom($blue-arrow-border-color);
-  }
-
-  &.sipPositionedLeft .sipArrow {
-    right: -26px;
-    @include border-color-left($blue-arrow-color);
-    @include border-color-left($blue-arrow-border-color);
-  }
-  &.sipPositionedRight .sipArrow {
-    left: -26px;
-    @include border-color-right($blue-arrow-color);
-    @include border-color-right($blue-arrow-border-color);
-  }
   .smallipop-tour-progress {
     color: #777;
   }
@@ -52,3 +59,4 @@
     }
   }
 }
+

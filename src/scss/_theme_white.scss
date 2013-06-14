@@ -1,6 +1,10 @@
 /* white theme */
-.smallipop-instance.white {
-  background-color: #fcfcfc;
+$white-arrow-color: #fcfcfc;
+$white-arrow-border-color: #ccc;
+$white-background-color: #fcfcfc;
+
+.smallipop-theme-white {
+  background-color: $white-background-color;
   border-color:#ccc;
   text-shadow:0 1px 1px #eee;
   color:#444;
@@ -9,26 +13,27 @@
   @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.1));
   @include border-radius(6px);
 
-  .sipContent {
+  &:before { @include border-color-top($white-arrow-color); }
+  &:after { @include border-color-top($white-arrow-border-color); }
+
+  &.smallipop-align-bottom {
+    &:before { @include border-color-bottom($white-arrow-color); }
+    &:after { @include border-color-bottom($white-arrow-border-color); }
+  }
+  &.smallipop-left {
+    &:before { @include border-color-left($white-arrow-color); }
+    &:after { @include border-color-left($white-arrow-border-color); }
+  }
+  &.smallipop-right {
+    &:before { @include border-color-right($white-arrow-color); }
+    &:after { @include border-color-right($white-arrow-border-color); }
+  }
+
+  .smallipop-content {
     text-align:center;
     @include border-radius(6px);
   }
-  &:before { border-color:#fcfcfc transparent transparent transparent; }
-  &:after { border-color:#ccc transparent transparent transparent; }
 
-  &.sipAlignBottom {
-    &:before { border-color:transparent transparent #fcfcfc transparent; }
-    &:after { border-color:transparent transparent #ccc transparent; }
-  }
-
-  &.sipPositionedLeft {
-    &:before { border-color:transparent transparent transparent #fcfcfc; }
-    &:after { border-color:transparent transparent transparent #ccc; }
-  }
-  &.sipPositionedRight {
-    &:before { border-color:transparent #fcfcfc transparent transparent; }
-    &:after { border-color:transparent #ccc transparent transparent; }
-  }
   .smallipop-tour-progress {
     color: #777;
   }
@@ -56,7 +61,7 @@
 }
 
 /* white theme extended, requires rgba support */
-.smallipop-instance.whiteTransparent {
+.smallipop-theme-white-transparent {
   background-color: rgba(255, 255, 255, 0.8);
 
   &:before {

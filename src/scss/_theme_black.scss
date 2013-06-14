@@ -1,38 +1,42 @@
 /* black theme */
-.smallipop-instance.black {
-  background-color:#222;
-  border-color:#111;
-  text-shadow:0 -1px 1px #111;
-  color:#f5f5f5;
+$black-arrow-color: #222;
+$black-arrow-border-color: #111;
+$black-background-color: #222;
+
+.smallipop-theme-black {
+  background-color: $black-background-color;
+  border-color: #111;
+  text-shadow: 0 -1px 1px #111;
+  color: #f5f5f5;
   @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
   @include background(linear-gradient(#333333, #222222));
   @include border-radius(5px);
 
   a {
     color: #eef8ff;
-    text-shadow:0 -1px 1px #111;
+    text-shadow: 0 -1px 1px #111;
+  }
+  &:before { @include border-color-top($black-arrow-color); }
+  &:after { @include border-color-top($black-arrow-border-color); }
+
+  &.smallipop-align-bottom {
+    &:before { @include border-color-bottom($black-arrow-color); }
+    &:after { @include border-color-bottom($black-arrow-border-color); }
+  }
+  &.smallipop-left {
+    &:before { @include border-color-left($black-arrow-color); }
+    &:after { @include border-color-left($black-arrow-border-color); }
+  }
+  &.smallipop-right {
+    &:before { @include border-color-right($black-arrow-color); }
+    &:after { @include border-color-right($black-arrow-border-color); }
   }
 
-  .sipContent {
-    border-top:1px solid #666;
+  .smallipop-content {
+    border-top: 1px solid #666;
     @include border-radius(5px);
   }
-  &:before { border-color:#222 transparent transparent transparent; }
-  &:after { border-color:#111 transparent transparent transparent; }
 
-  &.sipAlignBottom {
-    &:before { border-color:transparent transparent #222 transparent; }
-    &:after { border-color:transparent transparent #111 transparent; }
-  }
-
-  &.sipPositionedLeft {
-    &:before { border-color:transparent transparent transparent #222; }
-    &:after { border-color:transparent transparent transparent #111; }
-  }
-  &.sipPositionedRight {
-    &:before { border-color:transparent #222 transparent transparent; }
-    &:after { border-color:transparent #111 transparent transparent; }
-  }
   .smallipop-tour-progress {
     color: #888;
   }
@@ -48,6 +52,6 @@
     }
   }
 }
-.cssgradients .smallipop-instance.black {
-  background-color:transparent;
+.cssgradients .smallipop-theme-black {
+  background-color: transparent;
 }

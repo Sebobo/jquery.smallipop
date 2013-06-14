@@ -1,5 +1,9 @@
 /* orange theme */
-.smallipop-instance.orange {
+$orange-arrow-color: #f9aa18;
+$orange-arrow-border-color: #e17500;
+$orange-background-color: #f9aa18;
+
+.smallipop-theme-orange {
   background-color: $orange-background-color;
   border-color: #e17500;
   text-shadow: 0 1px 1px #fff24d;
@@ -13,26 +17,27 @@
     text-shadow:0 1px 1px #fff24d;
   }
 
-  .sipContent {
+  &:before { @include border-color-top($orange-arrow-color); }
+  &:after { @include border-color-top($orange-arrow-border-color); }
+
+  &.smallipop-align-bottom {
+    &:before { @include border-color-bottom($orange-arrow-color); }
+    &:after { @include border-color-bottom($orange-arrow-border-color); }
+  }
+  &.smallipop-left {
+    &:before { @include border-color-left($orange-arrow-color); }
+    &:after { @include border-color-left($orange-arrow-border-color); }
+  }
+  &.smallipop-right {
+    &:before { @include border-color-right($orange-arrow-color); }
+    &:after { @include border-color-right($orange-arrow-border-color); }
+  }
+
+  .smallipop-content {
     border-top:1px solid #fffabc;
     @include border-radius(10px);
   }
-  .sipArrow { border-color:#f9aa18 transparent transparent transparent; }
-  .sipArrowBorder { border-color:#e17500 transparent transparent transparent; }
 
-  &.sipAlignBottom {
-    .sipArrow { border-color:transparent transparent #f9aa18 transparent; }
-    .sipArrowBorder { border-color:transparent transparent #e17500 transparent; }
-  }
-
-  &.sipPositionedLeft {
-    .sipArrow { border-color:transparent transparent transparent #f9c718; }
-    .sipArrowBorder { border-color:transparent transparent transparent #e17500; }
-  }
-  &.sipPositionedRight {
-    .sipArrow { border-color:transparent #f9c718 transparent transparent; }
-    .sipArrowBorder { border-color:transparent #e17500 transparent transparent; }
-  }
   .smallipop-tour-progress {
     color: #444;
   }

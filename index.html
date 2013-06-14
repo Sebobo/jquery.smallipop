@@ -17,7 +17,7 @@
             <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips and interactive tours</h1>
 
             <p>
-                <b>Version 0.5.3</b> -
+                <b>Version 0.6.0</b> -
                 Created by <b><a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle Portfolio">Sebastian Helzle</a></b>
                 for <b><a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a></b>
             </p>
@@ -57,7 +57,7 @@
               </ul>
             </div>
 
-            <div class="smallipopHint">
+            <div class="smallipop-hint">
                 <div id="overviewMenu">
                     <h6>Chapters</h6>
                     <ul class="nav noHover">
@@ -73,8 +73,8 @@
             <br/>
 
             <div class="smallipopOrange floatRight" data-smallipop-tour-highlight="true">
-                <img src="images/smallipop-logo.png" alt="smallipop logo" title="The smallipop logo" width="286" height="79" />
-                <div class="smallipopHint">
+                <img src="images/smallipop-logo.png" alt="smallipop logo" width="286" height="79" />
+                <div class="smallipop-hint">
                     <b>smallipop</b><br/>
                     <br/>
                     Created by <a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle Portfolio">Sebastian Helzle</a>
@@ -105,11 +105,6 @@
             <br/>
 
             <br/>
-            <!-- Flattr button BEGIN -->
-            <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://projects.sebastianhelzle.net/jquery.smallipop/"></a>
-            <noscript><a href="http://flattr.com/thing/461593/jQuery-Smallipop" target="_blank">
-            <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
-            <!-- Flattr button END -->
 
             <hr id="createsmallipop"/>
 
@@ -136,7 +131,7 @@
                 <div class="bs-docs-example">
                     <span class="smallipop sampleElement" style="display:inline-block;">
                         Hover me!
-                        <span class="smallipopHint">
+                        <span class="smallipop-hint">
                             Give me some <b>markup</b>
                         </span>
                     </span>
@@ -144,7 +139,7 @@
                 <pre class="prettyprint linenums">
 &lt;span class="smallipop"&gt;
     Hover me!
-    &lt;span class="smallipopHint"&gt;
+    &lt;span class="smallipop-hint"&gt;
         &lt;b&gt;Give me some markup!&lt;/b&gt;
     &lt;/span&gt;
 &lt;/span&gt;</pre>
@@ -200,7 +195,7 @@
                     <div id="ajaxContainer" class="floatRight">
                         <div class="smallipop sampleElement">
                             Hover me!
-                            <span class="smallipopHint">
+                            <span class="smallipop-hint">
                                 <b>Markuptip with very long text</b><br/>
                                 <a id="tipkiller" href="other.html">and a link with some javascript which replaces the trigger</a>
                             </span>
@@ -211,7 +206,7 @@
                 <pre class="prettyprint linenums">
 &lt;div class="smallipop"&gt;
     Hover me!
-    &lt;span class="smallipopHint"&gt;
+    &lt;span class="smallipop-hint"&gt;
         &lt;b>Markuptip with very long text&lt;/b&gt;&lt;br/&gt;
         ...
     &lt;/span&gt;
@@ -222,13 +217,13 @@
                 <div class="bs-docs-example">
                     <span class="smallipopHorizontal sampleElement floatLeft">
                         Hover me!
-                        <span class="smallipopHint">
+                        <span class="smallipop-hint">
                             Good for dropdowns!
                         </span>
                     </span>
                     <span class="smallipopHorizontal sampleElement floatRight">
                         Or me!
-                        <span class="smallipopHint">
+                        <span class="smallipop-hint">
                             Auto align when there's no room on the right.
                         </span>
                     </span>
@@ -237,7 +232,7 @@
                 <pre class="prettyprint linenums">
 &lt;span class="smallipopHorizontal"&gt;
     Hover me!
-    &lt;span class="smallipopHint"&gt;
+    &lt;span class="smallipop-hint"&gt;
         Good for dropdowns!
     &lt;/span&gt;
 &lt;/span&gt;
@@ -280,7 +275,7 @@
                     </a>
                 </div>
                 <pre class="prettyprint linenums">
-&lt;a class="smallipopStatic" title="Below when possible"&gt;
+&lt;a class="smallipopBottom" title="Below when possible"&gt;
     Hover me!
 &lt;/a&gt;
 
@@ -303,7 +298,7 @@
 
                     <div class="smallipopHideBlack" style="position:absolute; left:456px; top:49px; width:14px; height:14px;">
                         <div class="pulser"><div class="inner">+</div><div class="outer">&nbsp;</div></div>
-                        <div class="smallipopHint">
+                        <div class="smallipop-hint">
                             <b>Black hole sun</b>
                         </div>
                     </div>
@@ -313,7 +308,7 @@
                             <div class="indicatorPlus">+</div>
                             <div class="indicatorArrow">&nbsp;</div>
                         </div>
-                        <div class="smallipopHint">
+                        <div class="smallipop-hint">
                             <b>The bird is the word</b><br/>
                             <br/>
                             This bubble has a white theme extended by another sub theme 'transparent'.<br/>
@@ -324,7 +319,7 @@
 
                     <div class="smallipopHideBlue" style="position:absolute; left:230px; top:370px;">
                         <img class="smallipopArrow wobbler" src="images/marker-arrow-blue.png" alt="arrow" width="25" height="42" />
-                        <div class="smallipopHint">
+                        <div class="smallipop-hint">
                             <i>It's a house!</i><br/>
                             <br/>
                             It has an image as trigger.<br/>
@@ -354,7 +349,7 @@
                         sed diam nonumy eirmod tempor
                         <span class="smallipopBlue">
                             invidunt
-                            <span class="smallipopHint">
+                            <span class="smallipop-hint">
                                 Some info about <em>invidunt</em>
                             </span>
                         </span>
@@ -369,7 +364,7 @@
                         At vero eos et
                         <span class="smallipopBlue">
                             accusam
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <h4>accusam</h4>
                                 <img class="floatRight inline" src="images/pic1.jpg" alt="Bird in china" width="100" height="75" />
                                 <p>
@@ -399,7 +394,7 @@
     And more with a more
     &lt;span class="smallipop"&gt;
         complex
-        &lt;span class="smallipopHint"&gt;
+        &lt;span class="smallipop-hint"&gt;
             Some really important hint about the word &lt;b&gt;complex&lt;/b&gt;
         &lt;/span&gt;
     &lt;/span&gt;
@@ -478,7 +473,7 @@
                     <div id="changelog">
                         <span class="sampleElement smallipopBlack">
                             0.5.2
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         <span class="label success">NEW</span>
@@ -497,7 +492,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.5.1
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         <span class="label success">NEW</span>
@@ -516,7 +511,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.5.0
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         <span class="label success">NEW</span>
@@ -543,7 +538,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.4.0
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         <span class="label success">NEW</span>
@@ -562,7 +557,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.3.5
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         <span class="label notice">CHANGE</span>
@@ -573,7 +568,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.3.2
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         <span class="label success">NEW</span>
@@ -600,7 +595,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.3.1
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         <span class="label success">NEW</span>
@@ -619,7 +614,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.2.0
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         <span class="label success">NEW</span>
@@ -650,7 +645,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.1.6
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         <span class="label important">FIX</span>
@@ -661,7 +656,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.1.5
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>
                                         Added <i>funcEase</i> option to set your own easing function for the animations.
@@ -683,7 +678,7 @@
                         </span>
                         <span class="sampleElement smallipopBlack">
                             0.1.4
-                            <div class="smallipopHint">
+                            <div class="smallipop-hint">
                                 <ul>
                                     <li>Added option to define the animation easing function.</li>
                                     <li>Added options for triggers to show the smallipop on click instead of hover.</li>

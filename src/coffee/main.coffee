@@ -1,7 +1,6 @@
 requirejs.config
-  "baseUrl": "lib"
   "paths":
-    "jquery": "contrib/jquery-1.10.1.min"
+    "jquery": "contrib/jquery.min"
     "modernizr": "contrib/modernizr"
     "prettify": "contrib/prettify"
     "smallipop": "jquery.smallipop"
@@ -51,7 +50,7 @@ requirejs ['modernizr', 'jquery', 'prettify', 'piwik', 'smallipop'], (modernizr,
     invertAnimation: true
 
   $('.smallipopBlueFatShadow').smallipop
-    theme: 'blue fatShadow'
+    theme: 'blue fat-shadow'
     invertAnimation: true
 
   $('.smallipopHideBlue').smallipop
@@ -70,7 +69,7 @@ requirejs ['modernizr', 'jquery', 'prettify', 'piwik', 'smallipop'], (modernizr,
 
   $('.smallipopHideTrans').smallipop
     hideTrigger: true
-    theme: 'white whiteTransparent'
+    theme: 'white white-transparent'
     popupYOffset: 20
 
   $('.smallipopStatic').smallipop
@@ -180,11 +179,3 @@ requirejs ['modernizr', 'jquery', 'prettify', 'piwik', 'smallipop'], (modernizr,
         piwikTracker.trackPageView()
         piwikTracker.enableLinkTracking()
     catch err
-
-    # Flattr button
-    s = document.createElement 'script'
-    t = document.getElementsByTagName('script')[0]
-    s.type = 'text/javascript'
-    s.async = true
-    s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto'
-    t.parentNode.insertBefore s, t
