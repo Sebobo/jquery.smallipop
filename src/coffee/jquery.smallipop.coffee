@@ -1,5 +1,5 @@
 ###!
-Smallipop (06/14/2013)
+Smallipop (06/21/2013)
 Copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -66,7 +66,6 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
   # Global elements
   $document = $ document
   $window = $ window
-  $body = $ 'body'
   $overlay = null
   instances = {}
 
@@ -156,7 +155,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
   # Returns the overlay and creates it if necessary
   getOverlay = ->
     unless $overlay
-      $overlay = $("<div id='#{classTourOverlay}'/>").appendTo($body).fadeOut 0
+      $overlay = $("<div id='#{classTourOverlay}'/>").appendTo($('body')).fadeOut 0
     $overlay
 
   hideTourOverlay = (options) ->
@@ -711,7 +710,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       .bind(eventMouseOver, triggerMouseover)
       .bind(eventMouseOut, triggerMouseout)
 
-    $body.append instance
+    $('body').append instance
 
     # Add some binding to events in the popup
     if isTour
