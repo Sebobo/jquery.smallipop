@@ -210,7 +210,7 @@
 .smallipop-theme-default a {
   text-shadow: 0 -1px 1px #0f161e;
 }
-.smallipop-theme-default .sipContent {
+.smallipop-theme-default .smallipop-content {
   border-top: 1px solid #586d82;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
@@ -251,8 +251,7 @@
 .smallipop-theme-blue {
   background: transparent;
   color: #111;
-  border: 10px solid #0064b4;
-  border-color: rgba(0, 100, 180, 0.9);
+  border: 10px solid rgba(0, 100, 180, 0.9);
   -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
@@ -265,38 +264,25 @@
 .smallipop-theme-blue a {
   color: #2276aa;
 }
-.smallipop-theme-blue:before, .smallipop-theme-blue:after {
-  bottom: -30px;
-}
-.smallipop-theme-blue:before {
-  border-color: #0064b4 transparent transparent transparent;
-}
 .smallipop-theme-blue:after {
+  bottom: -34px;
   border-color: rgba(0, 100, 180, 0.9) transparent transparent transparent;
 }
-.smallipop-theme-blue.smallipop-bottom {
-  top: -30px;
-}
-.smallipop-theme-blue.smallipop-bottom:before {
-  border-color: transparent transparent #0064b4 transparent;
+.smallipop-theme-blue:before {
+  display: none;
 }
 .smallipop-theme-blue.smallipop-bottom:after {
+  top: -34px;
   border-color: transparent transparent rgba(0, 100, 180, 0.9) transparent;
 }
 .smallipop-theme-blue.smallipop-left {
   right: -26px;
-}
-.smallipop-theme-blue.smallipop-left:before {
-  border-color: transparent transparent transparent #0064b4;
 }
 .smallipop-theme-blue.smallipop-left:after {
   border-color: transparent transparent transparent rgba(0, 100, 180, 0.9);
 }
 .smallipop-theme-blue.smallipop-right {
   left: -26px;
-}
-.smallipop-theme-blue.smallipop-right:before {
-  border-color: transparent #0064b4 transparent transparent;
 }
 .smallipop-theme-blue.smallipop-right:after {
   border-color: transparent rgba(0, 100, 180, 0.9) transparent transparent;

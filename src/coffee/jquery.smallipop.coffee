@@ -192,7 +192,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       ignorePopupClick = not triggerOptions.hideOnPopupClick \
         and popup.find(target).length
 
-      continue if target and trigger.length and e?.type is 'click' \
+      continue if target and trigger.length and e?.type in ['click', 'touchend'] \
         and (ignoreTriggerClick or ignorePopupClick)
 
       # Show trigger if it was hidden
@@ -802,18 +802,19 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             trigger: $self
             popupInstance: triggerPopupInstance
         else
+          touchTrigger = triggerOptions.touchSupport and touchEnabled
+
           # Activate on blur events if used on inputs and disable hide on click
           if isFormElement
             # Don't hide when trigger is clicked and show when trigger is clicked
             triggerOptions.hideOnTriggerClick = false
             triggerEvents[eventFocus] = triggerMouseover
             triggerEvents[eventBlur] = triggerMouseout
-          else
+          else if touchTrigger
             triggerEvents[eventMouseOut] = triggerMouseout
 
           # Check whether the trigger should activate smallipop by click or hover
-          if triggerOptions.triggerOnClick or \
-              (triggerOptions.touchSupport and touchEnabled)
+          if triggerOptions.triggerOnClick or touchTrigger
             triggerEvents[eventClick] = showSmallipop
           else
             triggerEvents[eventClick] = triggerMouseout

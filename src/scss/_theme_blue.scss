@@ -6,8 +6,7 @@ $blue-background-color: #fcfcfc;
 .smallipop-theme-blue {
   background:transparent;
   color: #111;
-  border: 10px solid $blue-arrow-color;
-  border-color: rgba(0, 100, 180, 0.9);
+  border: 10px solid $blue-arrow-border-color;
   @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
   @include border-radius(7px);
 
@@ -15,27 +14,24 @@ $blue-background-color: #fcfcfc;
     color: #2276aa;
   }
 
-  &:before,
   &:after {
-    bottom: -30px;
+    bottom: -34px;
+    @include border-color-top($blue-arrow-border-color);
+  }
+  &:before {
+    display: none;
   }
 
-  &:before { @include border-color-top($blue-arrow-color); }
-  &:after { @include border-color-top($blue-arrow-border-color); }
-
-  &.smallipop-bottom {
-    top: -30px;
-    &:before { @include border-color-bottom($blue-arrow-color); }
-    &:after { @include border-color-bottom($blue-arrow-border-color); }
+  &.smallipop-bottom:after {
+    top: -34px;
+    @include border-color-bottom($blue-arrow-border-color);
   }
   &.smallipop-left {
     right: -26px;
-    &:before { @include border-color-left($blue-arrow-color); }
     &:after { @include border-color-left($blue-arrow-border-color); }
   }
   &.smallipop-right {
     left: -26px;
-    &:before { @include border-color-right($blue-arrow-color); }
     &:after { @include border-color-right($blue-arrow-border-color); }
   }
 
