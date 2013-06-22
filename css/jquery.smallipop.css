@@ -66,11 +66,11 @@
   left: 18px;
 }
 
-.smallipop-align-bottom:before, .smallipop-align-bottom:after {
+.smallipop-bottom:before, .smallipop-bottom:after {
   bottom: auto;
   top: -20px;
 }
-.smallipop-align-bottom:after {
+.smallipop-bottom:after {
   top: -24px;
 }
 
@@ -224,10 +224,10 @@
 .smallipop-theme-default:after {
   border-color: #0f161e transparent transparent transparent;
 }
-.smallipop-theme-default.smallipop-align-bottom:before {
+.smallipop-theme-default.smallipop-bottom:before {
   border-color: transparent transparent #1a2634 transparent;
 }
-.smallipop-theme-default.smallipop-align-bottom:after {
+.smallipop-theme-default.smallipop-bottom:after {
   border-color: transparent transparent #0f161e transparent;
 }
 .smallipop-theme-default.smallipop-left:before {
@@ -274,13 +274,13 @@
 .smallipop-theme-blue:after {
   border-color: rgba(0, 100, 180, 0.9) transparent transparent transparent;
 }
-.smallipop-theme-blue.smallipop-align-bottom {
+.smallipop-theme-blue.smallipop-bottom {
   top: -30px;
 }
-.smallipop-theme-blue.smallipop-align-bottom:before {
+.smallipop-theme-blue.smallipop-bottom:before {
   border-color: transparent transparent #0064b4 transparent;
 }
-.smallipop-theme-blue.smallipop-align-bottom:after {
+.smallipop-theme-blue.smallipop-bottom:after {
   border-color: transparent transparent rgba(0, 100, 180, 0.9) transparent;
 }
 .smallipop-theme-blue.smallipop-left {
@@ -351,10 +351,10 @@
 .smallipop-theme-black:after {
   border-color: #111111 transparent transparent transparent;
 }
-.smallipop-theme-black.smallipop-align-bottom:before {
+.smallipop-theme-black.smallipop-bottom:before {
   border-color: transparent transparent #222222 transparent;
 }
-.smallipop-theme-black.smallipop-align-bottom:after {
+.smallipop-theme-black.smallipop-bottom:after {
   border-color: transparent transparent #111111 transparent;
 }
 .smallipop-theme-black.smallipop-left:before {
@@ -427,10 +427,10 @@
 .smallipop-theme-orange:after {
   border-color: #e17500 transparent transparent transparent;
 }
-.smallipop-theme-orange.smallipop-align-bottom:before {
+.smallipop-theme-orange.smallipop-bottom:before {
   border-color: transparent transparent #f9aa18 transparent;
 }
-.smallipop-theme-orange.smallipop-align-bottom:after {
+.smallipop-theme-orange.smallipop-bottom:after {
   border-color: transparent transparent #e17500 transparent;
 }
 .smallipop-theme-orange.smallipop-left:before {
@@ -492,10 +492,10 @@
 .smallipop-theme-white:after {
   border-color: #cccccc transparent transparent transparent;
 }
-.smallipop-theme-white.smallipop-align-bottom:before {
+.smallipop-theme-white.smallipop-bottom:before {
   border-color: transparent transparent #fcfcfc transparent;
 }
-.smallipop-theme-white.smallipop-align-bottom:after {
+.smallipop-theme-white.smallipop-bottom:after {
   border-color: transparent transparent #cccccc transparent;
 }
 .smallipop-theme-white.smallipop-left:before {

@@ -23,7 +23,7 @@ $blue-background-color: #fcfcfc;
   &:before { @include border-color-top($blue-arrow-color); }
   &:after { @include border-color-top($blue-arrow-border-color); }
 
-  &.smallipop-align-bottom {
+  &.smallipop-bottom {
     top: -30px;
     &:before { @include border-color-bottom($blue-arrow-color); }
     &:after { @include border-color-bottom($blue-arrow-border-color); }

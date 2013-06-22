@@ -20,9 +20,9 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
   classContent        = classBase + '-content'
   classLeft           = classBase + '-left'
   classRight          = classBase + '-right'
+  classBottom         = classBase + '-bottom'
   classAlignLeft      = classBase + '-align-left'
   classAlignRight     = classBase + '-align-right'
-  classAlignBottom    = classBase + '-align-bottom'
   classInitialized    = classBase + '-initialized'
   classTheme          = classBase + '-theme-'
   classTour           = classBase + '-tour'
@@ -352,7 +352,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             or popupDistanceTop < windowPadding
           yDistance = -yDistance
           popupOffsetTop += popupH + selfHeight - 2 * yOffset
-          popup.addClass classAlignBottom
+          popup.addClass classBottom
 
       # Move Smallipop vertically if it wouldn't fit in the viewport
       if popupH < selfHeight

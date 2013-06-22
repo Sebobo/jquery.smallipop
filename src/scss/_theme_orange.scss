@@ -20,7 +20,7 @@ $orange-background-color: #f9aa18;
   &:before { @include border-color-top($orange-arrow-color); }
   &:after { @include border-color-top($orange-arrow-border-color); }
 
-  &.smallipop-align-bottom {
+  &.smallipop-bottom {
     &:before { @include border-color-bottom($orange-arrow-color); }
     &:after { @include border-color-bottom($orange-arrow-border-color); }
   }

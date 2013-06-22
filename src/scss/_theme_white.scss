@@ -16,7 +16,7 @@ $white-background-color: #fcfcfc;
   &:before { @include border-color-top($white-arrow-color); }
   &:after { @include border-color-top($white-arrow-border-color); }
 
-  &.smallipop-align-bottom {
+  &.smallipop-bottom {
     &:before { @include border-color-bottom($white-arrow-color); }
     &:after { @include border-color-bottom($white-arrow-border-color); }
   }

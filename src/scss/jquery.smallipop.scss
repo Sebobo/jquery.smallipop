@@ -78,11 +78,11 @@ $fat-shadow: 0 2px 20px rgba(0, 0, 0, .8);
   &:before, &:after { margin-left:0; left:20px; right:auto; }
   &:after { left:18px; }
 }
-.smallipop-align-bottom {
+
+.smallipop-bottom {
   &:before, &:after { bottom:auto; top:-20px; }
   &:after { top:-24px; }
 }
-
 .smallipop-left,
 .smallipop-right {
   &:before,

@@ -19,7 +19,7 @@ $black-background-color: #222;
   &:before { @include border-color-top($black-arrow-color); }
   &:after { @include border-color-top($black-arrow-border-color); }
 
-  &.smallipop-align-bottom {
+  &.smallipop-bottom {
     &:before { @include border-color-bottom($black-arrow-color); }
     &:after { @include border-color-bottom($black-arrow-border-color); }
   }

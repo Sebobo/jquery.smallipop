@@ -1,13 +1,16 @@
+hostname = document.location.hostname
+develop = !(hostname and (hostname.indexOf('github') >= 0 or hostname.indexOf('sebastianhelzle') >= 0))
+
 requirejs.config
-  "paths":
-    "jquery": "contrib/jquery.min"
-    "modernizr": "contrib/modernizr"
-    "prettify": "contrib/prettify"
-    "smallipop": "jquery.smallipop"
-    "piwik": "https://tracking.sebastianhelzle.net/piwik"
+  urlArgs: if develop then 'bust=' + (new Date()).getTime() else ''
+  paths:
+    jquery: "contrib/jquery.min"
+    prettify: "contrib/prettify"
+    smallipop: "jquery.smallipop"
+    piwik: "https://tracking.sebastianhelzle.net/piwik"
 
 # Load modernizr and the demo initialization module
-requirejs ['modernizr', 'jquery', 'prettify', 'piwik', 'smallipop'], (modernizr, $) ->
+requirejs ['jquery', 'prettify', 'piwik', 'smallipop'], ($) ->
   # Floating side menu
   sideMenu = $ '.side-menu'
   sideMenuItems = $ 'a', sideMenu
@@ -170,12 +173,10 @@ requirejs ['modernizr', 'jquery', 'prettify', 'piwik', 'smallipop'], (modernizr,
           $self.addClass 'wobble'
     .trigger 'scroll'
 
-  ### Special 3rd party script calls ###
-  hostname = document.location.hostname
-  if hostname and (hostname.indexOf('github') >= 0 or hostname.indexOf('sebastianhelzle') >= 0)
-    # Piwik tracking
+  # Piwik tracking
+  unless develop
     try
-        piwikTracker = Piwik.getTracker 'https://tracking.sebastianhelzle.net/piwik.php', 5
-        piwikTracker.trackPageView()
-        piwikTracker.enableLinkTracking()
+      piwikTracker = Piwik.getTracker 'https://tracking.sebastianhelzle.net/piwik.php', 5
+      piwikTracker.trackPageView()
+      piwikTracker.enableLinkTracking()
     catch err

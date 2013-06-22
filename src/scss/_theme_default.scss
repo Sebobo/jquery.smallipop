@@ -21,7 +21,7 @@ $default-arrow-border-color: $base-color;
   &:before { @include border-color-top($default-arrow-color); }
   &:after { @include border-color-top($default-arrow-border-color); }
 
-  &.smallipop-align-bottom {
+  &.smallipop-bottom {
     &:before { @include border-color-bottom($default-arrow-color); }
     &:after { @include border-color-bottom($default-arrow-border-color); }
   }
