@@ -20,6 +20,8 @@ We are starting to use this plugin for a lot of things, so watch for new release
 
 See the [documentation page](http://sebobo.github.com/jquery.smallipop/) for a live demo and examples.
 
+Do you like this project?
+[Buy me a beer](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TSN2TDYNKZHF4)
 
 Installation
 ------------
