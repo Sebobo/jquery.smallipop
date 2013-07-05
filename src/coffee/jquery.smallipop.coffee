@@ -108,7 +108,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       popupDelay: 100
       popupAnimationSpeed: 200
       preferredPosition: 'top' # bottom, top, left or right
-      referencedSelector: null
+      referencedContent: null
       theme: 'default'
       touchSupport: true
       tourHighlight: false
