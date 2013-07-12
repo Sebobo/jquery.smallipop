@@ -60,7 +60,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
   dataIsTour          = classBase + 'IsTour'
 
   # Regular expressions
-  reAlignmentClass = new RegExp classBase + '-align\w+', "g"
+  reAlignmentClass = new RegExp classBase + '-(align|bottom)\w*', "g"
   reBaseClass = new RegExp classBase + '\w+', "g"
 
   # Global elements
@@ -86,7 +86,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
   popupTemplate = "<div class='#{classInstance}'><div class='#{classContent}'/></div>"
 
   $.smallipop = sip =
-    version: '0.6.0'
+    version: '0.6.1'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
@@ -102,6 +102,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       hideOnTriggerClick: true
       infoClass: classHint
       invertAnimation: false
+      popupId: ''
       popupOffset: 31
       popupYOffset: 0
       popupDistance: 20
@@ -173,13 +174,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
       trigger = getTrigger shownId
       triggerIsTarget = trigger.is target
+      triggerData = trigger.data(classBase)
+      triggerOptions = triggerData.options or sip.defaults
 
-      continue if popupData[dataIsTour] \
+      continue if (popupData[dataIsTour] or triggerData.isFormElement) \
         and not popup.is(target) \
-        and not (triggerIsTarget and popup.is(trigger.data(classBase).popupInstance))
-
-      trigger = getTrigger shownId
-      triggerOptions = trigger.data(classBase)?.options or sip.defaults
+        and not (triggerIsTarget and popup.is(triggerOptions.popupInstance))
 
       # Fire close callback
       if popupData[dataIsTour]
@@ -382,8 +382,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       if not popupData[dataBeingShown] or options.cssAnimations.enabled
         popupOffsetTop -= yDistance
         popupOffsetLeft += xDistance
-        xDistance = 0
-        yDistance = 0
+        xDistance = yDistance = 0
         opacity = 1
 
       # If the element is fixed, it has to be moved by the current scroll offset
@@ -749,7 +748,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       options.cssAnimations.enabled = false
 
     # Initialize smallipop on first call
-    $popup = getInstance()
+    $popup = getInstance options.popupId
 
     return @.each ->
       $self = $ @
@@ -810,7 +809,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             triggerOptions.hideOnTriggerClick = false
             triggerEvents[eventFocus] = triggerMouseover
             triggerEvents[eventBlur] = triggerMouseout
-          else if touchTrigger
+          else if not touchTrigger
             triggerEvents[eventMouseOut] = triggerMouseout
 
           # Check whether the trigger should activate smallipop by click or hover
@@ -832,6 +831,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
             type: type
             tourTitle: tourTitle
             popupInstance: triggerPopupInstance
+            isFormElement: isFormElement
           .bind triggerEvents
 
         # Hide popup when links contained in the trigger are clicked

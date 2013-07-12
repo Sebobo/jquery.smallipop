@@ -18,7 +18,7 @@
             <h1 id="docustart">Smallipop - A versatile jQuery plugin for displaying beautiful tooltips and interactive tours</h1>
 
             <p>
-                <b>Version 0.6.0</b> -
+                <b>Version 0.6.1</b> -
                 Created by <b><a href="http://www.sebastianhelzle.net" target="_blank" title="Sebastian Helzle Portfolio">Sebastian Helzle</a></b>
                 for <b><a href="http://www.small-improvements.com" target="_blank" title="Small Improvements - 360 Feedback">Small Improvements</a></b>
             </p>
@@ -464,18 +464,15 @@
                     <ul>
                         <li>
                             <span class="label success">NEW</span>
-                            Done a lot of refactoring. Minified versions of js and css lost some KB.
+                            Option popupId. This allows multiple concurrent Smallipops.
                         </li>
                         <li>
-                            <span class="label success">NEW</span>
-                            Tooltip arrows are now using :after and :before pseudo elements.
-                            Thanks to <a href="https://github.com/zalog" title="zalog on github">zalog</a> for this patch. <br/>
-                            These arrows won't show up when using IE7 and earlier.
+                            <span class="label important">FIX</span>
+                            Wrong position of arrow when scrolling and smallipop realigns
                         </li>
                         <li>
-                            <span class="label success">NEW</span>
-                            All css classes are now using dashes. This simplifies a lot of things and makes the plugin more consistent. <br/>
-                            You should check your custom themes!
+                            <span class="label important">FIX</span>
+                            Mouseout for trigger works again
                         </li>
                     </ul>
 
@@ -483,6 +480,28 @@
                     <h5>Older versions</h5>
 
                     <div id="changelog">
+                        <span class="sampleElement smallipopBlack">
+                            0.6.0
+                            <div class="smallipop-hint">
+                                <ul>
+                                    <li>
+                                        <span class="label success">NEW</span>
+                                        Done a lot of refactoring. Minified versions of js and css lost some KB.
+                                    </li>
+                                    <li>
+                                        <span class="label success">NEW</span>
+                                        Tooltip arrows are now using :after and :before pseudo elements.
+                                        Thanks to <a href="https://github.com/zalog" title="zalog on github">zalog</a> for this patch. <br/>
+                                        These arrows won't show up when using IE7 and earlier.
+                                    </li>
+                                    <li>
+                                        <span class="label success">NEW</span>
+                                        All css classes are now using dashes. This simplifies a lot of things and makes the plugin more consistent. <br/>
+                                        You should check your custom themes!
+                                    </li>
+                                </ul>
+                            </div>
+                        </span>
                         <span class="sampleElement smallipopBlack">
                             0.5.3
                             <div class="smallipop-hint">

@@ -96,6 +96,7 @@ requirejs ['jquery', 'prettify', 'piwik', 'smallipop'], ($) ->
     theme: 'black'
     popupOffset: 0
     triggerOnClick: true
+    popupId: 'form'
 
   $('#tipcustomhint').smallipop {}, "I'm the real hint!"
 
