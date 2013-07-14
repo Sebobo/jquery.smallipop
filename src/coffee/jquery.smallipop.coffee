@@ -232,12 +232,12 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
               triggerOptions.onAfterHide?()
 
-  showSmallipop= (e) ->
+  onClickTrigger = (e) ->
     triggerData = $(@).data classBase
     return unless triggerData
 
     if triggerData.popupInstance.data(dataShown) isnt triggerData.id \
-      and not triggerData.type in ['checkbox', 'radio']
+      and not triggerData.type not in ['checkbox', 'radio']
         e?.preventDefault()
 
     triggerMouseover.call @
@@ -734,7 +734,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     # Handle direct method calls
     if typeof(options) is 'string'
       switch options.toLowerCase()
-        when 'show' then showSmallipop.call @first().get(0)
+        when 'show' then triggerMouseover.call @first().get(0)
         when 'hide' then hideSmallipop @first().get(0)
         when 'destroy' then destroy @
         when 'tour' then runTour @first(), hint
@@ -814,7 +814,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
 
           # Check whether the trigger should activate smallipop by click or hover
           if triggerOptions.triggerOnClick or touchTrigger
-            triggerEvents[eventClick] = showSmallipop
+            triggerEvents[eventClick] = onClickTrigger
           else
             triggerEvents[eventClick] = triggerMouseout
             triggerEvents[eventMouseOver] = triggerMouseover
