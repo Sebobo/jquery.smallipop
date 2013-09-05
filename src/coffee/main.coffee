@@ -10,7 +10,7 @@ requirejs.config
     piwik: "https://tracking.sebastianhelzle.net/piwik"
 
 # Load modernizr and the demo initialization module
-requirejs ['jquery', 'prettify', 'piwik', 'smallipop'], ($) ->
+requirejs ['jquery', 'prettify', 'smallipop', 'piwik'], ($) ->
   # Floating side menu
   sideMenu = $ '.side-menu'
   sideMenuItems = $ 'a', sideMenu
