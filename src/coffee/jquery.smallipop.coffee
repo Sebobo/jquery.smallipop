@@ -760,7 +760,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
       # If it's inline markup, create a deep copy of the hint html
       objHint = hint or $self.attr('title')
 
-      $objInfo = $ "> .#{options.infoClass}:first", $self
+      $objInfo = $ ".#{options.infoClass}:first", $self
       if $objInfo.length
         objHint = $objInfo.clone(true, true).removeClass options.infoClass
 
