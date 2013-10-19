@@ -329,10 +329,10 @@
 &lt;script type="text/javascript"&gt;
     $('#tipChangeContent').smallipop({
         onAfterShow: function(trigger) {
-            $.smallipop.setContent("I'm the new content and replaced the old boring content!");
+            trigger.smallipop('update', "I'm the new content and I have replaced the old boring content!");
         },
         onBeforeHide: function(trigger) {
-            $.smallipop.setContent("Bye bye");
+            trigger.smallipop('update', "Bye bye");
         }
     });
 &lt;/script&gt;</pre>

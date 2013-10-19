@@ -110,9 +110,9 @@ requirejs ['jquery', 'prettify', 'smallipop', 'piwik'], ($) ->
 
   $('#tipChangeContent').smallipop
     onAfterShow: (trigger) ->
-      $.smallipop.setContent trigger, "I'm the new content and I have replaced the old boring content!"
+      trigger.smallipop 'update', "I'm the new content and I have replaced the old boring content!"
     onBeforeHide: (trigger) ->
-      $.smallipop.setContent trigger, "Bye bye"
+      trigger.smallipop 'update', "Bye bye"
 
   $('#tipCSSAnimated').smallipop
     cssAnimations:
