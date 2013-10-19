@@ -21,10 +21,8 @@
   color: #d2dfe7;
   z-index: 9999;
   max-width: 400px;
-}
-.smallipop-instance font {
-  size: 11px;
-  family: "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
 }
 .smallipop-instance a {
   color: #98cbea;
@@ -460,7 +458,6 @@
 .smallipop-theme-white {
   background-color: #fcfcfc;
   border-color: #777777;
-  text-shadow: 0 1px 1px #eee;
   color: #444;
   width: 200px;
   max-width: 200px;
