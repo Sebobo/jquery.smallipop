@@ -339,15 +339,17 @@
 
                 <h5>Use referenced element as tooltip content</h5>
                 <div class="bs-docs-example">
-                    <a id="tipReferenced" class="smallipop sampleElement" title="Referenced content" data-smallipop-referenced-content="#tipReferencedTarget">Hover me!</a>
+                    <a id="tipReferenced" class="smallipop sampleElement" title="Referenced content" data-smallipop-referenced-content="#tipReferencedTarget > *">Hover me!</a>
                     <br/>
                     <br/>
                     <div id="tipReferencedTarget">
-                        The real tooltip content!
+                        <p>
+                            The real tooltip content!
+                        </p>
                     </div>
                 </div>
                 <pre class="prettyprint linenums">
-&lt;a id="tipReferenced" data-smallipop-referenced-content="#tipReferencedTarget" title="Referenced content"&gt;
+&lt;a id="tipReferenced" data-smallipop-referenced-content="#tipReferencedTarget > *" title="Referenced content"&gt;
     Hover me!
 &lt;/a&gt;
 &lt;div id="tipReferencedTarget"&gt;
