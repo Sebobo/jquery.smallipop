@@ -6,8 +6,7 @@ $default-arrow-border-color: $base-color;
   text-shadow: $default-text-shadow;
   @include box-shadow($default-box-shadow);
   @include border-radius($default-border-radius);
-  @include background(linear-gradient(rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9))); /* Fallback for opera */
-  @include background(radial-gradient(50% -100px, circle contain, rgba(49, 75, 100, 0.9) 100px, rgba(33, 50, 66, 0.9) 130px, rgba(26, 38, 52, 0.9) 150px));
+  @include background(linear-gradient(rgba(49, 75, 100, 0.9), rgba(26, 38, 52, 0.9)));
 
   a {
     text-shadow: $default-link-text-shadow;
@@ -18,22 +17,7 @@ $default-arrow-border-color: $base-color;
     @include border-radius($default-border-radius);
   }
 
-  &:before { @include border-color-top($default-arrow-color); }
-  &:after { @include border-color-top($default-arrow-border-color); }
-
-  &.smallipop-bottom {
-    &:before { @include border-color-bottom($default-arrow-color); }
-    &:after { @include border-color-bottom($default-arrow-border-color); }
-  }
-
-  &.smallipop-left {
-    &:before { @include border-color-left($default-arrow-color); }
-    &:after { @include border-color-left($default-arrow-border-color); }
-  }
-  &.smallipop-right {
-    &:before { @include border-color-right($default-arrow-color); }
-    &:after { @include border-color-right($default-arrow-border-color); }
-  }
+  @include smallipop-arrow($default-arrow-color, $default-arrow-border-color);
 }
 .cssgradients.rgba .smallipop-theme-default {
   background-color: transparent;

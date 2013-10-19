@@ -1,33 +1,20 @@
 /* white theme */
 $white-arrow-color: #fcfcfc;
-$white-arrow-border-color: #ccc;
+$white-arrow-border-color: #777;
 $white-background-color: #fcfcfc;
+$white-transparent-border-color: rgba(255, 255, 255, 0.8);
 
 .smallipop-theme-white {
   background-color: $white-background-color;
-  border-color:#ccc;
-  text-shadow:0 1px 1px #eee;
-  color:#444;
-  width:200px;
-  max-width:200px;
+  border-color: $white-arrow-border-color;
+  text-shadow: 0 1px 1px #eee;
+  color: #444;
+  width: 200px;
+  max-width: 200px;
   @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.1));
-  @include border-radius(6px);
+  @include border-radius(3px);
 
-  &:before { @include border-color-top($white-arrow-color); }
-  &:after { @include border-color-top($white-arrow-border-color); }
-
-  &.smallipop-bottom {
-    &:before { @include border-color-bottom($white-arrow-color); }
-    &:after { @include border-color-bottom($white-arrow-border-color); }
-  }
-  &.smallipop-left {
-    &:before { @include border-color-left($white-arrow-color); }
-    &:after { @include border-color-left($white-arrow-border-color); }
-  }
-  &.smallipop-right {
-    &:before { @include border-color-right($white-arrow-color); }
-    &:after { @include border-color-right($white-arrow-border-color); }
-  }
+  @include smallipop-arrow($white-arrow-color, $white-arrow-border-color);
 
   .smallipop-content {
     text-align:center;
@@ -62,24 +49,8 @@ $white-background-color: #fcfcfc;
 
 /* white theme extended, requires rgba support */
 .smallipop-theme-white-transparent {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: $white-transparent-border-color;
+  border: 0;
 
-  &:before {
-    bottom: -21px;
-    border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
-  }
-  &:after {
-    border-color: transparent;
-  }
-
-  &.sipAlignBottom:before {
-    top: -21px;
-    border-color: transparent transparent rgba(255, 255, 255, 0.8) transparent;
-  }
-  &.sipPositionedLeft:before {
-    border-color: transparent transparent transparent rgba(255, 255, 255, 0.8);
-  }
-  &.sipPositionedRight:before {
-    border-color: transparent rgba(255, 255, 255, 0.8) transparent transparent;
-  }
+  @include smallipop-arrow($white-transparent-border-color, transparent);
 }

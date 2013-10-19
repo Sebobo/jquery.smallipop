@@ -4,7 +4,7 @@
 $base-color: #0f161e;
 $default-background-color: #314b64;
 $default-border: 1px solid $base-color;
-$default-border-radius: 12px;
+$default-border-radius: 3px;
 $default-box-shadow: 0 2px 6px rgba(0, 0, 0, .5);
 $default-color: #d2dfe7;
 $default-text-shadow: 0 -1px 1px $base-color;
@@ -43,7 +43,7 @@ $fat-shadow: 0 2px 20px rgba(0, 0, 0, .8);
   max-width: $max-width;
   font {
     size: 11px;
-    family: arial;
+    family: "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
   }
 
   a {
@@ -59,29 +59,27 @@ $fat-shadow: 0 2px 20px rgba(0, 0, 0, .8);
     pointer-events: none;
   }
   &:before {
-    bottom: -20px;
+    bottom: -21px;
     margin-left: -10px;
     border: 10px solid transparent;
   }
   &:after {
-    bottom: -24px;
-    margin-left: -12px;
-    border: 12px solid transparent;
+    bottom: -20px;
+    margin-left: -10px;
+    border: 10px solid transparent;
   }
 }
 
 .smallipop-align-left {
   &:before, &:after { margin-left:0; left:auto; right:20px; }
-  &:after { right:18px; }
 }
 .smallipop-align-right {
   &:before, &:after { margin-left:0; left:20px; right:auto; }
-  &:after { left:18px; }
 }
 
 .smallipop-bottom {
   &:before, &:after { bottom:auto; top:-20px; }
-  &:after { top:-24px; }
+  &:before { top:-21px; }
 }
 .smallipop-left,
 .smallipop-right {
@@ -94,7 +92,7 @@ $fat-shadow: 0 2px 20px rgba(0, 0, 0, .8);
     border-width: 8px;
     margin: -8px 0 0;
   }
-  &:after {
+  &:before {
     right: -20px;
     border-width: 10px;
     margin: -10px 0 0;
@@ -107,7 +105,7 @@ $fat-shadow: 0 2px 20px rgba(0, 0, 0, .8);
     left: -16px;
     right: auto;
   }
-  &:after {
+  &:before {
     left: -20px;
   }
 }

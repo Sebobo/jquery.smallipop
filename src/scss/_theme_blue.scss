@@ -8,32 +8,26 @@ $blue-background-color: #fcfcfc;
   color: #111;
   border: 10px solid $blue-arrow-border-color;
   @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
-  @include border-radius(7px);
+  @include border-radius(3px);
 
   a {
     color: #2276aa;
   }
 
-  &:after {
-    bottom: -34px;
-    @include border-color-top($blue-arrow-border-color);
-  }
   &:before {
-    display: none;
+    bottom: -30px;
+  }
+  &.smallipop-bottom:before {
+    top: -30px;
+  }
+  &.smallipop-left:before {
+    right: -22px;
+  }
+  &.smallipop-right:before {
+    left: -22px;
   }
 
-  &.smallipop-bottom:after {
-    top: -34px;
-    @include border-color-bottom($blue-arrow-border-color);
-  }
-  &.smallipop-left {
-    right: -26px;
-    &:after { @include border-color-left($blue-arrow-border-color); }
-  }
-  &.smallipop-right {
-    left: -26px;
-    &:after { @include border-color-right($blue-arrow-border-color); }
-  }
+  @include smallipop-arrow(transparent, $blue-arrow-border-color);
 
   .smallipop-content {
     border: 0;

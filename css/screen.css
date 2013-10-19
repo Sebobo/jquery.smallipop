@@ -703,7 +703,7 @@ html {
 
 body {
   height: 100%;
-  font-family: arial;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
   font-size: 1em;
   line-height: 1.3em;
   padding: 30px 0;
@@ -859,19 +859,24 @@ img.inline {
   background-color: #ffe199;
   font-size: 1.1em;
   text-shadow: 0 1px 1px #fff24d;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
-  border-radius: 6px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
   -webkit-box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3);
   -moz-box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3);
   box-shadow: 0 1px 4px rgba(255, 162, 0, 0.3);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fff24d), color-stop(100%, #f9aa18));
+  background: -webkit-linear-gradient(#fff24d, #f9aa18);
+  background: -moz-linear-gradient(#fff24d, #f9aa18);
+  background: -o-linear-gradient(#fff24d, #f9aa18);
+  background: linear-gradient(#fff24d, #f9aa18);
 }
 .sampleElement.white, .sampleElement.black, .sampleElement.blue, .sampleElement.green, .sampleElement.default {
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 .sampleElement.big {
   font-size: 1.4em;
@@ -884,29 +889,61 @@ img.inline {
   background-color: #fff4d9;
   border-color: #ffd777;
   text-decoration: none;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fff24d), color-stop(100%, #fdc661));
+  background: -webkit-linear-gradient(#fff24d, #fdc661);
+  background: -moz-linear-gradient(#fff24d, #fdc661);
+  background: -o-linear-gradient(#fff24d, #fdc661);
+  background: linear-gradient(#fff24d, #fdc661);
 }
 .sampleElement.white {
   background-color: #fff;
   border-color: #ddd;
   text-shadow: none;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fafafa));
+  background: -webkit-linear-gradient(#ffffff, #fafafa);
+  background: -moz-linear-gradient(#ffffff, #fafafa);
+  background: -o-linear-gradient(#ffffff, #fafafa);
+  background: linear-gradient(#ffffff, #fafafa);
 }
 .sampleElement.green {
   background-color: #2ea41e;
   border-color: #239714;
   color: #fafafa;
   text-shadow: 0 1px 1px #196d0e;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #35b125), color-stop(100%, #29a219));
+  background: -webkit-linear-gradient(#35b125, #29a219);
+  background: -moz-linear-gradient(#35b125, #29a219);
+  background: -o-linear-gradient(#35b125, #29a219);
+  background: linear-gradient(#35b125, #29a219);
+}
+.sampleElement.green:hover {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #40bb30), color-stop(100%, #31aa21));
+  background: -webkit-linear-gradient(#40bb30, #31aa21);
+  background: -moz-linear-gradient(#40bb30, #31aa21);
+  background: -o-linear-gradient(#40bb30, #31aa21);
+  background: linear-gradient(#40bb30, #31aa21);
 }
 .sampleElement.black {
   background-color: #333;
   color: #eee;
   border-color: #000;
   text-shadow: none;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #444444), color-stop(100%, #111111));
+  background: -webkit-linear-gradient(#444444, #111111);
+  background: -moz-linear-gradient(#444444, #111111);
+  background: -o-linear-gradient(#444444, #111111);
+  background: linear-gradient(#444444, #111111);
 }
 .sampleElement.blue {
   background-color: #0064b4;
   color: #eee;
   border-color: #0064b4;
   text-shadow: none;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1279cb), color-stop(100%, #0064b4));
+  background: -webkit-linear-gradient(#1279cb, #0064b4);
+  background: -moz-linear-gradient(#1279cb, #0064b4);
+  background: -o-linear-gradient(#1279cb, #0064b4);
+  background: linear-gradient(#1279cb, #0064b4);
 }
 .sampleElement.orange {
   background-color: #fbb913;
@@ -917,59 +954,6 @@ img.inline {
   color: #eee;
   border-color: #314b64;
   text-shadow: none;
-}
-
-.cssgradients .sampleElement {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fff24d), color-stop(100%, #f9aa18));
-  background: -webkit-linear-gradient(#fff24d, #f9aa18);
-  background: -moz-linear-gradient(#fff24d, #f9aa18);
-  background: -o-linear-gradient(#fff24d, #f9aa18);
-  background: linear-gradient(#fff24d, #f9aa18);
-}
-.cssgradients .sampleElement:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fff24d), color-stop(100%, #fdc661));
-  background: -webkit-linear-gradient(#fff24d, #fdc661);
-  background: -moz-linear-gradient(#fff24d, #fdc661);
-  background: -o-linear-gradient(#fff24d, #fdc661);
-  background: linear-gradient(#fff24d, #fdc661);
-}
-.cssgradients .sampleElement.white {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fafafa));
-  background: -webkit-linear-gradient(#ffffff, #fafafa);
-  background: -moz-linear-gradient(#ffffff, #fafafa);
-  background: -o-linear-gradient(#ffffff, #fafafa);
-  background: linear-gradient(#ffffff, #fafafa);
-}
-.cssgradients .sampleElement.green {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #35b125), color-stop(100%, #29a219));
-  background: -webkit-linear-gradient(#35b125, #29a219);
-  background: -moz-linear-gradient(#35b125, #29a219);
-  background: -o-linear-gradient(#35b125, #29a219);
-  background: linear-gradient(#35b125, #29a219);
-}
-.cssgradients .sampleElement.green:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #40bb30), color-stop(100%, #31aa21));
-  background: -webkit-linear-gradient(#40bb30, #31aa21);
-  background: -moz-linear-gradient(#40bb30, #31aa21);
-  background: -o-linear-gradient(#40bb30, #31aa21);
-  background: linear-gradient(#40bb30, #31aa21);
-}
-.cssgradients .sampleElement.black {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #444444), color-stop(100%, #111111));
-  background: -webkit-linear-gradient(#444444, #111111);
-  background: -moz-linear-gradient(#444444, #111111);
-  background: -o-linear-gradient(#444444, #111111);
-  background: linear-gradient(#444444, #111111);
-}
-.cssgradients .sampleElement.blue {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #1279cb), color-stop(100%, #0064b4));
-  background: -webkit-linear-gradient(#1279cb, #0064b4);
-  background: -moz-linear-gradient(#1279cb, #0064b4);
-  background: -o-linear-gradient(#1279cb, #0064b4);
-  background: linear-gradient(#1279cb, #0064b4);
-  color: #eee;
-}
-.cssgradients .sampleElement.default {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4f6c88), color-stop(100%, #314b64));
   background: -webkit-linear-gradient(#4f6c88, #314b64);
   background: -moz-linear-gradient(#4f6c88, #314b64);
@@ -1015,7 +999,7 @@ img.inline {
   height: 21px;
   font-size: 26px;
   font-weight: bold;
-  line-height: 21px;
+  line-height: 18px;
   text-align: center;
   color: #6fc048;
   background-color: #fff;
@@ -1025,19 +1009,16 @@ img.inline {
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-radius: 2px;
-}
-.indicator .indicatorPlus {
-  width: 14px;
-  margin: 0 3px;
-  overflow: hidden;
-}
-
-.cssgradients .indicator {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #fafafa));
   background: -webkit-linear-gradient(#ffffff, #fafafa);
   background: -moz-linear-gradient(#ffffff, #fafafa);
   background: -o-linear-gradient(#ffffff, #fafafa);
   background: linear-gradient(#ffffff, #fafafa);
+}
+.indicator .indicatorPlus {
+  width: 14px;
+  margin: 0 3px;
+  overflow: hidden;
 }
 
 .smallipopArrow {
@@ -1242,7 +1223,6 @@ img.inline {
   -o-border-radius: 30px;
   border-radius: 30px;
 }
-
 .pulser .inner {
   height: 16px;
   width: 16px;
@@ -1251,22 +1231,18 @@ img.inline {
   top: 0px;
   background: #fcfcfc;
   color: #1ec016;
-  text-shadow: 0 -1px 1px #cccccc;
+  text-shadow: 0 -1px 1px #ccc;
   font-size: 16px;
-  line-height: 16px;
+  line-height: 14px;
   font-weight: bold;
   text-align: center;
-}
-
-.cssgradients .pulser .inner {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fafafa), color-stop(100%, #dddddd));
   background: -webkit-linear-gradient(#fafafa, #dddddd);
   background: -moz-linear-gradient(#fafafa, #dddddd);
   background: -o-linear-gradient(#fafafa, #dddddd);
   background: linear-gradient(#fafafa, #dddddd);
 }
-
-.cssanimations .pulser .outer {
+.pulser .outer {
   height: 12px;
   width: 12px;
   position: absolute;

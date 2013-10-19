@@ -10,28 +10,14 @@ $orange-background-color: #f9aa18;
   color: #714900;
   @include background(linear-gradient(#fff24d, #f9aa18));
   @include box-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
-  @include border-radius(10px);
+  @include border-radius(8px);
 
   a {
     color: #145d95;
     text-shadow:0 1px 1px #fff24d;
   }
 
-  &:before { @include border-color-top($orange-arrow-color); }
-  &:after { @include border-color-top($orange-arrow-border-color); }
-
-  &.smallipop-bottom {
-    &:before { @include border-color-bottom($orange-arrow-color); }
-    &:after { @include border-color-bottom($orange-arrow-border-color); }
-  }
-  &.smallipop-left {
-    &:before { @include border-color-left($orange-arrow-color); }
-    &:after { @include border-color-left($orange-arrow-border-color); }
-  }
-  &.smallipop-right {
-    &:before { @include border-color-right($orange-arrow-color); }
-    &:after { @include border-color-right($orange-arrow-border-color); }
-  }
+  @include smallipop-arrow($orange-arrow-color, $orange-arrow-border-color);
 
   .smallipop-content {
     border-top:1px solid #fffabc;

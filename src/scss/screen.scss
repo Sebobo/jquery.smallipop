@@ -10,7 +10,7 @@ html {
 
 body {
   height: 100%;
-  font-family: arial;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
   font-size: 1em;
   line-height: 1.3em;
   padding: 30px 0;
@@ -119,15 +119,16 @@ img.inline { margin: 10px; }
   background-color: #ffe199;
   font-size: 1.1em;
   text-shadow:0 1px 1px #fff24d;
-  @include border-radius(6px);
+  @include border-radius(3px);
   @include box-shadow(0 1px 4px rgba(255, 162, 0, 0.3));
+  @include background(linear-gradient(#fff24d, #f9aa18));
 
   &.white,
   &.black,
   &.blue,
   &.green,
   &.default {
-    @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.3));
+    @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.1));
   }
 
   &.big {
@@ -140,30 +141,38 @@ img.inline { margin: 10px; }
     background-color: #fff4d9;
     border-color: #ffd777;
     text-decoration: none;
+    @include background(linear-gradient(#fff24d, #fdc661));
   }
 
   &.white {
     background-color: #fff;
     border-color: #ddd;
     text-shadow:none;
+    @include background(linear-gradient(#ffffff, #fafafa));
   }
   &.green {
     background-color: #2ea41e;
     border-color: #239714;
     color: #fafafa;
     text-shadow: 0 1px 1px #196d0e;
+    @include background(linear-gradient(#35b125, #29a219));
+    &:hover {
+      @include background(linear-gradient(#40bb30, #31aa21));
+    }
   }
   &.black {
     background-color: #333;
     color: #eee;
     border-color: #000;
     text-shadow:none;
+    @include background(linear-gradient(#444444, #111111));
   }
   &.blue {
     background-color: #0064b4;
     color: #eee;
     border-color: #0064b4;
     text-shadow:none;
+    @include background(linear-gradient(#1279cb, #0064b4));
   }
   &.orange {
     background-color: #fbb913;
@@ -174,32 +183,6 @@ img.inline { margin: 10px; }
     color: #eee;
     border-color: #314b64;
     text-shadow:none;
-  }
-}
-.cssgradients .sampleElement {
-  @include background(linear-gradient(#fff24d, #f9aa18));
-
-  &:hover {
-    @include background(linear-gradient(#fff24d, #fdc661));
-  }
-
-  &.white {
-    @include background(linear-gradient(#ffffff, #fafafa));
-  }
-  &.green {
-    @include background(linear-gradient(#35b125, #29a219));
-    &:hover {
-      @include background(linear-gradient(#40bb30, #31aa21));
-    }
-  }
-  &.black {
-    @include background(linear-gradient(#444444, #111111));
-  }
-  &.blue {
-    @include background(linear-gradient(#1279cb, #0064b4));
-    color: #eee;
-  }
-  &.default {
     @include background(linear-gradient(#4f6c88, #314b64));
   }
 }
@@ -249,21 +232,19 @@ img.inline { margin: 10px; }
   width: 21px; height: 21px;
   font-size: 26px;
   font-weight: bold;
-  line-height: 21px;
+  line-height: 18px;
   text-align: center;
   color: #6fc048;
   background-color: #fff;
   opacity: 0.95;
   @include border-radius(2px);
+  @include background(linear-gradient(#ffffff, #fafafa));
 
   .indicatorPlus {
     width: 14px;
     margin: 0 3px;
     overflow:hidden;
   }
-}
-.cssgradients .indicator {
-  @include background(linear-gradient(#ffffff, #fafafa));
 }
 
 .smallipopArrow {
@@ -330,38 +311,42 @@ img.inline { margin: 10px; }
 
 /* pulser */
 .pulser {
-  height:12px; width:12px;
-  position:absolute;
+  height: 12px;
+  width: 12px;
+  position: absolute;
 
   &,
   .outer,
   .inner { @include border-radius(30px); }
-}
-.pulser .inner {
-  height:16px; width:16px;
-  position:absolute;
-  left:0px; top:0px;
-  background:#fcfcfc;
-  color:#1ec016;
-  text-shadow:0 -1px 1px #ccc;
-  font-size:16px;
-  line-height:16px;
-  font-weight:bold;
-  text-align:center;
-}
-.cssgradients .pulser .inner {
-  @include background(linear-gradient(#fafafa, #dddddd));
-}
-.cssanimations .pulser .outer {
-  height: 12px; width: 12px;
-  position: absolute;
-  left:0; top:0;
-  border: 2px solid #50b6f4;
-  -webkit-animation: pulsate 1.2s ease-out;
-  -webkit-animation-iteration-count: infinite;
-  -moz-animation: pulsate 1.2s ease-out;
-  -moz-animation-iteration-count: infinite;
-  opacity: 0.0;
+
+  .inner {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: #fcfcfc;
+    color: #1ec016;
+    text-shadow: 0 -1px 1px #ccc;
+    font-size: 16px;
+    line-height: 14px;
+    font-weight: bold;
+    text-align: center;
+    @include background(linear-gradient(#fafafa, #dddddd));
+  }
+  .outer {
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    left:0;
+    top:0;
+    border: 2px solid #50b6f4;
+    -webkit-animation: pulsate 1.2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation: pulsate 1.2s ease-out;
+    -moz-animation-iteration-count: infinite;
+    opacity: 0.0;
+  }
 }
 @-webkit-keyframes pulsate {
   0% {-webkit-transform: scale(1, 1); opacity: 0.0;}
@@ -387,7 +372,6 @@ img.inline { margin: 10px; }
   border: 1px solid #ccc;
   padding: 10px;
   background: #fafafa;
-
   @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.2));
 }
 

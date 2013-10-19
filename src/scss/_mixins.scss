@@ -6,15 +6,27 @@
   border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
 }
 
-@mixin border-color-top($color) {
-  border-color: $color transparent transparent transparent;
+@mixin border-color($orientation, $color) {
+  @if $orientation == top {
+    border-color: $color transparent transparent transparent;
+  } @else if $orientation == right {
+    border-color: transparent $color transparent transparent;
+  } @else if $orientation == bottom {
+    border-color: transparent transparent $color transparent;
+  } @else if $orientation == left {
+    border-color: transparent transparent transparent $color;
+  }
 }
-@mixin border-color-right($color) {
-  border-color: transparent $color transparent transparent;
-}
-@mixin border-color-bottom($color) {
-  border-color: transparent transparent $color transparent;
-}
-@mixin border-color-left($color) {
-  border-color: transparent transparent transparent $color;
+
+@mixin smallipop-arrow($inner-color, $outer-color) {
+
+  &:before { @include border-color(top, $outer-color); }
+  &:after { @include border-color(top, $inner-color); }
+
+  @each $orientation in bottom, left, right {
+    &.smallipop-#{$orientation} {
+      &:before { @include border-color(#{$orientation}, $outer-color); }
+      &:after { @include border-color(#{$orientation}, $inner-color); }
+    }
+  }
 }
