@@ -67,6 +67,8 @@ module.exports = (grunt) ->
 
   # Default task which watches, sass and coffee.
   grunt.registerTask 'default', ['watch']
+  # Compile task
+  grunt.registerTask 'compile', ['sass:compile', 'coffee:compile']
   # Minify task
   grunt.registerTask 'minify', ['uglify', 'sass:dist']
   # Release task to run tests then minify js and css
