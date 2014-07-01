@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/sebobo/jquery.smallipop.png?label=ready&title=Ready)](https://waffle.io/sebobo/jquery.smallipop)
 smallipop
 =============
 
