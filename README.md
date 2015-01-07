@@ -65,13 +65,13 @@ You can also provide the text in javascript for all selected elements:
 
     $('.myElement').smallipop({}, 'This is my special hint');
 
-If `myElement` contains an element with the `smallipopHint` class, it's content is copied into the popup when displayed.
+If `myElement` contains an element with the `smallipop-hint` class, it's content is copied into the popup when displayed.
 This can be any markup content you like. Be careful when using floating elements as content,
 they need a clearfix afterwards or jQuery is unable to get the correct size for the popup.
 
     <div class="myElement">
         Sample link
-        <span class="smallipopHint">
+        <span class="smallipop-hint">
            <h6>My bubble title</h6>
            <p>Some text for the bubble</p>
         </span>
@@ -79,7 +79,7 @@ they need a clearfix afterwards or jQuery is unable to get the correct size for 
 
 The plugin first checks if the text has been provided in the javascript call.
 If not then the `title` attribute will be used, if the trigger is a link.
-If not the element will be checked if it contains another element with the `smallipopHint` class, and it's html content will be used.
+If not the element will be checked if it contains another element with the `smallipop-hint` class, and it's html content will be used.
 
 #### Using a different theme:
 
@@ -111,7 +111,7 @@ You can change the default value for all other options as well in this way.
  * popupDistance: vertical distance when the popup appears and disappears. Default is `20`.
  * hideTrigger: hide the trigger when the popup is shown. Default is `false`.
  * theme: `black`, `orange`, `blue`, `white` and `default` are included in the css file. Default is `default`.
- * infoClass: Class in an element which contains markup content for the popup. Default is `smallipopHint`.
+ * infoClass: Class in an element which contains markup content for the popup. Default is `smallipop-hint`.
  * popupDelay: How much time in milliseconds you have to hover on an element before the popups shows up. Default is `100`.
  * triggerAnimationSpeed: How fast the trigger fades in and out when `hideTrigger` is enabled, default is `150`.
  * popupAnimationSpeed: How much time the popup needs to reach it's final animation position and opacity in milliseconds. Default is `200`.
