@@ -98,7 +98,7 @@ asyncTest 'Change tooltip content with api', ->
   trigger.smallipop 'update', newHint
 
   delayCall defaultDelay, ->
-    equal $('.sipContent', smallipop).text(), newHint, 'Hint should have changed'
+    equal $('.smallipop-content', smallipop).text(), newHint, 'Hint should have changed'
 
     # Resume testrunner
     start()
@@ -112,14 +112,14 @@ asyncTest 'Run tour', ->
   expect 2
   smallipopTour = $ '#smallipop2'
 
-  $('.smallipop-tour').smallipop 'tour'
+  $('.smallipop-tour[data-smallipop-tour-index="1"]').smallipop('tour')
 
   delayCall defaultDelay, ->
-    ok $('.smallipop-tour-progress', smallipopTour).text().indexOf('1 of 2') > 0, 'Tour should start at the first element'
+    equal $('.smallipop-tour-progress', smallipopTour).text(), '1 of 2', 'Tour should start at the selected element when no index is provided'
 
     $('.smallipop-tour').smallipop 'tour', 2
 
     delayCall defaultDelay, ->
-      ok $('.smallipop-tour-progress', smallipopTour).text().indexOf('2 of 2') > 0, 'Tour with startindex 2 should start at the second element'
+      equal $('.smallipop-tour-progress', smallipopTour).text(), '2 of 2', 'Tour with startindex 2 should start at the second element'
       # Resume testrunner
       start()

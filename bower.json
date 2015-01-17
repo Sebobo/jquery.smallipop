@@ -1,0 +1,17 @@
+{
+  "name": "Sebobo/jquery.smallipop",
+  "version": "0.6.2",
+  "main": [
+    "css/jquery.smallipop.min.css",
+    "lib/jquery.smallipop.min.js"
+  ],
+  "description": "A versatile jQuery plugin for displaying beautiful tooltips and interactive tours",
+  "license": "MIT",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "jquery": ">=1.5.2"
+  }
+}

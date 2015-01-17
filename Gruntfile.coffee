@@ -45,12 +45,6 @@ module.exports = (grunt) ->
         files: 'src/scss/**/*.scss'
         tasks: ['sass:compile']#, 'growl:sass']
     sass:
-      dist:
-        options:
-          style: 'compressed'
-          compass: true
-        files:
-          'css/jquery.smallipop.min.css': 'src/scss/jquery.<%= pkg.name %>.scss'
       compile:
         options:
           style: 'expanded'
@@ -58,6 +52,12 @@ module.exports = (grunt) ->
         files:
           'css/screen.css': 'src/scss/screen.scss'
           'css/jquery.smallipop.css': 'src/scss/jquery.<%= pkg.name %>.scss'
+      dist:
+        options:
+          style: 'compressed'
+          compass: true
+        files:
+          'css/jquery.smallipop.min.css': 'src/scss/jquery.<%= pkg.name %>.scss'
     uglify:
       dist:
         options:
@@ -66,7 +66,7 @@ module.exports = (grunt) ->
           'lib/jquery.smallipop.min.js': ['lib/jquery.<%= pkg.name %>.js']
 
   # Default task which watches, sass and coffee.
-  grunt.registerTask 'default', ['watch']
+  grunt.registerTask 'default', ['coffee', 'sass', 'watch']
   # Minify task
   grunt.registerTask 'minify', ['uglify', 'sass:dist']
   # Release task to run tests then minify js and css
