@@ -1,0 +1,9 @@
+/* fat shadow extension theme */
+.smallipop-instance.smallipop-theme-fat-shadow {
+  @include box-shadow($fat-shadow);
+}
+
+/* wide content extension theme */
+.smallipop-instance.smallipop-theme-wide {
+  max-width: $max-width-wide;
+}

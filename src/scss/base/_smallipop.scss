@@ -1,0 +1,86 @@
+.smallipop-hint { display: none; }
+
+.smallipop-instance {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  background-color: $default-background-color;
+  border: $default-border;
+  color: $default-color;
+  z-index: 9999;
+  max-width: $max-width;
+  font {
+    size: 11px;
+    family: arial;
+  }
+
+  a {
+    color: $default-link-color;
+  }
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+  }
+  &:before {
+    bottom: -20px;
+    margin-left: -10px;
+    border: 10px solid transparent;
+  }
+  &:after {
+    bottom: -24px;
+    margin-left: -12px;
+    border: 12px solid transparent;
+  }
+}
+
+.smallipop-align-left {
+  &:before, &:after { margin-left:0; left:auto; right:20px; }
+  &:after { right:18px; }
+}
+.smallipop-align-right {
+  &:before, &:after { margin-left:0; left:20px; right:auto; }
+  &:after { left:18px; }
+}
+
+.smallipop-bottom {
+  &:before, &:after { bottom:auto; top:-20px; }
+  &:after { top:-24px; }
+}
+.smallipop-left,
+.smallipop-right {
+  &:before,
+  &:after {
+    right: -16px;
+    left: auto;
+    top: 50%;
+    bottom: auto;
+    border-width: 8px;
+    margin: -8px 0 0;
+  }
+  &:after {
+    right: -20px;
+    border-width: 10px;
+    margin: -10px 0 0;
+  }
+}
+
+.smallipop-right {
+  &:before,
+  &:after {
+    left: -16px;
+    right: auto;
+  }
+  &:after {
+    left: -20px;
+  }
+}
+
+.smallipop-content {
+  padding: 10px;
+}

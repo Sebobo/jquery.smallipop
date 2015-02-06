@@ -1,0 +1,74 @@
+#smallipop-tour-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.smallipop-tour-content {
+  padding: 5px 0;
+  min-width: $tour-min-width;
+}
+
+.smallipop-tour-footer {
+  padding-top: 5px;
+  position: relative;
+  @include clearfix();
+}
+
+.smallipop-tour-progress {
+  color: #bbb;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  width: 80px;
+  margin-left: -40px;
+  top: 8px;
+}
+.smallipop-tour-close-icon {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  padding-top: 0px;
+  font-size: 11px;
+  background: #555;
+  color: #ccc;
+  text-align: center;
+  text-shadow: 0 -1px 1px #666;
+  text-decoration: none;
+  @include border-radius(8px);
+  @include box-shadow($icon-shadow);
+
+  &:hover {
+    text-decoration: none;
+    background: #666;
+    color: #fff;
+  }
+}
+
+.smallipop-tour-prev,
+.smallipop-tour-next,
+.smallipop-tour-close {
+  color: #ccc;
+  display: block;
+  padding: 3px 4px 2px;
+  line-height: 1em;
+  float: left;
+  background: darken($default-background-color, 10%);
+  @include border-radius(3px);
+  @include box-shadow($control-shadow);
+
+  &:hover {
+    color: #fff;
+    background: darken($default-background-color, 5%);
+    text-decoration: none;
+  }
+}
+
+.smallipop-tour-next,
+.smallipop-tour-close {
+  float: right;
+}
