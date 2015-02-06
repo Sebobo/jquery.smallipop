@@ -731,6 +731,8 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
     instances[id] = instance
 
   $.fn.smallipop = (options={}, hint='') ->
+    return @ if @length is 0
+
     # Handle direct method calls
     if typeof(options) is 'string'
       switch options.toLowerCase()
