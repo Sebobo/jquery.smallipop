@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.3
+* [TASK] Don't create smallipop instances when selector is empty.
+* [TASK] Divided scss into separate files so they can be included more easily.
+* [TASK] Added package.json with correct dependencies for developing.
+
 ## 0.6.2
 * [BUGFIX] Uppercase nodeName before checking if element is HTML - thanks to Christian Weiske
 * [TASK] Added waffle.io badge
