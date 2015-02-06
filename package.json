@@ -1,0 +1,20 @@
+{
+  "name": "smallipop",
+  "description": "A versatile jQuery plugin for displaying beautiful tooltips and interactive tours",
+  "version": "0.6.3",
+  "author": "Sebastian Helzle <sebastian@helzle.net>",
+  "main": "lib/jquery.smallipop.min.js",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.12.0",
+    "grunt-contrib-qunit": "^0.5.2",
+    "grunt-contrib-sass": "^0.9.0",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-contrib-watch": "^0.6.1"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sebobo/jquery.smallipop.git"
+  }
+}
