@@ -1,7 +1,7 @@
+
 /*!
 Test suite for jQuery Smallipop
-*/
-
+ */
 var defaultDelay, delayCall;
 
 $('.smallipop').smallipop({
@@ -19,10 +19,10 @@ delayCall = function(delay, callback) {
 
 defaultDelay = 1000;
 
+
 /*
 Test the core plugin features
-*/
-
+ */
 
 module('core');
 
@@ -34,10 +34,10 @@ test('Smallipop exists', function() {
   return equal(smallipop.attr('id'), 'smallipop1', 'First smallipop should have id 1');
 });
 
+
 /*
 Test interaction with the plugins ui elements
-*/
-
+ */
 
 module('interaction');
 
@@ -57,10 +57,10 @@ asyncTest('Show and hide tooltip by interaction', function() {
   });
 });
 
+
 /*
 Test direct calls to the plugins api
-*/
-
+ */
 
 module('api');
 
@@ -96,10 +96,10 @@ asyncTest('Change tooltip content with api', function() {
   });
 });
 
+
 /*
 Test the plugins tour feature
-*/
-
+ */
 
 module('tour');
 
