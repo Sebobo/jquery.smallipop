@@ -19,19 +19,15 @@
     "extra": {
         "component": {
             "scripts": [
-                "lib/jquery.smallipop.js",
-                "lib/main.js"
+                "lib/jquery.smallipop.js"
             ],
             "styles": [
                 "css/jquery.smallipop.css",
-                "css/jquery.smallipop.min.css",
-                "css/screen.css",
                 "css/contrib/animate.min.css"
             ],
             "files": [
                 "lib/jquery.smallipop.min.js",
-                "images/*.png",
-                "images/pic1.jpg"
+                "css/jquery.smallipop.min.css"
             ]
         }
     }
