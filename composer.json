@@ -13,7 +13,7 @@
     ],
     "require": {
         "robloach/component-installer": "*",
-		"components/jquery": ">1.5.2",
+        "components/jquery": ">1.5.2",
         "components/modernizr": "dev-master"
     },
     "extra": {
