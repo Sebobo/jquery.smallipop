@@ -1,7 +1,7 @@
 {
   "name": "smallipop",
   "description": "A versatile jQuery plugin for displaying beautiful tooltips and interactive tours",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "author": "Sebastian Helzle <sebastian@helzle.net>",
   "main": "lib/jquery.smallipop.min.js",
   "devDependencies": {

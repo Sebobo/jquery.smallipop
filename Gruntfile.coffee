@@ -17,7 +17,7 @@ module.exports = (grunt) ->
         '@version <%= pkg.version %>\n' +
         '@date <%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '@category jQuery plugin\n' +
-        '@copyright (c) 2011-2013 Small Improvements (http://www.small-improvements.com)\n' +
+        '@copyright (c) 2011-2015 Small Improvements (http://www.small-improvements.com)\n' +
         '@license Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.\n' +
         '*/\n'
     qunit:
@@ -70,4 +70,4 @@ module.exports = (grunt) ->
   # Minify task
   grunt.registerTask 'minify', ['uglify', 'sass:dist']
   # Release task to run tests then minify js and css
-  grunt.registerTask 'release', ['qunit', 'uglify', 'sass:dist']
+  grunt.registerTask 'release', ['qunit', 'minify']

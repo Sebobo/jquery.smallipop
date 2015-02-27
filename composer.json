@@ -4,11 +4,11 @@
     "keywords": ["jquery", "tooltip", "css", "animation"],
     "homepage": "http://projects.sebastianhelzle.net/jquery.smallipop/",
     "license": "MIT",
-	"type": "component",
+    "type": "component",
     "authors": [
         {
             "name": "Sebastian Helzle",
-            "email": "sebastian@small-improvements.com"
+            "email": "sebastian@helzle.net"
         }
     ],
     "require": {

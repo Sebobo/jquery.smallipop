@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.4
+* [TASK] Add composer support - thanks to Daniel Herrmann
+
 ## 0.6.3
 * [TASK] Don't create smallipop instances when selector is empty.
 * [TASK] Divided scss into separate files so they can be included more easily.

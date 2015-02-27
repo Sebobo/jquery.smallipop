@@ -1,5 +1,5 @@
 ###!
-Smallipop (01/17/2015)
+Smallipop (02/27/2015)
 Copyright (c) 2011-2015 Small Improvements (http://www.small-improvements.com)
 
 Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
@@ -86,7 +86,7 @@ Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) lice
   popupTemplate = "<div class='#{classInstance}'><div class='#{classContent}'/></div>"
 
   $.smallipop = sip =
-    version: '0.6.2'
+    version: '0.6.4'
     defaults:
       autoscrollPadding: 200
       contentAnimationSpeed: 150
