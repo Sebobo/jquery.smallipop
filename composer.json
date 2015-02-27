@@ -1,0 +1,34 @@
+{
+    "name": "components/jquery-smallipop",
+    "description": "Tooltip Popup for jQuery",
+    "keywords": ["jquery", "tooltip", "css", "animation"],
+    "homepage": "http://projects.sebastianhelzle.net/jquery.smallipop/",
+    "license": "MIT",
+	"type": "component",
+    "authors": [
+        {
+            "name": "Sebastian Helzle",
+            "email": "sebastian@small-improvements.com"
+        }
+    ],
+    "require": {
+        "robloach/component-installer": "*",
+        "components/jquery": ">1.5.2",
+        "components/modernizr": "dev-master"
+    },
+    "extra": {
+        "component": {
+            "scripts": [
+                "lib/jquery.smallipop.js"
+            ],
+            "styles": [
+                "css/jquery.smallipop.css",
+                "css/contrib/animate.min.css"
+            ],
+            "files": [
+                "lib/jquery.smallipop.min.js",
+                "css/jquery.smallipop.min.css"
+            ]
+        }
+    }
+}
