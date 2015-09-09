@@ -1,4 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/sebobo/jquery.smallipop.png?label=ready&title=Ready)](https://waffle.io/sebobo/jquery.smallipop)
+[![Build Status](https://travis-ci.org/Sebobo/jquery.smallipop.svg)](https://travis-ci.org/Sebobo/jquery.smallipop)
+
 smallipop
 =============
 
@@ -147,4 +149,4 @@ This plugin was my first attempt at a custom tooltip, coffeescript and scss, so 
 Contributing
 ------------
 
-Contribute!
+Clone the repository, make changes, run `grunt qunit` and create a pull request.
